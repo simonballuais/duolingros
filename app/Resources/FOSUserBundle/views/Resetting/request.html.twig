@@ -1,0 +1,19 @@
+{% extends 'nologged_base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+	{% block content%}
+	<!-- /.login-logo -->
+	<div class="login-box-body">
+		<p class="login-box-msg">Mot de passe oublié</p>
+		<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+			<div>
+				 <div class="form-group has-feedback">
+                <input class="form-control" type="text" id="username" name="username" required="required" class="form-control" placeholder="{{ 'security.login.username'|trans }}"  />
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              </div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'resetting.request.submit'|trans }}</button>
+			</div>
+		</form>
+	</div>
+{% endblock content %}

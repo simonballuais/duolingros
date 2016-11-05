@@ -1,0 +1,33 @@
+{% extends 'nologged_base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+	{% block content%}
+	<!-- /.login-logo -->
+	<div class="login-box-body">
+		<p class="login-box-msg">Changement de mot de passe</p>
+{%if not form.plainPassword.vars.valid %}
+<div class="alert alert-danger alert-dismissable">
+Les deux mots de passe doivent être identiques.
+</div>
+{% endif %}
+
+		{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+			<div>
+				 <div class="form-group has-feedback">
+                {{ form_widget(form.plainPassword.children['first'], { 'attr': {'class': 'form-control', 'placeholder': "Nouveau mot de passe" } }) }}
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              </div>
+			</div>
+			<div>
+				 <div class="form-group has-feedback">
+                {{ form_widget(form.plainPassword.children['second'], { 'attr': {'class': 'form-control', 'placeholder': "Vérification" } }) }}
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              </div>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'resetting.request.submit'|trans }}</button>
+			</div>
+
+		{{ form_end(form) }}
+		</form>
+	</div>
+{% endblock content %}

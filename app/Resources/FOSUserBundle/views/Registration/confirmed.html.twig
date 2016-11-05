@@ -1,0 +1,10 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+    <div class="box">
+        <div class="box-body">
+           <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+        </div>
+    </div>
+
+{% endblock content %}

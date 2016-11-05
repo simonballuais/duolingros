@@ -1,0 +1,14 @@
+{% extends 'nologged_base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+	{% block content%}
+	<!-- /.login-logo -->
+	<div class="login-box-body">
+		<p class="login-box-msg">Mot de passe oublié</p>
+		<p>
+		Un e-mail a été envoyé à l'adresse email du compte.  Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.
+		</p><br />
+		<div>
+				<a href="{{path('fos_user_security_login')}}" class="btn btn-primary btn-block btn-flat">Retour</a>
+		</div>
+	</div>
+{% endblock content %}

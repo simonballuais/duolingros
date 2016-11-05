@@ -1,0 +1,32 @@
+{% extends 'nologged_base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content%}
+<div class="login-box-body">
+    <p class="login-box-msg">Se connecter</p>
+    {% if error %}
+    <div class="alert alert-danger alert-dismissable">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="form-group has-feedback">
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'security.login.username'|trans }}"  />
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'security.login.password'|trans }}" class="form-control" />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <a href="{{ url('fos_user_resetting_request') }}">{{ 'security.login.lost_password'|trans }}</a>
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'security.login.submit'|trans }}</button>
+            </div>
+            <!-- /.col -->
+        </div>
+    </form>
+</div>
+{% endblock content %}

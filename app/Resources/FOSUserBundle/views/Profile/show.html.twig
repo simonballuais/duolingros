@@ -1,0 +1,9 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block header -%}
+    Votre profil
+{% endblock header %}
+
+{% block content -%}
+{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock content %}

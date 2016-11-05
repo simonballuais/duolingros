@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% set current_route = app.request.attributes.get('_route') %}
+
+{% block title %}New Project{% endblock title %}
+
+{% block body %}
+<div class="wrapper">
+<header class="main-header">
+
+    <a href="#" class="logo">
+      <span class="logo-mini">
+          {% block logomini %}New Project{% endblock logomini %}
+      </span>
+      <span class="logo-lg">
+          {% block logo %}New Project{% endblock logo %}
+      </span>
+    </a>
+
+    <nav class="navbar navbar-static-top" role="navigation">
+      {% block navbar %}
+      {% endblock navbar %}
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <span class="hidden-xs"
+                          style="margin-right:20px; padding-top: 13px; padding-bottom: 15px;line-height: 20px;display: block">
+                        <a style="color:white;" href="{{path('fos_user_profile_show')}}"> {{app.user.username}}</a>
+                    </span>
+                </li>
+                <li class="user-logout">
+                    <a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i class="fa fa-sign-out"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        {% block sidebar %}
+            {% include 'admin/sidebar.html.twig' %}
+        {% endblock sidebar %}
+    </section>
+</aside>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>{% block header %}{% endblock %}</h1>
+    </section>
+
+    <section class="content">
+        {% block content %}{% endblock %}
+    </section>
+</div>
+
+<div id="overlay" class="wrapper" style="display:none;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:10000;background-color:rgba(0, 0, 0, 0.8);">
+    <span class="glyphicon glyphicon-refresh gly-ani" style="position:fixed; top:50%;left:50%;font-size:50px; color:white;"></span>
+</div>
+
+{% endblock body %}
