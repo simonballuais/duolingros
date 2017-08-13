@@ -6,4 +6,7 @@ parameters:
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]    
+    app.lesson_manager:
+        class: AppBundle\Manager\LessonManager
+        arguments: ['doctrine.orm.entity_manager', '@session']

@@ -100,6 +100,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // api_lesson_start
+        if ($pathinfo === '/api/lesson/start_lesson') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_api_lesson_start;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\API\\LessonController::startLessonAction',  '_route' => 'api_lesson_start',);
+        }
+        not_api_lesson_start:
+
         // homepage
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
