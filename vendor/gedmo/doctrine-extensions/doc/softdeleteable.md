@@ -1,7 +1,7 @@
 # SoftDeleteable behavior extension for Doctrine 2
 
 **SoftDeleteable** behavior allows to "soft delete" objects, filtering them
-at SELECT time by marking them as with a timestamp, but not explicitly removing them from the database.
+at SELECT time by marking them deleted as with a timestamp, but not explicitly removing them from the database.
 
 Features:
 
@@ -25,8 +25,8 @@ Content:
 
 ## Setup and autoloading
 
-Read the [documentation](http://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/annotations.md#em-setup)
-or check the [example code](http://github.com/l3pp4rd/DoctrineExtensions/tree/master/example)
+Read the [documentation](http://github.com/Atlantic18/DoctrineExtensions/blob/master/doc/annotations.md#em-setup)
+or check the [example code](http://github.com/Atlantic18/DoctrineExtensions/tree/master/example)
 on how to setup and use the extensions in most optimized way.
 
 With SoftDeleteable there's one more step you need to do. You need to add the filter to your configuration:

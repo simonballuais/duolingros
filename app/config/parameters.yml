@@ -2,9 +2,9 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: NewProject
+    database_name: duolingros
     database_user: root
-    database_password: root
+    database_password: "&megaprout318mysql"
     secret: ThisTokenIsNotSoSecretChangeIt
     mailer_transport: gmail
     mailer_host: smtp.gmail.com

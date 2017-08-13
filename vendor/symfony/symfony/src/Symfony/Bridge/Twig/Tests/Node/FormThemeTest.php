@@ -41,7 +41,7 @@ class FormThemeTest extends \PHPUnit_Framework_TestCase
 
         $node = new FormThemeNode($form, $resources, 0);
 
-        $compiler = new \Twig_Compiler(new \Twig_Environment($this->getMock('Twig_LoaderInterface')));
+        $compiler = new \Twig_Compiler(new \Twig_Environment($this->getMockBuilder('Twig_LoaderInterface')->getMock()));
 
         $this->assertEquals(
             sprintf(
@@ -66,6 +66,10 @@ class FormThemeTest extends \PHPUnit_Framework_TestCase
 
     protected function getVariableGetter($name)
     {
+        if (PHP_VERSION_ID >= 70000) {
+            return sprintf('($context["%s"] ?? null)', $name, $name);
+        }
+
         return sprintf('(isset($context["%s"]) ? $context["%s"] : null)', $name, $name);
     }
 }

@@ -1,5 +1,4 @@
-d92afa,127.0.0.1,GET,http://127.0.0.1:8000/default/css/base.css,1477576411,806a51,200
-806a51,127.0.0.1,GET,http://127.0.0.1:8000/default/css/base.css,1477576411,,404
-d95e81,127.0.0.1,GET,http://127.0.0.1:8000/default/css/base.css,1477576431,8e002b,200
-8e002b,127.0.0.1,GET,http://127.0.0.1:8000/default/css/base.css,1477576432,,404
-4411ad,127.0.0.1,GET,http://127.0.0.1:8000/app_dev.php/login,1477576693,,200
+f31fba,66.249.93.223,GET,http://coincoin.me/duolingros/app_dev.php/,1502652901,,302
+71479b,66.249.93.222,GET,http://coincoin.me/duolingros/app_dev.php/login,1502652902,,200
+fbc1b9,154.126.87.237,POST,http://coincoin.me/duolingros/app_dev.php/login_check,1502653097,,302
+145d7b,66.249.93.221,GET,http://coincoin.me/duolingros/app_dev.php/,1502653097,,200
