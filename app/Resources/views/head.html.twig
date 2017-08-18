@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}" />
     {% endblock stylesheet %}
 
-    {% block javascripts %}
+    {% block javascript %}
     <script src="{{ asset('assets/vendor/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/AdminLTE/dist/js/app.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"> </script>
     <script src="{{ asset('assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"> </script>
     <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"> </script>
+    <script src="{{ asset('assets/js/study.js') }}"> </script>
     <script type="text/javascript">
     $(document).ready(function () {
         $('.alert.fading').delay(250).fadeIn('normal', function() {
@@ -28,5 +29,5 @@
         });
     });
     </script>
-    {% endblock javascripts %}
+    {% endblock javascript %}
 </head>
