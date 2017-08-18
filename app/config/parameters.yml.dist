@@ -17,3 +17,5 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            NewProject-secret
+
+    csv_directory: '%kernel.root_dir%/../fixture'

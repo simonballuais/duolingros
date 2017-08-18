@@ -9,4 +9,8 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]    
     app.lesson_manager:
         class: AppBundle\Manager\LessonManager
-        arguments: ['doctrine.orm.entity_manager', '@session']
+        arguments: ['@doctrine.orm.entity_manager', '@session']
+
+    app.exercise_manager:
+        class: AppBundle\Manager\ExerciseManager
+        arguments: ['@doctrine.orm.entity_manager']

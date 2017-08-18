@@ -16,7 +16,7 @@ class LessonManager
     protected $entityManager;
     protected $session;
 
-    public function __construct(EntityManagerInterface $entityManager, $session)
+    public function __construct($entityManager, $session)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
