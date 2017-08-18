@@ -22,11 +22,12 @@ class ExerciseManager
         $this->entityManager = $entityManager;
     }
 
-    public function createOrUpdate($text, $answerList)
+    public function createOrUpdate($text, $answerList, $lesson)
     {
         $exercise = new Exercise();
         $exercise->setText($text);
         $exercise->setAnswerList($answerList);
+        $exercise->setLesson($lesson);
 
         $this->entityManager->merge($exercise);
 

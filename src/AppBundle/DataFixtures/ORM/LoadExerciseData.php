@@ -14,26 +14,42 @@ class LoadExerciseData implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         $em = $this->container->get('app.exercise_manager');
+        $lm = $this->container->get('app.lesson_manager');
         $csvDirectory = $this->container->getParameter('csv_directory');
 
         $file = fopen($csvDirectory . "/exercise.csv", "r");
 
         if (is_null($file)) {
-            echo("Impossible de trouver le fichier exercise.csv");
+            echo("Impossible de trouver le fichier exercise.csv\n");
             return;
         }
 
+        $csvLine = fgetcsv($file, 0, ';');
+        $index = 2;
+
         while($csvLine = fgetcsv($file, 0, ';')) {
-            if (!isset($csvLine[0])) {
-                echo("Skip line $index");
+            if (!isset($csvLine[1])) {
+                echo("Skip line $index\n");
                 continue;
             }
 
-            $text = $csvLine[0];
+            $lesson = $lm->get($csvLine[1]);
+
+            if (null === $lesson) {
+                echo("Skip line $index car la Lesson {$csvLine[1]} n'existe pas\n");
+                continue;
+            }
+
+            $id = $csvLine[0];
+            $text = $csvLine[2];
             $answerList = $csvLine;
             array_shift($answerList);
+            array_shift($answerList);
+            array_shift($answerList);
 
-            $em->createOrUpdate($text, $answerList);
+            $exercise = $em->createOrUpdate($text, $answerList, $lesson, $id);
+
+            $index++;
         }
 
         $manager->flush();

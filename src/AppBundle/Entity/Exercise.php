@@ -27,6 +27,12 @@ class Exercise
      */
     protected $answerList;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="exerciseList", cascade={"persist"})
+     * @ORM\JoinColumn(name="lesson_id", referencedColumnName="id")
+     */
+    protected $lesson;
+
     protected $corrector;
 
     public function __construct()
@@ -85,5 +91,17 @@ class Exercise
             $this->text,
             implode("\n    ", $this->answerList)
         );
+    }
+
+    public function getLesson()
+    {
+        return $this->lesson;
+    }
+
+    public function setLesson($lesson)
+    {
+        $this->lesson = $lesson;
+
+        return $this;
     }
 }

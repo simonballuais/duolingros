@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% for lesson in lessonList %}
+<a
+  class="start-lesson"
+  lesson-id="{{ lesson.id }}"
+  >
+  {{ lesson.title }}
+</a>
+{% endfor %}
+{% endblock body %}

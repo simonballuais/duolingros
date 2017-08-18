@@ -4,15 +4,11 @@ namespace AppBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Manager\BaseManager;
-use AppBundle\Entity\Lesson;
+use AppBundle\Services\Mailer;
 
-class LessonManager
+class StudyManager
 {
-    const SERVICE_NAME = 'app.lesson_manager';
-
-    protected $entityManager;
-    protected $session;
-    protected $repo;
+    const SERVICE_NAME = 'app.study_manager';
 
     protected $currentLessonId;
     protected $currentExercisePlayed;
@@ -22,35 +18,6 @@ class LessonManager
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
-        $this->repo = $entityManager->getRepository("AppBundle:Lesson");
-    }
-
-    public function getAll()
-    {
-        return $this->repo->findAll();
-    }
-
-    public function get($id)
-    {
-        return $this->repo->findOneById($id);
-    }
-
-    public function createOrUpdate($title, $id="")
-    {
-        $lesson = new Lesson();
-        $lesson->setTitle($title);
-
-        if ("" !== $id) {
-            $lesson->setId($id);
-            $this->entityManager->persist($lesson);
-            $metadata = $this->entityManager->getClassMetaData(get_class($lesson));
-            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetaData::GENERATOR_TYPE_NONE);
-        }
-        else {
-            $this->entityManager->merge($lesson);
-        }
-
-        return $lesson;
     }
 
     public function getCurrentLessonId()

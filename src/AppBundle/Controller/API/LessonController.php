@@ -10,13 +10,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LessonController extends Controller
 {
+    public function lobbyAction()
+    {
+        return $this->render('lesson/lobby');
+    }
     /**
-     * @Route("/api/lesson/start_lesson", name="api_lesson_start")
+     * @Route("/api/lesson/{lesson}/start", name="api_lesson_start")
      * @Method({"GET"})
      */
     public function startLessonAction(Request $request)
     {
-
+        return new JsonResponse();
     }
 }
 ?>
