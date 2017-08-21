@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class StudyController extends Controller
 {
     /**
-     * @Route("/lessons", name="front_lesson_lobby")
+     * @Route("/study", name="front_study_lobby")
      * @Method({"GET"})
      */
     public function lobbyAction()

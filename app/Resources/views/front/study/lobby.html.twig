@@ -2,11 +2,56 @@
 
 {% block body %}
 {% for lesson in lessonList %}
-<a
-  class="start-lesson"
-  lesson-id="{{ lesson.id }}"
+<div class="container"
+     id="lesson"
   >
-  {{ lesson.title }}
-</a>
+  <div class="row">
+    <div class="col-sm-3">
+      <a
+        class="start-lesson"
+        lesson-id="{{ lesson.id }}"
+        >
+        {{ lesson.title }}
+      </a>
+    </div> <!-- col -->
+    <div class="col-sm-9">
+      <div class="row"
+           id="lesson-title"
+        >
+        ${ lessonTitle }
+      </div> <!-- row -->
+      <div class="row"
+           id="progress"
+        >
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active"
+               role="progress-bar"
+               v-bind:style="{ width: progress + '%' }"
+               >
+          </div>
+        </div>
+      </div> <!-- row -->
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="textbox"
+                 id="exercise"
+                 readonly
+                 v-bind:value="exerciseText"
+          />
+        </div> <!-- col -->
+        <div class="col-sm-6">
+          <input type="textbox"
+                 id="proposition"
+          />
+        </div> <!-- col -->
+      </div> <!-- row -->
+      <div class="row"
+           id="correction"
+        >
+       
+      </div> <!-- row -->
+    </div> <!-- col -->
+  </div> <!-- row -->
+</div> <!-- container -->
 {% endfor %}
 {% endblock body %}

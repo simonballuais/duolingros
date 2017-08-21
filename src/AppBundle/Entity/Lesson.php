@@ -58,6 +58,12 @@ class Lesson
 
         return $this;
     }
+    public function getRandomExercise()
+    {
+        $index = rand(0, count($this->exerciseList) - 1);
+
+        return $this->exerciseList[$index];
+    }
     public function __toString()
     {
         return sprintf("Lesson [%s] - %s", $this->id, $this->title);

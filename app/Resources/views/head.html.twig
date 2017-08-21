@@ -15,6 +15,8 @@
     {% endblock stylesheet %}
 
     {% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('assets/vendor/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/AdminLTE/dist/js/app.min.js') }}"></script>
@@ -22,6 +24,7 @@
     <script src="{{ asset('assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"> </script>
     <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"> </script>
     <script src="{{ asset('assets/js/study.js') }}"> </script>
+    <script src="https://unpkg.com/vue"> </script>
     <script type="text/javascript">
     $(document).ready(function () {
         $('.alert.fading').delay(250).fadeIn('normal', function() {

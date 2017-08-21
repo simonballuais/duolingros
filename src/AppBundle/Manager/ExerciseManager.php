@@ -34,6 +34,14 @@ class ExerciseManager
         return $exercise;
     }
 
+    public function get($text)
+    {
+        $repoExercise = $this->entityManager->getRepository("AppBundle:Exercise");
+        $exercise = $repoExercise->findOneBy(['text' => $text]);
+
+        return $exercise;
+    }
+
     public function getAll()
     {
         $repoExercise = $this->entityManager->getRepository("AppBundle:Exercise");
