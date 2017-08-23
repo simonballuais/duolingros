@@ -47,14 +47,30 @@
           />
         </div> <!-- col -->
       </div> <!-- row -->
-      <div class="row"
-           id="correction"
-        >
-        <ul id="remarks">
-          <li v-for="remark in remarks">
-            ${ remark }
-          </li>
-        </ul>
+      <div class="row">
+        <div class="jumbotron"
+             id="correction-status"
+             v-bind:style="{
+               'background-color': remarksBg,
+             }"
+             style="display: none"
+          >
+          <h1 class="display-3"
+             v-bind:style="{
+               'color': remarksFg,
+             }"
+              >
+            ${ correctionStatus }
+          </h1>
+
+          <hr />
+
+          <ul id="remarks">
+            <li v-for="remark in remarks">
+              ${ remark }
+            </li>
+          </ul>
+        </div>
       </div> <!-- row -->
     </div> <!-- col -->
   </div> <!-- row -->

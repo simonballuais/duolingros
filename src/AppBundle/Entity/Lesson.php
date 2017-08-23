@@ -60,7 +60,7 @@ class Lesson
     }
     public function getRandomExercise()
     {
-        $index = rand(0, count($this->exerciseList)) - 1;
+        $index = rand(0, count($this->exerciseList) - 1);
 
         return $this->exerciseList[$index];
     }

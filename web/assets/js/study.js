@@ -1,6 +1,11 @@
 $(document).ready(function() {
     const ENTER = 13;
 
+    const BG_RED = '#e22d2d';
+    const BG_GREEN = '#2de230';
+    const FG_RED = '#440d0d';
+    const FG_GREEN = '#0d440e';
+
     const STATE = {
         IDDLE: 'iddle',
         WRITING_PROPOSITION: 'writing proposition',
@@ -21,6 +26,9 @@ $(document).ready(function() {
             progress: 80,
             exerciseText: '...',
             remarks: [],
+            remarksFg: "red",
+            remarksBg: "red",
+            correctionStatus: 'Oki :)',
         }
     });
 
@@ -40,6 +48,10 @@ $(document).ready(function() {
 
         if (undefined !== data.remarks) {
             lessonApp.remarks = data.remarks;
+        }
+
+        if (undefined !== data.correctionStatus) {
+            lessonApp.correctionStatus = data.correctionStatus;
         }
     };
 
@@ -64,6 +76,7 @@ $(document).ready(function() {
 
     var sendProposition = function() {
         var $proposition = $('input#proposition');
+        $proposition.attr('disabled', true);
 
         $.ajax({
             type        : 'POST',
@@ -73,6 +86,20 @@ $(document).ready(function() {
             success     : function(data) {
                 refreshLessonView(data);
                 state = STATE.READING_REMARKS;
+                $proposition.attr('disabled', false);
+                $proposition.focus();
+                $('#correction-status').fadeIn();
+
+                if (data.isOk) {
+                    lessonApp.correctionStatus = 'Oki :)';
+                    lessonApp.remarksBg = BG_GREEN;
+                    lessonApp.remarksFg = FG_GREEN;
+                }
+                else {
+                    lessonApp.correctionStatus = 'Tropa :(';
+                    lessonApp.remarksBg = BG_RED;
+                    lessonApp.remarksFg = FG_RED;
+                }
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
                 error(XMLHttpRequest, textStatus, errorThrown);
@@ -82,6 +109,7 @@ $(document).ready(function() {
 
     var startNextExercise = function() {
         var $proposition = $('input#proposition');
+        $('#correction-status').fadeOut();
 
         $.ajax({
             type        : 'GET',
@@ -106,12 +134,6 @@ $(document).ready(function() {
         startLesson(lessonId);
     });
 
-    $('input#proposition').keypress(function(event) {
-        if (event.which === ENTER) {
-            sendProposition();
-        }
-    });
-
     $('body').keypress(function(event) {
         if (event.which === 115) {
             if (state == STATE.IDDLE) {
@@ -123,10 +145,11 @@ $(document).ready(function() {
         if (event.which === ENTER) {
             if (state == STATE.WRITING_PROPOSITION) {
                 sendProposition();
+                return;
             }
-
             if (state == STATE.READING_REMARKS) {
                 startNextExercise();
+                return;
             }
         }
     });
