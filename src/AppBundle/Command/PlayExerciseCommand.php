@@ -44,7 +44,7 @@ class PlayExerciseCommand extends ContainerAwareCommand
         $exercise = $exercises[$index];
         $output->writeln($exercise->getText());
 
-        $question = new Question("Votre réponse");
+        $question = new Question("Votre réponse : ");
         $answer = $helper->ask($input, $output, $question);
         $proposition = new Proposition($answer);
         $correction = $exercise->treatProposition($proposition);

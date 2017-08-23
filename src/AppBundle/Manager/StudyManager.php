@@ -11,6 +11,7 @@ class StudyManager
 {
     const SERVICE_NAME = 'app.study_manager';
 
+    protected $currentLesson;
     protected $currentLessonId;
     protected $currentExerciseText;
     protected $targetAmountPlayed;
@@ -33,8 +34,8 @@ class StudyManager
 
     public function startStudy($lesson)
     {
-        $exercise = $lesson->getRandomExercise();
         $this->setCurrentLessonId($lesson->getId());
+        $exercise = $this->getNextExercise();
         $this->setCurrentExerciseText($exercise->getText());
         $this->setCurrentAmountPlayed(0);
         $this->setTargetAmountPlayed(10);
@@ -56,9 +57,11 @@ class StudyManager
 
     public function getNextExercise()
     {
-        $lesson = $this->lessonManager->get($this->getCurrentLessonId());
+        $lesson = $this->getCurrentLesson();
+        $exercise = $lesson->getRandomExercise();
+        $this->setCurrentExerciseText($exercise->getText());
 
-        return $lesson->getRandomExercise();
+        return $exercise;
     }
 
     public function getProgress()
@@ -112,5 +115,14 @@ class StudyManager
         $this->session->set('current_amount_played', $currentAmountPlayed);
 
         return $this;
+    }
+
+    public function getCurrentLesson()
+    {
+        if ($this->currentLesson === null) {
+            $this->currentLesson = $this->lessonManager->get($this->getCurrentLessonId());
+        }
+
+        return $this->currentLesson;
     }
 }

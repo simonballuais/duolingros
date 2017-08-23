@@ -42,13 +42,19 @@
         <div class="col-sm-6">
           <input type="textbox"
                  id="proposition"
+                 v-model="proposition"
+                 placeholder="réponse ..."
           />
         </div> <!-- col -->
       </div> <!-- row -->
       <div class="row"
            id="correction"
         >
-       
+        <ul id="remarks">
+          <li v-for="remark in remarks">
+            ${ remark }
+          </li>
+        </ul>
       </div> <!-- row -->
     </div> <!-- col -->
   </div> <!-- row -->

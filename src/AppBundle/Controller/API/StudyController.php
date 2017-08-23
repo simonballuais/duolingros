@@ -46,14 +46,32 @@ class StudyController extends Controller
 
         $proposition = new Proposition($request->get('text'));
         $correction = $sm->tryProposition($proposition);
-        $exercise = $sm->getNextExercise();
 
         return new JsonResponse([
+            'proposition' => $request->get('text'),
             'isOk' => $correction->isOk(),
             'remarks' => $correction->getRemarks(),
             'progress' => $sm->getProgress(),
+        ]);
+    }
+
+    /**
+     * @Route("/api/study/get_new_exercise",
+     *        name="api_study_get_new_exercise",
+     *        options={"expose"=true}
+     *        )
+     * @Method({"GET"})
+     */
+    public function getNewExeriseAction()
+    {
+        $sm = $this->get('app.study_manager');
+        $exercise = $sm->getNextExercise();
+
+        return new JsonResponse([
+            'progress' => $sm->getProgress(),
             'exerciseText' => $exercise->getText()
         ]);
+
     }
 }
 
