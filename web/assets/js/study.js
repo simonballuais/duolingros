@@ -29,6 +29,9 @@ $(document).ready(function() {
             remarksFg: "red",
             remarksBg: "red",
             correctionStatus: 'Oki :)',
+            conclusionHeader: '',
+            conclusionBody: '',
+            conclusionFooter: '',
         }
     });
 
@@ -55,6 +58,20 @@ $(document).ready(function() {
         }
     };
 
+    var finishStudy = function(data) {
+        state = STATE.READING_STUDY_CONCLUSION;
+        lessonApp.conclusionHeader = 'Leçon terminée :)';
+        lessonApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
+        lessonApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
+        $('#lesson-conclusion-modal').modal("show");
+    };
+
+    var closeStudy = function() {
+        state = STATE.IDDLE;
+        lessonApp.proposition = '';
+        $('#lesson-conclusion-modal').modal("hide");
+    };
+
     var startLesson = function(lessonId) {
         var $proposition = $('input#proposition');
 
@@ -65,6 +82,7 @@ $(document).ready(function() {
             success     : function(data) {
                 refreshLessonView(data);
                 $proposition.focus();
+                lessonApp.proposition = '';
                 lessonStarted = true;
                 state = STATE.WRITING_PROPOSITION;
             },
@@ -116,6 +134,10 @@ $(document).ready(function() {
             url         : Routing.generate('api_study_get_new_exercise'),
             dataType    : 'json',
             success     : function(data) {
+                if (data.studyOver) {
+                    return finishStudy(data);
+                }
+
                 lessonApp.remarks = [];
                 lessonApp.proposition = '';
                 refreshLessonView(data);
@@ -149,6 +171,10 @@ $(document).ready(function() {
             }
             if (state == STATE.READING_REMARKS) {
                 startNextExercise();
+                return;
+            }
+            if (state == STATE.READING_STUDY_CONCLUSION) {
+                closeStudy();
                 return;
             }
         }

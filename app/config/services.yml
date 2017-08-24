@@ -14,3 +14,7 @@ services:
         class: AppBundle\Manager\StudyManager
         arguments: ['@doctrine.orm.entity_manager', '@session', '@app.lesson_manager', '@app.exercise_manager']
 
+    app.learning_manager:
+        class: AppBundle\Manager\LearningManager
+        arguments: ['@doctrine.orm.entity_manager']
+

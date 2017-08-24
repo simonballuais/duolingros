@@ -16,6 +16,7 @@ class StudyManager
     protected $currentExerciseText;
     protected $targetAmountPlayed;
     protected $currentAmountPlayed;
+    protected $currentAmountSucceeded;
 
     protected $session;
     protected $entityManager;
@@ -35,10 +36,11 @@ class StudyManager
     public function startStudy($lesson)
     {
         $this->setCurrentLessonId($lesson->getId());
+        $this->setCurrentAmountPlayed(0);
+        $this->setCurrentAmountSucceeded(0);
+        $this->setTargetAmountPlayed($lesson->getExercisePerStudy());
         $exercise = $this->getNextExercise();
         $this->setCurrentExerciseText($exercise->getText());
-        $this->setCurrentAmountPlayed(0);
-        $this->setTargetAmountPlayed(10);
 
         return $exercise;
     }
@@ -49,14 +51,25 @@ class StudyManager
         $correction = $exercise->treatProposition($proposition);
 
         if ($correction->isOk()) {
-            $this->setCurrentAmountPlayed($this->getCurrentAmountPlayed() + 1);
+            $this->setCurrentAmountSucceeded($this->getCurrentAmountSucceeded() + 1);
         }
+
+        $this->setCurrentAmountPlayed($this->getCurrentAmountPlayed() + 1);
 
         return $correction;
     }
 
+    public function isOver()
+    {
+        return $this->getCurrentAmountSucceeded() >= $this->getTargetAmountPlayed();
+    }
+
     public function getNextExercise()
     {
+        if ($this->isOver()) {
+            return null;
+        }
+
         $lesson = $this->getCurrentLesson();
         $exercise = $lesson->getRandomExercise();
         $this->setCurrentExerciseText($exercise->getText());
@@ -64,9 +77,22 @@ class StudyManager
         return $exercise;
     }
 
+    public function getMistakes()
+    {
+        return $this->getCurrentAmountPlayed() / $this->getCurrentAmountSucceeded();
+    }
+
+    public function getSuccessPercentage()
+    {
+        return number_format(
+            $this->getCurrentAmountSucceeded() / $this->getCurrentAmountPlayed() * 100,
+            2
+        );
+    }
+
     public function getProgress()
     {
-        return $this->getCurrentAmountPlayed() / $this->getTargetAmountPlayed() * 100;
+        return $this->getCurrentAmountSucceeded() / $this->getTargetAmountPlayed() * 100;
     }
 
     public function getCurrentLessonId()
@@ -113,6 +139,18 @@ class StudyManager
     public function setCurrentAmountPlayed($currentAmountPlayed)
     {
         $this->session->set('current_amount_played', $currentAmountPlayed);
+
+        return $this;
+    }
+
+    public function getCurrentAmountSucceeded()
+    {
+        return $this->session->get('current_amount_succeeded');
+    }
+
+    public function setCurrentAmountSucceeded($currentAmountSucceeded)
+    {
+        $this->session->set('current_amount_succeeded', $currentAmountSucceeded);
 
         return $this;
     }

@@ -1,18 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{% for lesson in lessonList %}
 <div class="container"
      id="lesson"
   >
   <div class="row">
     <div class="col-sm-3">
-      <a
-        class="start-lesson"
-        lesson-id="{{ lesson.id }}"
-        >
-        {{ lesson.title }}
-      </a>
+      <ul>
+        {% for lesson in lessonList %}
+        <li>
+          <a
+            class="start-lesson"
+            lesson-id="{{ lesson.id }}"
+            >
+            {{ lesson.title }}
+            {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
+            <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
+            {% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </div> <!-- col -->
     <div class="col-sm-9">
       <div class="row"
@@ -74,6 +82,28 @@
       </div> <!-- row -->
     </div> <!-- col -->
   </div> <!-- row -->
+
+  <div id="lesson-conclusion-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>
+          ${ conclusionHeader }
+          </h1>
+        </div>
+        <div class="modal-body">
+          <p>
+          ${ conclusionBody }
+          </p>
+        </div>
+        <div class="modal-footer">
+          <p>
+          ${ conclusionFooter }
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div> <!-- container -->
-{% endfor %}
 {% endblock body %}

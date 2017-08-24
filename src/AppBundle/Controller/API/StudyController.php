@@ -67,12 +67,33 @@ class StudyController extends Controller
         $sm = $this->get('app.study_manager');
         $exercise = $sm->getNextExercise();
 
-        return new JsonResponse([
-            'progress' => $sm->getProgress(),
-            'exerciseText' => $exercise->getText()
-        ]);
+        if (null !== $exercise) {
+            return new JsonResponse([
+                'progress' => $sm->getProgress(),
+                'exerciseText' => $exercise->getText()
+            ]);
+        }
 
+        $lm = $this->get('app.learning_manager');
+        $em = $this->getDoctrine()->getManager();
+
+        $successPercentage = $sm->getSuccessPercentage();
+
+        $learning = $lm->finishLesson(
+            $this->getUser(),
+            $sm->getCurrentLesson(),
+            $successPercentage
+        );
+
+        $mastery = $learning->getMastery();
+
+        $em->flush();
+
+        return new JsonResponse([
+            'studyOver' => true,
+            'successPercentage' => $successPercentage,
+            'mastery' => $mastery,
+        ]);
     }
 }
-
 ?>
