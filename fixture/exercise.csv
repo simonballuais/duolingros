@@ -3,3 +3,86 @@ id;lesson_id;text;answers ...
 ;1;J'ai faim;Noana aho;Noana
 ;1;Je m'apelle Simon;Simon no anarako
 ;1;Je vais dormir;Hatory aho;Hatory
+
+;2;Manao ahoana;Comment
+;2;Ny;Le;La;Les
+;2;Rano;Eau;De l'eau;L'eau
+;2;Maloto;Sale
+;2;Be;Très
+;2;Eny;Oui
+;2;Tsia;Non
+;2;Trano;Maison;La maison;Une maison
+;2;Madio;Propre
+;2;Sy;Et
+;2;Maloto ny rano;L'eau est sale
+;2;Madio ny rano;L'eau est propre
+;2;Maloto be ny rano;L'eau est très sale
+;2;Maloto ve ny rano;Est-ce que l'eau est sale ?;L'eau est-elle sale ?:L'eau est sale ?
+;2;Eny, maloto ny rano;Oui, l'eau est sale
+;2;Maloto be ve ny rano ?;Est-ce que l'eau est très sale ?;L'eau est-elle très sale ?;L'eau est très sale ?
+;2;Eny, maloto be ny rano;Oui, l'eau est très sale
+;2;Tsy maloto ny rano;L'eau n'est pas sale
+;2;Tsy maloto be ny rano;L'eau n'est pas très sale
+;2;Tsy maloto ve ny rano ?;Est-ce que l'eau n'est pas sale ?;L'eau n'est-elle pas sale ?;L'eau n'est pas sale ?
+;2;Eny, tsy maloto ny rano;Oui, l'eau n'est pas sale;Non, l'eau n'est pas sale;L'eau n'est pas sale
+;2;Tsy maloto be ve ny rano ?;Est-ce que l'eau n'est pas très sale ?L'eau n'est pas très sale ?;L'eau n'est-elle pas très sale ?
+;2;Eny, tsy maloto be ny rano;Oui, l'eau n'est pas très sale;Non, l'eau n'est pas très sale;L'eau n'est pas très sale
+;2;Manao ahoana ny trano ?;Comment est la maison ?
+;2;Madio ny trano;La maison est propre
+;2;Madio tsara ny trano;La maison est très propre;La maison est bien propre
+;2;Madio ve ny trano ?:Est-ce que la maison est propre ?;La maison est-elle propre ?;La maison est propre ?
+;2;Eny, madio ny trano;Oui, la maison est propre
+;2;Madio tsara ve ny trano ?;Est-ce que la maison est bien propre ?;La maison est-elle bien propre ?;La maison est bien propre ?
+;2;Eny, madio tsara ny trano;Oui, la maison est bien propre
+;2;Tsy madio ny trano sy ny rano;La maison et l'eau ne sont pas propres
+;2;Tsy madio tsara ny trano sy ny rano;La maison et l'eau ne sont pas bien propres;La maison et l'eau ne sont pas très propres
+;2;Tsy madio ve ny trano ?;La maison n'est pas propre ?;La maison n'est-elle pas propre ?
+;2;Eny, tsy madio u trano;Oui, la maison n'est pas propre;La maison n'est pas propre;Non, la maison n'est pas propre
+;2;Maloto ve ny rano ?;Est-ce que la maison est sale ?;La maison est-elle sale ?;La maison est sale ?
+;2;Tsia, madio ny rano;Non, la maison est propre
+;2;Madio ve ny trano ?;Est-ce que la maison est propre ?;La maison est-elle propre ?;La maison est propre ?
+;2;Tsia, maloto ny trano;Non, la maison est sale
+;2;L'eau est propre;Madio ny rano
+;2;L'eau n'est-elle pas bien propre ?;Tsy tsara madio ny rano ?
+;2;L'eau est bien propre;Tsara madio ny rano
+;2;Comment sont l'eau et la maison ?;Manao ahoana ny trano sy ny rano ?
+;2;L'eau et la maison ne sont pas propres;Tsy madio ny rano sy ny trano
+;2;Les maisons sont-elles sales ?;Maloto ve ny trano ?
+;2;Non, les maisons ne sont pas sales;Tsia, tsy maloto ny trano
+
+Mpiasa;Travailleur;Ouvrier
+Io;Ce;Cette;Ces
+Olona;Personne;Une personne;Quelqu'un
+Angamba;Peut-être
+Asa;Je ne peux pas dire;Je peux pas dire
+Tsy fantatro;Je ne sais pas;Je sais pas
+Marary;Malade
+Zazakely;Enfant;Bébé
+Mangidy;Amère
+Fanafody;Médicament;Remède
+Mamy;Sucré
+Mpiasa ve io olona io ?;Est-ce que cette personne est un travailleur ?;Cette personne est-elle un travailleur ?;Cette personne est un travailleur ?
+Eny, mpiasa izy;
+Tsia, tsy mpiasa izy;
+Mpiasa angamba isy;
+Asa, mpiasa angamba izy;
+Tsy fantatro na mpiasa izy na tsia;
+Marary ve io zazakely io ?;
+Marary angamba izy;
+Asa, marary angamba izy;
+Tsy fantatro na marary izy na tsia;
+Mangidy ve io fanafody io ?;
+Mangidy angamba izy io;
+Asa, mangidy angamba izy io;
+Tsy fantatro na mangidy izy io na mamy;
+Rano maloto;
+Trano madio;
+Zazakely marary;
+Fanafoy mangidy;
+Cette eau est-elle amère ?;
+Non, cette eau n'est pas amère;
+Cet ouvrier est-il malade ?;
+Je ne sasis pas si il est malade ou non;
+Cette personne et l'enfant sont peut-être malades;
+C'est bien que l'eau soit propre et que la maison soit propre;
+Beaucoup de gens sont malades;
