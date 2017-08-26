@@ -40,9 +40,9 @@ class Correction implements CorrectionInterface
         return $this->isOkDespiteRemarks;
     }
 
-    public function setIsOkDespiteRemarks($isOkDespiteRemarks)
+    public function setIsOkDespiteRemark($isOkDespiteRemark)
     {
-        $this->isOkDespiteRemarks = $isOkDespiteRemarks;
+        $this->isOkDespiteRemark = $isOkDespiteRemark;
 
         return $this;
     }

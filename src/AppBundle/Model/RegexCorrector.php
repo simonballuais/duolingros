@@ -5,7 +5,8 @@ use AppBundle\Tool\StringComparer;
 
 class RegexCorrector implements CorrectorInterface
 {
-    const THRESHOLD_FOR_GUESSING = 4;
+    const THRESHOLD_FOR_GUESSING = 8;
+    const THRESHOLD_FOR_GUESSING_WORD = 2;
     const THRESHOLD_FOR_ACCEPTING = 1;
 
     public function correct($answerList, PropositionInterface $proposition)
@@ -34,7 +35,7 @@ class RegexCorrector implements CorrectorInterface
                 $proposition->getText(),
                 $closestGoodAnswer
             );
-            $correction->addRemark("Vouliez-vous dire $correctedAnswer?");
+            $correction->addRemark("Vouliez-vous dire \"$correctedAnswer\" ?");
         }
         else {
             $correction->addRemark("G rien compri lol");
@@ -60,7 +61,7 @@ class RegexCorrector implements CorrectorInterface
 
             $nextActualWord = "";
 
-            if (isset($actualWords[$index + $actualWordSelectionOffset])) {
+            if (isset($actualWords[$index + $actualWordSelectionOffset + 1])) {
                 $nextActualWord = $actualWords[$index + $actualWordSelectionOffset + 1];
             }
 
@@ -71,13 +72,6 @@ class RegexCorrector implements CorrectorInterface
             }
 
             if ($expectedWord != $actualWord) {
-                if ($actualWord == $nextexpectedWord) {
-                    $correctedAnswer .= "<strong>$expectedWord</strong>";
-                    $actualWordSelectionOffset ++;
-
-                    continue;
-                }
-
                 if ($nextActualWord == $expectedWord) {
                     $correctedAnswer .= "<strike>$actualWord</strike>";
                     $actualWordSelectionOffset ++;
@@ -94,36 +88,24 @@ class RegexCorrector implements CorrectorInterface
                         $nextActualWord = $actualWords[$index + $actualWordSelectionOffset + 1];
                     }
                 }
-                else {
-                    if (levenshtein($actualWord, $word) == 1) {
-                        $correctedWord = $this->generateCorrectedWord($actualWord, $word);
-                        $correctedAnswer .= "$correctedWord";
-                    }
+
+                if ($actualWord == $nextexpectedWord) {
+                    $correctedAnswer .= "<strong>$expectedWord</strong>";
+                    $actualWordSelectionOffset ++;
+
+                    continue;
                 }
+
+                $correctedAnswer .= "<strike>$actualWord</strike> <strong>$expectedWord</strong>";
             }
+            else {
+                $correctedAnswer .= $actualWord;
+            }
+
             $correctedAnswer .= " ";
         }
 
-        return $correctedAnswer;
-    }
-
-    public function generateCorrectedWord($actual, $expected)
-    {
-        $correctedWord = "";
-        $actualLetters = str_split($actual);
-        $expectedLetters = str_split($expected);
-
-        foreach ($expectedLetters as $index => $expectedLetter) {
-            $nextExpectedLetter = "";
-
-            if (isset($expectedLetters[$index + 1])) {
-                $nextExpectedLetter = $expectedLetters[$index + 1];
-            }
-
-            if ($expectedLetter != $actualLetter) {
-                
-            }
-        }
+        return trim($correctedAnswer);
     }
 }
 ?>

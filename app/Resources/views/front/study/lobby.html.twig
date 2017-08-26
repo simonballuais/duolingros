@@ -26,7 +26,9 @@
       <div class="row"
            id="lesson-title"
         >
+        <h1>
         ${ lessonTitle }
+        </h1>
       </div> <!-- row -->
       <div class="row"
            id="progress"
@@ -73,10 +75,8 @@
 
           <hr />
 
-          <ul id="remarks">
-            <li v-html="remark" v-for="remark in remarks">
-            </li>
-          </ul>
+          <p class="remark" v-html="remark" v-for="remark in remarks">
+          </p>
         </div>
       </div> <!-- row -->
     </div> <!-- col -->

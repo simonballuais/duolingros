@@ -12,3 +12,8 @@ input[type='textbox'] {
     border: solid 2px #AAAAAA;
     color: #888888;
 }
+
+
+.remark {
+    font-size: 20pt !important;
+}
