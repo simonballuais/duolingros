@@ -74,8 +74,7 @@
           <hr />
 
           <ul id="remarks">
-            <li v-for="remark in remarks">
-              ${ remark }
+            <li v-html="remark" v-for="remark in remarks">
             </li>
           </ul>
         </div>

@@ -5,10 +5,12 @@ namespace AppBundle\Model;
 class Correction implements CorrectionInterface
 {
     protected $remarks;
+    protected $isOkDespiteRemarks;
 
     public function __construct($remarks = [])
     {
         $this->remarks = $remarks;
+        $this->isOkDespiteRemark = false;
     }
 
     public function getRemarks()
@@ -30,7 +32,19 @@ class Correction implements CorrectionInterface
 
     public function isOk()
     {
-        return count($this->remarks) === 0;
+        return $this->isOkDespiteRemark || count($this->remarks) === 0;
+    }
+
+    public function getIsOkDespiteRemarks()
+    {
+        return $this->isOkDespiteRemarks;
+    }
+
+    public function setIsOkDespiteRemarks($isOkDespiteRemarks)
+    {
+        $this->isOkDespiteRemarks = $isOkDespiteRemarks;
+
+        return $this;
     }
 }
 ?>
