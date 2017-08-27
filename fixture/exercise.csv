@@ -4,7 +4,7 @@ id;lesson_id;text;answers ...
 ;1;Je m'apelle Simon;Simon no anarako
 ;1;Je vais dormir;Hatory aho;Hatory
 
-;2;Manao ahoana;Comment
+;2;Ahoana;Comment
 ;2;Ny;Le;La;Les
 ;2;Rano;Eau;De l'eau;L'eau
 ;2;Maloto;Sale
@@ -50,39 +50,39 @@ id;lesson_id;text;answers ...
 ;2;Les maisons sont-elles sales ?;Maloto ve ny trano ?
 ;2;Non, les maisons ne sont pas sales;Tsia, tsy maloto ny trano
 
-Mpiasa;Travailleur;Ouvrier
-Io;Ce;Cette;Ces
-Olona;Personne;Une personne;Quelqu'un
-Angamba;Peut-être
-Asa;Je ne peux pas dire;Je peux pas dire
-Tsy fantatro;Je ne sais pas;Je sais pas
-Marary;Malade
-Zazakely;Enfant;Bébé
-Mangidy;Amère
-Fanafody;Médicament;Remède
-Mamy;Sucré
-Mpiasa ve io olona io ?;Est-ce que cette personne est un travailleur ?;Cette personne est-elle un travailleur ?;Cette personne est un travailleur ?
-Eny, mpiasa izy;
-Tsia, tsy mpiasa izy;
-Mpiasa angamba isy;
-Asa, mpiasa angamba izy;
-Tsy fantatro na mpiasa izy na tsia;
-Marary ve io zazakely io ?;
-Marary angamba izy;
-Asa, marary angamba izy;
-Tsy fantatro na marary izy na tsia;
-Mangidy ve io fanafody io ?;
-Mangidy angamba izy io;
-Asa, mangidy angamba izy io;
-Tsy fantatro na mangidy izy io na mamy;
-Rano maloto;
-Trano madio;
-Zazakely marary;
-Fanafoy mangidy;
-Cette eau est-elle amère ?;
-Non, cette eau n'est pas amère;
-Cet ouvrier est-il malade ?;
-Je ne sasis pas si il est malade ou non;
-Cette personne et l'enfant sont peut-être malades;
-C'est bien que l'eau soit propre et que la maison soit propre;
-Beaucoup de gens sont malades;
+;3;Mpiasa;Travailleur;Ouvrier
+;3;Io;Ce;Cette;Ces
+;3;Olona;Personne;Une personne;Quelqu'un
+;3;Angamba;Peut-être
+;3;Asa;Je ne peux pas dire;Je peux pas dire
+;3;Tsy fantatro;Je ne sais pas;Je sais pas
+;3;Marary;Malade
+;3;Zazakely;Enfant;Bébé
+;3;Mangidy;Amère
+;3;Fanafody;Médicament;Remède
+;3;Mamy;Sucré
+;3;Mpiasa ve io olona io ?;Est-ce que cette personne est un travailleur ?;Cette personne est-elle un travailleur ?;Cette personne est un travailleur ?
+;3;Eny, mpiasa izy;
+;3;Tsia, tsy mpiasa izy;
+;3;Mpiasa angamba isy;
+;3;Asa, mpiasa angamba izy;
+;3;Tsy fantatro na mpiasa izy na tsia;
+;3;Marary ve io zazakely io ?;
+;3;Marary angamba izy;
+;3;Asa, marary angamba izy;
+;3;Tsy fantatro na marary izy na tsia;
+;3;Mangidy ve io fanafody io ?;
+;3;Mangidy angamba izy io;
+;3;Asa, mangidy angamba izy io;
+;3;Tsy fantatro na mangidy izy io na mamy;
+;3;Rano maloto;
+;3;Trano madio;
+;3;Zazakely marary;
+;3;Fanafoy mangidy;
+;3;Cette eau est-elle amère ?;
+;3;Non, cette eau n'est pas amère;
+;3;Cet ouvrier est-il malade ?;
+;3;Je ne sasis pas si il est malade ou non;
+;3;Cette personne et l'enfant sont peut-être malades;
+;3;C'est bien que l'eau soit propre et que la maison soit propre;
+;3;Beaucoup de gens sont malades;

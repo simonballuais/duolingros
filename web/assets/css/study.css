@@ -16,3 +16,27 @@ input[type='textbox'] {
 .remark {
     font-size: 20pt !important;
 }
+
+input.start-lesson+label {
+    display: block;
+    padding: 3px;
+}
+
+input.start-lesson:checked+label {
+    border-radius: 5px;
+    border: solid 2px #AAAAAA;
+}
+
+input.start-lesson {
+    display: none;
+}
+
+label.lesson {
+    font-size: 14pt;
+    color: red !important;
+}
+
+#lesson-list {
+    overflow: hidden;
+    padding: 5px;
+}

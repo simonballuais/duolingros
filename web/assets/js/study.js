@@ -6,6 +6,11 @@ $(document).ready(function() {
     const FG_RED = '#440d0d';
     const FG_GREEN = '#0d440e';
 
+    const ARROW = {
+        UP: 38,
+        DOWN: 40,
+    };
+
     const STATE = {
         IDDLE: 'iddle',
         WRITING_PROPOSITION: 'writing proposition',
@@ -22,6 +27,7 @@ $(document).ready(function() {
         el: 'div#lesson',
         delimiters: ['${', '}'],
         data: {
+            selectedLessonId: 1,
             proposition: '',
             lessonTitle: '...',
             progress: 0,
@@ -63,6 +69,15 @@ $(document).ready(function() {
         $('#playground').fadeOut(function() {
             $('#caca').fadeIn();
         });
+
+        $('#lesson-list').animate({
+            'width': '25%',
+            'padding': '5px',
+        });
+
+        $('#dynamic-content').animate({
+            'width': '75%',
+        });
     };
 
     var showPlayground = function() {
@@ -72,6 +87,15 @@ $(document).ready(function() {
             $('#playground').fadeIn(function() {
                 $proposition.focus();
             })
+        });
+
+        $('#lesson-list').animate({
+            'width': '0',
+            'padding': '0px',
+        });
+
+        $('#dynamic-content').animate({
+            'width': '100%',
         });
     };
 
@@ -111,6 +135,7 @@ $(document).ready(function() {
                 refreshLessonView(data);
                 $proposition.focus();
                 lessonApp.proposition = '';
+                $proposition.attr('readonly', false);
                 lessonStarted = true;
                 state = STATE.WRITING_PROPOSITION;
             },
@@ -187,11 +212,15 @@ $(document).ready(function() {
     $('body').keypress(function(event) {
         if (event.which === 115) {
             if (state == STATE.IDDLE) {
-                startLesson(1);
+
+                return startLesson(lessonApp.selectedLessonId);
             }
         }
 
         if (event.which === ENTER) {
+            if (state == STATE.IDDLE) {
+                return startLesson(lessonApp.selectedLessonId);
+            }
             if (state == STATE.WRITING_PROPOSITION) {
                 return sendProposition();
             }
@@ -201,6 +230,15 @@ $(document).ready(function() {
             if (state == STATE.READING_STUDY_CONCLUSION) {
                 return closeStudy();
             }
+        }
+    });
+
+    $('body').keydown(function(event) {
+        if (event.which == ARROW.DOWN) {
+            lessonApp.selectedLessonId ++;
+        }
+        if (event.which == ARROW.UP) {
+            lessonApp.selectedLessonId --;
         }
     });
 });

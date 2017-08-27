@@ -1,15 +1,17 @@
-<ul>
-  {% for lesson in lessonList %}
-  <li>
-    <a
-      class="start-lesson"
-      lesson-id="{{ lesson.id }}"
-      >
-      {{ lesson.title }}
-      {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
-      <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
-      {% endif %}
-    </a>
-  </li>
-  {% endfor %}
-</ul>
+{% for lesson in lessonList %}
+  <input
+    type="radio"
+    class="start-lesson"
+    id="{{ lesson.id }}"
+    value="{{ lesson.id }}"
+    v-model="selectedLessonId"
+    >
+  </input>
+  <label class="lesson" for="{{ lesson.id }}">
+    {{ lesson.title }}
+    {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
+    <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
+    {% endif %}
+  </label>
+</li>
+{% endfor %}
