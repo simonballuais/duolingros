@@ -9,6 +9,7 @@ $(document).ready(function() {
     const STATE = {
         IDDLE: 'iddle',
         WRITING_PROPOSITION: 'writing proposition',
+        WAITING_CORRECTION: 'waiting for correction',
         READING_REMARKS: 'reading remarks',
         READING_STUDY_CONCLUSION: 'reading study conclusion',
     };
@@ -23,7 +24,7 @@ $(document).ready(function() {
         data: {
             proposition: '',
             lessonTitle: '...',
-            progress: 80,
+            progress: 0,
             exerciseText: '...',
             remarks: [],
             remarksFg: "red",
@@ -58,22 +59,49 @@ $(document).ready(function() {
         }
     };
 
+    var hidePlayground = function() {
+        $('#playground').fadeOut(function() {
+            $('#caca').fadeIn();
+        });
+    };
+
+    var showPlayground = function() {
+        var $proposition = $('input#proposition');
+
+        $('#caca').fadeOut(function() {
+            $('#playground').fadeIn(function() {
+                $proposition.focus();
+            })
+        });
+    };
+
+    var showConclusion = function() {
+        $('#lesson-conclusion-modal').modal("show");
+    };
+
+    var hideConclusion = function() {
+        $('#lesson-conclusion-modal').modal("hide");
+    };
+
     var finishStudy = function(data) {
         state = STATE.READING_STUDY_CONCLUSION;
         lessonApp.conclusionHeader = 'Leçon terminée :)';
         lessonApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
         lessonApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
-        $('#lesson-conclusion-modal').modal("show");
+        showConclusion();
     };
 
     var closeStudy = function() {
         state = STATE.IDDLE;
         lessonApp.proposition = '';
-        $('#lesson-conclusion-modal').modal("hide");
+        hideConclusion();
+        hidePlayground();
     };
 
     var startLesson = function(lessonId) {
         var $proposition = $('input#proposition');
+
+        showPlayground();
 
         $.ajax({
             type        : 'GET',
@@ -94,7 +122,7 @@ $(document).ready(function() {
 
     var sendProposition = function() {
         var $proposition = $('input#proposition');
-        $proposition.attr('disabled', true);
+        $proposition.attr('readonly', true);
 
         $.ajax({
             type        : 'POST',
@@ -104,7 +132,6 @@ $(document).ready(function() {
             success     : function(data) {
                 refreshLessonView(data);
                 state = STATE.READING_REMARKS;
-                $proposition.attr('disabled', false);
                 $proposition.focus();
                 $('#correction-status').fadeIn();
 
@@ -138,6 +165,7 @@ $(document).ready(function() {
                     return finishStudy(data);
                 }
 
+                $proposition.attr('readonly', false);
                 lessonApp.remarks = [];
                 lessonApp.proposition = '';
                 refreshLessonView(data);
@@ -159,23 +187,19 @@ $(document).ready(function() {
     $('body').keypress(function(event) {
         if (event.which === 115) {
             if (state == STATE.IDDLE) {
-                nothungHappenedYet = false;
                 startLesson(1);
             }
         }
 
         if (event.which === ENTER) {
             if (state == STATE.WRITING_PROPOSITION) {
-                sendProposition();
-                return;
+                return sendProposition();
             }
             if (state == STATE.READING_REMARKS) {
-                startNextExercise();
-                return;
+                return startNextExercise();
             }
             if (state == STATE.READING_STUDY_CONCLUSION) {
-                closeStudy();
-                return;
+                return closeStudy();
             }
         }
     });
