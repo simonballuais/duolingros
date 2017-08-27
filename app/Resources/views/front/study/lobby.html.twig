@@ -6,103 +6,19 @@
   >
   <div class="row">
     <div class="col-sm-3">
-      <ul>
-        {% for lesson in lessonList %}
-        <li>
-          <a
-            class="start-lesson"
-            lesson-id="{{ lesson.id }}"
-            >
-            {{ lesson.title }}
-            {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
-            <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
-            {% endif %}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
+      {% include 'front/study/lesson_list.html.twig' %}
     </div> <!-- col -->
-    <div class="col-sm-9">
-      <div class="row"
-           id="lesson-title"
-        >
-        <h1>
-        ${ lessonTitle }
-        </h1>
-      </div> <!-- row -->
-      <div class="row"
-           id="progress"
-        >
-        <div class="progress">
-          <div class="progress-bar progress-bar-success progress-bar-striped active"
-               role="progress-bar"
-               v-bind:style="{ width: progress + '%' }"
-               >
-          </div>
-        </div>
-      </div> <!-- row -->
-      <div class="row">
-        <div class="col-sm-6">
-          <input type="textbox"
-                 id="exercise"
-                 readonly
-                 v-bind:value="exerciseText"
-          />
-        </div> <!-- col -->
-        <div class="col-sm-6">
-          <input type="textbox"
-                 id="proposition"
-                 v-model="proposition"
-                 placeholder="réponse ..."
-          />
-        </div> <!-- col -->
-      </div> <!-- row -->
-      <div class="row">
-        <div class="jumbotron"
-             id="correction-status"
-             v-bind:style="{
-               'background-color': remarksBg,
-             }"
-             style="display: none"
-          >
-          <h1 class="display-3"
-             v-bind:style="{
-               'color': remarksFg,
-             }"
-              >
-            ${ correctionStatus }
-          </h1>
+    <div id="dynamic-content"
+         class="col-sm-9"
+         >
+      <div id="playground">
+      {% include 'front/study/playground.html.twig' %}
+      </div>
 
-          <hr />
-
-          <p class="remark" v-html="remark" v-for="remark in remarks">
-          </p>
-        </div>
-      </div> <!-- row -->
+      <div id="caca">
+      {% include 'front/study/caca.html.twig' %}
+      </div>
     </div> <!-- col -->
   </div> <!-- row -->
-
-  <div id="lesson-conclusion-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1>
-          ${ conclusionHeader }
-          </h1>
-        </div>
-        <div class="modal-body">
-          <p>
-          ${ conclusionBody }
-          </p>
-        </div>
-        <div class="modal-footer">
-          <p>
-          ${ conclusionFooter }
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div> <!-- container -->
 {% endblock body %}

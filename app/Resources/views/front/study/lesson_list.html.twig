@@ -1,0 +1,15 @@
+<ul>
+  {% for lesson in lessonList %}
+  <li>
+    <a
+      class="start-lesson"
+      lesson-id="{{ lesson.id }}"
+      >
+      {{ lesson.title }}
+      {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
+      <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
+      {% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
