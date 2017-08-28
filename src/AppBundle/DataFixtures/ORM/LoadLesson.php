@@ -35,6 +35,9 @@ class LoadLessonData implements FixtureInterface, ContainerAwareInterface
             $title = $csvLine[1];
 
             $lesson = $em->createOrUpdate($title, $id);
+
+            $lesson->setExercisePerStudy($csvLine[2]);
+            $lesson->setDescription($csvLine[3]);
         }
 
         $manager->flush();
