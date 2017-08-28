@@ -17,6 +17,11 @@ input[type='textbox'] {
     font-size: 20pt !important;
 }
 
+@keyframes coincoin {
+    from { border: solid 3px transparent; }
+    to { border: solid 3px #AABBFF; }
+}
+
 input.start-lesson+label {
     display: block;
     padding: 3px;
@@ -24,7 +29,10 @@ input.start-lesson+label {
 
 input.start-lesson:checked+label {
     border-radius: 5px;
-    border: solid 2px #AAAAAA;
+    border: solid 3px #AABBFF;
+    padding: 0px;
+    animation-name: coincoin;
+    animation-duration: 0.5s;
 }
 
 input.start-lesson {
@@ -33,10 +41,13 @@ input.start-lesson {
 
 label.lesson {
     font-size: 14pt;
-    color: red !important;
 }
 
 #lesson-list {
     overflow: hidden;
-    padding: 5px;
+    padding: 15px;
+}
+
+#lesson-list ul li {
+    list-style-type: none;
 }

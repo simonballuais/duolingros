@@ -5,11 +5,19 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\AccessorOrder;
 
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="lesson")
+ * @ExclusionPolicy("all")
  */
 class Lesson
 {
@@ -24,6 +32,11 @@ class Lesson
      * @ORM\Column(type="string", length=255)
      */
     protected $title;
+
+    /**
+     * @ORM\Column(type="string", length=2000)
+     */
+    protected $description;
 
     /**
      * @ORM\Column(type="integer")
@@ -49,6 +62,11 @@ class Lesson
         $this->exercisePerStudy = 3;
     }
 
+     /**
+      * @Groups({"Default"})
+      * @SerializedName("title")
+      * @VirtualProperty
+      */
     public function getTitle()
     {
         return $this->title;
@@ -61,6 +79,11 @@ class Lesson
         return $this;
     }
 
+     /**
+      * @Groups({"Default"})
+      * @SerializedName("id")
+      * @VirtualProperty
+      */
     public function getId()
     {
         return $this->id;
@@ -114,8 +137,25 @@ class Lesson
         return $this;
     }
 
+     /**
+      * @Groups({"Default"})
+      * @SerializedName("currentLearning")
+      * @VirtualProperty
+      */
     public function getCurrentLearning()
     {
         return $this->currentLearning;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

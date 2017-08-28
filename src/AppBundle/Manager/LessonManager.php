@@ -30,6 +30,22 @@ class LessonManager
         return $this->repo->findAll();
     }
 
+    public function getAllWithCurrentLearning($user)
+    {
+        $lessonList = $this->getAll();
+        $learningList = $user->getLearningList();
+
+        foreach ($learningList as $learning) {
+            foreach ($lessonList as $lesson) {
+                if ($learning->getLesson()->getId() === $lesson->getId()) {
+                    $lesson->setCurrentLearning($learning);
+                }
+            }
+        }
+
+        return $lessonList;
+    }
+
     public function get($id)
     {
         return $this->repo->findOneById($id);

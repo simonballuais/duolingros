@@ -1,17 +1,20 @@
-{% for lesson in lessonList %}
-  <input
-    type="radio"
-    class="start-lesson"
-    id="{{ lesson.id }}"
-    value="{{ lesson.id }}"
-    v-model="selectedLessonId"
-    >
-  </input>
-  <label class="lesson" for="{{ lesson.id }}">
-    {{ lesson.title }}
-    {% if lesson.currentLearning is defined and lesson.currentLearning is not null %}
-    <strong> ({{ lesson.currentLearning.mastery }}%)</strong>
-    {% endif %}
-  </label>
-</li>
-{% endfor %}
+<ul>
+  <li v-for="lesson in lessons">
+    <input
+      type="radio"
+      class="start-lesson"
+      :id="lesson.id"
+      :value="lesson.id"
+      v-model="selectedLessonId"
+      >
+    </input>
+
+    <label class="lesson"
+           >
+      ${ lesson.title }
+      <strong v-if="lesson.currentLearning">
+        (${ lesson.currentLearning.mastery }%)
+      </strong>
+    </label>
+  </li>
+</ul>

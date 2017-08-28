@@ -95,5 +95,24 @@ class StudyController extends Controller
             'mastery' => $mastery,
         ]);
     }
+
+    /**
+     * @Route("/api/study/get_lesson_menu",
+     *        name="api_study_get_lesson_menu",
+     *        options={"expose"=true}
+     *        )
+     * @Method({"GET"})
+     */
+    public function getLessonMenuAction()
+    {
+        $lm = $this->get('app.lessonManager');
+        $serializer = $this->get('jms_serializer');
+        $lessons = $lm->getAllWithCurrentLearning($this->getUser());
+
+        $response = new Response($serializer->serialize($lessons, 'json'));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 }
 ?>

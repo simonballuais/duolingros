@@ -10,5 +10,4 @@ parameters:
     mailer_host: smtp.gmail.com
     mailer_user: bocasay.company@gmail.com
     mailer_password: B0c454y.c039an1
-
     csv_directory: '%kernel.root_dir%/../fixture'

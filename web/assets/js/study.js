@@ -23,11 +23,19 @@ $(document).ready(function() {
 
     var $proposition = $('input#proposition');
 
-    var lessonApp = new Vue({
-        el: 'div#lesson',
+    var lessonMenuApp = new Vue({
+        el: 'div#lesson-list',
         delimiters: ['${', '}'],
         data: {
+            lessons: [],
             selectedLessonId: 1,
+        }
+    });
+
+    var playgroundApp = new Vue({
+        el: 'div#playground',
+        delimiters: ['${', '}'],
+        data: {
             proposition: '',
             lessonTitle: '...',
             progress: 0,
@@ -45,38 +53,29 @@ $(document).ready(function() {
     var refreshLessonView = function(data) {
         console.log(data);
         if (undefined !== data.progress) {
-            lessonApp.progress = data.progress;
+            playgroundApp.progress = data.progress;
         }
 
         if (undefined !== data.lessonTitle) {
-            lessonApp.lessonTitle = data.lessonTitle;
+            playgroundApp.lessonTitle = data.lessonTitle;
         }
 
         if (undefined !== data.exerciseText) {
-            lessonApp.exerciseText = data.exerciseText;
+            playgroundApp.exerciseText = data.exerciseText;
         }
 
         if (undefined !== data.remarks) {
-            lessonApp.remarks = data.remarks;
+            playgroundApp.remarks = data.remarks;
         }
 
         if (undefined !== data.correctionStatus) {
-            lessonApp.correctionStatus = data.correctionStatus;
+            playgroundApp.correctionStatus = data.correctionStatus;
         }
     };
 
     var hidePlayground = function() {
         $('#playground').fadeOut(function() {
             $('#caca').fadeIn();
-        });
-
-        $('#lesson-list').animate({
-            'width': '25%',
-            'padding': '5px',
-        });
-
-        $('#dynamic-content').animate({
-            'width': '75%',
         });
     };
 
@@ -88,19 +87,14 @@ $(document).ready(function() {
                 $proposition.focus();
             })
         });
-
-        $('#lesson-list').animate({
-            'width': '0',
-            'padding': '0px',
-        });
-
-        $('#dynamic-content').animate({
-            'width': '100%',
-        });
     };
 
-    var showConclusion = function() {
+    var showConclusion = function(callback) {
         $('#lesson-conclusion-modal').modal("show");
+
+        if (callback) {
+            callback();
+        }
     };
 
     var hideConclusion = function() {
@@ -109,15 +103,15 @@ $(document).ready(function() {
 
     var finishStudy = function(data) {
         state = STATE.READING_STUDY_CONCLUSION;
-        lessonApp.conclusionHeader = 'Leçon terminée :)';
-        lessonApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
-        lessonApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
-        showConclusion();
+        playgroundApp.conclusionHeader = 'Leçon terminée :)';
+        playgroundApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
+        playgroundApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
+        showConclusion(loadLessonMenu);
     };
 
     var closeStudy = function() {
         state = STATE.IDDLE;
-        lessonApp.proposition = '';
+        playgroundApp.proposition = '';
         hideConclusion();
         hidePlayground();
     };
@@ -134,7 +128,7 @@ $(document).ready(function() {
             success     : function(data) {
                 refreshLessonView(data);
                 $proposition.focus();
-                lessonApp.proposition = '';
+                playgroundApp.proposition = '';
                 $proposition.attr('readonly', false);
                 lessonStarted = true;
                 state = STATE.WRITING_PROPOSITION;
@@ -161,14 +155,14 @@ $(document).ready(function() {
                 $('#correction-status').fadeIn();
 
                 if (data.isOk) {
-                    lessonApp.correctionStatus = 'Oki :)';
-                    lessonApp.remarksBg = BG_GREEN;
-                    lessonApp.remarksFg = FG_GREEN;
+                    playgroundApp.correctionStatus = 'Oki :)';
+                    playgroundApp.remarksBg = BG_GREEN;
+                    playgroundApp.remarksFg = FG_GREEN;
                 }
                 else {
-                    lessonApp.correctionStatus = 'Tropa :(';
-                    lessonApp.remarksBg = BG_RED;
-                    lessonApp.remarksFg = FG_RED;
+                    playgroundApp.correctionStatus = 'Tropa :(';
+                    playgroundApp.remarksBg = BG_RED;
+                    playgroundApp.remarksFg = FG_RED;
                 }
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -191,10 +185,25 @@ $(document).ready(function() {
                 }
 
                 $proposition.attr('readonly', false);
-                lessonApp.remarks = [];
-                lessonApp.proposition = '';
+                playgroundApp.remarks = [];
+                playgroundApp.proposition = '';
                 refreshLessonView(data);
                 state = STATE.WRITING_PROPOSITION;
+            },
+            error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                error(XMLHttpRequest, textStatus, errorThrown);
+            }
+        });
+    };
+
+    var loadLessonMenu = function() {
+        $.ajax({
+            type        : 'GET',
+            url         : Routing.generate('api_study_get_lesson_menu'),
+            dataType    : 'json',
+            success     : function(data) {
+                lessonMenuApp.lessons = data;
+                console.log(lessonMenuApp.lessons);
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
                 error(XMLHttpRequest, textStatus, errorThrown);
@@ -212,14 +221,13 @@ $(document).ready(function() {
     $('body').keypress(function(event) {
         if (event.which === 115) {
             if (state == STATE.IDDLE) {
-
-                return startLesson(lessonApp.selectedLessonId);
+                return startLesson(lessonMenuApp.selectedLessonId);
             }
         }
 
         if (event.which === ENTER) {
             if (state == STATE.IDDLE) {
-                return startLesson(lessonApp.selectedLessonId);
+                return startLesson(lessonMenuApp.selectedLessonId);
             }
             if (state == STATE.WRITING_PROPOSITION) {
                 return sendProposition();
@@ -235,10 +243,12 @@ $(document).ready(function() {
 
     $('body').keydown(function(event) {
         if (event.which == ARROW.DOWN) {
-            lessonApp.selectedLessonId ++;
+            lessonMenuApp.selectedLessonId ++;
         }
         if (event.which == ARROW.UP) {
-            lessonApp.selectedLessonId --;
+            lessonMenuApp.selectedLessonId --;
         }
     });
+
+    loadLessonMenu();
 });
