@@ -14,7 +14,10 @@ class RegexCorrector implements CorrectorInterface
         $correction = new Correction();
 
         foreach ($answerList as $answer) {
-            if(preg_match(sprintf("/^%s$/i", $answer), $proposition->getText())) {
+            $purifiedAnswer = $this->purifyString($answer);
+            $purifiedProposition = $this->purifyString($proposition->getText());
+
+            if(preg_match(sprintf("/^%s$/i", $purifiedAnswer), $purifiedProposition)) {
                 return $correction;
             }
         }
@@ -24,7 +27,10 @@ class RegexCorrector implements CorrectorInterface
             $answerList
         );
 
-        $distance = levenshtein($proposition->getText(), $closestGoodAnswer);
+        $purifiedAnswer = $this->purifyString($closestGoodAnswer);
+        $purifiedProposition = $this->purifyString($proposition->getText());
+
+        $distance = levenshtein($purifiedAnswer, $purifiedProposition);
 
         if ($distance <= self::THRESHOLD_FOR_ACCEPTING) {
             $correction->setIsOkDespiteRemark(true);
@@ -106,6 +112,22 @@ class RegexCorrector implements CorrectorInterface
         }
 
         return trim($correctedAnswer);
+    }
+
+    public function purifyString($string)
+    {
+        $purifiedString = preg_replace('/[.,:;]/', ' ', $string);
+        $purifiedString = strtolower($purifiedString);
+        $purifiedString = preg_replace('/  /', ' ', $purifiedString);
+        $purifiedString = preg_replace('/  /', ' ', $purifiedString);
+        $purifiedString = preg_replace('/  /', ' ', $purifiedString);
+        $purifiedString = preg_replace('/  /', ' ', $purifiedString);
+        $purifiedString = preg_replace('/[éèê]/', 'e', $purifiedString);
+        $purifiedString = preg_replace('/[àâ]/', 'a', $purifiedString);
+        $purifiedString = preg_replace('/[îï]/', 'i', $purifiedString);
+        $purifiedString = preg_replace('/[îï]/', 'i', $purifiedString);
+
+        return $purifiedString;
     }
 }
 ?>
