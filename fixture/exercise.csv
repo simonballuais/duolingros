@@ -113,17 +113,17 @@ id;lesson_id;text;answers ...
 ;7;Seza iry fanaka iry;Ce meuble là-bas est une chaise;C'est une chaise, ce meuble là-bas
 ;7;Iza ireo olona ireo ?Qui sont ces gens ?
 ;7;Mpiasa ireo olona ireo;Ces gens sont des ouvriers;Ces gens sont des travailleurs
-;7;Inona ireo tavoahangy ireo ?;Que sont ces bouteilles ?Qu'est-ce que c'est que ces bouteilles ?;Qu'est-ce que sont ces bouteilles ?;Quelles sont ces bouteilles ?
+;7;Inona ireo tavoahangy ireo ?;(C'est quoi|Que sont|Qu'est-ce que sont|Qu'est-ce que c'est que) ces bouteilles ?
 ;7;Fanafody ireo tavoahangy ireo;Ces bouteilles sont des médicaments
 ;7;Iza irery zazakely irery ?;Qui sont ces enfants là-bas ?;C'est qui ces enfants là-bas ?
 ;7;Mpianatra irery zazakely irery;Ces enfants là-bas sont des écoliers;Ces enfants là-bas sont des élèves;Ce ont des élèves là bas
-;7;Inona irery entana irery ?;Que sont ces objets là-bas ?;C'est quoi ces objets là-bas ?;C'est quoi ces trucs là-bas ?
+;7;Inona irery entana irery ?;(Que sont|C'est quoi|Qu'est-ce que c'est que) ces objets (là-bas|).
 ;7;Fanaka irery entana irery;Ces trucs là bas sont des meubles;Ce sont des meubles là-bas
 ;7;Ces hommes sont des ouvriers et des menuisiers.;Mpiasa sy mpandrafitra ireo lehilahy ireo.
 ;7;Cette bouteille-là est un médicament sucré;Fanafody mamy iry tavoahangy iry.
 ;7;La table et la chaise sont des meubles;Fanaka ny latabatra sy ny seza
 ;7;Madio tsara ve ireo fanaka ireo ?
-;7;Non, ils sont sales;Tsia, maloto izy ireo
+;7;Non, ils sont sales;Tsia, maloto (izy|) ireo
 ;7;Cet objet (tout proche) est propre.;Madio ity (zavatra|entana) ity
 ;7;Qui sont ces enfaits ?;Iza ireo zazakely ireo ?
 ;7;Ce sont des écoliers; Mpianatra izy.
@@ -153,6 +153,6 @@ id;lesson_id;text;answers ...
 ;9;Tsara ny kafe manafa misy ronono.;Le café (avec du|au) lait (est|c'est) bon.;C'est bon le café (avec du|au) lait.
 ;9;Inona no tsara ?;(Qu'est-ce|C'est quoi) qui est bon ?
 ;9;Ny kafe mafana misy ronono no tsara.;(C'est|) le café (au|avec du) lait (qui|) est bon.
-;9;Tsara koa ny dite misy siramamy.;Le thé (sucré|avec du sucre) c'est bon aussi.;C'est bon aussi le thé (avec du sucre|sucré).
+;9;Tsara koa ny dite misy siramamy.;Le thé (sucré|avec du sucre) (aussi|) c'est bon (aussi|).;C'est bon aussi le thé (avec du sucre|sucré).
 ;9;Inona koa no tsara ?;(Qu'est-ce|C'est quoi) qui est bon aussi ?
-;9;Ny dite misy siramamy koa no tsara.;(C'est|) le thé (sucré|avec du sucre) (qui|) est bon aussi.
+;9;Ny dite misy siramamy koa no tsara.;(C'est|) le thé (sucré|avec du sucre) (qui est|c'est) bon aussi.
