@@ -149,6 +149,7 @@ $(document).ready(function() {
             data        : { text: $proposition.val() },
             dataType    : 'json',
             success     : function(data) {
+                console.log(data);
                 refreshLessonView(data);
                 state = STATE.READING_REMARKS;
                 $proposition.focus();
@@ -166,6 +167,7 @@ $(document).ready(function() {
                 }
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest);
                 error(XMLHttpRequest, textStatus, errorThrown);
             }
         });

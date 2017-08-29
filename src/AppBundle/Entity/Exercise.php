@@ -16,6 +16,8 @@ use AppBundle\Model\PropositionInterface;
 */
 class Exercise
 {
+    const OPTION_GROUP_REGEX = '/\(.*?\|.*?\)/';
+
     /**
      * @ORM\Column(type="string", length=300)
      * @ORM\Id
@@ -43,7 +45,7 @@ class Exercise
     public function treatProposition(PropositionInterface $proposition)
     {
         $this->corrector = new RegexCorrector();
-        return $this->corrector->correct($this->answerList, $proposition);
+        return $this->corrector->correct($this->getConcreteAnswerList(), $proposition);
     }
 
     public function matches(PropositionInterface $proposition)
@@ -103,5 +105,50 @@ class Exercise
         $this->lesson = $lesson;
 
         return $this;
+    }
+    public function getConcreteAnswerList()
+    {
+        $concreteAnswerList = [];
+
+        foreach ($this->answerList as $answer) {
+            $concreteAnswerList[] = $answer;
+
+            $result = [];
+            preg_match_all(self::OPTION_GROUP_REGEX, $answer, $result);
+
+            if (!isset($result[0])) {
+                continue;
+            }
+
+            $optionGroups = $result[0];
+
+            $concreteAnswerList[] = $this->concretiseAnswer([$answer], $optionGroups);
+        }
+
+        var_dump($concreteAnswerList);die;
+    }
+
+    public function concretiseAnswer($answerList, $optionGroups)
+    {
+        $concretisedAnswerList = [];
+        $optionGroup = array_pop($optionGroups);
+        $options = explode('|', $optionGroup);
+
+        foreach ($answerList as $concretisableAnswer) {
+            foreach ($options as $option) {
+                $concretisedAnswerList[] = preg_replace(
+                    self::OPTION_GROUP_REGEX,
+                    $option,
+                    $concretisableAnswer,
+                    1
+                );
+            }
+        }
+
+        if (count($optionGroups)) {
+            return $this->concretiseAnswer($concretisedAnswerList, $optionGroups);
+        }
+
+        return $concretisedAnswerList;
     }
 }
