@@ -4,7 +4,7 @@ parameters:
     database_port: null
     database_name: duolingros
     database_user: root
-    database_password: '&megaprout318mysql'
+    database_password: 'root'
     secret: ThisTokenIsNotSoSecretChangeIt
     mailer_transport: gmail
     mailer_host: smtp.gmail.com
