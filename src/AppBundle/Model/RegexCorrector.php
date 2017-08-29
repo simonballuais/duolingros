@@ -36,11 +36,12 @@ class RegexCorrector implements CorrectorInterface
             $correction->setIsOkDespiteRemark(true);
         }
 
-        if ($distance < self::THRESHOLD_FOR_GUESSING) {
+        elseif ($distance < self::THRESHOLD_FOR_GUESSING) {
             $correctedAnswer = $this->generateCorrectedAnswer(
                 $proposition->getText(),
                 $closestGoodAnswer
             );
+
             $correction->addRemark("Vouliez-vous dire \"$correctedAnswer\" ?");
         }
         else {
