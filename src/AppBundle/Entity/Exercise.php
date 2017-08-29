@@ -111,8 +111,6 @@ class Exercise
         $concreteAnswerList = [];
 
         foreach ($this->answerList as $answer) {
-            $concreteAnswerList[] = $answer;
-
             $result = [];
             preg_match_all(self::OPTION_GROUP_REGEX, $answer, $result);
 
@@ -121,18 +119,24 @@ class Exercise
             }
 
             $optionGroups = $result[0];
+            $optionGroups = array_reverse($optionGroups);
 
-            $concreteAnswerList[] = $this->concretiseAnswer([$answer], $optionGroups);
+            $concreteAnswerList = array_merge(
+                $concreteAnswerList,
+                $this->concretiseAnswer([$answer], $optionGroups)
+            );
         }
 
-        var_dump($concreteAnswerList);die;
+        return $concreteAnswerList;
     }
 
     public function concretiseAnswer($answerList, $optionGroups)
     {
         $concretisedAnswerList = [];
-        $optionGroup = array_pop($optionGroups);
-        $options = explode('|', $optionGroup);
+        $options = array_pop($optionGroups);
+        $options = str_replace('(', '', $options);
+        $options = str_replace(')', '', $options);
+        $options = explode('|', $options);
 
         foreach ($answerList as $concretisableAnswer) {
             foreach ($options as $option) {
