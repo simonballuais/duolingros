@@ -156,3 +156,60 @@ id;lesson_id;text;answers ...
 ;9;Tsara koa ny dite misy siramamy.;Le thé (sucré|avec du sucre) (aussi|) c'est bon (aussi|).;C'est bon aussi le thé (avec du sucre|sucré).
 ;9;Inona koa no tsara ?;(Qu'est-ce|C'est quoi) qui est bon aussi ?
 ;9;Ny dite misy siramamy koa no tsara.;(C'est|) le thé (sucré|avec du sucre) (qui est|c'est) bon aussi.
+;9;Qu'est-ce qui est bon ?;Inona no tsara ?
+;9;C'est le café avec du lait et du sucre qui est bon;Ny kafé misy ronono sy siramamy no tsara.
+;9;Qu'est-ce qui est bon aussi ?;Inona koa no tsara ?
+;9;Le thé sucré est bon aussi.;Tsara koa ny (dite misy siramamy|dite mamy).
+;9;Qu'est-ce qui est amer ?;Inona no mangidy ?
+;9;Le café sans lait ni sucre;(Ny) kafe tsy misy ronono sy siramamy.
+;9;Qu'est-ce qu'il y a dans cette bouteille ?;Misy inona (ity|io) tavoahangy (ity|io) ?
+;9;De l'eau froide.;Rano mafana
+
+;10;Nadio;(C'|)était propre
+;10;C'était propre;Nadio
+;10;Omaly;Hier
+;10;Hier;Omaly
+;10;Rahampitso;Demain
+;10;Demain;Rahampitso
+;10;Nefa;Mais
+;10;Mais;Nefa
+;10;Haloto;(Sera|Seront) sale(s|)
+;10;Sera sale;Haloto
+;10;Anio;Aujourd'hui
+;10;Androany;Aujourd'hui
+;10;Aujourd'hui;(Anio|Androany)
+;10;Izao;Maintenant
+;10;Maintenant;Izao
+;10;Narary;Était malade
+;10;Était malade;Narary
+;10;Efa;Déjà
+;10;Déjà;Efa
+;10;Sitrana;Guéri
+;10;Guéri;Sitrana
+;10;Hadio;Sera propre
+;10;Sera propre;Hadio
+;10;Indray;(De nouveau|Prochain)
+;10;Hangatsiaka;Sera froid
+;10;Sera froid;Hangatsiaka
+;10;Ny andro;Le (temps|jour)
+;10;Le jour;ny andro
+
+;11;Nadio ny trano omaly nefa haloto anio;La maison était propre hier mais (elle|) sera sale aujourd'hui.
+;11;Nafana ny kafe nefa mangatsiaka izao;Le café était chaud mais (il|) est froid maintenant.
+;11;Narary ny zazakely omaly nefa efa sitrana izao;L'enfant était malade hier mais (il|) est guéri mainteant.
+;11;Nangidy ny kafe;Le café était amer.
+;11;Hadio indray ny trano rahampitso;La maison sera (à|de) nouveau propre demain.
+;11;Hangatsiaka ny ronono;Le lait sera froid.
+;11;Ho mamy ny fanafody;Le médicament sera (sucré|doux).
+;11;Ho tsara ny andro rahampitso;(Le temps sera|Il fera) beau (temps|) demain;La journée sera belle demain
+;11;L'eau était sale.;Naloto ny rano.
+;11;La maison n'était pas propre.;Tsy nadio ny trano.
+;11;La maison sera-t-elle propre ?;Hadio ve ny trano ?
+;11;L'enfant ne sera pas malade.;Tsy harary ny zazakely.
+;11;Le café sera froid.;Hangatsiaka ny kafe.
+;11;Il a fait très froid hier.;Nangatsiaka be omaly.
+;11;Il fera beau temps aujourd'hui.;Ho tsara ny andro anio.
+;11;Fera-t-il beau temps aussi demain ?;Ho tsara koa ve ny andro rahampitso ?
+;11;Fera-t-il beau temps demain ?;Ho tsara ve ny andro rahampitso ?
+;11;Fera-t-il beau temps ?;Ho tsara ve ny andro ?
+;11;Peut-être fera-t-il beau demain.;Angamba ho tsara rahampitso.
