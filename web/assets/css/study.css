@@ -32,7 +32,7 @@ input.start-lesson:checked+label {
     border: solid 3px #AABBFF;
     padding: 0px;
     animation-name: coincoin;
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
 }
 
 input.start-lesson {
@@ -41,6 +41,7 @@ input.start-lesson {
 
 label.lesson {
     font-size: 14pt;
+    font-weight: normal;
 }
 
 #lesson-list {
