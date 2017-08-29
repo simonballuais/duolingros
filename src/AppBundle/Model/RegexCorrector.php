@@ -126,6 +126,7 @@ class RegexCorrector implements CorrectorInterface
         $purifiedString = preg_replace('/[àâ]/', 'a', $purifiedString);
         $purifiedString = preg_replace('/[îï]/', 'i', $purifiedString);
         $purifiedString = preg_replace('/[îï]/', 'i', $purifiedString);
+        $purifiedString = trim($purifiedString);
 
         return $purifiedString;
     }

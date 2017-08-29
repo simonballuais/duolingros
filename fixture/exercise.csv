@@ -101,7 +101,7 @@ id;lesson_id;text;answers ...
 ;6;Ireo;Ces;Ceux-là
 ;6;Tavoahangy;Bouteille;Une bouteille
 ;6;Mpianatra;Écolier;Élève;Étudiant;Apprenant;Un écolier;Un élève;Un étudiant
-;6;Entana;Objet;Bagage;Un objet;Un bagage;Des bagages;Truc;Trucs;Des trucs;Un truc
+;6;Entana;Objets;Bagage;Un objet;Un bagage;Des bagages;Truc;Trucs;Des trucs;Un truc
 
 ;7;Iza io lehilahy io ?;Qui est cet homme ?
 ;7;Mpandrafitra io lehilahy io;Cet homme est un menuisier;C'est un menuisier
@@ -119,5 +119,40 @@ id;lesson_id;text;answers ...
 ;7;Mpianatra irery zazakely irery;Ces enfants là-bas sont des écoliers;Ces enfants là-bas sont des élèves;Ce ont des élèves là bas
 ;7;Inona irery entana irery ?;Que sont ces objets là-bas ?;C'est quoi ces objets là-bas ?;C'est quoi ces trucs là-bas ?
 ;7;Fanaka irery entana irery;Ces trucs là bas sont des meubles;Ce sont des meubles là-bas
+;7;Ces hommes sont des ouvriers et des menuisiers.;Mpiasa sy mpandrafitra ireo lehilahy ireo.
+;7;Cette bouteille-là est un médicament sucré;Fanafody mamy iry tavoahangy iry.
+;7;La table et la chaise sont des meubles;Fanaka ny latabatra sy ny seza
+;7;Madio tsara ve ireo fanaka ireo ?
+;7;Non, ils sont sales;Tsia, maloto izy ireo
+;7;Cet objet (tout proche) est propre.;Madio ity (zavatra|entana) ity
+;7;Qui sont ces enfaits ?;Iza ireo zazakely ireo ?
+;7;Ce sont des écoliers; Mpianatra izy.
+;7;Que sont ces objets (là-bas) ?;Inona irery zavatra irery ?
+;7;Ce sont des bagages;Entana (irery|ireto|ireny|ireo).
 
-;8;conicoin;(Touche|Prend|Goute) (mon cul|ma bite) et (chante|mange|galope) (sur|dans) (les toilettes|mon cul)
+;8;Mafana;Chaud
+;8;Kafe;(Du|) Café
+;8;Mangatsiaka;Froid
+;8;Ronono;(Du|) lait
+;8;Koa;Aussi
+;8;Dite;(Du|) thé
+;8;Siramamy;(Du|) sucre
+
+;9;Inona no madio ?;Qu'est-ce qui est propre ?
+;9;Ny trano no madio.;(C'est|) la maison (qui|) est propre.
+;9;Inona no mangidy ?;Qu'est-ce qui est amer ?
+;9;Io fanafody io no mangidy;(C'est) ce médicament (qui|) est amer.
+;9;Iza no marary ?;(C'est qui|) qui est malade ?
+;9;Ny zazakely no marary.;(C'est|) l'enfant (qui|) est malade.
+;9;Iza no mpandrafitra ?;Qui (est-ce qui|) est menuisier ?
+;9;Iry lehilahy iry no mpandrafitra.;(C'est|) cet homme(-ci|-là) (qui) est menuisier.
+;9;Inona no mafana ?;(Qu'est-ce qui|C'est quoi qui) est chaud ?
+;9;Ny kafe no mafana.;(C'est|) le café (qui|) est chaud.
+;9;Inona no mangatsiaka ?;(Qu'est-ce|C'est quoi) qui est froid ?
+;9;Ny ronono no mangatsiaka.;(C'est|) le lait (qui|) est froid.
+;9;Tsara ny kafe manafa misy ronono.;Le café (avec du|au) lait (est|c'est) bon.;C'est bon le café (avec du|au) lait.
+;9;Inona no tsara ?;(Qu'est-ce|C'est quoi) qui est bon ?
+;9;Ny kafe mafana misy ronono no tsara.;(C'est|) le café (au|avec du) lait (qui|) est bon.
+;9;Tsara koa ny dite misy siramamy.;Le thé (sucré|avec du sucre) c'est bon aussi.;C'est bon aussi le thé (avec du sucre|sucré).
+;9;Inona koa no tsara ?;(Qu'est-ce|C'est quoi) qui est bon aussi ?
+;9;Ny dite misy siramamy koa no tsara.;(C'est|) le thé (sucré|avec du sucre) (qui|) est bon aussi.
