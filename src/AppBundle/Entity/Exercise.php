@@ -16,7 +16,8 @@ use AppBundle\Model\PropositionInterface;
 */
 class Exercise
 {
-    const OPTION_GROUP_REGEX = '/\(.*?\|.*?\)/';
+    public $NOT_A_GROUP_DELIMITER_REGEX; // not ( [ {
+    public $OPTION_GROUP_REGEX; // to find imediatly resolvable option groups such as (a|b|c) but not (a|b (c|d)|e)
 
     /**
      * @ORM\Column(type="string", length=300)
@@ -40,6 +41,13 @@ class Exercise
     public function __construct()
     {
         $this->corrector = new RegexCorrector();
+
+        $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
+        $this->OPTION_GROUP_REGEX = sprintf(
+            '/\(%s*?\|%s*?\)/',
+           $this->NOT_A_GROUP_DELIMITER_REGEX,
+           $this->NOT_A_GROUP_DELIMITER_REGEX
+       );
     }
 
     public function treatProposition(PropositionInterface $proposition)
@@ -106,53 +114,105 @@ class Exercise
 
         return $this;
     }
+
     public function getConcreteAnswerList()
     {
         $concreteAnswerList = [];
 
         foreach ($this->answerList as $answer) {
-            $result = [];
-            preg_match_all(self::OPTION_GROUP_REGEX, $answer, $result);
-
-            if (!isset($result[0])) {
-                continue;
-            }
-
-            $optionGroups = $result[0];
-            $optionGroups = array_reverse($optionGroups);
-
             $concreteAnswerList = array_merge(
                 $concreteAnswerList,
-                $this->concretiseAnswer([$answer], $optionGroups)
+                $this->concretiseAnswer($answer)
             );
         }
 
         return $concreteAnswerList;
     }
 
-    public function concretiseAnswer($answerList, $optionGroups)
+    public function concretiseAnswer($answerList)
     {
+        if (!is_array($answerList)) {
+            $answerList = [$answerList];
+        }
+
         $concretisedAnswerList = [];
-        $options = array_pop($optionGroups);
-        $options = str_replace('(', '', $options);
+
+        foreach ($answerList as $answer) {
+            $optionGroups = $this->findNonRecursiveOptionGroups($answer);
+            $probablyConcretisedAnswerList = $this->distributeOptionGroups($answer, $optionGroups);
+
+            foreach ($probablyConcretisedAnswerList as $probablyConcretisedAnswer) {
+                $optionGroups = $this->findNonRecursiveOptionGroups($probablyConcretisedAnswer);
+
+                if (count($optionGroups)) {
+                    $actuallyConcretisedAnswers = $this->concretiseAnswer($probablyConcretisedAnswer);
+
+                    $concretisedAnswerList = array_merge(
+                        $concretisedAnswerList,
+                        $actuallyConcretisedAnswers
+                    );
+                }
+                else {
+                    $concretisedAnswerList[] = trim($probablyConcretisedAnswer);
+                }
+            }
+        }
+
+        $concretisedAnswerList = array_flip(array_flip($concretisedAnswerList));
+
+        return $concretisedAnswerList;
+    }
+
+    public function distributeOptionGroups($answer, $optionGroups)
+    {
+        return $this->recursiveDistribution([$answer], $optionGroups);
+    }
+
+    public function recursiveDistribution($answerList, $optionGroups)
+    {
+        $distributedAnswerList = [];
+
+        $optionGroup = array_pop($optionGroups);
+
+        $options = str_replace('(', '', $optionGroup);
         $options = str_replace(')', '', $options);
         $options = explode('|', $options);
 
-        foreach ($answerList as $concretisableAnswer) {
+        $replaceTarget = str_replace('|', '\|', $optionGroup);
+        $replaceTarget = str_replace('(', '\(', $replaceTarget);
+        $replaceTarget = str_replace(')', '\)', $replaceTarget);
+        $replaceTarget = '/' . $replaceTarget . '/';
+
+        foreach ($answerList as $distributableAnswer) {
             foreach ($options as $option) {
-                $concretisedAnswerList[] = preg_replace(
-                    self::OPTION_GROUP_REGEX,
+                $distributedAnswerList[] = preg_replace(
+                    $replaceTarget,
                     $option,
-                    $concretisableAnswer,
+                    $distributableAnswer,
                     1
                 );
             }
         }
 
         if (count($optionGroups)) {
-            return $this->concretiseAnswer($concretisedAnswerList, $optionGroups);
+            return $this->recursiveDistribution($distributedAnswerList, $optionGroups);
         }
 
-        return $concretisedAnswerList;
+        return $distributedAnswerList;
+    }
+
+    public function findNonRecursiveOptionGroups($candidate)
+    {
+        $result = [];
+        preg_match_all($this->OPTION_GROUP_REGEX, $candidate, $result);
+
+        if (!isset($result[0])) {
+            return "";
+        }
+
+        $optionGroups = $result[0];
+        $optionGroups = array_reverse($optionGroups);
+
+        return $optionGroups;
     }
 }
