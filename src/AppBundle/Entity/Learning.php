@@ -85,6 +85,33 @@ class Learning
         return $mastery;
     }
 
+    public function getHotness()
+    {
+        $now = new \DateTime();
+
+        if ($now->getTimestamp() < $this->getNextPractice()->getTimestamp()) {
+            return 3;
+        }
+
+        $diff = $this->getLastPractice()->diff($this->getNextPractice());
+        $learningPeriod = $diff->days;
+
+        $diff = $now->diff($this->getNextPractice());
+        $actualLateness = $diff->days;
+
+        $latenessScore = $actualLateness / $learningPeriod;
+        $hotness = 3 - $latenessScore;
+        $hotness = floor($hotness);
+
+        if ($hotness < 0) {
+            $hotness = 0;
+        }
+
+        $hotness = intval($hotness);
+
+        return $hotness;
+    }
+
     public function getUser()
     {
         return $this->user;
