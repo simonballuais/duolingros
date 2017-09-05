@@ -69,23 +69,14 @@ class Learning
       */
     public function getMastery()
     {
-        if ($this->getGoodStreak() > 0) {
-            return 100;
+        $lastScores = $this->getLastScores();
+
+        if (!$lastScores) {
+            return null;
         }
 
-        $diff = $this->lastPractice->diff($this->getNextPractice());
-        $dayDiff = $diff->format('%R');
-        $dayDiff -= $this->vacationDays;
-
-        $mastery = 100 - 10 * $dayDiff;
-
-        if ($mastery <= 0) {
-            $mastery = 0;
-        }
-
-        if ($mastery >= 100) {
-            $mastery = 100;
-        }
+        $mastery = array_sum($lastScores) / count($lastScores);
+        $mastery = intval($mastery);
 
         return $mastery;
     }

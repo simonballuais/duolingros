@@ -80,5 +80,26 @@ class LeaningTest extends WebTestCase
         $this->assertEquals(5, $learning->getLastScore());
         $this->assertEquals([3, 4, 5], $learning->getLastScores());
     }
+
+    public function testMastery()
+    {
+        $learning = new Learning();
+
+        $this->assertEquals(null, $learning->getMastery());
+
+        $learning->recordScore(1);
+
+        $this->assertEquals(1, $learning->getMastery());
+
+        $learning->recordScore(2);
+        $learning->recordScore(3);
+
+        $this->assertEquals(2, $learning->getMastery());
+
+        $learning->recordScore(40);
+        $learning->recordScore(53);
+
+        $this->assertEquals(32, $learning->getMastery());
+    }
 }
 ?>
