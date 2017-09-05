@@ -49,6 +49,11 @@ class Learning
      */
     protected $vacationDays;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    protected $lastScores;
+
     public function __construct()
     {
         $this->goodStreak = 0;
@@ -214,5 +219,27 @@ class Learning
     {
         $this->vacationDays -= 1;
         return $this;
+    }
+
+    public function getLastScore()
+    {
+        if (!$this->lastScores) {
+            return null;
+        }
+
+        return $this->lastScores[count($this->lastScores) - 1];
+    }
+
+    public function recordScore($score)
+    {
+        if (count($this->lastScores) >= 3) {
+            array_shift($this->lastScores);
+        }
+
+        $this->lastScores[] = $score;
+    }
+    public function getLastScores()
+    {
+        return $this->lastScores;
     }
 }

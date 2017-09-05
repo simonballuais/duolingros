@@ -59,5 +59,26 @@ class LeaningTest extends WebTestCase
             );
         }
     }
+
+    public function testLastScores()
+    {
+        $learning = new Learning();
+        $learning->recordScore(1);
+
+        $this->assertEquals(1, $learning->getLastScore());
+        $this->assertEquals([1], $learning->getLastScores());
+
+        $learning->recordScore(2);
+        $learning->recordScore(3);
+
+        $this->assertEquals(3, $learning->getLastScore());
+        $this->assertEquals([1, 2, 3], $learning->getLastScores());
+
+        $learning->recordScore(4);
+        $learning->recordScore(5);
+
+        $this->assertEquals(5, $learning->getLastScore());
+        $this->assertEquals([3, 4, 5], $learning->getLastScores());
+    }
 }
 ?>
