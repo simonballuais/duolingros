@@ -289,3 +289,26 @@ id;lesson_id;text;answers ...
 ;17;le cahier est moins épais que le livre;tsy matevina (kokoa|) noho ny boky ny kahie
 ;17;donnez des livres aux élèves;omeo boky ny mpianatra
 ;17;il a déjà donné les cahiers;efa nanome ny kahie izy
+
+;18;ganagana;(un|) canard
+;18;akoho;(un|) poulet;(une|) poule
+;18;paiso;(une|) peche
+;18;poma;(une|) pomme
+;18;maranitra;tranchant;aiguisé;coupant
+;18;indrindra;(le|la) meilleur;(le|la) plus
+;18;famaky;(une|) hache
+;18;antsy;(un|) couteau
+;18;hareza;(un|) rasoir
+;18;matanjaka;fort
+
+;19;mahia tahaka ny ganagana ny akoho;le poulet est (maigre comme|aussi maigre que) le canard
+;19;mamy tahaka ny paiso ny poma;la pomme est (maigre comme|aussi maigre que) la pˆeche
+;19;matavy tahaka ny kisoa ny omby;le (boeuf|zébu) est (maigre comme|aussi maigre que) le (porc|cocho)
+;19;tsara tahaka ny kafe ny dite;le thé est (bon comme|aussi bon que) le café
+;19;mangidy tahaka ny kafe ny fanafody;le (médicament|remède) est (amère comme|aussi amère que) le café
+;19;inona no maranitra indrindra ?;(qu'est-ce qui est|c'est quoi) le plus tranchant ?
+;19;maranitra kokoa noho ny famaky ny antsy, nefa ny hareza no maranitra indrindra;le couteau ((coupe|tranche) mieux|est (plus|mieux) aiguisé) que la hache, mais (c'est|) le rasoir (qui est|) le (plus (tranchant|aiguisé|coupant)|mieux aiguisé)
+;19;Iza no matanjaka indindra ?;(qui (est-ce qui est|c'est)|c'est qui (qui est|)) le plus fort
+;19;matanjaka kokoa noho i Robert i Jean, nefa i Johnny no matanjaka indrindra;Jean est plus fort que Robert, mais c'est Johnny (qui est|) le plus fort
+;19;inona no mahia indrindra;(c'est (quoi|qui) (qui est|)|qu'est-ce qui est) le plus maigre ?
+;19;mahia kokoa noho ny ganagana ny akoho, nefa ny omby no mahia indrindra;le poulet est (plus maigre|moins (gras|gros)) que le canard, mais (c'est|) le (zébu|boeuf) (qui est|) le plus maigre

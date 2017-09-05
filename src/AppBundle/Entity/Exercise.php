@@ -203,6 +203,14 @@ class Exercise
 
     public function findNonRecursiveOptionGroups($candidate)
     {
+        $this->corrector = new RegexCorrector();
+
+        $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
+        $this->OPTION_GROUP_REGEX = sprintf(
+            '/\(%s*?\|%s*?\)/',
+           $this->NOT_A_GROUP_DELIMITER_REGEX,
+           $this->NOT_A_GROUP_DELIMITER_REGEX
+       );
         $result = [];
         preg_match_all($this->OPTION_GROUP_REGEX, $candidate, $result);
 

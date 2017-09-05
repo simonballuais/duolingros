@@ -44,6 +44,14 @@ class ExerciseTest extends WebTestCase
                     "Une pierre a tué une chatte qui fait caca dans la douche",
                 ]
             ],
+            [
+                "answerList" => ["(qui (est-ce qui est|c'est)|c'est qui qui est) le plus fort"],
+                "expectedConcreteAnswerList" => [
+                    "qui c'est le plus fort",
+                    "qui est-ce qui est le plus fort",
+                    "c'est qui qui est le plus fort",
+                ]
+            ],
         ];
 
 
