@@ -35,16 +35,22 @@ class LearningManager
             $this->entityManager->persist($learning);
         }
 
-        if ($successPercentage >= self::GOOD_PERCENTAGE) {
-            $learning->increaseGoodStreak();
-            $learning->increaseVacationDays();
-        }
-        else {
-            $learning->resetGoodStreak(0);
-            $learning->decreaseVacationDays();
+        $lastPractice = $learning->getLastPractice();
+        $now = new \DateTime();
+
+        if ($now->format('d/m/Y') != $lastPractice->format('d/m/Y')) {
+            if ($successPercentage >= self::GOOD_PERCENTAGE) {
+                $learning->increaseGoodStreak();
+                $learning->increaseVacationDays();
+            }
+            else {
+                $learning->resetGoodStreak(0);
+                $learning->decreaseVacationDays();
+            }
         }
 
-        $learning->setLastPractice(new \DateTime());
+        $learning->setLastPractice($now);
+        $learning->recordScore($successPercentage);
 
         return $learning;
     }

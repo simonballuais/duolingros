@@ -54,3 +54,8 @@ label.lesson {
 #lesson-list ul li {
     list-style-type: none;
 }
+
+.mastery {
+    height: 3px;
+    margin-top: -4px;
+}

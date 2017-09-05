@@ -81,6 +81,11 @@ class Learning
         return $mastery;
     }
 
+     /**
+      * @Groups({"Default"})
+      * @SerializedName("hotness")
+      * @VirtualProperty
+      */
     public function getHotness()
     {
         $now = new \DateTime();
