@@ -2,8 +2,7 @@
     margin: 20px;
 }
 
-input[type='textbox'],
-input[type='textarea']
+textarea
 {
     width: 100%;
     margin: 10px;

@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     var state = STATE.IDDLE;
 
-    var $proposition = $('input#proposition');
+    var $proposition = $('textarea#proposition');
 
     var lessonMenuApp = new Vue({
         el: 'div#lesson-list',
@@ -80,7 +80,7 @@ $(document).ready(function() {
     };
 
     var showPlayground = function() {
-        var $proposition = $('input#proposition');
+        var $proposition = $('textarea#proposition');
 
         $('#caca').fadeOut(function() {
             $('#playground').fadeIn(function() {
@@ -117,7 +117,7 @@ $(document).ready(function() {
     };
 
     var startLesson = function(lessonId) {
-        var $proposition = $('input#proposition');
+        var $proposition = $('textarea#proposition');
 
         showPlayground();
 
@@ -140,8 +140,9 @@ $(document).ready(function() {
     };
 
     var sendProposition = function() {
-        var $proposition = $('input#proposition');
+        var $proposition = $('textarea#proposition');
         $proposition.attr('readonly', true);
+        alert($proposition.val());
 
         $.ajax({
             type        : 'POST',
@@ -174,7 +175,7 @@ $(document).ready(function() {
     };
 
     var startNextExercise = function() {
-        var $proposition = $('input#proposition');
+        var $proposition = $('textarea#proposition');
         $('#correction-status').fadeOut();
 
         $.ajax({

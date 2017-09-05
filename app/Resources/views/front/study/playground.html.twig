@@ -18,18 +18,24 @@
   </div> <!-- row -->
   <div class="row">
     <div class="col-sm-6">
-      <input type="textarea"
+      <textarea
+             cols="50"
+             rows="4"
              id="exercise"
              readonly="true"
              v-bind:value="exerciseText"
-      />
+      >
+      </textarea>
     </div> <!-- col -->
     <div class="col-sm-6">
-      <input type="textarea"
+      <textarea
+             cols="50"
+             rows="4"
              id="proposition"
              v-model="proposition"
              placeholder="réponse ..."
-      />
+      >
+      </textarea>
     </div> <!-- col -->
   </div> <!-- row -->
   <div class="row">
