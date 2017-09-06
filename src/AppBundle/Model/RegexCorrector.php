@@ -36,16 +36,20 @@ class RegexCorrector implements CorrectorInterface
             $correction->setIsOkDespiteRemark(true);
         }
 
-        elseif ($distance < self::THRESHOLD_FOR_GUESSING) {
-            $correctedAnswer = $this->generateCorrectedAnswer(
-                $proposition->getText(),
-                $closestGoodAnswer
-            );
+        if ($distance != 0) {
+            if ($distance <= self::THRESHOLD_FOR_GUESSING) {
+                $correctedAnswer = $this->generateCorrectedAnswer(
+                    $proposition->getText(),
+                    $closestGoodAnswer
+                );
 
-            $correction->addRemark("Vouliez-vous dire \"$correctedAnswer\" ?");
-        }
-        else {
-            $correction->addRemark("G rien compri lol");
+                $correction->addRemark("Vouliez-vous dire \"$correctedAnswer\" ?");
+            }
+            else {
+                $correctedAnswer = "<strong>" . $closestGoodAnswer . "<strong>";
+                $correction->addRemark("On aurait pu dire : \"$correctedAnswer\" ?");
+            }
+
         }
 
         return $correction;

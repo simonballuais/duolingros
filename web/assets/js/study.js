@@ -142,7 +142,6 @@ $(document).ready(function() {
     var sendProposition = function() {
         var $proposition = $('textarea#proposition');
         $proposition.attr('readonly', true);
-        alert($proposition.val());
 
         $.ajax({
             type        : 'POST',
