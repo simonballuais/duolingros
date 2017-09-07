@@ -104,7 +104,7 @@ id;lesson_id;text;answers ...
 ;6;Entana;Objets;Bagage;Un objet;Un bagage;Des bagages;Truc;Trucs;Des trucs;Un truc
 
 ;7;Iza io lehilahy io ?;Qui est cet homme ?
-;7;Mpandrafitra io lehilahy io;Cet homme est un menuisier;C'est un menuisier
+;7;Mpandrafitra io lehilahy io;Cet homme est (un|) menuisier;C'est un menuisier
 ;7;Inona io zavatra io ?Quelle est cette chose ?;Qu'est-ce que c'est que cette chose ?
 ;7;Latabatra io zavatra io;Cette chose est une chaise
 ;7;Iza iry vehivavy iry ?;Qui est cette femme là-bas ?
