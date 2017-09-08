@@ -9,7 +9,6 @@ use AppBundle\Model\Correction;
 use AppBundle\Model\RegexCorrector;
 use AppBundle\Model\PropositionInterface;
 
-
 /**
 * @ORM\Entity
 * @ORM\Table(name="exercise")
@@ -20,7 +19,7 @@ class Exercise
     public $OPTION_GROUP_REGEX; // to find imediatly resolvable option groups such as (a|b|c) but not (a|b (c|d)|e)
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=225)
      * @ORM\Id
      */
     protected $text;

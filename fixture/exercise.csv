@@ -302,7 +302,7 @@ id;lesson_id;text;answers ...
 ;18;matanjaka;fort
 
 ;19;mahia tahaka ny ganagana ny akoho;le poulet est (maigre comme|aussi maigre que) le canard
-;19;mamy tahaka ny paiso ny poma;la pomme est (maigre comme|aussi maigre que) la pˆeche
+;19;mamy tahaka ny paiso ny poma;la pomme est (sucré comme|aussi sucré que) la pêche
 ;19;matavy tahaka ny kisoa ny omby;le (boeuf|zébu) est (maigre comme|aussi maigre que) le (porc|cocho)
 ;19;tsara tahaka ny kafe ny dite;le thé est (bon comme|aussi bon que) le café
 ;19;mangidy tahaka ny kafe ny fanafody;le (médicament|remède) est (amer comme|aussi amer que) le café
@@ -312,3 +312,28 @@ id;lesson_id;text;answers ...
 ;19;matanjaka kokoa noho i Robert i Jean, nefa i Johnny no matanjaka indrindra;Jean est plus fort que Robert, mais c'est Johnny (qui est|) le plus fort
 ;19;inona no mahia indrindra;(c'est (quoi|qui) (qui est|)|qu'est-ce qui est) le plus maigre ?
 ;19;mahia kokoa noho ny ganagana ny akoho, nefa ny omby no mahia indrindra;le poulet est (plus maigre|moins (gras|gros)) que le canard, mais (c'est|) le (zébu|boeuf) (qui est|) le plus maigre
+;19;donnez-lui un poulet aussi gras que le canard;omeo akoho matavy tahaka ny ganagana izy
+;19;il a donné des pêches aussi bonnes que les pommes;nanome paiso tsara tahaka ny poma izy
+;19;qui était le plus fort ?;iza no natanjaka indrindra
+;19;Marc était aussi fort que Michel;natanjaka tahaka an'i Michel i Marc
+
+
+lohataona;(le|) printemp
+manga;(le |) bleu
+lanitra;(le|un|) ciel
+ho avy;viendra
+avy;venir
+mety;ok;d'accord;ça marche;c'est bon;ça fonctionne
+hiova;va changer;changera;changeront;changerez;changerai(s|t|)
+mitondra;avoir sur soi;porter
+elo;(un|le|) (parapluie|parasol);(une|la|) ombrelle
+ririnina;(l'|)hiver
+ratsy;mauvais;pas bon
+manjobona;((le|) temps|) (gris|mauvais|couvert)
+amin'izay;à ce moment (là|)
+erika;(la|une|) pluie (fine|)
+manaova;fais;faites
+akanjo;(un|des|) vêtement(s|)
+voan'ny sery;(avoir|attraper) un rhume;être enrhumé(e|)
+
+
