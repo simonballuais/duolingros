@@ -100,7 +100,13 @@ class Learning
         $diff = $now->diff($this->getNextPractice());
         $actualLateness = $diff->days;
 
-        $latenessScore = $actualLateness / $learningPeriod;
+        if ($learningPeriod == 0) {
+            $latenessScore = 0;
+        }
+        else {
+            $latenessScore = $actualLateness / $learningPeriod;
+        }
+
         $hotness = 3 - $latenessScore;
         $hotness = floor($hotness);
 
