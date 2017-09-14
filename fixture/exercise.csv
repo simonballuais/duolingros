@@ -226,7 +226,7 @@ id;lesson_id;text;answers ...
 ;12;tsara izany;c'est bien (ça|)
 ;12;fa;mais
 ;12;aza matahotra;(n'aies|n'ayez) pas peur;ne (t'inquiète|vous inquietez) pas
-;12;matahotra;avoir peur;être inquiet
+;12;matahotra;avoir peur;être inquiet;s'inquiéter
 
 ;13;marary tompoko ny zazakely;(L'enfant|Le bébé) est malade, (monsieur|madame).
 ;13;mafana ve ny handriny ?;(Est-ce que |)son front est chaud ?
@@ -328,7 +328,7 @@ id;lesson_id;text;answers ...
 ;20;elo;(un|le|) (parapluie|parasol);(une|la|) ombrelle
 ;20;ririnina;(l'|)hiver
 ;20;ratsy;mauvais;pas bon
-;20;manjobona;((le|) temps|) (gris|mauvais|couvert)
+;20;manjombona;((le|) temps|) (gris|mauvais|couvert);(le|) mauvais temps
 ;20;amin'izay;à ce moment (là|)
 ;20;erika;(la|une|) pluie (fine|)
 ;20;manaova;fais;faites
@@ -339,10 +339,31 @@ id;lesson_id;text;answers ...
 ;21;manga ny lanitra;le ciel est bleu
 ;21;mafana ery izy izany;il fait (si|vraiment|très|tellement|) chaud
 ;21;ho avy ve ny orana ?;(est-ce qu'|)il va pleuvoir ?
-;21;tsy hisy orana angamba anio nefa mety hiova ny andro ka tsara ny mitondra elo;(peut-être qu'|)(il ne va pas pleuvoir|il ne pleuvra) (peut être|) pas aujourd'hui mais le temps (risque de|va|pourra|peut) (peut-être|sans doute|) changer, et (alors|) ((ce|ça|il) sera) (bon|bien) (de porter|d'avoir (sur soi|)) un parapluie (sur soi|)
+;21;tsy hisy orana angamba anio nefa mety hiova ny andro ka tsara ny mitondra elo;(peut-être qu'|)(il ne va pas pleuvoir|il ne pleuvra) (peut être|) pas aujourd'hui mais le temps (risque de|va|pourra|peut) (peut-être|sans doute|) changer, et (alors|) (ce|ça|il) sera (bon|bien) (de porter|d'avoir (sur soi|)) un parapluie (sur soi|)
 ;21;manao ahoana ny andro ririnina;(quel temps fait-il|comment est le temps) en hiver ?;L'hiver, (quel temps fait-il|comment est le temps) ?
 ;21;ratsy ny andro;il (ne|) fait pas beau;il fait (froid|mauvais);le temps est (couvert|gris|mauvais|froid)
 ;21;majombona ny lanitra;(le ciel est|il fait|le temps est) (couvert|gris|mauvais|froid)
 ;21;mangatsiaka ery amin'izay;il fait (si|vraiment|très|tellement|) froid
 ;21;avy ny erika;il pleut;il tombe (une pluie fine|un crachin);il crachine
-;21;manaova akanjo mafana sao voan'ny sery;(porte|mets) des vêtements chauds ((de peur d'|pour ne pas) attraper un rhume|(de peur de|pour ne pas) t'enrhumer)
+;21;manaova akanjo mafana sao voan'ny sery;(porte|mets) des vêtements chauds ((de peur d'|pour ne pas )attraper un rhume|(de peur de|pour ne pas) t'enrhumer)
+
+;22;il n'y a pas eu de pluie hier;tsy nisy orana omaly
+;22;il pleuvra peut-etre demain;ho avy angamba ny orana rahampitso
+;22;il fait froid maintenant;mangatsiaka (ny andro|) izao
+;22;il fait beau aujourd'hui mais le temps peut changer;tsara ny andro anio (n|)efa mety hiova
+;22;madame porte un parapluie car il tombe une petite plui fine;mitondra elo madama fa avy ny erika
+;22;vous avez mis des vetements épais parce que vous aviez peur d'attraper un rhume;nanao akanjo matevina ianareo fa natahotra sao voan'ny sery
+;22;le ciel bleu est beau;tsara ny lanitra manga
+;22;le ciel couvert de nuages est laid;ratsy ny lanitra manjombona
+
+;23;kapaoty;impair;imperméable;capote
+;23;na;ou (alors|)
+;23;aiza;où
+;23;handeha aho;je vais;j'irai;je vais aller
+;23;any;à;vers
+;23;ho any;là bas
+;23;fa maninona;pourquoi
+;23;raharaha;affaire(s|);travail;travaux
+;23;maika;pressé(e|)(s|);urgent;pressant(e|)(s|)
+;23;inty;voici
+;23;lena;mouillé(e|)(s|)

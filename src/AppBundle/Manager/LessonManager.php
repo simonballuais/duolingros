@@ -58,7 +58,7 @@ class LessonManager
 
         if ("" !== $id) {
             $lesson->setId($id);
-            $this->entityManager->persist($lesson);
+            $this->entityManager->merge($lesson);
             $metadata = $this->entityManager->getClassMetaData(get_class($lesson));
             $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetaData::GENERATOR_TYPE_NONE);
         }
