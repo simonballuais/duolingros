@@ -49,7 +49,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (16,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$f6Eui5v7.Bz2fxu.eC0WEuts3SMamzr13sFGVesvL698lOGxWl7dG','2017-09-11 21:59:01',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}');
+INSERT INTO `fos_user` VALUES (16,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$f6Eui5v7.Bz2fxu.eC0WEuts3SMamzr13sFGVesvL698lOGxWl7dG','2017-09-14 23:17:21',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}');
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `learning` (
 
 LOCK TABLES `learning` WRITE;
 /*!40000 ALTER TABLE `learning` DISABLE KEYS */;
-INSERT INTO `learning` VALUES (16,20,1,'2017-09-11 22:08:31',0,'a:1:{i:0;s:5:\"90.91\";}'),(16,21,1,'2017-09-11 22:02:30',0,'a:1:{i:0;s:5:\"90.91\";}'),(16,22,1,'2017-09-11 22:05:00',0,'a:1:{i:0;s:6:\"100.00\";}'),(16,23,1,'2017-09-11 22:05:48',0,'a:1:{i:0;s:6:\"100.00\";}');
+INSERT INTO `learning` VALUES (16,19,0,'2017-09-14 23:34:48',-2,'a:1:{i:0;s:5:\"47.62\";}'),(16,20,1,'2017-09-11 22:08:31',0,'a:1:{i:0;s:5:\"90.91\";}'),(16,21,0,'2017-09-14 23:22:46',-1,'a:2:{i:0;s:5:\"90.91\";i:1;s:5:\"76.92\";}'),(16,22,1,'2017-09-11 22:05:00',0,'a:1:{i:0;s:6:\"100.00\";}'),(16,23,1,'2017-09-11 22:05:48',0,'a:1:{i:0;s:6:\"100.00\";}');
 /*!40000 ALTER TABLE `learning` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -94,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-14 23:05:37
+-- Dump completed on 2017-09-14 23:39:00

@@ -302,13 +302,13 @@ id;lesson_id;text;answers ...
 ;18;matanjaka;fort
 
 ;19;mahia tahaka ny ganagana ny akoho;le poulet est (maigre comme|aussi maigre que) le canard
-;19;mamy tahaka ny paiso ny poma;la pomme est (sucré comme|aussi sucré que) la pêche
+;19;mamy tahaka ny paiso ny poma;la pomme est (sucrée comme|aussi sucrée que) la pêche
 ;19;matavy tahaka ny kisoa ny omby;le (boeuf|zébu) est (maigre comme|aussi maigre que) le (porc|cocho)
 ;19;tsara tahaka ny kafe ny dite;le thé est (bon comme|aussi bon que) le café
 ;19;mangidy tahaka ny kafe ny fanafody;le (médicament|remède) est (amer comme|aussi amer que) le café
 ;19;inona no maranitra indrindra ?;(qu'est-ce qui est|c'est quoi) le plus tranchant ?
-;19;maranitra kokoa noho ny famaky ny antsy, nefa ny hareza no maranitra indrindra;le couteau ((coupe|tranche) mieux|est (plus|mieux) aiguisé) que la hache, mais (c'est|) le rasoir (qui est|) le (plus (tranchant|aiguisé|coupant)|mieux aiguisé)
-;19;Iza no matanjaka indindra ?;(qui (est-ce qui est|c'est)|c'est qui (qui est|)|est) le plus fort
+;19;maranitra kokoa noho ny famaky ny antsy, nefa ny hareza no maranitra indrindra;le couteau ((coupe|tranche) mieux|est (plus|mieux) (aiguisé|coupant)) que la hache, mais (c'est|) le rasoir ((qui est|) le (plus (tranchant|aiguisé|coupant)|mieux aiguisé)|qui coupe le (mieux|plus))
+;19;Iza no matanjaka indindra ?;(qui (est-ce qui est|c'est|est)|c'est qui (qui est|)) le plus fort
 ;19;matanjaka kokoa noho i Robert i Jean, nefa i Johnny no matanjaka indrindra;Jean est plus fort que Robert, mais c'est Johnny (qui est|) le plus fort
 ;19;inona no mahia indrindra;(c'est (quoi|qui) (qui est|)|qu'est-ce qui est) le plus maigre ?
 ;19;mahia kokoa noho ny ganagana ny akoho, nefa ny omby no mahia indrindra;le poulet est (plus maigre|moins (gras|gros)) que le canard, mais (c'est|) le (zébu|boeuf) (qui est|) le plus maigre
@@ -324,7 +324,7 @@ id;lesson_id;text;answers ...
 ;20;avy;venir
 ;20;mety;ok;d'accord;ça marche;c'est bon;ça fonctionne
 ;20;hiova;va changer;changera;changeront;changerez;changerai(s|t|)
-;20;mitondra;avoir sur soi;porter
+;20;mitondra;(porter|avoir) (sur soi|)
 ;20;elo;(un|le|) (parapluie|parasol);(une|la|) ombrelle
 ;20;ririnina;(l'|)hiver
 ;20;ratsy;mauvais;pas bon
@@ -369,14 +369,14 @@ id;lesson_id;text;answers ...
 ;23;lena;mouillé(e|)(s|)
 
 ;24;mety ho avy ny orana raha manjombona ny andro;(c'est possible qu'il pleuve|il (peut pleuvoir|se peut qu'il pleuve)) (si|quand) (le temps est (gris|mauvais|couvert)|il ((ne|) fait pas beau|fait (mauvais|gris)))
-;24;tsara ny mitondra elo na kapaoty raha avy ny orana;(c'est|il est) (bon|bien) (d'avoir|de porter) un parapluie ou un impair (sur soi|) (quand|si) (il peut|la pluie tombes
+;24;tsara ny mitondra elo na kapaoty raha avy ny orana;(c'est|il est) (bon|bien) (d'avoir|de porter) un parapluie ou un impair (sur soi|) (quand|si) (il peut|la pluie tombe)
 ;24;raha magatsiaka ny andro dia manaova akanjo matevina;(si|quand) (le temps est|il fait) froid, ((met|por)tez|(met|porte)(s|)) (un vetement épais|des vetements épais)
 ;24;raha mafana ny andro dia manaova akanjo maivana;(si|quand) (le temps est|il fait) chaud, ((met|por)tez|(met|porte)(s|)) (un vetement léger|des vetements légers)
 ;24;ho aiza ?;où vas-tu ?;où allez-vous ?
 ;24;ho aiza ianao tompoko ?;où allez-vous (monsieur|madame)
 ;24;handeha ho any Antananarivo aho;je vais à Antananarivo
-;24;fa maninona no mandeha avy orana ?;pourquoi (vas-tu|allez-vous) sous la pluie ?
-;24;misy raharaha maika hatao any;(il y a|j'ai|j'y ai) (une affaire|des affaires) (pressée|urgente)(s|) (à faire|à régler|) là-bas
+;24;fa maninona no mandeha avy orana ?;pourquoi (pars-tu|aller|partir|partez-vous|vas-tu|allez-vous) sous la pluie ?
+;24;misy raharaha maika hatao any;(il y a|j'ai|j'y ai) (une affaire|des affaires) (pressée|urgente)(s|) (à faire|à régler|) (là-bas|)
 ;24;inty ny elo sao lena ny akanjo;(voici|tenez|voilà|tiens) le parapluie de peur (de mouiller vos vetements|que vos vetements ne soient mouillés)
 ;24;misaotra tompoko fa efa manao kapaoty aho;merci (monsieur|madame) mais (j'ai|je porte) déjà un impair
 ;24;veloma tompoko;au revoir (monsieur|madame)
