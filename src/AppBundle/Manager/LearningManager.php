@@ -11,7 +11,7 @@ use AppBundle\Entity\User;
 class LearningManager
 {
     const SERVICE_NAME = 'app.learning_manager';
-    const GOOD_PERCENTAGE = 90;
+    const GOOD_PERCENTAGE = 80;
 
     protected $entityManager;
     protected $session;
