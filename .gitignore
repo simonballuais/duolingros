@@ -46,5 +46,3 @@
 
 # Embedded web-server pid file
 /.web-server-pid
-
-/script/reset_db.sh
