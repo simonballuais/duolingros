@@ -16,6 +16,8 @@
 !var/sessions/.gitkeep
 
 /vendor/*
+/vendor/
+/vendor
 
 # Parameters
 /app/config/parameters.yml
