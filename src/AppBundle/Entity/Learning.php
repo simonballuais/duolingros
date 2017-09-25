@@ -78,7 +78,7 @@ class Learning
         $mastery = array_sum($lastScores) / count($lastScores);
         $mastery = intval($mastery);
 
-        return $mastery;
+    return $mastery;
     }
 
      /**

@@ -12,13 +12,13 @@
     <label class="lesson" >
       ${ lesson.title }
       <strong v-if="lesson.currentLearning">
-        (${ lesson.currentLearning.mastery }%)
+        (${ lesson.currentLearning.mastery } ${ lesson.currentLearning.hotness }%)
       </strong>
 
       <div v-if="lesson.currentLearning"
-           class="progress-bar progress-bar-success active mastery"
+           class="progress-bar active mastery"
            role="progress-bar"
-           v-bind:style="{ 
+           v-bind:style="{
              width: (10 + (lesson.currentLearning.hotness * 30)) + '%',
            }"
            v-bind:class="{
