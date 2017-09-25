@@ -95,7 +95,7 @@ class RegexCorrector implements CorrectorInterface
 
                     $nextActualWord = "";
 
-                    if (isset($actualWords[$index + $actualWordSelectionOffset])) {
+                    if (isset($actualWords[$index + $actualWordSelectionOffset + 1])) {
                         $nextActualWord = $actualWords[$index + $actualWordSelectionOffset + 1];
                     }
                 }
