@@ -1,5 +1,5 @@
-id;lesson_id;text;answers ...
-;1;Bonjour.;Manao ahoana;Salama
+id;lesson_id;text;answers 
+;1;Bonjour;Manao ahoana;Salama
 ;1;J'ai faim;Noana aho;Noana
 ;1;Je m'apelle Simon;Simon no anarako
 ;1;Je vais dormir;Hatory aho;Hatory
@@ -31,7 +31,7 @@ id;lesson_id;text;answers ...
 ;3;Manao ahoana ny trano ?;Comment est la maison ?
 ;3;Madio ny trano;La maison est propre
 ;3;Madio tsara ny trano;La maison est (très|bien) propre;La maison est bien propre
-;3;Madio ve ny trano ?:Est-ce que la maison est propre ?;La maison est-elle propre ?;La maison est propre ?
+;3;Madio ve ny trano ?;Est-ce que la maison est propre ?;La maison est-elle propre ?;La maison est propre ?
 ;3;Eny, madio ny trano;Oui, la maison est propre
 ;3;Madio tsara ve ny trano ?;Est-ce que la maison est bien propre ?;La maison est-elle bien propre ?;La maison est bien propre ?
 ;3;Eny, madio tsara ny trano;Oui, la maison est bien propre
@@ -57,11 +57,11 @@ id;lesson_id;text;answers ...
 ;4;Angamba;Peut-être
 ;4;Asa;Je ne peux pas dire;Je peux pas dire
 ;4;Tsy fantatro;Je ne sais pas;Je sais pas
-;4;Marary;Malade
+;4;Marary;Malade;Blessé
 ;4;Zazakely;Enfant;Bébé
 ;4;Mangidy;Amère;Amer
 ;4;Fanafody;Médicament;Remède
-;4;Mamy;Sucré
+;4;Mamy;Sucré;Doux
 
 ;5;Mpiasa ve io olona io ?;Est-ce que cette personne est un travailleur ?;Cette personne est-elle un travailleur ?;Cette personne est un travailleur ?;C'est un travailleur ?
 ;5;Eny, mpiasa izy;Oui, c'est un travailleur
@@ -75,7 +75,7 @@ id;lesson_id;text;answers ...
 ;5;Tsy fantatro na marary izy na tsia;Je ne sais pas si il est malade ou pas;Je ne sais pas si il est malade ou non
 ;5;Mangidy ve io fanafody io ?;Est-ce que ce (médicament|remède) est amer ?;Ce (médicament|remède) est-il amer ?;Ce (médicament|remède) est amer ?
 ;5;Mangidy angamba izy io;Il est peut-être amer;C'est peut-être amer
-;5;Asa, mangidy angamba izy io;Je ne peux pas dire, il est peut-être amer;Je ne sais pas, il est peut-être amer
+;5;Asa, mangidy angamba izy io;(Je ne sais pas|Je ne peux pas dire), (il |c')est peut-être amer
 ;5;Tsy fantatro na mangidy izy io na mamy;Je ne sais pas si il est amer ou non;Je ne sais pas si il est amer ou pas
 ;5;Rano maloto;Eau sale;De l'eau sale
 ;5;Trano madio;Maison propre;Une maison propre
@@ -85,7 +85,7 @@ id;lesson_id;text;answers ...
 ;5;Non, cette eau n'est pas amer;Tsia, tsy mangidy io rano io
 ;5;Cet ouvrier est-il malade ?;Marary ve io mpiasa io ?
 ;5;Je ne sais pas si il est malade ou non;Tsy fantatro na marary izy na tsia
-;5;Cette personne et (l'enfant|le bébé) sont peut-être malades;Marary angamba io olona io sy ny zazakely
+;5;Cette personne et l'enfant sont peut-être malades;Marary angamba io olona io sy ny zazakely
 ;5;C'est bien que l'eau soit propre et que la maison soit propre
 ;5;Beaucoup de gens sont malades;Be ny olona marary
 
@@ -105,30 +105,30 @@ id;lesson_id;text;answers ...
 
 ;7;Iza io lehilahy io ?;Qui est cet homme ?
 ;7;Mpandrafitra io lehilahy io;Cet homme est (un|) menuisier;C'est un menuisier
-;7;Inona io zavatra io ?Quelle est cette chose ?;Qu'est-ce que c'est que cette chose ?
-;7;Latabatra io zavatra io;Cette chose est une chaise
-;7;Iza iry vehivavy iry ?;Qui est cette femme là-bas ?
-;7;Ginette iry verivavy iry;Cette femme là-bas est Ginette;C'est Ginette cette femme là-bas
-;7;Inona iry fanaka iry ?;Quel est ce meuble là-bas ?;Qu'est-ce que c'est que ce meuble là-bas ?
-;7;Seza iry fanaka iry;Ce meuble là-bas est une chaise;C'est une chaise, ce meuble là-bas
-;7;Iza ireo olona ireo ?Qui sont ces gens ?
+;7;Inona io zavatra io ?;(Quelle est|c'est quoi) cette chose ?;Qu'est-ce que c'est que cette chose ?
+;7;Latabatra io zavatra io;Cette chose est une table;C'est une table
+;7;Iza iry vehivavy iry ?;Qui est cette femme (|là-bas) ?
+;7;Ginette iry verivavy iry;Cette femme (là-bas|) est Ginette;C'est Ginette cette femme (là-bas|)
+;7;Inona iry fanaka iry ?;Quel est ce meuble (là-bas|) ?;Qu'est-ce que c'est que ce meuble (là-bas|) ?
+;7;Seza iry fanaka iry;Ce meuble (là-bas|) est une chaise;C'est une chaise, ce meuble (là-bas|)
+;7;Iza ireo olona ireo ?;qui sont ces gens ?;C'est qui ces gens ?
 ;7;Mpiasa ireo olona ireo;Ces gens sont des ouvriers;Ces gens sont des travailleurs
 ;7;Inona ireo tavoahangy ireo ?;(C'est quoi|Que sont|Qu'est-ce que sont|Qu'est-ce que c'est que) ces bouteilles ?
 ;7;Fanafody ireo tavoahangy ireo;Ces bouteilles sont des (médicaments|remède)
-;7;Iza irery zazakely irery ?;Qui sont ces (enfants|bébés) là-bas ?;C'est qui ces (enfants|bébés) là-bas ?
-;7;Mpianatra irery zazakely irery;Ces enfants là-bas sont des écoliers;Ces enfants là-bas sont des élèves;Ce ont des élèves là bas
-;7;Inona irery entana irery ?;(Que sont|C'est quoi|Qu'est-ce que c'est que) ces objets (là-bas|).
-;7;Fanaka irery entana irery;Ces trucs là bas sont des meubles;Ce sont des meubles là-bas
-;7;Ces hommes sont des ouvriers et des menuisiers.;Mpiasa sy mpandrafitra ireo lehilahy ireo.
-;7;Cette bouteille-là est un (médicament|remède) sucré;Fanafody mamy iry tavoahangy iry.
+;7;Iza irery zazakely irery ?;Qui sont ces (enfants|bébés) (là-bas|) ?;C'est qui ces (enfants|bébés) (là-bas|) ?
+;7;Mpianatra irery zazakely irery;Ces enfants (là-bas|) sont des écoliers;Ces enfants (là-bas|) sont des élèves;Ce ont des élèves là bas
+;7;Inona irery entana irery ?;(Que sont|C'est quoi|Qu'est-ce que c'est que) ces (choses|objets) (là-bas|)
+;7;Fanaka irery entana irery;Ces trucs là bas sont des meubles;Ce sont des meubles (là-bas|)
+;7;Ces hommes sont des ouvriers et des menuisiers;Mpiasa sy mpandrafitra ireo lehilahy ireo
+;7;Cette bouteille-là est un médicament sucré;Fanafody mamy (io|iry) tavoahangy (io|iry)
 ;7;La table et la chaise sont des meubles;Fanaka ny latabatra sy ny seza
-;7;Madio tsara ve ireo fanaka ireo ?
+;7;Madio tsara ve ireo fanaka ireo ?;(Est-ce que ces meubles sont|Ces meubles sont-ils) bien propres ?
 ;7;Non, ils sont sales;Tsia, maloto (izy|) ireo
-;7;Cet objet (tout proche) est propre.;Madio ity (zavatra|entana) ity
+;7;Cet objet (tout proche) est propre;Madio ity (zavatra|entana) ity
 ;7;Qui sont ces enfants ?;Iza ireo zazakely ireo ?
-;7;Ce sont des écoliers; Mpianatra izy.
-;7;Que sont ces objets (là-bas) ?;Inona irery zavatra irery ?
-;7;Ce sont des bagages;Entana (irery|ireto|ireny|ireo).
+;7;Ce sont des écoliers; Mpianatra izy
+;7;Que sont ces objets (là-bas|) ?;Inona irery zavatra irery ?
+;7;Ce sont des bagages;Entana (irery|ireto|ireny|ireo)
 
 ;8;Mafana;Chaud
 ;8;Kafe;(Du|) Café
@@ -139,31 +139,31 @@ id;lesson_id;text;answers ...
 ;8;Siramamy;(Du|) sucre
 
 ;9;Inona no madio ?;Qu'est-ce qui est propre ?
-;9;Ny trano no madio.;(C'est|) la maison (qui|) est propre.
+;9;Ny trano no madio;(C'est|) la maison (qui|) est propre
 ;9;Inona no mangidy ?;Qu'est-ce qui est amer ?
-;9;Io fanafody io no mangidy;(C'est|) ce (médicament|remède) (qui|) est amer.
+;9;Io fanafody io no mangidy;(C'est|) ce (médicament|remède) (qui|) est amer
 ;9;Iza no marary ?;(C'est qui|Qui est-ce|) qui est malade ?
-;9;Ny zazakely no marary.;(C'est|) l'enfant (qui|) est malade.
+;9;Ny zazakely no marary;(C'est|) l'enfant (qui|) est malade
 ;9;Iza no mpandrafitra ?;Qui (est-ce qui|) est menuisier ?
-;9;Iry lehilahy iry no mpandrafitra.;(C'est|) cet homme(-ci|-là) (qui|) est menuisier.
+;9;Iry lehilahy iry no mpandrafitra;(C'est|) cet homme(-ci|-là) (qui|) est menuisier
 ;9;Inona no mafana ?;(Qu'est-ce qui|C'est quoi qui) est chaud ?
-;9;Ny kafe no mafana.;(C'est|) le café (qui|) est chaud.
+;9;Ny kafe no mafana;(C'est|) le café (qui|) est chaud
 ;9;Inona no mangatsiaka ?;(Qu'est-ce|C'est quoi) qui est froid ?
-;9;Ny ronono no mangatsiaka.;(C'est|) le lait (qui|) est froid.
-;9;Tsara ny kafe manafa misy ronono.;Le café (avec du|au) lait (est|c'est) bon.;C'est bon le café (avec du|au) lait.
-;9;Inona no tsara ?;(Qu'est-ce|C'est quoi) qui est bon ?
-;9;Ny kafe mafana misy ronono no tsara.;(C'est|) le café (au|avec du) lait (qui|) est bon.
-;9;Tsara koa ny dite misy siramamy.;Le thé (sucré|avec du sucre) (aussi|) c'est bon (aussi|).;C'est bon aussi le thé (avec du sucre|sucré).
+;9;Ny ronono no mangatsiaka;(C'est|) le lait (qui|) est froid
+;9;Tsara ny kafe manafa misy ronono;Le café (avec du|au) lait (est|c'est) bon;C'est bon le café (avec du|au) lait
+;9;Inona no tsara ?;(Qu'est-ce|C'est quoi) qui est (bon|beau|bien) ?
+;9;Ny kafe mafana misy ronono no tsara;(C'est|) le café (au|avec du) lait (qui|) est bon
+;9;Tsara koa ny dite misy siramamy;Le thé (sucré|avec du sucre) (aussi|) (|c')est bon (aussi|);C'est bon aussi le thé (avec du sucre|sucré)
 ;9;Inona koa no tsara ?;(Qu'est-ce|C'est quoi) qui est bon aussi ?
-;9;Ny dite misy siramamy koa no tsara.;(C'est|) le thé (sucré|avec du sucre) (qui est|c'est) bon aussi.
+;9;Ny dite misy siramamy koa no tsara;(C'est|) le thé (sucré|avec du sucre) (qui est|c'est) bon aussi
 ;9;Qu'est-ce qui est bon ?;Inona no tsara ?
-;9;C'est le café avec du lait et du sucre qui est bon;Ny kafé misy ronono sy siramamy no tsara.
+;9;C'est le café avec du lait et du sucre qui est bon;Ny kafé misy ronono sy siramamy no tsara
 ;9;Qu'est-ce qui est bon aussi ?;Inona koa no tsara ?
-;9;Le thé sucré est bon aussi.;Tsara koa ny (dite misy siramamy|dite mamy).
+;9;Le thé sucré est bon aussi;Tsara koa ny (dite misy siramamy|dite mamy)
 ;9;Qu'est-ce qui est amer ?;Inona no mangidy ?
-;9;Le café sans lait ni sucre;(Ny) kafe tsy misy ronono sy siramamy.
+;9;Le café sans lait ni sucre;(Ny) kafe tsy misy ronono sy siramamy
 ;9;Qu'est-ce qu'il y a dans cette bouteille ?;Misy inona (ity|io) tavoahangy (ity|io) ?
-;9;De l'eau froide.;Rano mangatsiaka.
+;9;De l'eau froide;Rano mangatsiaka
 
 ;10;Nadio;(C'|)était propre
 ;10;C'était propre;Nadio
@@ -194,25 +194,25 @@ id;lesson_id;text;answers ...
 ;10;Ny andro;Le (temps|jour)
 ;10;Le jour;ny andro
 
-;11;Nadio ny trano omaly nefa haloto anio;La maison était propre hier mais (elle|) sera sale aujourd'hui.
-;11;Nafana ny kafe nefa mangatsiaka izao;Le café était chaud mais (il|) est froid maintenant.
-;11;Narary ny zazakely omaly nefa efa sitrana izao;(Le bébé|L'enfant) était malade hier mais (il|) est guéri mainteant.
-;11;Nangidy ny kafe;Le café était amer.
-;11;Hadio indray ny trano rahampitso;La maison sera (à|de) nouveau propre demain.
-;11;Hangatsiaka ny ronono;Le lait sera froid.
-;11;Ho mamy ny fanafody;Le (médicament|remède) sera (sucré|doux).
+;11;Nadio ny trano omaly nefa haloto anio;La maison était propre hier mais (elle|) sera sale aujourd'hui
+;11;Nafana ny kafe nefa mangatsiaka izao;Le café était chaud mais (maintenant|) (il|) est froid (|maintenant)
+;11;Narary ny zazakely omaly nefa efa sitrana izao;(Le bébé|L'enfant) était malade hier mais (il|) est guéri mainteant
+;11;Nangidy ny kafe;Le café était amer
+;11;Hadio indray ny trano rahampitso;La maison sera (à|de) nouveau propre demain
+;11;Hangatsiaka ny ronono;Le lait sera froid
+;11;Ho mamy ny fanafody;Le (médicament|remède) sera (sucré|doux)
 ;11;Ho tsara ny andro rahampitso;(Le temps sera|Il fera) beau (temps|) demain;La journée sera belle demain
-;11;L'eau était sale.;Naloto ny rano.
-;11;La maison n'était pas propre.;Tsy nadio ny trano.
+;11;L'eau était sale;Naloto ny rano
+;11;La maison n'était pas propre;Tsy nadio ny trano
 ;11;La maison sera-t-elle propre ?;Hadio ve ny trano ?
-;11;L'enfant ne sera pas malade.;Tsy harary ny zazakely.
-;11;Le café sera froid.;Hangatsiaka ny kafe.
-;11;Il a fait très froid hier.;Nangatsiaka be omaly.
-;11;Il fera beau temps aujourd'hui.;Ho tsara ny andro anio.
+;11;L'enfant ne sera pas malade;Tsy harary ny zazakely
+;11;Le café sera froid;Hangatsiaka ny kafe
+;11;Il a fait très froid hier;Nangatsiaka be omaly
+;11;Il fera beau temps aujourd'hui;Ho tsara ny andro anio
 ;11;Fera-t-il beau temps aussi demain ?;Ho tsara koa ve ny andro rahampitso ?
 ;11;Fera-t-il beau temps demain ?;Ho tsara ve ny andro rahampitso ?
 ;11;Fera-t-il beau temps ?;Ho tsara ve ny andro ?
-;11;Peut-être fera-t-il beau demain.;Angamba ho tsara rahampitso.
+;11;Peut-être fera-t-il beau demain;Angamba ho tsara rahampitso
 
 ;12;Tompoko;monsieur;madame
 ;12;handriny;son front
@@ -221,27 +221,27 @@ id;lesson_id;text;answers ...
 ;12;amin'ny;à;vers;pour
 ;12;manavy;être fiévreu(x|se);avoir de la fièvre
 ;12;nantsoinareo;vous avez appelé
-;12;dokotera;(le|) docteur
-;12;nanome;(il|elle) a donné
+;12;dokotera;(le|un|) (médecin|docteur)
+;12;nanome izy;(il|elle) a donné
 ;12;tsara izany;c'est bien (ça|)
 ;12;fa;mais
 ;12;aza matahotra;(n'aies|n'ayez) pas peur;ne (t'inquiète|vous inquietez) pas
 ;12;matahotra;avoir peur;être inquiet;s'inquiéter
 
-;13;marary tompoko ny zazakely;(L'enfant|Le bébé) est malade, (monsieur|madame).
+;13;marary tompoko ny zazakely;(L'enfant|Le bébé) est malade, (monsieur|madame)
 ;13;mafana ve ny handriny ?;(Est-ce que |)son front est chaud ?
-;13;mafana be tompoko;(Il est |)très chaud (monsieur|madame).
+;13;mafana be tompoko;(Il est |)très chaud (monsieur|madame)
 ;13;omeo dite mafana misy siramamy;(Donne|Donnez)-lui (du|un) thé chaud (sucré|au sucre|avec du sucre)
 ;13;efa nomenay ronono mafana izy tompoko;Nous lui avons déjà donné (du|un) lait chaud, (monsieur|madame)
-;13;tsy tsara amin'ny zazakely manavay ny ronono;(Le|Du) lait chaud pour un enfant fiévreux; (ça n'est|c'est) pas bien.(c'est|ça n'est) pas bien pour un enfant fiévreux, le lait chaud.
+;13;tsy tsara amin'ny zazakely manavay ny ronono;(Le|Du) lait chaud pour un enfant fiévreux; (ça n'est|c'est) pas bien(c'est|ça n'est) pas bien pour un enfant fiévreux, le lait chaud
 ;13;efa nantsoinareo ve ny dokotera ?;(est-ce que|) vous avez (déjà|) appelé le (docteur|médecin) ?
-;13;eny tompoko, ary efa nanome fanafody izy;oui (monsieur|madame), et il a (déjà|) donné (un|des) (médicament|remède)(s|).
+;13;eny tompoko, ary efa nanome fanafody izy;oui (monsieur|madame), et il a (déjà|) donné (un|des) (médicament|remède)(s|)
 ;13;tsara izany;c'est bien (ça|)
 ;13;ho sitrana ny zazakely fa aza matahotra;(il va|l'enfant va|elle va|elles vont|ils vont) guérir (alors|donc|) (ne vous inquietez pas|n'ayez pas peur)
 ;13;l'enfant est-il guéri ?;sitrana ve ny zazakely ?
 ;13;oui, monsieur, l'enfant est guéri;eny tompoko, sitrana ny zazakely
 ;13;la femme malade sera guérie aussi;ho sitrana koa (ilay|ny) vehivahy marary
-;13;le médecin a déjà donné un (médicament|remède);efa nanome fanafody ny dokotera
+;13;le médecin a déjà donné un médicament;efa nanome fanafody ny dokotera
 ;13;vous avez appelé le médecin;(efa|) nantsoinareo ny dokotera
 ;13;donnez à la femme du lait chaud;omeo ronono mafana (ny|ilay) vehivahy
 
@@ -252,7 +252,7 @@ id;lesson_id;text;answers ...
 ;14;mavesatra;lourd
 ;14;vato;(le|un|) caillou;(la|une|) pierre
 ;14;maivana;léger
-;14;taratasy;(un|le|du) papier
+;14;taratasy;(un|le|du|) papier;(une|la|) feuille
 ;14;mahia;maigre
 ;14;omby;(un|le|) zébu
 ;14;matavy;gras
@@ -387,3 +387,18 @@ zsh:1: command not found: q
 ;25;donnez-moi les lettres;omeo (ahy|) ny taratasy;aiza aty ny taratasy
 ;25;où est le meuble où se trouvent le sucre et le café ?;aiza ny fanaka misy ny siramamy sy ny (cafe|kafe)
 ;25;où va cet homme ?;ho aiza io lehilahy io ?
+
+;26;nandeha tany Antananarivo aho omaly;je suis allé à Antananarivo hier;hier, je suis allé à Antananarivo
+;26;tsara ve ny andro ?;faisait-il beau ?;(est-ce qu'|)il a fait beau ?;(est-ce que|) le temps était (bon|beau) ?
+;26;ratsy fa avy ny orana;mauvais(,| :| car) il pleuvait
+;26;nitondra elo ve ianao ?;(est-ce que|) (tu (avais (pris|)|portais)|vous (aviez (pris|)|portiez)) un parapluie (sur (toi|vous)) ?
+;26;tsia ! Lena ny akanjo rehetra;non ! mes vêtements (étaient|sont) tou(t|s) mouillés
+;26;diso ianao fa tsy nanao kapaoty;
+;26;diso tokoa !;
+;26;voan'ny sery aho izao;
+;26;vizaka ery aho izany;
+;26;azafady, inona no fanafody sery tsara ?;
+;26;tsy fantatro fa ity ny aspirina raha tianao;
+;26;fanafody mahasoa ny aspirina fa misaotra tompoko;
+;26;ary mandrosoa ato an-trano sao mangatsiaka;
+;26;aoka aho hody fa misaotra tompoko;
