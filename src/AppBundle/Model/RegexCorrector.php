@@ -9,6 +9,13 @@ class RegexCorrector implements CorrectorInterface
     const THRESHOLD_FOR_GUESSING_WORD = 2;
     const THRESHOLD_FOR_ACCEPTING = 1;
 
+    protected $logger;
+
+    public function __construct($logger)
+    {
+        $this->logger = $logger;
+    }
+
     public function correct($answerList, PropositionInterface $proposition)
     {
         $correction = new Correction();

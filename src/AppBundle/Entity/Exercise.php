@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use AppBundle\Model\Correction;
-use AppBundle\Model\RegexCorrector;
 use AppBundle\Model\PropositionInterface;
 
 /**
@@ -39,8 +38,6 @@ class Exercise
 
     public function __construct()
     {
-        $this->corrector = new RegexCorrector();
-
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
         $this->OPTION_GROUP_REGEX = sprintf(
             '/\(%s*?\|%s*?\)/',
@@ -51,7 +48,6 @@ class Exercise
 
     public function treatProposition(PropositionInterface $proposition)
     {
-        $this->corrector = new RegexCorrector();
         return $this->corrector->correct($this->getConcreteAnswerList(), $proposition);
     }
 
@@ -202,8 +198,6 @@ class Exercise
 
     public function findNonRecursiveOptionGroups($candidate)
     {
-        $this->corrector = new RegexCorrector();
-
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
         $this->OPTION_GROUP_REGEX = sprintf(
             '/\(%s*?\|%s*?\)/',
@@ -221,5 +215,17 @@ class Exercise
         $optionGroups = array_reverse($optionGroups);
 
         return $optionGroups;
+    }
+
+    public function setCorrector($corrector)
+    {
+        $this->corrector = $corrector;
+
+        return $this;
+    }
+
+    public function getCorrector()
+    {
+        return $this->corrector;
     }
 }
