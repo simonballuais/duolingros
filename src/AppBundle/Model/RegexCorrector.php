@@ -121,7 +121,7 @@ class RegexCorrector implements CorrectorInterface
 
     public function purifyString($string)
     {
-        $purifiedString = preg_replace('/[.,:;]/', ' ', $string);
+        $purifiedString = preg_replace('/[.,:;?\']/', ' ', $string);
         $purifiedString = strtolower($purifiedString);
         $purifiedString = preg_replace('/  /', ' ', $purifiedString);
         $purifiedString = preg_replace('/  /', ' ', $purifiedString);
