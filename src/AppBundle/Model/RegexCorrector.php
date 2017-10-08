@@ -9,18 +9,33 @@ class RegexCorrector implements CorrectorInterface
     const THRESHOLD_FOR_GUESSING_WORD = 2;
     const THRESHOLD_FOR_ACCEPTING = 1;
 
+    protected $logger;
+
+    public function __construct($logger)
+    {
+        $this->logger = $logger;
+    }
+
     public function correct($answerList, PropositionInterface $proposition)
     {
+        $this->logger->info("Début de correction de $proposition");
+
         $correction = new Correction();
+
+        $purifiedProposition = $this->purifyString($proposition->getText());
+        $this->logger->info("Proposition analysée : $purifiedProposition");
 
         foreach ($answerList as $answer) {
             $purifiedAnswer = $this->purifyString($answer);
-            $purifiedProposition = $this->purifyString($proposition->getText());
+            $this->logger("Réponse envisagée : $purifiedAnswer");
 
             if(preg_match(sprintf("/^%s$/i", $purifiedAnswer), $purifiedProposition)) {
+                $this->logger("Match parfait trouvé");
                 return $correction;
             }
         }
+
+        $this->logger("Aucun match parfait trouvé");
 
         $closestGoodAnswer = StringComparer::findClosestCandidate(
             $proposition->getText(),
@@ -28,11 +43,13 @@ class RegexCorrector implements CorrectorInterface
         );
 
         $purifiedAnswer = $this->purifyString($closestGoodAnswer);
-        $purifiedProposition = $this->purifyString($proposition->getText());
+        $this->logger("Réponse la plus proche de la proposition : $purifiedAnswer");
 
         $distance = levenshtein($purifiedAnswer, $purifiedProposition);
+        $this->logger("Distance avec la proposition : $distance");
 
         if ($distance <= self::THRESHOLD_FOR_ACCEPTING) {
+            $this->logger("Réponse acceptée malgré la distance");
             $correction->setIsOkDespiteRemark(true);
         }
 
@@ -57,9 +74,13 @@ class RegexCorrector implements CorrectorInterface
 
     public function generateCorrectedAnswer($actual, $expected)
     {
+        $this->logger("Génération d'une proposition corrigée (\"$actual\" vs \"$expected\")");
         $correctedAnswer = "";
         $actualWords = explode(' ', $actual);
         $expectedWords = explode(' ', $expected);
+
+        $this->logger(sprintf("Mots attendus : ", explode('|', $expectedWords)));
+        $this->logger(sprintf("Mots obtenus : ", explode('|', $actualWords)));
 
         $actualWordSelectionOffset = 0;
 
@@ -76,17 +97,22 @@ class RegexCorrector implements CorrectorInterface
                 $nextActualWord = $actualWords[$index + $actualWordSelectionOffset + 1];
             }
 
-            $nextexpectedWord = "";
+            $nextExpectedWord = "";
 
             if (isset($expectedWords[$index + 1])) {
-                $nextexpectedWord = $expectedWords[$index + 1];
+                $nextExpectedWord = $expectedWords[$index + 1];
             }
 
+            $this->logger("Comparaison de $expectedWords vs $actualWord");
+
             if ($expectedWord != $actualWord) {
+                $this->logger("Échec de la comparaison");
+
                 if ($nextActualWord == $expectedWord) {
                     $correctedAnswer .= "<strike>$actualWord</strike>";
-                    $actualWordSelectionOffset ++;
+                    $this->logger("Il y avait un mot de trop ($actualWord). On raye le mot actuel");
 
+                    $actualWordSelectionOffset ++;
                     $actualWord = "";
 
                     if (isset($actualWords[$index + $actualWordSelectionOffset])) {
@@ -98,16 +124,19 @@ class RegexCorrector implements CorrectorInterface
                     if (isset($actualWords[$index + $actualWordSelectionOffset + 1])) {
                         $nextActualWord = $actualWords[$index + $actualWordSelectionOffset + 1];
                     }
+
+                    continue;
                 }
 
-                if ($actualWord == $nextexpectedWord) {
+                if ($actualWord == $nextExpectedWord) {
                     $correctedAnswer .= "<strong>$expectedWord</strong>";
-                    $actualWordSelectionOffset ++;
+                    $this->logger("Il y avait un oubli mot ($expectedWord). On le met en gras");
 
                     continue;
                 }
 
                 $correctedAnswer .= "<strike>$actualWord</strike> <strong>$expectedWord</strong>";
+                $this->logger("Erreur simple. Rayage et remplacement");
             }
             else {
                 $correctedAnswer .= $actualWord;
@@ -121,7 +150,7 @@ class RegexCorrector implements CorrectorInterface
 
     public function purifyString($string)
     {
-        $purifiedString = preg_replace('/[.,:;]/', ' ', $string);
+        $purifiedString = preg_replace('/[.,:;?\']/', ' ', $string);
         $purifiedString = strtolower($purifiedString);
         $purifiedString = preg_replace('/  /', ' ', $purifiedString);
         $purifiedString = preg_replace('/  /', ' ', $purifiedString);

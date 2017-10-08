@@ -6,10 +6,6 @@ services:
         class: AppBundle\Manager\LessonManager
         arguments: ['@doctrine.orm.entity_manager', '@session']
 
-    app.exercise_manager:
-        class: AppBundle\Manager\ExerciseManager
-        arguments: ['@doctrine.orm.entity_manager']
-
     app.study_manager:
         class: AppBundle\Manager\StudyManager
         arguments: ['@doctrine.orm.entity_manager', '@session', '@app.lesson_manager', '@app.exercise_manager']
@@ -17,4 +13,12 @@ services:
     app.learning_manager:
         class: AppBundle\Manager\LearningManager
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.corrector.regex:
+        class: AppBundle\Model\RegexCorrector
+        arguments: ['@logger']
+
+    app.exercise_manager:
+        class: AppBundle\Manager\ExerciseManager
+        arguments: ['@doctrine.orm.entity_manager', '@app.corrector.regex']
 

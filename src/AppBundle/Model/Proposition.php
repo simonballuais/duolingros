@@ -22,5 +22,10 @@ class Proposition implements PropositionInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->text;
+    }
 }
 ?>

@@ -16,10 +16,12 @@ class ExerciseManager
     const SERVICE_NAME = 'app.exercise_manager';
 
     protected $entityManager;
+    protected $defaultCorrector;
 
-    public function __construct($entityManager)
+    public function __construct($entityManager, $defaultCorrector)
     {
         $this->entityManager = $entityManager;
+        $this->defaultCorrector = $defaultCorrector;
     }
 
     public function createOrUpdate($text, $answerList, $lesson)
@@ -38,6 +40,7 @@ class ExerciseManager
     {
         $repoExercise = $this->entityManager->getRepository("AppBundle:Exercise");
         $exercise = $repoExercise->findOneBy(['text' => $text]);
+        $exercise->setCorrector($this->defaultCorrector);
 
         return $exercise;
     }
@@ -46,6 +49,7 @@ class ExerciseManager
     {
         $repoExercise = $this->entityManager->getRepository("AppBundle:Exercise");
         $exercises = $repoExercise->findAll();
+        $exercise->setCorrector($this->defaultCorrector);
 
         return $exercises;
     }
