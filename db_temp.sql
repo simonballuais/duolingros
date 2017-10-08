@@ -1,9 +1,9 @@
 use duolingros;
--- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.19, for osx10.12 (x86_64)
 --
 -- Host: localhost    Database: duolingros
 -- ------------------------------------------------------
--- Server version	5.7.19-0ubuntu0.16.04.1
+-- Server version	5.6.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +40,7 @@ CREATE TABLE `fos_user` (
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
   UNIQUE KEY `UNIQ_957A6479C05FB297` (`confirmation_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (8,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$KfzM5TrUDhZrNxUeEUlFWu/jcIfEe62C99yg4vV5qpMYeJ4SvfiDu','2017-09-26 22:34:16',NULL,NULL,'a:0:{}');
+INSERT INTO `fos_user` VALUES (1,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$16JnYXv0NDbjqpfYcuFg8uPSN92T659KWcE7QQQjRvMFVDXLLS5wm','2017-10-07 18:23:55',NULL,NULL,'a:0:{}');
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,6 @@ CREATE TABLE `learning` (
 
 LOCK TABLES `learning` WRITE;
 /*!40000 ALTER TABLE `learning` DISABLE KEYS */;
-INSERT INTO `learning` VALUES (8,2,1,'2017-09-26 23:07:53',-1,'a:3:{i:0;s:5:\"71.43\";i:1;s:6:\"100.00\";i:2;s:6:\"100.00\";}'),(8,3,0,'2017-09-25 23:03:41',-2,'a:1:{i:0;s:5:\"62.50\";}'),(8,5,0,'2017-09-26 09:15:51',-2,'a:1:{i:0;s:5:\"76.92\";}'),(8,6,1,'2017-09-26 22:36:07',0,'a:1:{i:0;s:5:\"83.33\";}'),(8,7,0,'2017-09-26 22:58:41',-2,'a:1:{i:0;s:5:\"55.56\";}'),(8,8,1,'2017-09-26 22:59:12',0,'a:1:{i:0;s:6:\"100.00\";}'),(8,9,1,'2017-09-26 23:06:03',0,'a:1:{i:0;s:5:\"83.33\";}'),(8,17,0,'2017-09-25 23:38:44',-2,'a:1:{i:0;s:5:\"71.43\";}'),(8,18,1,'2017-09-25 23:28:57',0,'a:1:{i:0;s:5:\"90.91\";}'),(8,19,0,'2017-09-25 23:27:41',-2,'a:1:{i:0;s:5:\"66.67\";}'),(8,20,1,'2017-09-25 23:21:10',0,'a:1:{i:0;s:5:\"90.91\";}'),(8,21,1,'2017-09-25 23:19:49',0,'a:1:{i:0;s:5:\"83.33\";}'),(8,22,0,'2017-09-25 23:17:34',-2,'a:1:{i:0;s:5:\"76.92\";}'),(8,23,0,'2017-09-25 23:07:28',-2,'a:1:{i:0;s:5:\"71.43\";}'),(8,24,1,'2017-09-25 22:49:00',0,'a:1:{i:0;s:6:\"100.00\";}');
 /*!40000 ALTER TABLE `learning` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -94,4 +93,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-26 23:08:20
+-- Dump completed on 2017-10-08 14:45:21

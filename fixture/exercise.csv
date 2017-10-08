@@ -377,12 +377,12 @@ zsh:1: command not found: q
 ;24;handeha ho any Antananarivo aho;je vais à Antananarivo
 ;24;fa maninona no mandeha avy orana ?;pourquoi (pars-tu|aller|partir|partez-vous|vas-tu|allez-vous) sous la pluie ?;pourquoi y aller sous la pluie ?
 ;24;misy raharaha maika hatao any;(il y a|j'ai|j'y ai) (une affaire|des affaires) (pressée|urgente)(s|) (à faire|à régler|) (là-bas|)
-;24;inty ny elo sao lena ny akanjo;(voici|tenez|voilà|tiens) le parapluie de peur (de mouiller vos vêtements|que vos vêtements ne soient mouillés)
+;24;inty ny elo sao lena ny akanjo;(voici|tenez|voilà|tiens) (un|le) parapluie de peur (de mouiller vos vêtements|que vos vêtements ne soient mouillés)
 ;24;misaotra tompoko fa efa manao kapaoty aho;merci (monsieur|madame) mais (j'ai|je porte) déjà un impair
 ;24;veloma tompoko;au revoir (monsieur|madame)
 
-;25;il peut faire très froid si le ciel est couvert de nuages;mety hangatsiaka be raha (manjombona|rasty) ny lanitra
-;25;le temps peut être chaud si le ciel est bleu;mety (mafana|hafana) ny andro raha manga ny lanitra
+;25;il peut faire très froid si le ciel est couvert de nuages;mety (m|h)angatsiaka be( ny andro|) raha (manjombona|rasty) ny lanitra
+;25;le temps peut être chaud si le ciel est bleu;mety (m|h)afana( ny andro|) raha manga ny lanitra
 ;25;si vous allez à Antananarivo, mettez de beaux vêtements;raha ho any Antananarivo ianareo dia manaova akanjo tsara
 ;25;donnez-moi les lettres;omeo (ahy|) ny taratasy;aiza aty ny taratasy
 ;25;où est le meuble où se trouvent le sucre et le café ?;aiza ny fanaka misy ny siramamy sy ny (cafe|kafe)
