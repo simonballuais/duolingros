@@ -388,19 +388,35 @@ zsh:1: command not found: q
 ;25;où est le meuble où se trouvent le sucre et le café ?;aiza ny fanaka misy ny siramamy sy ny (cafe|kafe)
 ;25;où va cet homme ?;ho aiza io lehilahy io ?
 
-;26;nandeha tany Antananarivo aho omaly;je suis allé à Antananarivo hier;hier, je suis allé à Antananarivo
-;26;tsara ve ny andro ?;faisait-il beau ?;(est-ce qu'|)il (faisait|a fait) beau ?;(est-ce que|) le temps était (bon|beau) ?
-;26;ratsy fa avy ny orana;(le temps (était|a été) |)mauvais(,| :| car) il (pleuvait|a plu)
-;26;nitondra elo ve ianao ?;(est-ce que|) (tu (avais (pris|)|portais)|vous (aviez (pris|)|portiez)) un parapluie (sur (toi|vous)) ?
-;26;Lena ny akanjo rehetra;(l|m)es vêtements (étaient|sont) tou(t|s) mouillés
-;26;diso ianao fa tsy nanao kapaoty;(tu as|vous avez) eu tort de ne pas (avoir mis|mettre) ((d'|un )impair|(de|un) kaway)
-;26;diso tokoa !;(vraiment|carrément|trop) tort !
-;26;voan'ny sery aho izao;maintenant je suis enrhumé;je suis enrhumé maintenant
-;26;vizaka ery aho izany;je suis (très|vraiment) (épuisé|fatigué)
-;26;inona no fanafody sery tsara ?;quel médicament est (bien|bon) (pour|contre) (le|un) rhume ?
-;26;tsy fantatro fa ity ny aspirina raha tianao;je ne sais pas mais voi(ci|là) (de l'|un )aspirine si (tu veux|vous voulez)
-;26;fanafody mahasoa ny aspirina fa misaotra tompoko;merci (monsieur|madame) l'aspirine ((|me )sera|(m'|)est) utile
-;26;ary mandrosoa ato an-trano sao mangatsiaka;(et |)(r|)entre(z|) (donc |)dans la maison pour ne pas (avoir|attraper) froid
-;26;aoka aho hody fa misaotra tompoko;laissez-moi rentrer chez moi, merci monsieur;merci monsieur, laissez-moi rentrer chez moi
+;26;rehetra:tou(t|s)
+;26;diso;avoir tort;être dans l'erreur
+;26;tokoa;vraiment
+;26;vizaka;fatigué(e|)
+;26;tianao;tu veux;(tu |t')as envie
+;26;mahasoa;(être|) utile
+;26;mandrosoa;(r|)entrer
+;26;aoka;(laisse|cesse)(z|)
+;26;hody;rentrer (à la maison)
 
+;27;nandeha tany Antananarivo aho omaly;je suis allé à Antananarivo hier;hier, je suis allé à Antananarivo
+;27;tsara ve ny andro ?;faisait-il beau ?;(est-ce qu'|)il (faisait|a fait) beau ?;(est-ce que|) le temps était (bon|beau) ?
+;27;ratsy fa avy ny orana;(le temps (était|a été) |)mauvais(,| :| car) il (pleuvait|a plu)
+;27;nitondra elo ve ianao ?;(est-ce que|) (tu (avais (pris|)|portais)|vous (aviez (pris|)|portiez)) un parapluie (sur (toi|vous)) ?
+;27;Lena ny akanjo rehetra;(l|m)es vêtements (étaient|sont) tou(t|s) mouillés
+;27;diso ianao fa tsy nanao kapaoty;(tu as|vous avez) eu tort de ne pas (avoir mis|mettre) ((d'|un )impair|(de|un) kaway)
+;27;diso tokoa !;(vraiment|carrément|trop) tort !
+;27;voan'ny sery aho izao;maintenant je suis enrhumé;je suis enrhumé maintenant
+;27;vizaka ery aho izany;je suis (très|vraiment) (épuisé|fatigué)
+;27;inona no fanafody sery tsara ?;quel médicament est (bien|bon) (pour|contre) (le|un) rhume ?
+;27;tsy fantatro fa ity ny aspirina raha tianao;je ne sais pas mais voi(ci|là) (de l'|un )aspirine si (tu veux|vous voulez)
+;27;fanafody mahasoa ny aspirina fa misaotra tompoko;merci (monsieur|madame) l'aspirine ((|me )sera|(m'|)est) utile
+;27;ary mandrosoa ato an-trano sao mangatsiaka;(et |)(r|)entre(z|) (donc |)dans la maison pour ne pas (avoir|attraper) froid
+;27;aoka aho hody fa misaotra tompoko;laissez-moi rentrer chez moi, merci monsieur;merci monsieur, laissez-moi rentrer chez moi
 
+;28;je suis allé à Antananarivo pour une affaire urgente;(nandeha|) tany Antananarivo aho fa nisy raharaha maika
+;28;la pluie tombe à verse;avy be ny orana
+;28;laissez-moi entrer dans la maison si vous n'êtes pas pressé;aoka aho ho ato an-trano raha tsy maika ianao
+;28;entrez si vous voulez;mandrosoa raha tianao
+;28;laissez-le rentrer chez lui parce qu'il n'y a pas de médicament ici;aoka izy hody fa tsy misy fanafody ato
+;28;l'aspirine m'a été utile car j'avais de la fièvre;nahasoa ahy ny aspirina fa nanavy aho
+;28;avez-vous peut de tomber malade ?;matahotra soa harary ve ianao ?
