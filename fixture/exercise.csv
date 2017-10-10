@@ -420,3 +420,34 @@ zsh:1: command not found: q
 ;28;laissez-le rentrer chez lui parce qu'il n'y a pas de médicament ici;aoka izy hody fa tsy misy fanafody ato
 ;28;l'aspirine m'a été utile car j'avais de la fièvre;nahasoa ahy ny aspirina fa nanavy aho
 ;28;avez-vous peut de tomber malade ?;matahotra soa harary ve ianao ?
+
+;29.alatsinainy;lundi
+;29.talata;mardi
+;29.alarobia;mercredi
+;29.alakamisy;jeudi
+;29.zoma;vendredi
+;29.asabotsy;samedi
+;29.alahady;dimanche
+
+;30;anio;ajourd'hui
+;30;omaly;hier
+;30;afak'omaly;avant-hier
+;30;rahafak'ampitso;après-demain
+;30;ny omalin'ny;la veille de
+;30;ny ampitson'ny;le lendemain de
+;30;tamin'ny zoma;vendredi dernier
+;30;amin'ny talatak;mardi prochain
+
+;31;ny andro;le jour;les jours
+;31;ireto ny andro amin'ny heriandro;(voici|voilà) les jours de la semaine
+;31;alatsinainy, talata, alarobia, alakamisy, zoma, asabotsy, alahady;lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche
+;31;raha alahady anio dia inona afak'omaly ?;si (nous sommes dimanche|c'est dimanche (aujourd'hui|)), (alors|) (c'était quoi|quand étions-nous|qu'était-ce) avant-hier ?
+;31;zoma;vendredi
+;31;asabotsy;samedi
+;31;inona rahafak'ampitso ?;ce sera quoi après-demain ?
+;31;talata;mardi
+;31;inona ny omalin'ny talata ?;c'est quoi la veille de mardi ?
+;31;alatsinainy;lundi
+;31;inona ny ampitson'ny alarobia ?;c'est quoi le lendemain de mercredi ?
+;31;alakamisy;jeudi
+;31;tany antananarivo aho tamin'ny zoma ary handeha ho any indray amin'ny talata;je suis allé à antananarivo vendredi (dernier|) et (j'y|je) ((re|)partirai|retournerai) mardi prochain
