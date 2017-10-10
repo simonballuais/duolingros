@@ -46,16 +46,7 @@ class RegexCorrectorTest extends WebTestCase
                 ],
                 "proposition" => new Proposition(""),
                 "expectedRemarks" => [
-                    "<strong>coincoin</strong>"
-                ]
-            ],
-            [
-                "answerList" => [
-                    "coincoin"
-                ],
-                "proposition" => new Proposition(""),
-                "expectedRemarks" => [
-                    "<strong>coincoin</strong>"
+
                 ]
             ],
         ];

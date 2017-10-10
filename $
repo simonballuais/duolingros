@@ -398,9 +398,7 @@ zsh:1: command not found: q
 ;26;voan'ny sery aho izao;maintenant je suis enrhumé;je suis enrhumé maintenant
 ;26;vizaka ery aho izany;je suis (très|vraiment) (épuisé|fatigué)
 ;26;inona no fanafody sery tsara ?;quel médicament est (bien|bon) (pour|contre) (le|un) rhume ?
-;26;tsy fantatro fa ity ny aspirina raha tianao;je ne sais pas mais voi(ci|là) (de l'|un )aspirine si (tu veux|vous voulez)
-;26;fanafody mahasoa ny aspirina fa misaotra tompoko;merci (monsieur|madame) l'aspirine ((|me )sera|(m'|)est) utile
-;26;ary mandrosoa ato an-trano sao mangatsiaka;(et |)(r|)entre(z|) (donc |)dans la maison pour ne pas (avoir|attraper) froid
-;26;aoka aho hody fa misaotra tompoko;laissez-moi rentrer chez moi, merci monsieur;merci monsieur, laissez-moi rentrer chez moi
-
-
+;26;tsy fantatro fa ity ny aspirina raha tianao;
+;26;fanafody mahasoa ny aspirina fa misaotra tompoko;
+;26;ary mandrosoa ato an-trano sao mangatsiaka;
+;26;aoka aho hody fa misaotra tompoko;
