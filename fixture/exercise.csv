@@ -388,7 +388,7 @@ zsh:1: command not found: q
 ;25;où est le meuble où se trouvent le sucre et le café ?;aiza ny fanaka misy ny siramamy sy ny (cafe|kafe)
 ;25;où va cet homme ?;ho aiza io lehilahy io ?
 
-;26;rehetra:tou(t|s)
+;26;rehetra;tou(t|s)
 ;26;diso;avoir tort;être dans l'erreur
 ;26;tokoa;vraiment
 ;26;vizaka;fatigué(e|)
@@ -400,16 +400,16 @@ zsh:1: command not found: q
 
 ;27;nandeha tany Antananarivo aho omaly;je suis allé à Antananarivo hier;hier, je suis allé à Antananarivo
 ;27;tsara ve ny andro ?;faisait-il beau ?;(est-ce qu'|)il (faisait|a fait) beau ?;(est-ce que|) le temps était (bon|beau) ?
-;27;ratsy fa avy ny orana;(le temps (était|a été) |)mauvais(,| :| car) il (pleuvait|a plu)
-;27;nitondra elo ve ianao ?;(est-ce que|) (tu (avais (pris|)|portais)|vous (aviez (pris|)|portiez)) un parapluie (sur (toi|vous)) ?
+;27;ratsy ny andro fa avy ny orana;le temps (était|a été) mauvais(,| :| car) il (pleuvait|a plu)
+;27;nitondra elo ve ianao ?;(est-ce que|) (tu (avais (pris|)|portais)|vous (aviez (pris|)|portiez)) un parapluie (|sur (toi|vous)) ?
 ;27;Lena ny akanjo rehetra;(l|m)es vêtements (étaient|sont) tou(t|s) mouillés
-;27;diso ianao fa tsy nanao kapaoty;(tu as|vous avez) eu tort de ne pas (avoir mis|mettre) ((d'|un )impair|(de|un) kaway)
-;27;diso tokoa !;(vraiment|carrément|trop) tort !
+;27;diso ianao fa tsy nanao kapaoty;(tu as|vous avez) eu tort de ne pas (avoir (porté|mis)|mettre) ((d'|un )impair|(de|un) kaway)
+;27;diso tokoa !;(vraiment|carrément|trop) tort
 ;27;voan'ny sery aho izao;maintenant je suis enrhumé;je suis enrhumé maintenant
 ;27;vizaka ery aho izany;je suis (très|vraiment) (épuisé|fatigué)
 ;27;inona no fanafody sery tsara ?;quel médicament est (bien|bon) (pour|contre) (le|un) rhume ?
 ;27;tsy fantatro fa ity ny aspirina raha tianao;je ne sais pas mais voi(ci|là) (de l'|un )aspirine si (tu veux|vous voulez)
-;27;fanafody mahasoa ny aspirina fa misaotra tompoko;merci (monsieur|madame) l'aspirine ((|me )sera|(m'|)est) utile
+;27;fanafody mahasoa ny aspirina fa misaotra tompoko;merci (monsieur|madame) l'aspirine ((|me )sera|(m'|)est) utile;l'aspirine (m'est|me) sera utile, merci (monsieur|madame)
 ;27;ary mandrosoa ato an-trano sao mangatsiaka;(et |)(r|)entre(z|) (donc |)dans la maison pour ne pas (avoir|attraper) froid
 ;27;aoka aho hody fa misaotra tompoko;laissez-moi rentrer chez moi, merci monsieur;merci monsieur, laissez-moi rentrer chez moi
 
@@ -421,24 +421,28 @@ zsh:1: command not found: q
 ;28;l'aspirine m'a été utile car j'avais de la fièvre;nahasoa ahy ny aspirina fa nanavy aho
 ;28;avez-vous peut de tomber malade ?;matahotra soa harary ve ianao ?
 
-;29.alatsinainy;lundi
-;29.talata;mardi
-;29.alarobia;mercredi
-;29.alakamisy;jeudi
-;29.zoma;vendredi
-;29.asabotsy;samedi
-;29.alahady;dimanche
+;29;alatsinainy;lundi
+;29;talata;mardi
+;29;alarobia;mercredi
+;29;alakamisy;jeudi
+;29;zoma;vendredi
+;29;asabotsy;samedi
+;29;alahady;dimanche
+;29;alatsinainy;lundi
+;29;talata;mardi
+;29;alarobia;mercredi
+;29;alakamisy;jeudi
+;29;zoma;vendredi
+;29;asabotsy;samedi
+;29;alahady;dimanche
 
-;30;anio;ajourd'hui
-;30;omaly;hier
 ;30;afak'omaly;avant-hier
 ;30;rahafak'ampitso;après-demain
 ;30;ny omalin'ny;la veille de
 ;30;ny ampitson'ny;le lendemain de
 ;30;tamin'ny zoma;vendredi dernier
-;30;amin'ny talatak;mardi prochain
+;30;amin'ny talata;mardi prochain
 
-;31;ny andro;le jour;les jours
 ;31;ireto ny andro amin'ny heriandro;(voici|voilà) les jours de la semaine
 ;31;alatsinainy, talata, alarobia, alakamisy, zoma, asabotsy, alahady;lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche
 ;31;raha alahady anio dia inona afak'omaly ?;si (nous sommes dimanche|c'est dimanche (aujourd'hui|)), (alors|) (c'était quoi|quand étions-nous|qu'était-ce) avant-hier ?
@@ -451,3 +455,49 @@ zsh:1: command not found: q
 ;31;inona ny ampitson'ny alarobia ?;c'est quoi le lendemain de mercredi ?
 ;31;alakamisy;jeudi
 ;31;tany antananarivo aho tamin'ny zoma ary handeha ho any indray amin'ny talata;je suis allé à antananarivo vendredi (dernier|) et (j'y|je) ((re|)partirai|retournerai) mardi prochain
+
+;32;lundi;alatsinainy
+;32;mardi;talata
+;32;mercredi;alarobia
+;32;jeudi;alakamisy;jeudi
+;32;vendredi;zoma
+;32;samedi;asabotsy
+;32;dimanche;alahady
+
+;33;je suis allé à antananarivo vendredi dernier;(|nandeha) tany antananarivo aho tamin'ny zoma
+;33;irez-vous à antananarivo vendredi prochain ?;(|handeha) ho any antananarivo ve ianareo amin'ny zoma ?
+;33;non, car j'y suis déjà allé lundi mais j'y retournerai mercredi;tsia, fa efa tany aho tamin'ny alatsianainy ary (handeha|) ho any indray amin'ny alairobia
+;33;il faisait beau avant-hier mardi;tsara ny andro afak'omaly talata
+;33;il a plu aujourd'hui;avy ny orana androany
+;33;il pleuvra aujourd'hui;ho avy ny orana anio
+;33;au revoir, à vendredi prochain;veloma, amin'ny zoma
+
+;34;miasa;travailler
+;34;hariva;(le|) soir;(l'|)après-midi
+;34;maraina:(le|) matin;(la|) matinée
+;34;ihany;seulement
+;34;tongava;viens;venez
+;34;faly;content(|e);heureu(x|se);satisfait(e|)
+;34;miresaka;causer;bavarder;discuter
+;34;misotro;boire
+
+;35;any amiko;chez moi
+;35;any aminao;chez toi
+;35;any aminy;chez (lui|elle)
+;35;any amintsika;chez nous
+;35;any aminay;chez nous
+;35;any aminareo;chez eux
+;35;chez moi;any amiko
+;35;chez toi;any aminao
+;35;chez (lui|elle);any aminy
+;35;chez nous;any amintsika
+;35;chez nous;any aminay
+;35;chez eux;any aminareo
+
+;36;miasa ve ianareo ny asabotsy hariva ?
+;36;tsy misasa izahay fa ny maraina ihany no miasa
+;36;raha afaka ianareo dia tongava any aminay
+;36;ho faly izahay ho any aminareo
+;36;Hanao inona isika ?
+;36;hiresaka momba ny raharahantsika sy hisotro dite
+;36;eny fa ho avy tompoko

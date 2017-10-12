@@ -5,7 +5,7 @@ use AppBundle\Tool\StringComparer;
 
 class RegexCorrector implements CorrectorInterface
 {
-    const THRESHOLD_FOR_GUESSING = 10;
+    const THRESHOLD_FOR_GUESSING = 15;
     const THRESHOLD_FOR_GUESSING_WORD = 2;
     const THRESHOLD_FOR_ACCEPTING = 1;
 
