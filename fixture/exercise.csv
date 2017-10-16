@@ -534,3 +534,13 @@ zsh:1: command not found: q
 ;39;zoma anio ka ho betsaka ny olana;il y aura beaucoup de monde le vendredi après-midi
 ;39;lafo ny hena;la viande est chère
 ;39;mora ny voankazo;les fruits sont chers
+
+;40;chez nous, le marché est le jeudi;any aminay alakamisy ny tsena;alakamisa ny tsena any aminay
+;40;les commerçants vendent bon marché ce jour-là si les acheteurs ne sont pas nombreux;mivarotra mora ny mprivarotra amin'io andro io raha tsy betsaka ny mpvidy
+;40;les commerçants vendent bon marché aujourd'hui;mivarotra mora ny mpivarotra anio
+;40;viendrez-vous à notre marché ?;ho avy (eny|any) amin'ny tsena(ko|tsika|nay) ve (ianao|ianareo)
+;40;non, je ne suis pas libre jeudi;tsia, tsy afaka aho amin'ny alakamisy
+;40;j'irai peut être la semaine prochaine;ho avy angamba aho amin'ny heriandro indrindray
+;40;je ne suis pas libre jeudi mais j'irai peut être la semaine prochaine;tsy afaka aho amin'ny alakamisy, nefa ho avy amin'ny heriandro indrindray
+;40;je n'achèterai pas d'objets;tsy hividy zavatra aho
+;40;je ne vendrai pas de marchandises;tsy hivarotra entana aho
