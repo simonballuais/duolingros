@@ -544,3 +544,32 @@ zsh:1: command not found: q
 ;40;je ne suis pas libre jeudi mais j'irai peut être la semaine prochaine;tsy afaka aho amin'ny alakamisy, nefa ho avy amin'ny heriandro indrindray
 ;40;je n'achèterai pas d'objets;tsy hividy zavatra aho
 ;40;je ne vendrai pas de marchandises;tsy hivarotra entana aho
+
+;41;ovy;(une|des|) pommes de terre
+;41;vaventy;gros(se|)
+;41;avia;viens:venez;approche;approchez
+;41;telo;trois
+;41;vidiny;(le|un|) prix
+;41;ataovy tsara lanja;(pesez|pèse) (le|) bon poids
+;41;àry;donc
+
+;42;mvidy ovy;acheter des pommes de terre
+;42;vaventy ny ovy fa avia tompoko;les pommes de terre sont grosses, (approchez|venez) madame
+;42;ohatrina nt kilao ?;combien (coûte|) le kilo ?
+;42;ariary telo tompoko;trois ariary (monsieur|madame)
+;42;lafo loatra izany vidiny izany;c'est trop cher;ce prix est trop chez;trop cher
+;42;efa mora be izany tompoko;c'est déjà (très peut cher|très bon marché) (monsieur|madame)
+;42;azafady, omeo kilao dimy aho;s'il vous plaît, donnez m'en cinq kilos;donnez m'en cinq kilos s'il vous plaît
+;42;ohatrina izany ny volanao ?;TODO
+;42;inty àry;(voici|voilà)( donc|)
+
+;43;approchez madame, si vous voulez acheter des fleurs;avia tompoko raha hividy voninkazo(| ianao)
+;43;combien la douzaine ?:oatrina ny dozenina
+;43;quel est le prix de la douzaine ?;oatrina no vidin'ny dozenina ?
+;43;si c'est cher, je n'achèterai pas;raha lafo (|be) dia tsy hividy aho;tsy hividy aho raha lafo (|be)
+;43;si c'est bon marché, j'achèterai trois douzaine;raha mora (ny vidiny|) dia hividy dozenina telo aho
+;43;est-ce que c'est cher ?;lafo ve ?
+;43;est-ce que c'est bon marché ?;mora ve?
+;43;ça n'est pas cher;tsy lafo izany
+;43;c'est bon marché;mora izany
+;43;voici donc votre argent;inty àry ny volanao
