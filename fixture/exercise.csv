@@ -494,10 +494,43 @@ zsh:1: command not found: q
 ;35;chez nous;any aminay
 ;35;chez eux;any aminareo
 
-;36;miasa ve ianareo ny asabotsy hariva ?
-;36;tsy misasa izahay fa ny maraina ihany no miasa
-;36;raha afaka ianareo dia tongava any aminay
-;36;ho faly izahay ho any aminareo
-;36;Hanao inona isika ?
-;36;hiresaka momba ny raharahantsika sy hisotro dite
-;36;eny fa ho avy tompoko
+;36;miasa ve ianareo ny asabotsy hariva ?;(travaillez-vous|(est-ce que |)vous travaillez) samedi (après-midi|soir) ?
+;36;tsy misasa izahay ny hariva fa ny maraina ihany no miasa;(on (ne|) travaille|nous ne travaillons) pas (le soir|l'après-midi), (nous travaillons|on travaille||mais|) (uniquement|seulement) le matin
+;36;raha afaka ianareo dia tongava any aminay;si vous (êtes libres|(le|) pouvez), venez (|donc) chez nous
+;36;ho faly izahay ho any aminareo;nous serions (heureux|content) d'aller chez vous
+;36;Hanao inona isika ?;qu'est-ce (que nous allons|qu'on va) faire ?;que ferons-nous ?
+;36;hiresaka momba ny raharahantsika sy hisotro dite;(nous (parlerons|discuterons)|on (parlera|discutera)) de nos affaire et (on boira|nous buverons) (du|un) thé
+;36;eny fa ho avy tompoko;oui (nous viendrons|on viendra) monsieur
+
+;37;nous travaillons cet après-midi;miasa anio hariva (izahay|isika)
+;37;pourquoi travaillez-vous un samedi après-midi ?;fa maninona ho miasa asabotsy hariva ianareo
+;37;nous parlerons de nos a affaires urgentes;hiresaka momba raharahan(hay|tsika) maika (izahay|isika)
+;37;viendrez-vous prendre le thé ce soir chez nous ?;ho avy hisotro dite any aminay ve ianao anio hariva ?
+;37;je ne sais pas, il y a beaucoup de travail, je viendrai peut-être;tsy fantatro, be ny raharaha, ho avy angamba aho
+;37;venez si vous êtes libres;tongava raha afaka (ianao|ianareo)
+
+;38;eny an-tsena;au marché
+;38;tsena;(un|le|) marché
+;38;amidy;à vendre
+;38;lamba;(du|des|) tissus
+;38;hena;((de |)la |) viande
+;38;anana;(|un) légume;des légumes;(une|) brède;des brèdes
+;38;voninkazo;(une|) fleur;(des|) fleurs
+;38;mivarotra;vendre
+;38;mikiakiaka;crier
+;38;mpivarotra;(un|le|) (vendeur|commerçant)
+;38;mvidy;acheter
+;38;miady varotra;marchander
+;38;mpvidy;(des |un |l'|)(client|acheteur)(s|)
+;38;lafo;cher
+;38;mora;facile;bon marché;pas cher:simple
+
+;39;aiza ny tsena ?;(c'est |)où est le marché ?
+;39;eny Analakely ny tsena;le marché est à Analakely
+;39;inona avy ny entana amidy eny ?;quelles sont les (marchandises|choses|objets|fournitures) (qui sont à vendre|qu'on (y|)vend) ?
+;39;betsaka ny entana : lamba, hena, anana, voankazo, vonikazo ...;il y a beaucoup de (marchandises|choses|objets|fournitures) : (du|des|) tissus, (|de la) viande, (|des) (légumes|brèdes), (|des) fruits, (|des) fleurs
+;39;mivarotra sy mikiakiaka ny mpivarotra;les (commerçants|vendeurs) vendent et crient
+;39;mvidy sy miady varotra ny mpvidy;les (acheteurs|clients) achètent et marchandent
+;39;zoma anio ka ho betsaka ny olana;il y aura beaucoup de monde le vendredi après-midi
+;39;lafo ny hena;la viande est chère
+;39;mora ny voankazo;les fruits sont chers
