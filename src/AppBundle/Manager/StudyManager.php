@@ -5,6 +5,7 @@ namespace AppBundle\Manager;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use AppBundle\Model\PropositionInterface;
+use AppBundle\Model\Proposition;
 
 
 class StudyManager
@@ -49,6 +50,7 @@ class StudyManager
     {
         $exercise = $this->exerciseManager->get($this->getCurrentExerciseText());
         $correction = $exercise->treatProposition($proposition);
+        $this->setLastSubmittedProposition($proposition);
 
         if ($correction->isOk()) {
             $this->setCurrentAmountSucceeded($this->getCurrentAmountSucceeded() + 1);
@@ -162,5 +164,25 @@ class StudyManager
         }
 
         return $this->currentLesson;
+    }
+
+    public function setLastSubmittedProposition($proposition)
+    {
+        $this->session->set('submitted_proposition', $proposition->getText());
+
+        return $this;
+    }
+
+    public function getLastSubmittedProposition()
+    {
+        $sessionProposition = $this->session->get('submitted_proposition');
+
+        if (!$sessionProposition) {
+            return null;
+        }
+
+        $proposition = new Proposition($sessionProposition);
+
+        return $proposition;
     }
 }

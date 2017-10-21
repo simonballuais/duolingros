@@ -1,6 +1,3 @@
-parameters:
-#    parameter_name: value
-
 services:
     app.lesson_manager:
         class: AppBundle\Manager\LessonManager
@@ -22,3 +19,6 @@ services:
         class: AppBundle\Manager\ExerciseManager
         arguments: ['@doctrine.orm.entity_manager', '@app.corrector.regex']
 
+    app.complaint_manager:
+        class: AppBundle\Manager\ComplaintManager
+        arguments: ['@doctrine.orm.entity_manager']
