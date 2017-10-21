@@ -96,8 +96,7 @@ class StudyController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/api/study/get_lesson_menu",
+    /** * @Route("/api/study/get_lesson_menu",
      *        name="api_study_get_lesson_menu",
      *        options={"expose"=true}
      *        )
@@ -113,6 +112,35 @@ class StudyController extends Controller
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /** * @Route("/api/study/complaint",
+     *        name="api_study_complaint",
+     *        options={"expose"=true}
+     *        )
+     * @Method({"PUT"})
+     */
+    public function complaintAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sm = $this->get('app.study_manager');
+        $cm = $this->get('app.complaint_manager');
+        $repoExercise = $em->getRepository("AppBundle:Exercise");
+
+        $proposition = $sm->getLastSubmittedProposition();
+        $exerciseText = $sm->getCurrentExerciseText();
+        $exercise = $repoExercise->findOneBy(["text" => $exerciseText]);
+
+        $complaint = $cm->addComplaint($exercise, $proposition);
+        $em->flush();
+
+        $message = "Bien reçu Michel !";
+
+        if (null === $complaint) {
+            $message = "C'est effectivement chelou ...";
+        }
+
+        return new JsonResponse(['message' => $message], 200);
     }
 }
 ?>

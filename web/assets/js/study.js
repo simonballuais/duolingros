@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    const DEFAULT_COMPLAINT_BUTTON = 'Euuuh bah si lol ...';
     const ENTER = 13;
 
     const BG_RED = '#e22d2d';
@@ -20,6 +21,7 @@ $(document).ready(function() {
     };
 
     var state = STATE.IDDLE;
+    var complaintSent = false;
 
     var $proposition = $('textarea#proposition');
 
@@ -118,6 +120,7 @@ $(document).ready(function() {
 
     var startLesson = function(lessonId) {
         var $proposition = $('textarea#proposition');
+        window.scrollTo(0, 0);
 
         showPlayground();
 
@@ -164,6 +167,7 @@ $(document).ready(function() {
                     playgroundApp.correctionStatus = 'Tropa :(';
                     playgroundApp.remarksBg = BG_RED;
                     playgroundApp.remarksFg = FG_RED;
+                    $('#complaint-button').fadeIn();
                 }
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -176,6 +180,7 @@ $(document).ready(function() {
     var startNextExercise = function() {
         var $proposition = $('textarea#proposition');
         $('#correction-status').fadeOut();
+        resetComplaintButton();
 
         $.ajax({
             type        : 'GET',
@@ -193,6 +198,28 @@ $(document).ready(function() {
                 state = STATE.WRITING_PROPOSITION;
             },
             error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                error(XMLHttpRequest, textStatus, errorThrown);
+            }
+        });
+    };
+
+    var complaint = function() {
+        if (complaintSent) {
+            return;
+        }
+
+        $('#complaint-button').html('<i class="fa fa-cog fa-spin fa-2x fa-fw"></i>');
+        complaintSent = true;
+
+        $.ajax({
+            type        : 'PUT',
+            url         : Routing.generate('api_study_complaint'),
+            dataType    : 'json',
+            success     : function(data) {
+                $('#complaint-button').html('<i class="fa fa-check-circle fa-2x fa-fw"></i>' + data.message);
+            },
+            error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                $('#complaint-button').html('<i class="fa fa-times-circle fa-2x fa-fw"></i>');
                 error(XMLHttpRequest, textStatus, errorThrown);
             }
         });
@@ -219,6 +246,14 @@ $(document).ready(function() {
 
         startLesson(lessonId);
     });
+
+    var resetComplaintButton = function() {
+        $('#complaint-button').html(DEFAULT_COMPLAINT_BUTTON);
+        $('#complaint-button').fadeOut();
+        complaintSent = false;
+    };
+
+    $('#complaint-button').click(complaint);
 
     $('body').keypress(function(event) {
         if (event.which === 115) {
