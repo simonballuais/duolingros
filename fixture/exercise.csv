@@ -554,7 +554,7 @@ zsh:1: command not found: q
 ;41;àry;donc
 
 ;42;mvidy ovy;acheter des pommes de terre
-;42;vaventy ny ovy fa avia tompoko;les pommes de terre sont grosses, (approchez|venez) madame
+;42;vaventy ny ovy fa avia tompoko;les pommes de terre sont grosses, (approchez|venez)
 ;42;ohatrina nt kilao ?;combien (coûte|) le kilo ?
 ;42;ariary telo tompoko;trois ariary (monsieur|madame)
 ;42;lafo loatra izany vidiny izany;c'est trop cher;ce prix est trop chez;trop cher
@@ -564,8 +564,8 @@ zsh:1: command not found: q
 ;42;inty àry;(voici|voilà)( donc|)
 
 ;43;approchez madame, si vous voulez acheter des fleurs;avia tompoko raha hividy voninkazo(| ianao)
-;43;combien la douzaine ?:oatrina ny dozenina
-;43;quel est le prix de la douzaine ?;oatrina no vidin'ny dozenina ?
+;43;combien la douzaine ?:ohatrina ny dozenina
+;43;quel est le prix de la douzaine ?;ohatrina no vidin'ny dozenina ?
 ;43;si c'est cher, je n'achèterai pas;raha lafo (|be) dia tsy hividy aho;tsy hividy aho raha lafo (|be)
 ;43;si c'est bon marché, j'achèterai trois douzaine;raha mora (ny vidiny|) dia hividy dozenina telo aho
 ;43;est-ce que c'est cher ?;lafo ve ?
@@ -573,3 +573,42 @@ zsh:1: command not found: q
 ;43;ça n'est pas cher;tsy lafo izany
 ;43;c'est bon marché;mora izany
 ;43;voici donc votre argent;inty àry ny volanao
+
+;44;radianao;(vos|votre|ton|tes) radis
+;44;roa;deux
+;44;fehezany;(une|la|) botte;(un|le|) paquet
+;44;mpamboly;(un|le|) (paysan|agriculteur|cultivateur)
+;44;lavitra;loin;éloigné
+;44;maka;prendre
+;44;efatra;quatre
+;44;enina;six
+;44;maty;mort
+;44;antoka;(une|la|) garantie
+;44;maty antoka;vendre à perte;se faire avoir
+;44;omena;donner
+;44;masiaka;piquant;méchant;sévère
+;44;iray;un
+;44;mihitsy;vraiment;en effet
+;44;omeko;je donne
+;44;amereno;(rends|rendez|rendre) la monnaie
+;44;manana;avoir
+;44;madinika;(la|) petite monaie;(les|) pièce(s|)
+
+;45;miady varotra;marchander
+;45;ohatrina ny radianao;combien (pour|coûte(ent|)) (vos|votre) radis ?;votre radis coûte combien;vos radis coûtent combien ?
+;45;ariary roa ny fehezany telo tompoko;deux ariary (pour[) (|les) trois bottes (monsieur|madame);trois bottes pour deux ariary (madame[monsieur)
+;45;efa betsaka izy izao ka ahoana no lafo tahaka izany ?;il y en a beaucoup maintenant, pourquoi (sont-ils|est-ce|est-ce que (c'est|)) (si|aussi) cher ?
+;45;mora izany tompoko;((c'est|ça n'est) pas cher|c'est bon marché) (monsieur|madame)
+;45;lafo ange no ividiananay azy amin'ny mpamboly ary lavitra no hakana azy;(on les (achète|paye)|nous les (achetons|payons) cher) aux (paysans|agriculteurs|cultivateurs) et (|puis) (on|je) va les (prendre|chercher) loin
+;45;lafo ange no ividiananay azy amin'ny mpamboly;(on les (achète|paye)|nous les (achetons|payons) cher) aux (paysans|agriculteurs|cultivateurs)
+;45;lavitra no hakana azy;(on|je) va les (prendre|chercher) loin
+;45;mba ataovy ariary roa ny efatra;(donne|donnez|faites|fais)-(moi|m'en) deux ariary pour les quatres;(donne|donnez|faites|fais)-(moi|m'en) les quatres pour deux ariary
+;45;maty antoka aho tompoko amin'izany;je (me fais avoir|vends à perte) (là|) (monsieur|madame)
+;45;omeo kely enina àry aho raha tsy azo iadiam-barotra ianao;(donne|donndez)-(moi|m'en) six petites si (on ne peut pas|ça n'est pas possible de) marchander avec (toi|vous)
+;45;ny kely omena ahy fa masoaka ny vaventy;(donnez|donne)-moi (des|les) petits (car|parce que) les gros (sont piquant|piquent)
+;45;inty àry tompoko;(voici|voilà) (monsieur|madame)
+;45;aiza izay kadoa ?;où est le cadeau ?
+;45;iray fehezany mihitsy no omeko anao;je (vous|te) donne une botte entière
+;45;inty ny volanao;voila (votre|ton) argent
+;45;amereno fa tsy manana madinika aho;(rends|rendez|donne(z|))-moi (la monaie|le reste) (car|parce que) je n'ai pas (l'appoint|de monnaie)
+
