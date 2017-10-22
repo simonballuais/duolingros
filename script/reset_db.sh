@@ -19,7 +19,7 @@ database_name="${BASH_REMATCH[1]}"
 echo "use duolingros;" > db_temp.sql
 mysqldump -u $database_user -p$database_password $database_name fos_user learning >> db_temp.sql
 
-yes | "$DIR"/../bin/console doctrine:fixture:load
+yes | "$DIR"/../bin/console doctrine:fixture:load -vvv
 cat db_temp.sql | mysql -u $database_user -p$database_password
 
 echo "Ouki"

@@ -34,7 +34,7 @@ class Lesson
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=2000)
+     * @ORM\Column(type="string", length=2000, nullable=true)
      */
     protected $description;
 
@@ -52,6 +52,12 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Learning", mappedBy="lesson", cascade={"persist"})
      */
     protected $learningList;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
+     * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
+     */
+    protected $bookLesson;
 
     protected $currentLearning;
 
@@ -157,5 +163,17 @@ class Lesson
         $this->description = $description;
 
         return $this;
+    }
+
+    public function setBookLesson($bookLesson)
+    {
+        $this->bookLesson = $bookLesson;
+
+        return $this;
+    }
+
+    public function getBookLesson()
+    {
+        return $this->bookLesson;
     }
 }

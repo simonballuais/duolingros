@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block additional_stylesheet %}
+  <link rel="stylesheet" href="{{ asset('assets/css/lobby.css') }}" />
+{% endblock additional_stylesheet %}
+
+{% block body %}
+<div class="container"
+     id="container"
+  >
+  <div class="row">
+    <div class="col-sm-2"></div> <!-- col -->
+    <div class="col-sm-6" id="title" >
+      <h1>
+        Duolingros
+      </h1>
+      <h2>
+        Le gasy pour les durs
+      </h2>
+    </div> <!-- col -->
+  </div> <!-- row -->
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8" id="book-lesson-list">
+      {% include 'front/book_lesson_list.html.twig' %}
+    </div> <!-- col -->
+  </div> <!-- row -->
+</div> <!-- container -->
+{% endblock body %}

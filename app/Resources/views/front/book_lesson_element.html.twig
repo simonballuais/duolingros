@@ -1,0 +1,25 @@
+<div class="book-lesson-element">
+<h1>
+    {{ bookLesson.title }}
+  </h1>
+  <h2>
+    {{ bookLesson.subtitle }} 
+  </h2>
+  <ul>
+    {% for lesson in bookLesson.lessonList %}
+      <li>
+        <a href="#">
+          {{ lesson.title }}
+        </a>
+        {% if lesson.currentLearning is not null %}
+        <div 
+           class="progress-bar active mastery progress-bar-success"
+           role="progress-bar"
+           style="width: {{ lesson.currentLearning.hotness * 30 }}%"
+           >
+        </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
