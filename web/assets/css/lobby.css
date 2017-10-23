@@ -44,12 +44,28 @@
     padding: 0;
 }
 
+.book-lesson-element ul li {
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.book-lesson-element ul li:last-child {
+    border-bottom: 0;
+}
+
 .book-lesson-element ul li a {
-    padding-left: 15px;
     font-size: 12pt;
     width: 100%;
 }
 
 .book-lesson-element ul li:hover {
     background-color: #DDEEFF;
+}
+
+.hotness-indicator {
+    float: right;
+    color: orange;
+    font-size: 12pt;
+    padding-top: 3px;
 }

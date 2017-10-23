@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use AppBundle\Entity\Lesson;
+
 
 class StudyController extends Controller
 {
@@ -24,5 +26,16 @@ class StudyController extends Controller
             ]);
     }
 
+    /**
+     * @Route("/study/{lesson}", name="front_study_action", options={"expose" = true})
+     * @Method({"GET"})
+     */
+    public function studyAction(Lesson $lesson)
+    {
+        return $this->render("front/study/study.html.twig",
+            [
+                "lesson" => $lesson
+            ]);
+    }
 }
 ?>

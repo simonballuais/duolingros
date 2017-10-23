@@ -15,7 +15,6 @@
         (${ lesson.currentLearning.mastery } ${ lesson.currentLearning.hotness }%)
       </strong>
 
-      {% if lesson.currentLearning is not null %}
       <div v-if="lesson.currentLearning"
            class="progress-bar active mastery"
            role="progress-bar"
@@ -29,7 +28,6 @@
            }"
            >
       </div>
-      {% endif %}
     </label>
   </li>
 </ul>

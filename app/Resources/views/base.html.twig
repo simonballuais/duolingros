@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/study.css') }}" />
     {% endblock stylesheet %}
 
     {% block additional_stylesheet %} {% endblock additional_stylesheet %}
@@ -28,7 +27,6 @@
     <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"> </script>
     <script src="{{ asset('assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"> </script>
     <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"> </script>
-    <script src="{{ asset('assets/js/study.js') }}"> </script>
     <script src="{{ asset('assets/js/vue.js') }}"> </script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -61,4 +59,6 @@
     </div>
 {% endblock flash_messages %}
 </body>
+
+{% block additional_javascript %} {% endblock additional_javascript %}
 </html>
