@@ -1,8 +1,7 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-regex=": (.*)"
+regex=": \"(.*)\""
 
-regex=": (.*)"
 password_yml=$(grep "database_password" "$DIR"/../app/config/parameters.yml)
 user_yml=$(grep "database_user" "$DIR"/../app/config/parameters.yml)
 name_yml=$(grep "database_name" "$DIR"/../app/config/parameters.yml)
@@ -17,7 +16,7 @@ database_user="${BASH_REMATCH[1]}"
 database_name="${BASH_REMATCH[1]}"
 
 echo "use duolingros;" > db_temp.sql
-mysqldump -u $database_user -p$database_password $database_name fos_user learning >> db_temp.sql
+mysqldump -u $database_user -p$database_password $database_name fos_user learning complaint >> db_temp.sql
 
 yes | "$DIR"/../bin/console doctrine:fixture:load
 cat db_temp.sql | mysql -u $database_user -p$database_password

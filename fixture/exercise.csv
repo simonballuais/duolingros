@@ -1,9 +1,4 @@
 id;lesson_id;text;answers 
-;1;Bonjour;Manao ahoana;Salama
-;1;J'ai faim;Noana aho;Noana
-;1;Je m'apelle Simon;Simon no anarako
-;1;Je vais dormir;Hatory aho;Hatory
-
 ;2;Ahoana;Comment
 ;2;Ny;Le;La;Les
 ;2;Rano;Eau;De l'eau;L'eau
@@ -63,12 +58,12 @@ id;lesson_id;text;answers
 ;4;Fanafody;Médicament;Remède
 ;4;Mamy;Sucré;Doux
 
-;5;Mpiasa ve io olona io ?;Est-ce que cette personne est un travailleur ?;Cette personne est-elle un travailleur ?;Cette personne est un travailleur ?;C'est un travailleur ?
-;5;Eny, mpiasa izy;Oui, c'est un travailleur
-;5;Tsia, tsy mpiasa izy;Non, ce n'est un travailleur;Non, c'est pas un travailleur
-;5;Mpiasa angamba izy;C'est peut-être un travailleur
-;5;Asa, mpiasa angamba izy;Je ne peux pas dire, c'est peut-être un travailleur;Je ne sais pas, c'est peut-être un travailleur
-;5;Tsy fantatro na mpiasa izy na tsia;Je ne sais pas si c'est un travailleur ou pas
+;5;Mpiasa ve io olona io ?;Est-ce que cette personne est un (travailleur|ouvrier) ?;Cette personne est-elle un (travailleur|ouvrier) ?;Cette personne est un (travailleur|ouvrier) ?;C'est un (travailleur|ouvrier) ?
+;5;Eny, mpiasa izy;Oui, c'est un (travailleur|ouvrier)
+;5;Tsia, tsy mpiasa izy;Non, ce n'est un (travailleur|ouvrier);Non, c'est pas un (travailleur|ouvrier)
+;5;Mpiasa angamba izy;C'est peut-être un (travailleur|ouvrier)
+;5;Asa, mpiasa angamba izy;Je ne peux pas dire, c'est peut-être un (travailleur|ouvrier);Je ne sais pas, c'est peut-être un (travailleur|ouvrier)
+;5;Tsy fantatro na mpiasa izy na tsia;Je ne sais pas si c'est un (travailleur|ouvrier) ou pas
 ;5;Marary ve io zazakely io ?;Est-ce que cet (enfant|bébé) est malade ?;Cet (enfant|bébé) est-il malade ?;Cet (enfant|bébé) est malade ?
 ;5;Marary angamba izy;Il est peut-être malade
 ;5;Asa, marary angamba izy;Je ne sais pas, il est peut-être malade;Je ne peux pas dire, il est peut-être malade
@@ -86,7 +81,7 @@ id;lesson_id;text;answers
 ;5;Cet ouvrier est-il malade ?;Marary ve io mpiasa io ?
 ;5;Je ne sais pas si il est malade ou non;Tsy fantatro na marary izy na tsia
 ;5;Cette personne et l'enfant sont peut-être malades;Marary angamba io olona io sy ny zazakely
-;5;C'est bien que l'eau soit propre et que la maison soit propre
+;5;C'est bien que l'eau soit propre et que la maison soit propre;tsara ny rano madio sy ny trano madio
 ;5;Beaucoup de gens sont malades;Be ny olona marary
 
 ;6;Iza;qui
@@ -112,7 +107,7 @@ id;lesson_id;text;answers
 ;7;Inona iry fanaka iry ?;Quel est ce meuble (là-bas|) ?;Qu'est-ce que c'est que ce meuble (là-bas|) ?
 ;7;Seza iry fanaka iry;Ce meuble (là-bas|) est une chaise;C'est une chaise, ce meuble (là-bas|)
 ;7;Iza ireo olona ireo ?;qui sont ces gens ?;C'est qui ces gens ?
-;7;Mpiasa ireo olona ireo;Ces gens sont des ouvriers;Ces gens sont des travailleurs
+;7;Mpiasa ireo olona ireo;Ces gens sont des ouvriers;Ces gens sont des (travailleur|ouvrier)s
 ;7;Inona ireo tavoahangy ireo ?;(C'est quoi|Que sont|Qu'est-ce que sont|Qu'est-ce que c'est que) ces bouteilles ?
 ;7;Fanafody ireo tavoahangy ireo;Ces bouteilles sont des (médicaments|remède)
 ;7;Iza irery zazakely irery ?;Qui sont ces (enfants|bébés) (là-bas|) ?;C'est qui ces (enfants|bébés) (là-bas|) ?
@@ -272,7 +267,7 @@ id;lesson_id;text;answers
 
 ;16;madio noho io latabatra io iry seza iry;(ce fauteuil|cette chaise|ce siège) (là-bas|) est plus propre que cette table (ci|)
 ;16;maloto noho ny trano ireo fanaka ireo;Ces meubles(-ci|) sont plus sale que la maison
-;16;tsara noho ny rano ny ronono;(le|du) lait (est|, c'est) meilleur que (de|) l'eau;
+;16;tsara noho ny rano ny ronono;(le|du) lait (est|, c'est) meilleur que (de|) l'eau
 zsh:1: command not found: q
 ;16;mangidy noho io kafe tsy misy siramamy io ny fanafody;(le|les) (remède|médicament)(s|) (est|sont) plus amer(s|) que ce café (noir|sans sucre|pas sucré|non sucré)
 ;16;inona no madio kokoa noho ny latabatra ?;(qu'est-ce qui|c'est quoi qui) est plus propre que la table ?
