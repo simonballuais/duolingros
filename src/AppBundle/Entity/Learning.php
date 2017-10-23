@@ -78,7 +78,7 @@ class Learning
         $mastery = array_sum($lastScores) / count($lastScores);
         $mastery = intval($mastery);
 
-    return $mastery;
+        return $mastery;
     }
 
      /**
@@ -192,8 +192,8 @@ class Learning
     {
         $this->vacationDays = $vacationDays;
 
-        if ($this->vacationDays <= -1) {
-            $this->vacationDays = -1;
+        if ($this->vacationDays <= 0) {
+            $this->vacationDays = 0;
         }
 
         return $this;

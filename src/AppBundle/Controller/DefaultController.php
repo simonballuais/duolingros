@@ -9,13 +9,16 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", options={"expose" = true})
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        $blm = $this->get('app.book_lesson_manager');
+        $bookLessons = $blm->getAllWithCurrentLearning($this->getUser());
+
+        return $this->render('front/lobby.html.twig',
+        [
+            "bookLessons" => $bookLessons
         ]);
     }
 }

@@ -1,0 +1,29 @@
+<div class="book-lesson-element">
+<h1>
+    {{ bookLesson.title }}
+  </h1>
+  <h2>
+    {{ bookLesson.subtitle }} 
+  </h2>
+  <ul>
+    {% for lesson in bookLesson.lessonList %}
+      <li>
+        <a href="{{ path('front_study_action', {'lesson': lesson.id}) }}">
+          {{ lesson.title }}
+        </a>
+
+        {% if lesson.currentLearning is not null %}
+          {% if lesson.currentLearning.hotness >= 3 %}
+            <i class="fa fa-battery-full fa-fw hotness-indicator" style="color: green"></i>
+          {% elseif lesson.currentLearning.hotness >= 2 %}
+            <i class="fa fa-battery-3 fa-fw hotness-indicator" style="color: orange"></i>
+          {% elseif lesson.currentLearning.hotness >= 1 %}
+            <i class="fa fa-battery-3 fa-fw hotness-indicator" style="color: yellow"></i>
+          {% else %}
+            <i class="fa fa-battery-1 fa-fw hotness-indicator" style="color: red"></i>
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

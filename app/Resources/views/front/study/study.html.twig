@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block additional_stylesheet %}
+  <link rel="stylesheet" href="{{ asset('assets/css/study.css') }}" />
+{% endblock additional_stylesheet %}
+
+{% block additional_javascript %}
+  <script src="{{ asset('assets/js/study/study.js') }}"> </script>
+  <script type="text/javascript">
+  startLesson({{ lesson.id }});
+  </script>
+{% endblock additional_javascript %}
+
+{% block body %}
+<div class="container" id="playground">
+  <div class="row">
+    <div class="col-sm-1"></div> <!-- col -->
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-2"></div> <!-- col -->
+        <div class="col-sm-10" id="title" >
+          <h1>
+            {{ lesson.title }}
+          </h1>
+          <h2>
+            {{ lesson.bookLesson.title }}
+          </h2>
+        </div> <!-- col -->
+      </div> <!-- row -->
+
+      <div class="row" id="text-row">
+          <div class="row" id="progress" >
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active"
+                   id="progress-bar"
+                   role="progress-bar"
+                   v-bind:style="{ width: progress + '%' }"
+                   >
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <textarea
+                     cols="50"
+                     rows="4"
+                     id="exercise"
+                     readonly="true"
+                     v-bind:value="exerciseText"
+              >
+              </textarea>
+            </div> <!-- col -->
+            <div class="col-sm-6">
+              <textarea
+                     cols="50"
+                     rows="4"
+                     id="proposition"
+                     v-model="proposition"
+                     placeholder="réponse ..."
+              >
+              </textarea>
+            </div> <!-- col -->
+          </div> <!-- row -->
+      </div> <!-- row -->
+
+      <div class="row">
+        <div class="jumbotron"
+             id="correction-status"
+             v-bind:style="{
+               'background-color': remarksBg,
+             }"
+             style="display: none"
+          >
+          <h1 class="display-3"
+             v-bind:style="{
+               'color': remarksFg,
+             }"
+              >
+            ${ correctionStatus }
+          </h1>
+
+          <hr />
+
+          <p class="remark" v-html="remark" v-for="remark in remarks">
+          </p>
+        </div>
+      </div> <!-- row -->
+
+      <div class="row">
+          <button class="btn btn-warning btn-lg pull-right"
+                  id="complaint-button"
+                  style="display: none"
+                  >
+            Euuuh bah si putin ...
+      </div> <!-- row -->
+
+      <div id="lesson-conclusion-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1>
+              ${ conclusionHeader }
+              </h1>
+            </div>
+            <div class="modal-body">
+              <p>
+              ${ conclusionBody }
+              </p>
+            </div>
+            <div class="modal-footer">
+              <p>
+              ${ conclusionFooter }
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- col -->
+  </div> <!-- row -->
+</div> <!-- container -->
+{% endblock body %}

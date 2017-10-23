@@ -51,10 +51,14 @@ class LessonManager
         return $this->repo->findOneById($id);
     }
 
-    public function createOrUpdate($title, $id="")
+    public function createOrUpdate($title, $bookLessonId, $id="")
     {
+        $bookLessonRepo = $this->entityManager->getRepository('AppBundle:BookLesson');
+        $bookLesson = $bookLessonRepo->findOneById($bookLessonId);
+
         $lesson = new Lesson();
         $lesson->setTitle($title);
+        $lesson->setBookLesson($bookLesson);
 
         if ("" !== $id) {
             $lesson->setId($id);

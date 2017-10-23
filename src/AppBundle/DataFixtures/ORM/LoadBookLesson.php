@@ -8,19 +8,19 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
-class LoadLessonData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+class LoadBookLessonData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     protected $container;
 
     public function load(ObjectManager $manager)
     {
-        $em = $this->container->get('app.lesson_manager');
+        $em = $this->container->get('app.book_lesson_manager');
         $csvDirectory = $this->container->getParameter('csv_directory');
 
-        $file = fopen($csvDirectory . "/lesson.csv", "r");
+        $file = fopen($csvDirectory . "/book_lesson.csv", "r");
 
         if (is_null($file)) {
-            echo("Impossible de trouver le fichier lesson.csv");
+            echo("Impossible de trouver le fichier book_lesson.csv");
             return;
         }
 
@@ -34,12 +34,9 @@ class LoadLessonData implements FixtureInterface, ContainerAwareInterface, Order
 
             $id = $csvLine[0];
             $title = $csvLine[1];
-            $bookLessonId = $csvLine[4];
+            $subtitle = $csvLine[2];
 
-            $lesson = $em->createOrUpdate($title, $bookLessonId, $id);
-
-            $lesson->setExercisePerStudy($csvLine[2]);
-            $lesson->setDescription($csvLine[3]);
+            $bookLesson = $em->createOrUpdate($title, $subtitle, $id);
         }
 
         $manager->flush();
@@ -52,7 +49,7 @@ class LoadLessonData implements FixtureInterface, ContainerAwareInterface, Order
 
     public function getOrder()
     {
-        return 1;
+        return 0;
     }
 }
 ?>

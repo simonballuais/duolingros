@@ -38,12 +38,12 @@ class LearningManager
         $lastPractice = $learning->getLastPractice();
         $now = new \DateTime();
 
-        if ($now->format('d/m/Y') != $lastPractice->format('d/m/Y')) {
-            if ($successPercentage >= self::GOOD_PERCENTAGE) {
-                $learning->increaseGoodStreak();
-                $learning->increaseVacationDays();
-            }
-            else {
+        if ($successPercentage >= self::GOOD_PERCENTAGE) {
+            $learning->increaseGoodStreak();
+            $learning->increaseVacationDays();
+        }
+        else {
+            if ($now->format('d/m/Y') != $lastPractice->format('d/m/Y')) {
                 $learning->resetGoodStreak(0);
                 $learning->decreaseVacationDays();
             }

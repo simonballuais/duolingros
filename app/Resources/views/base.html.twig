@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html>
-{% include 'head.html.twig' %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block title %}Duolingros{% endblock title %}
+    </title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/dist/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}" />
+    {% endblock stylesheet %}
+
+    {% block additional_stylesheet %} {% endblock additional_stylesheet %}
+
+    {% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('assets/vendor/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/AdminLTE/dist/js/app.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"> </script>
+    <script src="{{ asset('assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"> </script>
+    <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js') }}"> </script>
+    <script src="{{ asset('assets/js/vue.js') }}"> </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('.alert.fading').delay(250).fadeIn('normal', function() {
+            $(this).delay(2000).fadeOut();
+        });
+    });
+    </script>
+    {% endblock javascript %}
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
 {% block body %} {% endblock body %}
@@ -23,4 +59,6 @@
     </div>
 {% endblock flash_messages %}
 </body>
+
+{% block additional_javascript %} {% endblock additional_javascript %}
 </html>

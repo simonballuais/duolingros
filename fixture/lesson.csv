@@ -1,45 +1,45 @@
-id;title;exercise_per_study;description
-2;Vocabulaire 1;10;Vocabulaire 1
-3;L'eau est propre maggle;10;Une leçon pour savoir dire que l'eau est propre
-4;Vocabulaire 2;10;Vocabulaire 2
-5;Mpiasa ve ny couz' ?;10;Pour savoir comment demander si le mec là est un travailleur ou pas
-6;Vocabulaire 3;10;Vocabulaire 3
-7;C ki la meuf;10;Pour savoir demander c'est qui le chaton là
-8;Vocabulaire 4;10;t,Vocabulaire 4
-9;C bon le kafé tu c;10;Pour être un pro du thé sucré
-10;Vocabulaire 5;10;,Vocabulaire 5
-11;Le lait sera froid;10;Le lait était beau mais le temps sera sucré
-12;Vocabulaire 6;10;,Vocabulaire 6
-13;Malade le zazakely;10;Parce que le lait chaud n'est pas bon pour les enfant. Eh !
-14;Vocabulaire 7;10;Vocabulaire 7
-15;Comparatifs be;10;Pour comparer le zébu et le livre
-16;Comparatifs encore plus be;10;Pour comparer encore plus
-17;Comparatifs vraiment be;10;Le must de la comparaison
-18;Vocabulaire 8;10;Vocabulaire 8
-19;Comparatifs d'égalitay;10;Égalitayyyyyy
-20;Vocabulaire 9;10;Vocabulaire 9
-21;Y fé beau;10;parce qu'il fait froid en hiver
-22;Et le ciel aussi;10;parce qu'il fait chaud en été
-23;Vo-Vo-Cabulaire;10;prout
-24;Tout mouillé;10;Mettez bien la capote avant de sortir de peur de mouiller vos vetements
-25;Où ki va;10;Pour savoir où il va
-26;Vocabulaire mouillé;10;coincoin
-27;gt a tana;10;Laissez-moi rentrez chez moi stp
-28;pour un truc urgent;10;Laissez-le rentrer svp
-29;Jours;10;Les jours de la semaine
-30;Vocabulaire;10;Autour des jours
-31;C kel jour;10;vendredi :D
-32;Jours 2;10;zoma :D
-33;blabla;10;prout
-34;vocabulaire;10;prout
-35;chez ki;10;prout
-36;tfé koi joudi;10;prout
-37;jbosse jédi;10;prout
-38;coincoi;10;prout
-39;vokabulèr;10;prout
-40;lafo be eeeee;10;prout
-41;voca;10;prout
-42;c cher les patatt;10;prout
-43;cheeer;10;prout
-44;money;10;thunes
-45;monnaie;10;thunes
+id;title;exercise_per_study;description;book_lesson
+2;Vocabulaire 1;2;Vocabulaire 1;1
+3;L'eau est propre maggle;10;Une leçon pour savoir dire que l'eau est propre;1
+4;Vocabulaire 2;10;Vocabulaire 2;2
+5;Mpiasa ve ny couz' ?;10;Pour savoir comment demander si le mec là est un travailleur ou pas;2
+6;Vocabulaire 3;10;Vocabulaire 3;3
+7;C ki la meuf;10;Pour savoir demander c'est qui le chaton là;3
+8;Vocabulaire 4;10;t,Vocabulaire 4;4
+9;C bon le kafé tu c;10;Pour être un pro du thé sucré;4
+10;Vocabulaire 5;10;,Vocabulaire 5;5
+11;Le lait sera froid;10;Le lait était beau mais le temps sera sucré;5
+12;Vocabulaire 6;10;,Vocabulaire 6;6
+13;Malade le zazakely;10;Parce que le lait chaud n'est pas bon pour les enfant. Eh !;6
+14;Vocabulaire 7;10;Vocabulaire 7;7
+15;Comparatifs be;10;Pour comparer le zébu et le livre;7
+16;Comparatifs encore plus be;10;Pour comparer encore plus;7
+17;Comparatifs vraiment be;10;Le must de la comparaison;7
+18;Vocabulaire 8;10;Vocabulaire 8;8
+19;Comparatifs d'égalitay;10;Égalitayyyyyy;8
+20;Vocabulaire 9;10;Vocabulaire 10;10
+21;Y fé beau;10;parce qu'il fait froid en hiver;10
+22;Et le ciel aussi;10;parce qu'il fait chaud en été;10
+23;Vo-Vo-Cabulaire;10;prout;11
+24;Tout mouillé;10;Mettez bien la capote avant de sortir de peur de mouiller vos vetements;11
+25;Où ki va;10;Pour savoir où il va;11
+26;Vocabulaire mouillé;10;coincoin;12
+27;gt a tana;10;Laissez-moi rentrez chez moi stp;12
+28;pour un truc urgent;10;Laissez-le rentrer svp;12
+29;Jours;10;Les jours de la semaine;13
+30;Vocabulaire;10;Autour des jours;13
+31;C kel jour;10;vendredi :D;13
+32;Jours 2;10;zoma :D;13
+33;blabla;10;prout;12
+34;vocabulaire;10;prout;14
+35;chez ki;10;prout;14
+36;tfé koi joudi;10;prout;14
+37;jbosse jédi;10;prout;14
+38;coincoi;10;prout;15
+39;vokabulèr;10;prout;15
+40;lafo be eeeee;10;prout;15
+41;voca;10;prout;16
+42;c cher les patatt;10;prout;16
+43;cheeer;10;prout;16
+44;money;10;thunes;17
+45;monnaie;10;thunes;17

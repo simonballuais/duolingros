@@ -3,6 +3,10 @@ services:
         class: AppBundle\Manager\LessonManager
         arguments: ['@doctrine.orm.entity_manager', '@session']
 
+    app.book_lesson_manager:
+        class: AppBundle\Manager\BookLessonManager
+        arguments: ['@doctrine.orm.entity_manager']
+
     app.study_manager:
         class: AppBundle\Manager\StudyManager
         arguments: ['@doctrine.orm.entity_manager', '@session', '@app.lesson_manager', '@app.exercise_manager']
