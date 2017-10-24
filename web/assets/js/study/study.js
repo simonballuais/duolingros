@@ -32,6 +32,7 @@ var playgroundApp = new Vue({
         lessonTitle: '...',
         progress: 0,
         exerciseText: '...',
+        goodRun: false,
         remarks: [],
         remarksFg: "red",
         remarksBg: "red",
@@ -94,6 +95,7 @@ var finishStudy = function(data) {
     playgroundApp.conclusionHeader = 'Leçon terminée :)';
     playgroundApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
     playgroundApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
+    playgroundApp.goodRun = data.goodRun;
     showConclusion();
 };
 

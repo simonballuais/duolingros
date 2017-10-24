@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Lesson;
 use AppBundle\Model\Proposition;
+use AppBundle\Manager\LearningManager;
 
 
 class StudyController extends Controller
@@ -93,6 +94,7 @@ class StudyController extends Controller
             'studyOver' => true,
             'successPercentage' => $successPercentage,
             'mastery' => $mastery,
+            'goodRun' => $successPercentage >= LearningManager::GOOD_PERCENTAGE,
         ]);
     }
 
@@ -137,7 +139,7 @@ class StudyController extends Controller
         $message = "Bien reçu Michel !";
 
         if ($complaint->isInProgress()) {
-            $message = "C'est spé oui, on y travaille";
+            $message = "Bien reçu Michel !";
         }
 
         if ($complaint->isRefused()) {
