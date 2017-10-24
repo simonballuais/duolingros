@@ -4,6 +4,22 @@
   <link rel="stylesheet" href="{{ asset('assets/css/lobby.css') }}" />
 {% endblock additional_stylesheet %}
 
+{% block additional_javascript %}
+{% if lastLesson %}
+<script type="text/javascript">
+$(document).ready(function() {
+$('html, body').animate({
+  scrollTop: $("#lesson-{{ lastLesson }}").offset().top - 200
+  }, 1000);
+
+setTimeout(function() {
+  $("#lesson-{{ lastLesson }}").parent().effect("highlight", {}, 1000);
+  }, 1000);
+});
+</script>
+{% endif %}
+{% endblock additional_javascript %}
+
 {% block body %}
 <div class="container"
      id="container"

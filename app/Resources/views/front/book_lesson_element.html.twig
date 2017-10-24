@@ -8,7 +8,9 @@
   <ul>
     {% for lesson in bookLesson.lessonList %}
       <li>
-        <a href="{{ path('front_study_action', {'lesson': lesson.id}) }}">
+        <a href="{{ path('front_study_action', {'lesson': lesson.id}) }}"
+           id="lesson-{{ lesson.id }}"
+           >
           {{ lesson.title }}
         </a>
 

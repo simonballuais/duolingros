@@ -90,6 +90,8 @@ class StudyController extends Controller
 
         $em->flush();
 
+        $this->addFlash('lastLesson', $learning->getLesson()->getId());
+
         return new JsonResponse([
             'studyOver' => true,
             'successPercentage' => $successPercentage,

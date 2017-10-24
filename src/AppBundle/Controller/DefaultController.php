@@ -15,10 +15,16 @@ class DefaultController extends Controller
     {
         $blm = $this->get('app.book_lesson_manager');
         $bookLessons = $blm->getAllWithCurrentLearning($this->getUser());
+        $lastLessonId = $this->get('session')->getFlashBag()->get('lastLesson');
+
+        if ($lastLessonId) {
+            $lastLessonId = array_pop($lastLessonId);
+        }
 
         return $this->render('front/lobby.html.twig',
         [
-            "bookLessons" => $bookLessons
+            "bookLessons" => $bookLessons,
+            "lastLesson" => $lastLessonId,
         ]);
     }
 }

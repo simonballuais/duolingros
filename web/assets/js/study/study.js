@@ -219,7 +219,10 @@ var goBackToLobby = function() {
 };
 
 var resetComplaintButton = function() {
-    $('#complaint-button').html(DEFAULT_COMPLAINT_BUTTON);
+    setTimeout(function() {
+        $('#complaint-button').html(DEFAULT_COMPLAINT_BUTTON);
+    }, 1500);
+
     $('#complaint-button').fadeOut();
     complaintSent = false;
 };
