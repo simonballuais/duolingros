@@ -33,7 +33,7 @@ class ComplaintManager
         ]);
 
         if (null !== $existingComplaint) {
-            return;
+            return $existingComplaint;
         }
 
         $complaint = new Complaint($exercise, $propositionText);

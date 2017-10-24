@@ -98,7 +98,7 @@ class Learning
         $learningPeriod = $diff->days;
 
         $diff = $now->diff($this->getNextPractice());
-        $actualLateness = $diff->days;
+        $actualLateness = $diff->days + 1;
 
         if ($learningPeriod == 0) {
             $latenessScore = 0;

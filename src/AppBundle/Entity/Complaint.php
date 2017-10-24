@@ -12,6 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Complaint
 {
+    const IN_PROGRESS = "in progress";
+    const CORRECTED = "corrected";
+    const REFUSED = "refused";
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -30,10 +34,16 @@ class Complaint
      */
     protected $propositionText;
 
+    /**
+        * @ORM\Column(type="string", length=15)
+     */
+    protected $status;
+
     public function __construct($exercise, $propositionText)
     {
         $this->exercise = $exercise;
         $this->propositionText = $propositionText;
+        $this->status = self::IN_PROGRESS;
     }
 
     public function getId()
@@ -63,6 +73,33 @@ class Complaint
         $this->propositionText = $propositionText;
 
         return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function isInProgress()
+    {
+        return self::IN_PROGRESS === $this->status;
+    }
+
+    public function isCorrected()
+    {
+        return self::CORRECTED === $this->status;
+    }
+
+    public function isRefused()
+    {
+        return self::REFUSED === $this->status;
     }
 }
 

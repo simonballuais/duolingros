@@ -39,7 +39,7 @@ id;lesson_id;text;answers
 ;3;Madio ve ny trano ?;Est-ce que la maison est propre ?;La maison est-elle propre ?;La maison est propre ?
 ;3;Tsia, maloto ny trano;Non, la maison est sale
 ;3;L'eau est propre;Madio ny rano
-;3;L'eau n'est-elle pas bien propre ?;Tsy tsara madio ny rano ?
+;3;L'eau n'est-elle pas bien propre ?;Tsy madio tsara ve ny rano ?
 ;3;L'eau est bien propre;Tsara madio ny rano
 ;3;Comment sont l'eau et la maison ?;Manao ahoana ny trano sy ny rano ?
 ;3;L'eau et la maison ne sont pas propres;Tsy madio ny rano sy ny trano
@@ -64,7 +64,7 @@ id;lesson_id;text;answers
 ;5;Mpiasa angamba izy;C'est peut-être un (travailleur|ouvrier)
 ;5;Asa, mpiasa angamba izy;Je ne peux pas dire, c'est peut-être un (travailleur|ouvrier);Je ne sais pas, c'est peut-être un (travailleur|ouvrier)
 ;5;Tsy fantatro na mpiasa izy na tsia;Je ne sais pas si c'est un (travailleur|ouvrier) ou pas
-;5;Marary ve io zazakely io ?;Est-ce que cet (enfant|bébé) est malade ?;Cet (enfant|bébé) est-il malade ?;Cet (enfant|bébé) est malade ?
+;5;Marary ve io zazakely io ?;(|Est-ce que) ((cet |l')enfant|(ce|le] bébé) est malade ?;Cet (enfant|bébé) est-il malade ?;Cet (enfant|bébé) est malade ?
 ;5;Marary angamba izy;Il est peut-être malade
 ;5;Asa, marary angamba izy;Je ne sais pas, il est peut-être malade;Je ne peux pas dire, il est peut-être malade
 ;5;Tsy fantatro na marary izy na tsia;Je ne sais pas si il est malade ou pas;Je ne sais pas si il est malade ou non

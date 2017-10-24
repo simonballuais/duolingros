@@ -114,13 +114,13 @@ class StudyController extends Controller
         return $response;
     }
 
-    /** * @Route("/api/study/complaint",
+    /** * @Route("/api/study/complain",
      *        name="api_study_complaint",
      *        options={"expose"=true}
      *        )
      * @Method({"PUT"})
      */
-    public function complaintAction()
+    public function complainAction()
     {
         $em = $this->getDoctrine()->getManager();
         $sm = $this->get('app.study_manager');
@@ -136,8 +136,12 @@ class StudyController extends Controller
 
         $message = "Bien reçu Michel !";
 
-        if (null === $complaint) {
-            $message = "C'est effectivement chelou ...";
+        if ($complaint->isInProgress()) {
+            $message = "C'est spé oui, on y travaille";
+        }
+
+        if ($complaint->isRefused()) {
+            $message = "Beeeh, pourtant c'est ça !";
         }
 
         return new JsonResponse(['message' => $message], 200);
