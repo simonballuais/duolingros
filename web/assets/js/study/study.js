@@ -156,7 +156,9 @@ var sendProposition = function() {
                 playgroundApp.correctionStatus = 'Tropa :(';
                 playgroundApp.remarksBg = BG_RED;
                 playgroundApp.remarksFg = FG_RED;
-                $('#complaint-button').fadeIn();
+                setTimeout(function() {
+                    $('#complaint-button').fadeIn();
+                }, 300);
             }
         },
         error       : function(XMLHttpRequest, textStatus, errorThrown) {
