@@ -158,7 +158,7 @@ var sendProposition = function() {
                 playgroundApp.remarksFg = FG_RED;
                 setTimeout(function() {
                     $('#complaint-button').fadeIn();
-                }, 300);
+                }, 150);
             }
         },
         error       : function(XMLHttpRequest, textStatus, errorThrown) {
