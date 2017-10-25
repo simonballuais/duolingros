@@ -1,3 +1,21 @@
+:root {
+    --primary: #03A9F4;
+    --primary-light: #DDEEFF;
+    --dark-gray: #555555;
+    --gray: #999999;
+    --light-gray: #EEEEEE;
+}
+
+#title h1 {
+    font-size: 56pt;
+}
+
+#title h2 {
+    padding-left: 30px;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
 #alerts {
     position: fixed;
     top: 5%;
@@ -44,4 +62,38 @@
     content: '\f071';
     margin:0 5px 0 -15px;
     color: #f00;
+}
+
+#header {
+    left: -30px;
+    right: -30px;
+    top: 0px;
+    height: 50pt;
+    background-color: var(--primary);
+    box-shadow: 0px 0px 30px black;
+    color: white;
+}
+
+#header #logout {
+    float: right;
+    color: var(--light-gray);
+    margin: 12pt;
+    font-size: 20pt;
+    border-left: 1px solid white;
+    padding-left: 10pt;
+}
+
+#header #logout:hover {
+    color: white;
+}
+
+#header #username {
+    float: right;
+    padding-top: 13pt;
+    font-size: 18pt;
+    bottom: 0px;
+}
+
+a {
+    color: var(--primary);
 }

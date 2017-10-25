@@ -10,30 +10,20 @@
     overflow: hidden;
 }
 
-#title h1 {
-    font-size: 56pt;
-}
-
-#title h2 {
-    padding-left: 30px;
-    margin: 0;
-    margin-bottom: 30px;
-}
-
 .book-lesson-element h1 {
     text-align: center;
     font-size: 24pt;
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 10px;
     margin: 15px;
-    color: #555555;
+    color: var(--dark-gray);;
 }
 
 .book-lesson-element h2 {
     font-size: 14pt;
     text-align: center;
     margin: 0;
-    color: #999999;
+    color: var(gray);
     padding-left: 3px;
     padding-right: 3px;
 }
@@ -47,7 +37,7 @@
 .book-lesson-element ul li {
     margin-left: 15px;
     margin-right: 15px;
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid var(--light-gray);
 }
 
 .book-lesson-element ul li:last-child {
@@ -60,7 +50,7 @@
 }
 
 .book-lesson-element ul li:hover {
-    background-color: #DDEEFF;
+    background-color: var(--primary-light);
 }
 
 .hotness-indicator {
