@@ -12,6 +12,10 @@
     text-align: center;
     width: 350px;
     height: 70px;
+    margin-top: -50pt;
+    margin-right: -50pt;
+    box-shadow: 0px 0px 40px var(--dark-gray);
+    font-size: 20pt;
 }
 
 .progress {

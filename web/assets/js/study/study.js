@@ -205,10 +205,10 @@ var complaint = function() {
         url         : Routing.generate('api_study_complaint'),
         dataType    : 'json',
         success     : function(data) {
-            $('#complaint-button').html('<i class="fa fa-check-circle fa-2x fa-fw"></i>' + data.message);
+            $('#complaint-button').html('<i class="fa fa-check-circle fa-fw"></i>' + data.message);
         },
         error       : function(XMLHttpRequest, textStatus, errorThrown) {
-            $('#complaint-button').html('<i class="fa fa-times-circle fa-2x fa-fw"></i>');
+            $('#complaint-button').html('<i class="fa fa-times-circle fa-fw"></i>');
             error(XMLHttpRequest, textStatus, errorThrown);
         }
     });
