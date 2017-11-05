@@ -21,8 +21,11 @@ class DefaultController extends Controller
             $lastLessonId = array_pop($lastLessonId);
         }
 
+        $quote = $this->get('app.quote_generator')->generateTitleQuote();
+
         return $this->render('front/lobby.html.twig',
         [
+            "quote" => $quote,
             "bookLessons" => $bookLessons,
             "lastLesson" => $lastLessonId,
         ]);

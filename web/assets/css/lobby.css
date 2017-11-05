@@ -2,10 +2,8 @@
     box-shadow: 0px 0px 20px #AAAAAA;
     background-color: white;
     padding: 0;
-    display:inline-block;
     height:300px;
     margin-left:10px;
-    width: 30%;
     margin: 10px;
     overflow: hidden;
 }
@@ -23,7 +21,7 @@
     font-size: 14pt;
     text-align: center;
     margin: 0;
-    color: var(gray);
+    color: var(--gray);
     padding-left: 3px;
     padding-right: 3px;
 }

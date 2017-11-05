@@ -104,9 +104,9 @@ id;lesson_id;text;answers
 ;7;Latabatra io zavatra io;Cette chose est une table;C'est une table
 ;7;Iza iry vehivavy iry ?;Qui est cette femme (|là-bas) ?
 ;7;Ginette iry verivavy iry;Cette femme (là-bas|) est Ginette;C'est Ginette cette femme (là-bas|)
-;7;Inona iry fanaka iry ?;Quel est ce meuble (là-bas|) ?;Qu'est-ce que c'est que ce meuble (là-bas|) ?
+;7;Inona iry fanaka iry ?;Quel est ce meuble (là-bas|) ?;Qu'est-ce que c'est que ce meuble (là-bas|) ?;c'est quoi ce meuble ?
 ;7;Seza iry fanaka iry;Ce meuble (là-bas|) est une chaise;C'est une chaise, ce meuble (là-bas|)
-;7;Iza ireo olona ireo ?;qui sont ces gens ?;C'est qui ces gens ?
+;7;Iza ireo olona ireo ?;qui sont ces (personnes|gens) ?;C'est qui ces (personnes|gens) ?
 ;7;Mpiasa ireo olona ireo;Ces gens sont des ouvriers;Ces gens sont des (travailleur|ouvrier)s
 ;7;Inona ireo tavoahangy ireo ?;(C'est quoi|Que sont|Qu'est-ce que sont|Qu'est-ce que c'est que) ces bouteilles ?
 ;7;Fanafody ireo tavoahangy ireo;Ces bouteilles sont des (médicaments|remède)
@@ -390,7 +390,7 @@ id;lesson_id;text;answers
 ;26;mahasoa;(être|) utile
 ;26;mandrosoa;(r|)entrer
 ;26;aoka;(laisse|cesse)(z|)
-;26;hody;rentrer (à la maison)
+;26;mody;rentrer (à la maison)
 
 ;27;nandeha tany Antananarivo aho omaly;je suis allé à Antananarivo hier;hier, je suis allé à Antananarivo
 ;27;tsara ve ny andro ?;faisait-il beau ?;(est-ce qu'|)il (faisait|a fait) beau ?;(est-ce que|) le temps était (bon|beau) ?
@@ -514,7 +514,7 @@ id;lesson_id;text;answers
 ;38;mikiakiaka;crier
 ;38;mpivarotra;(un|le|) (vendeur|commerçant)
 ;38;mvidy;acheter
-;38;miady varotra;marchander
+;38;miady varotra;marchander;négocier
 ;38;mpvidy;(des |un |l'|)(client|acheteur)(s|)
 ;38;lafo;cher
 ;38;mora;facile;bon marché;pas cher:simple
@@ -524,10 +524,10 @@ id;lesson_id;text;answers
 ;39;inona avy ny entana amidy eny ?;quelles sont les (marchandises|choses|objets|fournitures) (qui sont à vendre|qu'on (y|)vend) ?
 ;39;betsaka ny entana : lamba, hena, anana, voankazo, vonikazo ...;il y a beaucoup de (marchandises|choses|objets|fournitures) : (du|des|) tissus, (|de la) viande, (|des) (légumes|brèdes), (|des) fruits, (|des) fleurs
 ;39;mivarotra sy mikiakiaka ny mpivarotra;les (commerçants|vendeurs) vendent et crient
-;39;mvidy sy miady varotra ny mpvidy;les (acheteurs|clients) achètent et marchandent
+;39;mvidy sy miady varotra ny mpvidy;les (acheteurs|clients) achètent et (négocient|marchandent)
 ;39;zoma anio ka ho betsaka ny olana;il y aura beaucoup de monde le vendredi après-midi
 ;39;lafo ny hena;la viande est chère
-;39;mora ny voankazo;les fruits sont chers
+;39;mora ny voankazo;les fruits (ne|) sont pas chers;les fruits sont bon marché
 
 ;40;chez nous, le marché est le jeudi;any aminay alakamisy ny tsena;alakamisa ny tsena any aminay
 ;40;les commerçants vendent bon marché ce jour-là si les acheteurs ne sont pas nombreux;mivarotra mora ny mprivarotra amin'io andro io raha tsy betsaka ny mpvidy
@@ -588,7 +588,7 @@ id;lesson_id;text;answers
 ;44;manana;avoir
 ;44;madinika;(la|) petite monaie;(les|) pièce(s|)
 
-;45;miady varotra;marchander
+;45;miady varotra;marchander;négocier
 ;45;ohatrina ny radianao;combien (pour|coûte(ent|)) (vos|votre) radis ?;votre radis coûte combien;vos radis coûtent combien ?
 ;45;ariary roa ny fehezany telo tompoko;deux ariary (pour[) (|les) trois bottes (monsieur|madame);trois bottes pour deux ariary (madame[monsieur)
 ;45;efa betsaka izy izao ka ahoana no lafo tahaka izany ?;il y en a beaucoup maintenant, pourquoi (sont-ils|est-ce|est-ce que (c'est|)) (si|aussi) cher ?
@@ -598,7 +598,7 @@ id;lesson_id;text;answers
 ;45;lavitra no hakana azy;(on|je) va les (prendre|chercher) loin
 ;45;mba ataovy ariary roa ny efatra;(donne|donnez|faites|fais)-(moi|m'en) deux ariary pour les quatres;(donne|donnez|faites|fais)-(moi|m'en) les quatres pour deux ariary
 ;45;maty antoka aho tompoko amin'izany;je (me fais avoir|vends à perte) (là|) (monsieur|madame)
-;45;omeo kely enina àry aho raha tsy azo iadiam-barotra ianao;(donne|donndez)-(moi|m'en) six petites si (on ne peut pas|ça n'est pas possible de) marchander avec (toi|vous)
+;45;omeo kely enina àry aho raha tsy azo iadiam-barotra ianao;(donne|donndez)-(moi|m'en) six petites si (on ne peut pas|ça n'est pas possible de) (négocier|marchander) avec (toi|vous)
 ;45;ny kely omena ahy fa masoaka ny vaventy;(donnez|donne)-moi (des|les) petits (car|parce que) les gros (sont piquant|piquent)
 ;45;inty àry tompoko;(voici|voilà) (monsieur|madame)
 ;45;aiza izay kadoa ?;où est le cadeau ?

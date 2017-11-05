@@ -26,3 +26,6 @@ services:
     app.complaint_manager:
         class: AppBundle\Manager\ComplaintManager
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.quote_generator:
+        class: AppBundle\Manager\QuoteGenerator
