@@ -1,4 +1,4 @@
-<div class="col-xs-11 col-sm-5 col-md-4 book-lesson-element">
+<div class="book-lesson-element">
 <h1>
     {{ bookLesson.title }}
   </h1>
@@ -12,7 +12,6 @@
            id="lesson-{{ lesson.id }}"
            >
           {{ lesson.title }}
-        </a>
 
         {% if lesson.currentLearning is not null %}
           {% if lesson.currentLearning.hotness >= 3 %}
@@ -25,6 +24,7 @@
             <i class="fa fa-battery-1 fa-fw hotness-indicator" style="color: red"></i>
           {% endif %}
         {% endif %}
+        </a>
       </li>
     {% endfor %}
   </ul>

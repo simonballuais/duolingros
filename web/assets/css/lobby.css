@@ -3,6 +3,7 @@
     background-color: white;
     padding: 0;
     height:300px;
+    width: 250px;
     margin-left:10px;
     margin: 10px;
     overflow: hidden;
@@ -33,20 +34,21 @@
 }
 
 .book-lesson-element ul li {
-    margin-left: 15px;
-    margin-right: 15px;
-    border-bottom: 1px solid var(--light-gray);
 }
 
 .book-lesson-element ul li:last-child {
     border-bottom: 0;
 }
 
+
 .book-lesson-element ul li a {
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid var(--light-gray);
     font-size: 12pt;
     width: 100%;
 }
-
 .book-lesson-element ul li:hover {
     background-color: var(--primary-light);
 }
@@ -56,4 +58,10 @@
     color: orange;
     font-size: 12pt;
     padding-top: 3px;
+}
+
+#book-lesson-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%
 }
