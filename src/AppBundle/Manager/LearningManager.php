@@ -40,12 +40,10 @@ class LearningManager
 
         if ($successPercentage >= self::GOOD_PERCENTAGE) {
             $learning->increaseGoodStreak();
-            $learning->increaseVacationDays();
         }
         else {
             if ($now->format('d/m/Y') != $lastPractice->format('d/m/Y')) {
                 $learning->resetGoodStreak(0);
-                $learning->decreaseVacationDays();
             }
         }
 

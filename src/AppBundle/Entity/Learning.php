@@ -45,11 +45,6 @@ class Learning
     protected $lastPractice;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $vacationDays;
-
-    /**
      * @ORM\Column(type="array")
      */
     protected $lastScores;
@@ -57,7 +52,6 @@ class Learning
     public function __construct()
     {
         $this->goodStreak = 0;
-        $this->vacationDays = -1;
         $this->lastPractice = new \DateTime();
         $this->lastPractice->modify('-1 day');
     }
@@ -90,31 +84,19 @@ class Learning
     {
         $now = new \DateTime();
 
-        if ($now->getTimestamp() < $this->getNextPractice()->getTimestamp()) {
+        $vacationDays = $this->getVacationDays();
+
+        $diff = $now->diff($this->getLastPractice());
+        $lateness = $diff->days;
+
+        $hotness = intval(round((($vacationDays * 3) - $lateness) / $vacationDays));
+
+        if ($hotness < 1) {
+            return 1;
+        }
+        if ($hotness > 3) {
             return 3;
         }
-
-        $diff = $this->getLastPractice()->diff($this->getNextPractice());
-        $learningPeriod = $diff->days;
-
-        $diff = $now->diff($this->getNextPractice());
-        $actualLateness = $diff->days + 1;
-
-        if ($learningPeriod == 0) {
-            $latenessScore = 0;
-        }
-        else {
-            $latenessScore = $actualLateness / $learningPeriod;
-        }
-
-        $hotness = 3 - $latenessScore;
-        $hotness = floor($hotness);
-
-        if ($hotness < 0) {
-            $hotness = 0;
-        }
-
-        $hotness = intval($hotness);
 
         return $hotness;
     }
@@ -167,11 +149,28 @@ class Learning
         return $this;
     }
 
+    public function getVacationDays()
+    {
+        $mastery = $this->getMastery();
+
+        $days = 1;
+
+        if ($mastery > 50) {
+            $days = 2;
+        }
+
+        if ($mastery > 80) {
+            $days = 9;
+    }
+
+        return $days;
+    }
+
     public function getNextPractice()
     {
         $nextPractice = clone $this->lastPractice;
-        $nextPractice->modify('+1 day');
-        $nextPractice->modify('+' . $this->vacationDays . 'day');
+        $vacationDays = $this->getVacationDays();
+        $nextPractice->modify('+' . $vacationDays .' day');
 
         return $nextPractice;
     }
@@ -179,22 +178,6 @@ class Learning
     public function setNextPractice($nextPractice)
     {
         $this->nextPractice = $nextPractice;
-
-        return $this;
-    }
-
-    public function getVacationDays()
-    {
-        return $this->vacationDays;
-    }
-
-    public function setVacationDays($vacationDays)
-    {
-        $this->vacationDays = $vacationDays;
-
-        if ($this->vacationDays <= 0) {
-            $this->vacationDays = 0;
-        }
 
         return $this;
     }
@@ -208,18 +191,6 @@ class Learning
     public function resetGoodStreak()
     {
         $this->goodStreak = 0;
-        return $this;
-    }
-
-    public function increaseVacationDays()
-    {
-        $this->vacationDays += 1;
-        return $this;
-    }
-
-    public function decreaseVacationDays()
-    {
-        $this->vacationDays -= 1;
         return $this;
     }
 
@@ -243,5 +214,11 @@ class Learning
     public function getLastScores()
     {
         return $this->lastScores;
+    }
+     public function setLastScores($lastScores)
+    {
+        $this->lastScores = $lastScores;
+
+        return $this;
     }
 }

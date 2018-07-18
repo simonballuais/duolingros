@@ -13,48 +13,125 @@ class LeaningTest extends WebTestCase
         $cases = [
             [
                 "lastPractice" => 1,
-                "vacationDays" => 0,
+                "lastScores" => [90, 90, 90],
                 "hotness" => 3
             ],
             [
                 "lastPractice" => 1,
-                "vacationDays" => 3,
+                "lastScores" => [70, 70, 70],
                 "hotness" => 3
             ],
             [
-                "lastPractice" => 6,
-                "vacationDays" => 1,
+                "lastPractice" => 1,
+                "lastScores" => [50, 50, 50],
+                "hotness" => 2
+            ],
+            [
+                "lastPractice" => 1,
+                "lastScores" => [10, 50, 90],
+                "hotness" => 2
+            ],
+            [
+                "lastPractice" => 2,
+                "lastScores" => [90, 90, 90],
+                "hotness" => 3
+            ],
+            [
+                "lastPractice" => 2,
+                "lastScores" => [70, 70, 70],
+                "hotness" => 2
+            ],
+            [
+                "lastPractice" => 2,
+                "lastScores" => [50, 50, 50],
                 "hotness" => 1
             ],
             [
-                "lastPractice" => 8,
-                "vacationDays" => 1,
-                "hotness" => 0
+                "lastPractice" => 2,
+                "lastScores" => [10, 50, 90],
+                "hotness" => 1
             ],
             [
-                "lastPractice" => 8,
-                "vacationDays" => 7,
+                "lastPractice" => 3,
+                "lastScores" => [90, 90, 90],
                 "hotness" => 3
+            ],
+            [
+                "lastPractice" => 3,
+                "lastScores" => [70, 70, 70],
+                "hotness" => 2
+            ],
+            [
+                "lastPractice" => 3,
+                "lastScores" => [50, 50, 50],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 3,
+                "lastScores" => [10, 50, 90],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 10,
+                "lastScores" => [90, 90, 90],
+                "hotness" => 2
+            ],
+            [
+                "lastPractice" => 10,
+                "lastScores" => [70, 70, 70],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 10,
+                "lastScores" => [50, 50, 50],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 10,
+                "lastScores" => [10, 50, 90],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 20,
+                "lastScores" => [90, 90, 90],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 20,
+                "lastScores" => [70, 70, 70],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 20,
+                "lastScores" => [50, 50, 50],
+                "hotness" => 1
+            ],
+            [
+                "lastPractice" => 20,
+                "lastScores" => [10, 50, 90],
+                "hotness" => 1
             ],
         ];
 
         foreach ($cases as $case) {
             $lastPractice = new \DateTime();
             $lastPractice->modify("-" . $case["lastPractice"] . " days");
+            $lastPractice->modify('-5 minute');
 
             $learning = new Learning();
             $learning->setLastPractice($lastPractice);
-            $learning->setVacationDays($case["vacationDays"]);
+            $learning->setLastScores($case["lastScores"]);
 
             $hotness = $learning->getHotness();
 
             $this->assertEquals(
                 $case['hotness'],
                 $hotness,
-                sprintf('La last date de %s jours et il y avait une vacation de %s. La hotness attendue est %s',
+                sprintf('La last date de %s jours et il y avait des lastScores de %s. La hotness attendue est %s. vacationDays : %s',
                     $case['lastPractice'],
-                    $case['vacationDays'],
-                    $case['hotness']
+                    implode(', ', $case['lastScores']),
+                    $case['hotness'],
+                    $learning->getVacationDays()
                 )
             );
         }
