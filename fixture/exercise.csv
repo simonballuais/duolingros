@@ -77,9 +77,9 @@ id;lesson_id;text;answers
 ;5;Zazakely marary;(enfant|bébé) malade;Un (enfant|bébé) malade
 ;5;Fanafody mangidy;(remède|Médicament) amer;Un (médicament|remède) amer
 ;5;Cette eau est-elle amer ?;Mangidy ve io rano io ?
-;5;Non, cette eau n'est pas amer;Tsia, tsy mangidy io rano io
-;5;Cet ouvrier est-il malade ?;Marary ve io mpiasa io ?
-;5;Je ne sais pas si il est malade ou non;Tsy fantatro na marary izy na tsia
+;5;Non, cette eau n'est pas amère;Tsia, tsy mangidy io rano io
+;5;Cet ouvrier est-il malade ?;Marary ve io mpiasa io ?|tsy fantatro raha marary izy na tsia
+;5;Je ne sais pas si il est malade ou non;Tsy fantatro na marary izy na tsia|tsy fantatro raha marary izy na tsia
 ;5;Cette personne et l'enfant sont peut-être malades;Marary angamba io olona io sy ny zazakely
 ;5;C'est bien que l'eau soit propre et que la maison soit propre;tsara ny rano madio sy ny trano madio
 ;5;Beaucoup de gens sont malades;Be ny olona marary
