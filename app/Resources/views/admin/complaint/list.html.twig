@@ -1,0 +1,48 @@
+{% extends 'front/base.html.twig' %}
+
+{% block body %}
+  <div class="container">
+
+    <div class="container">
+      {% for complaint in complaints %}
+        <div class="box" style="margin: 10px">
+          <div class="box-header">
+            <h3 class="box-title"> {{ complaint.exercise.text }} </h3>
+          </div> <!-- box-header -->
+          <div class="box-body">
+            <form action="{{ path('admin_complaint') }}"
+                  method="POST"
+                  >
+              <div class="row">
+                <div style='color: red' class="col-md-10"> {{ complaint.propositionText }} </div> <!-- col -->
+                <div class="col-md-2">
+                  <button type='submit' class='btn btn-primary'>
+                    Ouki
+                  </button>
+                  <a href="{{ path('complaint_delete', {'complaint': complaint.id}) }}"
+                     class='btn btn-danger'
+                     >
+                     Tropa
+                  </a>
+                </div> <!-- col -->
+              </div> <!-- row -->
+              <div class="row">
+                {% for answer in complaint.exercise.answerList %}
+                  <div class="col-md-12">
+                    <input type='hidden' value='{{ complaint.id }}'
+                       name='{{ complaint.exercise.text }}[_complaint]'
+                       >
+                    <input type='text' value='{{ answer }}'
+                       name='{{ complaint.exercise.text }}[{{ loop.index }}]'
+                       style='width: 100%'
+                       class='form-control'
+                       >
+                  </div> <!-- col -->
+                {% endfor %}
+              </div> <!-- row -->
+            </form>
+          </div> <!-- box-body -->
+        </div> <!-- box-body -->
+      {% endfor %}
+    </div> <!-- box -->
+{% endblock body %}
