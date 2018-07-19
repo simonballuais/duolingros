@@ -113,7 +113,7 @@ id;lesson_id;text;answers
 ;7;Iza irery zazakely irery ?;Qui sont ces (enfants|bébés) (là-bas|) ?;C'est qui ces (enfants|bébés) (là-bas|) ?
 ;7;Mpianatra irery zazakely irery;Ces enfants (là-bas|) sont des écoliers;Ces enfants (là-bas|) sont des élèves;Ce ont des élèves là bas
 ;7;Inona irery entana irery ?;(Que sont|C'est quoi|Qu'est-ce que c'est que) ces (choses|objets|bagages) (là-bas|)
-;7;Fanaka irery entana irery;Ces (babages|trucs|choses) là bas sont des meubles
+;7;Fanaka irery entana irery;Ces (bagages|trucs|choses) là bas sont des meubles
 ;7;Ces hommes sont des ouvriers et des menuisiers;Mpiasa sy mpandrafitra ireo lehilahy ireo
 ;7;Cette bouteille-là est un médicament sucré;Fanafody mamy (io|iry) tavoahangy (io|iry)
 ;7;La table et la chaise sont des meubles;Fanaka ny latabatra sy ny seza
@@ -589,15 +589,15 @@ id;lesson_id;text;answers
 ;44;madinika;(la|) petite monaie;(les|) pièce(s|)
 
 ;45;miady varotra;marchander;négocier
-;45;ohatrina ny radianao;combien (pour|coûte(ent|)) (vos|votre) radis ?;votre radis coûte combien;vos radis coûtent combien ?
-;45;ariary roa ny fehezany telo tompoko;deux ariary (pour[) (|les) trois bottes (monsieur|madame);trois bottes pour deux ariary (madame[monsieur)
+;45;ohatrina ny radianao;combien (pour|coûte(ent|)) (vos|votre) radis ?;votre radis coûte combien;vos radis coûtent combien ?;combien tes radis ?
+;45;ariary roa ny fehezany telo tompoko;deux ariary (pour|) (|les) trois bottes (monsieur|madame);trois bottes pour deux ariary (madame|monsieur)
 ;45;efa betsaka izy izao ka ahoana no lafo tahaka izany ?;il y en a beaucoup maintenant, pourquoi (sont-ils|est-ce|est-ce que (c'est|)) (si|aussi) cher ?
 ;45;mora izany tompoko;((c'est|ça n'est) pas cher|c'est bon marché) (monsieur|madame)
-;45;lafo ange no ividiananay azy amin'ny mpamboly ary lavitra no hakana azy;(on les (achète|paye)|nous les (achetons|payons) cher) aux (paysans|agriculteurs|cultivateurs) et (|puis) (on|je) va les (prendre|chercher) loin
+;45;lafo ange no ividiananay azy amin'ny mpamboly ary lavitra no hakana azy;(on les (achète|paye)|nous les (achetons|payons) cher) au(x) ((paysan|agriculteur|cultivateur)(s)) et (|puis) (on|je) va les (prendre|chercher) loin
 ;45;lafo ange no ividiananay azy amin'ny mpamboly;(on les (achète|paye)|nous les (achetons|payons) cher) aux (paysans|agriculteurs|cultivateurs)
 ;45;lavitra no hakana azy;(on|je) va les (prendre|chercher) loin
-;45;mba ataovy ariary roa ny efatra;(donne|donnez|faites|fais)-(moi|m'en) deux ariary pour les quatres;(donne|donnez|faites|fais)-(moi|m'en) les quatres pour deux ariary
-;45;maty antoka aho tompoko amin'izany;je (me fais avoir|vends à perte) (là|) (monsieur|madame)
+;45;mba ataovy ariary roa ny efatra;(donne|donnez|faites|fais)-(moi|m'en) deux ariary pour les quatres;(donne|donnez|faites|fais)-(moi|m'en) les quatres pour deux ariary;(est-ce que )tu peux faire deux ariary (pour|les) quatre ?
+;45;maty antoka aho tompoko amin'izany;je (me fais avoir|vends à perte) (là|) (monsieur|madame);je vends à perte (comme ça) (monsieur)
 ;45;omeo kely enina àry aho raha tsy azo iadiam-barotra ianao;(donne|donndez)-(moi|m'en) six petites si (on ne peut pas|ça n'est pas possible de) (négocier|marchander) avec (toi|vous)
 ;45;ny kely omena ahy fa masoaka ny vaventy;(donnez|donne)-moi (des|les) petits (car|parce que) les gros (sont piquant|piquent)
 ;45;inty àry tompoko;(voici|voilà) (monsieur|madame)
