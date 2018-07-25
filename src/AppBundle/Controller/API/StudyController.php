@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Lesson;
+use AppBundle\Entity\Exercise;
 use AppBundle\Model\Proposition;
 use AppBundle\Manager\LearningManager;
 
@@ -149,6 +150,30 @@ class StudyController extends Controller
         }
 
         return new JsonResponse(['message' => $message], 200);
+    }
+
+    /** * @Route("/api/study/test_proposition",
+     *        name="api_study_test_proposition",
+     *        options={"expose"=true}
+     *        )
+     * @Method({"POST"})
+     */
+    public function testProposition(Request $request)
+    {
+        $exerciseText = $request->get('exercise');
+        $propositionText = $request->get('proposition');
+
+        $proposition = new Proposition($propositionText);
+        $em = $this->get('app.exercise_manager');
+        $exercise = new Exercise();
+        $exercise->setCorrector($this->get('app.corrector.regex'));
+        $exercise->setAnswerList([$exerciseText]);
+        $correction = $exercise->treatProposition($proposition);
+
+        return new JsonResponse([
+            'isOk' => $correction->isOk(),
+            'remarks' => $correction->getRemarks(),
+        ]);
     }
 }
 ?>
