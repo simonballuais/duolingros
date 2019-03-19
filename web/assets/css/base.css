@@ -95,6 +95,19 @@
     bottom: 0px;
 }
 
+textarea.proposition {
+    margin-top: 10px;
+}
+
 a {
     color: var(--primary);
+}
+h1 {
+    font-size: 56pt;
+}
+
+h2 {
+    padding-left: 30px;
+    margin: 0;
+    margin-bottom: 30px;
 }

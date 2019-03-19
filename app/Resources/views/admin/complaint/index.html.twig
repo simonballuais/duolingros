@@ -1,0 +1,58 @@
+{% extends 'front/base.html.twig' %}
+
+{% block additional_stylesheet %}
+  <link rel="stylesheet" href="{{ asset('assets/css/complaint.css') }}" />
+{% endblock additional_stylesheet %}
+
+{% block javascript %}
+  {{ parent() }}
+
+  <script type="text/javascript">
+let postTimeout;
+
+$(document).ready(function () {
+  $('.proposition').on('keyup', function () {
+    let $this = $(this);
+    let propositionText = $this.attr('proposition-text');
+
+    clearTimeout(postTimeout);
+    postTimeout = setTimeout(function () {
+      $.ajax({
+        type        : 'POST',
+        url         : Routing.generate('api_study_test_proposition'),
+        data        : { proposition: propositionText, exercise: $this.val() },
+        dataType    : 'json',
+        success     : function(data) {
+          console.log(data);
+
+          if (data.isOk) {
+            $this.css('background-color', 'lightgreen');
+          } else {
+            $this.css('background-color', 'lightpink');
+
+          }
+        },
+        error       : function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log(XMLHttpRequest);
+            $this.css('background-color', 'lightpink');
+        }
+      });
+    },
+    500
+      );
+  });
+});
+  </script>
+{% endblock javascript %}
+
+{% block body %}
+  <div class="container">
+
+    <div class="container">
+      {% if complaints|length %}
+        {% include 'admin/complaint/_list.html.twig' %}
+      {% else %}
+        {% include 'admin/complaint/_empty_list.html.twig' %}
+      {% endif %}
+    </div> <!-- box -->
+{% endblock body %}

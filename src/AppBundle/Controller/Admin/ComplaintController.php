@@ -42,7 +42,7 @@ class ComplaintController extends Controller
         }
 
         return $this->render(
-            'admin/complaint/list.html.twig',
+            'admin/complaint/index.html.twig',
             [
                 'complaints' => $complaints,
             ]
