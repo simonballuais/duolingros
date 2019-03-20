@@ -5,9 +5,21 @@
 {% endblock additional_stylesheet %}
 
 {% block additional_javascript %}
-  <script src="{{ asset('assets/js/study/study.js') }}"> </script>
+  <script src="{{ asset('assets/js/study.js') }}"> </script>
   <script type="text/javascript">
-  startLesson({{ lesson.id }});
+
+function whenDocumentReady(fn) {
+  if (document.readyState != 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+whenDocumentReady(function () {
+  Study.startLesson({{ lesson.id }});
+});
+
   </script>
 {% endblock additional_javascript %}
 

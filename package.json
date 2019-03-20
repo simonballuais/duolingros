@@ -1,0 +1,32 @@
+{
+  "name": "duolingros",
+  "version": "1.0.0",
+  "description": "Symfony Standard Edition ========================",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "wepack": "0.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fatalcaca/duolingros.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fatalcaca/duolingros/issues"
+  },
+  "homepage": "https://github.com/fatalcaca/duolingros#readme"
+}
