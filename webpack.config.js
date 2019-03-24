@@ -10,5 +10,8 @@ module.exports = {
         libraryTarget: 'var',
         library: 'Study'
     },
-    watch: true
+    watch: true,
+    externals: {
+        'vue': 'Vue'
+    }
 }

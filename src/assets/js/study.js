@@ -1,16 +1,25 @@
-import Vue from 'vue';
-
 export function startLesson(lessonId) {
-    registerEvents();
     var $proposition = $('textarea#proposition');
     window.scrollTo(0, 0);
 
     playgroundApp = new Vue({
         el: 'div#playground',
         delimiters: ['${', '}'],
+        data: {
+            proposition: '',
+            lessonTitle: '...',
+            progress: 0,
+            exerciseText: '...',
+            goodRun: false,
+            remarks: [],
+            remarksFg: "red",
+            remarksBg: "red",
+            correctionStatus: 'Oki :)',
+            conclusionHeader: '',
+            conclusionBody: '',
+            conclusionFooter: '',
+        }
     });
-
-    return;
 
     showPlayground();
 
@@ -29,6 +38,8 @@ export function startLesson(lessonId) {
             error(XMLHttpRequest, textStatus, errorThrown);
         }
     });
+
+    registerEvents();
 };
 
 const DEFAULT_COMPLAINT_BUTTON = 'Euuuh bah si lol ...';
@@ -51,8 +62,6 @@ const STATE = {
     READING_REMARKS: 'reading remarks',
     READING_STUDY_CONCLUSION: 'reading study conclusion',
 };
-
-export let playgroundApp;
 
 var state = STATE.IDDLE;
 var complaintSent = false;
