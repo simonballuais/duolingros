@@ -1,91 +1,72 @@
-#correction-status
-{
-    margin-top: 20px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-top: 20px;
-    border-radius: 0;
-    box-shadow: 0px 0px 20px #AAAAAA;
-}
+#correction-status {
+  margin-top: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 20px;
+  border-radius: 0;
+  box-shadow: 0px 0px 20px #AAAAAA; }
 
 #complain-button {
-    text-align: center;
-    width: 350px;
-    height: 70px;
-    margin-top: -50pt;
-    margin-right: -50pt;
-    box-shadow: 0px 0px 40px var(--dark-gray);
-    font-size: 20pt;
-}
+  text-align: center;
+  width: 350px;
+  height: 70px;
+  margin-top: -50pt;
+  margin-right: -50pt;
+  box-shadow: 0px 0px 40px var(--dark-gray);
+  font-size: 20pt; }
 
 .progress {
-    background-color: transparent;
-}
+  background-color: transparent; }
 
-textarea
-{
-    resize: none;
-    width: 100%;
-    padding: 10px;
-    height: 150px;
-    font-size: 18pt;
-    border: solid 1px #DDDDDD;
-    color: #888888;
-}
+textarea {
+  resize: none;
+  width: 100%;
+  padding: 10px;
+  height: 150px;
+  font-size: 18pt;
+  border: solid 1px #DDDDDD;
+  color: #888888; }
 
 .remark {
-    font-size: 20pt !important;
-}
+  font-size: 20pt !important; }
 
 @keyframes coincoin {
-    from { border: solid 3px transparent; }
-    to { border: solid 3px #AABBFF; }
-}
-
-input.start-lesson+label {
+  from {
+    border: solid 3px transparent; }
+  to {
+    border: solid 3px #AABBFF; } }
+input.start-lesson {
+  display: none; }
+  input.start-lesson + label {
     display: block;
-    padding: 3px;
-}
-
-input.start-lesson:checked+label {
+    padding: 3px; }
+  input.start-lesson:checked + label {
     border-radius: 5px;
     border: solid 3px #AABBFF;
     padding: 0px;
     animation-name: coincoin;
-    animation-duration: 0.3s;
-}
-
-input.start-lesson {
-    display: none;
-}
+    animation-duration: 0.3s; }
 
 label.lesson {
-    font-size: 14pt;
-    font-weight: normal;
-}
+  font-size: 14pt;
+  font-weight: normal; }
 
 #lesson-list {
-    overflow: hidden;
-    padding: 15px;
-}
-
-#lesson-list ul li {
-    list-style-type: none;
-}
+  overflow: hidden;
+  padding: 15px; }
+  #lesson-list ul li {
+    list-style-type: none; }
 
 .mastery {
-    height: 3px;
-    margin-top: -4px;
-}
+  height: 3px;
+  margin-top: -4px; }
 
 div#playground {
-    height: 100vh;
-}
+  height: 100vh; }
 
 #text-row {
-    box-shadow: 0px 0px 20px #AAAAAA;
-    background-color: white;
-    padding: 15px;
-}
+  box-shadow: 0px 0px 20px #AAAAAA;
+  background-color: white;
+  padding: 15px; }
 
-
+/*# sourceMappingURL=study.css.map */

@@ -1,8 +1,7 @@
 .jumbotron {
-    background-color: #2de230;
-    margin: 50px;
-}
+  background-color: #2de230;
+  margin: 50px; }
+  .jumbotron h1 {
+    color: #0d440e; }
 
-.jumbotron h1 {
-    color: #0d440e;
-}
+/*# sourceMappingURL=complaint.css.map */

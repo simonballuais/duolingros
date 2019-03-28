@@ -11,6 +11,9 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.1",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "wepack": "0.0.1"

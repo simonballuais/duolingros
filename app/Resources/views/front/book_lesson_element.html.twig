@@ -17,9 +17,9 @@
           {% if lesson.currentLearning.hotness >= 3 %}
             <i class="fa fa-battery-full fa-fw hotness-indicator" style="color: green"></i>
           {% elseif lesson.currentLearning.hotness >= 2 %}
-            <i class="fa fa-battery-3 fa-fw hotness-indicator" style="color: orange"></i>
+            <i class="fa fa-battery-half fa-fw hotness-indicator" style="color: orange"></i>
           {% else %}
-            <i class="fa fa-battery-1 fa-fw hotness-indicator" style="color: red"></i>
+            <i class="fa fa-battery-quarter fa-fw hotness-indicator" style="color: red"></i>
           {% endif %}
         {% endif %}
         </a>

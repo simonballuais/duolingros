@@ -1,67 +1,51 @@
 .book-lesson-element {
-    box-shadow: 0px 0px 20px #AAAAAA;
-    background-color: white;
-    padding: 0;
-    height:300px;
-    width: 250px;
-    margin-left:10px;
-    margin: 10px;
-    overflow: hidden;
-}
-
-.book-lesson-element h1 {
+  box-shadow: 0px 0px 20px #AAAAAA;
+  background-color: white;
+  padding: 0;
+  height: 300px;
+  width: 250px;
+  margin-left: 10px;
+  margin: 10px;
+  overflow: hidden; }
+  .book-lesson-element h1 {
     text-align: center;
     font-size: 24pt;
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 10px;
     margin: 15px;
-    color: var(--dark-gray);;
-}
-
-.book-lesson-element h2 {
+    color: var(--dark-gray); }
+  .book-lesson-element h2 {
     font-size: 14pt;
     text-align: center;
     margin: 0;
     color: var(--gray);
     padding-left: 3px;
-    padding-right: 3px;
-}
-
-.book-lesson-element ul {
+    padding-right: 3px; }
+  .book-lesson-element ul {
     margin-top: 15px;
     list-style: none;
-    padding: 0;
-}
-
-.book-lesson-element ul li {
-}
-
-.book-lesson-element ul li:last-child {
-    border-bottom: 0;
-}
-
-
-.book-lesson-element ul li a {
-    display: block;
-    padding-left: 15px;
-    padding-right: 15px;
-    border-bottom: 1px solid var(--light-gray);
-    font-size: 12pt;
-    width: 100%;
-}
-.book-lesson-element ul li:hover {
-    background-color: var(--primary-light);
-}
+    padding: 0; }
+    .book-lesson-element ul li:last-child {
+      border-bottom: 0; }
+    .book-lesson-element ul li:hover {
+      background-color: var(--primary-light); }
+    .book-lesson-element ul li a {
+      display: block;
+      padding-left: 15px;
+      padding-right: 15px;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 12pt;
+      width: 100%; }
 
 .hotness-indicator {
-    float: right;
-    color: orange;
-    font-size: 12pt;
-    padding-top: 3px;
-}
+  float: right;
+  color: orange;
+  font-size: 12pt;
+  padding-top: 3px; }
 
 #book-lesson-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%
-}
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+
+/*# sourceMappingURL=lobby.css.map */
