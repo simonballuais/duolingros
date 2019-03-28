@@ -48,20 +48,13 @@
                 font-size: 12pt;
                 width: 100%;
             }
+
+            .hotness-indicator {
+                float: right;
+                color: orange;
+                font-size: 12pt;
+                padding-top: 3px;
+            }
         }
     }
-}
-
-
-.hotness-indicator {
-    float: right;
-    color: orange;
-    font-size: 12pt;
-    padding-top: 3px;
-}
-
-#book-lesson-list {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%
 }

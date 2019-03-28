@@ -1,3 +1,8 @@
+#book-lesson-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+
 .book-lesson-element {
   box-shadow: 0px 0px 20px #AAAAAA;
   background-color: white;
@@ -36,16 +41,10 @@
       border-bottom: 1px solid var(--light-gray);
       font-size: 12pt;
       width: 100%; }
-
-.hotness-indicator {
-  float: right;
-  color: orange;
-  font-size: 12pt;
-  padding-top: 3px; }
-
-#book-lesson-list {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%; }
+    .book-lesson-element ul li .hotness-indicator {
+      float: right;
+      color: orange;
+      font-size: 12pt;
+      padding-top: 3px; }
 
 /*# sourceMappingURL=lobby.css.map */
