@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+Array.prototype.sample = function () {
+    return this[Math.floor(Math.random() * this.length)];
+}
+
 const DEFAULT_COMPLAIN_BUTTON = 'Euuuh bah si lol ...';
 const ENTER = 13;
 
@@ -47,6 +51,12 @@ export function startLesson(lessonId) {
             complainSent: false,
         },
         methods: {
+            getRandomSuccessMessage() {
+                return ['Oki :)', 'Yes maggle !', 'Bien ouej kiki'].sample()
+            },
+            getRandomFailureMessage () {
+                return ['Tropa :(', 'Nope.', 'Euh ...'].sample()
+            },
             getPropositionInput() {
                 return document.getElementById('proposition');
             },
@@ -85,12 +95,12 @@ export function startLesson(lessonId) {
                     $('#correction-status').fadeIn();
 
                     if (response.data.isOk) {
-                        this.correctionStatus = 'Oki :)';
+                        this.correctionStatus = this.getRandomSuccessMessage()
                         this.remarksBg = BG_GREEN;
                         this.remarksFg = FG_GREEN;
                     }
                     else {
-                        this.correctionStatus = 'Tropa :(';
+                        this.correctionStatus = this.getRandomFailureMessage()
                         this.remarksBg = BG_RED;
                         this.remarksFg = FG_RED;
                         setTimeout(function() {
