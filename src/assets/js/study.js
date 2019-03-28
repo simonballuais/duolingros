@@ -1,48 +1,6 @@
-export function startLesson(lessonId) {
-    var $proposition = $('textarea#proposition');
-    window.scrollTo(0, 0);
+import axios from 'axios';
 
-    playgroundApp = new Vue({
-        el: 'div#playground',
-        delimiters: ['${', '}'],
-        data: {
-            proposition: '',
-            lessonTitle: '...',
-            progress: 0,
-            exerciseText: '...',
-            goodRun: false,
-            remarks: [],
-            remarksFg: "red",
-            remarksBg: "red",
-            correctionStatus: 'Oki :)',
-            conclusionHeader: '',
-            conclusionBody: '',
-            conclusionFooter: '',
-        }
-    });
-
-    showPlayground();
-
-    $.ajax({
-        type        : 'GET',
-        url         : Routing.generate('api_study_start', {lesson: lessonId}),
-        dataType    : 'json',
-        success     : function(data) {
-            refreshLessonView(data);
-            $proposition.focus();
-            playgroundApp.proposition = '';
-            $proposition.attr('readonly', false);
-            state = STATE.WRITING_PROPOSITION;
-        },
-        error       : function(XMLHttpRequest, textStatus, errorThrown) {
-            error(XMLHttpRequest, textStatus, errorThrown);
-        }
-    });
-
-    registerEvents();
-};
-
-const DEFAULT_COMPLAINT_BUTTON = 'Euuuh bah si lol ...';
+const DEFAULT_COMPLAIN_BUTTON = 'Euuuh bah si lol ...';
 const ENTER = 13;
 
 const BG_RED = '#e22d2d';
@@ -63,186 +21,206 @@ const STATE = {
     READING_STUDY_CONCLUSION: 'reading study conclusion',
 };
 
-var state = STATE.IDDLE;
-var complaintSent = false;
 
-var $proposition = $('textarea#proposition');
-
-function refreshLessonView(data) {
-    if (undefined !== data.progress) {
-        playgroundApp.progress = data.progress;
-    }
-
-    if (undefined !== data.lessonTitle) {
-        playgroundApp.lessonTitle = data.lessonTitle;
-    }
-
-    if (undefined !== data.exerciseText) {
-        playgroundApp.exerciseText = data.exerciseText;
-    }
-
-    if (undefined !== data.remarks) {
-        playgroundApp.remarks = data.remarks;
-    }
-
-    if (undefined !== data.correctionStatus) {
-        playgroundApp.correctionStatus = data.correctionStatus;
-    }
-};
-
-function hidePlayground() {
-    //$('#playground').fadeOut(function() {
-        //$('#caca').fadeIn();
-    //});
-};
-
-function showPlayground() {
+export function startLesson(lessonId) {
     var $proposition = $('textarea#proposition');
+    window.scrollTo(0, 0);
 
-            console.log($proposition);
-    $('#caca').fadeOut(function() {
-        //$('#playground').fadeIn(function() {
-            //$proposition.focus();
-            //console.log($proposition);
-        //})
-    });
-};
+    playgroundApp = new Vue({
+        el: 'div#playground',
+        delimiters: ['${', '}'],
+        data: {
+            proposition: '',
+            blockPropositionInput: false,
+            lessonTitle: '...',
+            progress: 0,
+            exerciseText: '...',
+            goodRun: false,
+            remarks: [],
+            remarksFg: "red",
+            remarksBg: "red",
+            correctionStatus: 'Oki :)',
+            conclusionHeader: '',
+            conclusionBody: '',
+            conclusionFooter: '',
+            state: STATE.IDDLE,
+            complainSent: false,
+        },
+        methods: {
+            getPropositionInput() {
+                return document.getElementById('proposition');
+            },
+            refreshLessonView(data) {
+                if (undefined !== data.progress) {
+                    this.progress = data.progress;
+                }
 
-function showConclusion(callback) {
-    $('#lesson-conclusion-modal').modal("show");
-};
+                if (undefined !== data.lessonTitle) {
+                    this.lessonTitle = data.lessonTitle;
+                }
 
-function hideConclusion() {
-    $('#lesson-conclusion-modal').modal("hide");
-};
+                if (undefined !== data.exerciseText) {
+                    this.exerciseText = data.exerciseText;
+                }
 
-function finishStudy(data) {
-    state = STATE.READING_STUDY_CONCLUSION;
-    playgroundApp.conclusionHeader = 'Leçon terminée :)';
-    playgroundApp.conclusionBody = 'Score de ' + data.successPercentage + '%';
-    playgroundApp.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
-    playgroundApp.goodRun = data.goodRun;
-    showConclusion();
-};
+                if (undefined !== data.remarks) {
+                    this.remarks = data.remarks;
+                }
 
-function closeStudy() {
-    state = STATE.IDDLE;
-    playgroundApp.proposition = '';
-    hideConclusion();
-    hidePlayground();
-    goBackToLobby();
-};
+                if (undefined !== data.correctionStatus) {
+                    this.correctionStatus = data.correctionStatus;
+                }
+            },
+            sendProposition() {
+                this.blockPropositionInput = true
 
+                axios.post(
+                    Routing.generate('api_study_proposition_send'),
+                    { text: this.proposition }
+                )
+                .then((response) => {
+                    this.refreshLessonView(response.data);
+                    this.state = STATE.READING_REMARKS;
+                    this.focusInput();
+                    $('#correction-status').fadeIn();
 
-function sendProposition() {
-    var $proposition = $('textarea#proposition');
-    $proposition.attr('readonly', true);
+                    if (response.data.isOk) {
+                        this.correctionStatus = 'Oki :)';
+                        this.remarksBg = BG_GREEN;
+                        this.remarksFg = FG_GREEN;
+                    }
+                    else {
+                        this.correctionStatus = 'Tropa :(';
+                        this.remarksBg = BG_RED;
+                        this.remarksFg = FG_RED;
+                        setTimeout(function() {
+                            $('#complain-button').fadeIn();
+                        }, 150);
+                    }
+                })
+                .catch((error) => { console.error(error) })
+            },
+            startNextExercise() {
+                $('#correction-status').fadeOut();
+                this.hideComplainButton();
 
-    $.ajax({
-        type        : 'POST',
-        url         : Routing.generate('api_study_proposition_send'),
-        data        : { text: $proposition.val() },
-        dataType    : 'json',
-        success     : function(data) {
-            refreshLessonView(data);
-            state = STATE.READING_REMARKS;
-            $proposition.focus();
-            $('#correction-status').fadeIn();
+                axios.get(Routing.generate('api_study_get_new_exercise'))
+                .then((response) => {
+                    if (response.data.studyOver) {
+                        return this.finishStudy(response.data);
+                    }
 
-            if (data.isOk) {
-                playgroundApp.correctionStatus = 'Oki :)';
-                playgroundApp.remarksBg = BG_GREEN;
-                playgroundApp.remarksFg = FG_GREEN;
-            }
-            else {
-                playgroundApp.correctionStatus = 'Tropa :(';
-                playgroundApp.remarksBg = BG_RED;
-                playgroundApp.remarksFg = FG_RED;
-                setTimeout(function() {
-                    $('#complaint-button').fadeIn();
-                }, 150);
+                    this.blockPropositionInput = false;
+                    this.remarks = [];
+                    this.proposition = '';
+                    this.refreshLessonView(response.data);
+                    this.state = STATE.WRITING_PROPOSITION;
+                })
+                .catch((error) => { console.error(error) })
+            },
+            closeStudy() {
+                this.state = STATE.IDDLE;
+                this.proposition = '';
+                this.hideConclusion();
+                this.hidePlayground();
+                this.goBackToLobby();
+            },
+            finishStudy(data) {
+                this.state = STATE.READING_STUDY_CONCLUSION;
+                this.conclusionHeader = 'Leçon terminée :)';
+                this.conclusionBody = 'Score de ' + data.successPercentage + '%';
+                this.conclusionFooter = 'Maitrise de cette leçon : ' + data.mastery;
+                this.goodRun = data.goodRun;
+                this.showConclusion();
+            },
+            showConclusion() {
+                $('#lesson-conclusion-modal').modal("show");
+            },
+            hideConclusion() {
+                $('#lesson-conclusion-modal').modal("hide");
+            },
+            complain() {
+                if (this.complainSent) {
+                    return;
+                }
+
+                this.makeComplainButtonThink()
+                this.complainSent = true;
+
+                $.ajax({
+                    type        : 'PUT',
+                    url         : Routing.generate('api_study_complaint'),
+                    dataType    : 'json',
+                    success     : function(data) {
+                        $('#complain-button').html('<i class="fa fa-check-circle fa-fw"></i>' + data.message);
+                    },
+                    error       : function(XMLHttpRequest, textStatus, errorThrown) {
+                        $('#complain-button').html('<i class="fa fa-times-circle fa-fw"></i>');
+                        error(XMLHttpRequest, textStatus, errorThrown);
+                    }
+                });
+            },
+            hideComplainButton() {
+                setTimeout(this.resetComplainButton, 1500)
+                $('#complain-button').fadeOut();
+                this.complainSent = false;
+            },
+            makeComplainButtonThink() {
+                $('#complain-button').html('<i class="fa fa-cog fa-spin fa-2x fa-fw"></i>')
+            },
+            resetComplainButton() {
+                $('#complain-button').html(DEFAULT_COMPLAIN_BUTTON)
+            },
+            hidePlayground() {
+                $('#playground').fadeOut(function() {
+                    $('#caca').fadeIn();
+                });
+            },
+            showPlayground() {
+                var $proposition = $('textarea#proposition');
+
+                $('#caca').fadeOut(function() {
+                    $('#playground').fadeIn(function() {
+                        this.focusInput();
+                    })
+                });
+            },
+            goBackToLobby() {
+                window.location.replace(Routing.generate('homepage'));
+            },
+            focusInput() {
+                this.$nextTick(() => this.$refs.proposition.focus);
             }
         },
-        error       : function(XMLHttpRequest, textStatus, errorThrown) {
-            error(XMLHttpRequest, textStatus, errorThrown);
+        mounted() {
+            axios.get(Routing.generate('api_study_start', {lesson: lessonId}))
+            .then((response) => {
+                this.refreshLessonView(response.data);
+                this.proposition = '';
+                this.blockPropositionInput = false;
+                this.focusInput();
+                this.state = STATE.WRITING_PROPOSITION;
+            })
+            .catch((error) => { console.error(error) })
+
+            this.showPlayground();
         }
     });
-};
 
-function startNextExercise() {
-    var $proposition = $('textarea#proposition');
-    $('#correction-status').fadeOut();
-    resetComplaintButton();
-
-    $.ajax({
-        type        : 'GET',
-        url         : Routing.generate('api_study_get_new_exercise'),
-        dataType    : 'json',
-        success     : function(data) {
-            if (data.studyOver) {
-                return finishStudy(data);
-            }
-
-            $proposition.attr('readonly', false);
-            playgroundApp.remarks = [];
-            playgroundApp.proposition = '';
-            refreshLessonView(data);
-            state = STATE.WRITING_PROPOSITION;
-        },
-        error       : function(XMLHttpRequest, textStatus, errorThrown) {
-            error(XMLHttpRequest, textStatus, errorThrown);
-        }
-    });
-};
-
-function complaint() {
-    if (complaintSent) {
-        return;
-    }
-
-    $('#complaint-button').html('<i class="fa fa-cog fa-spin fa-2x fa-fw"></i>');
-    complaintSent = true;
-
-    $.ajax({
-        type        : 'PUT',
-        url         : Routing.generate('api_study_complaint'),
-        dataType    : 'json',
-        success     : function(data) {
-            $('#complaint-button').html('<i class="fa fa-check-circle fa-fw"></i>' + data.message);
-        },
-        error       : function(XMLHttpRequest, textStatus, errorThrown) {
-            $('#complaint-button').html('<i class="fa fa-times-circle fa-fw"></i>');
-            error(XMLHttpRequest, textStatus, errorThrown);
-        }
-    });
-};
-
-function goBackToLobby() {
-    window.location.replace(Routing.generate('homepage'));
-};
-
-function resetComplaintButton() {
-    setTimeout(function() {
-        $('#complaint-button').html(DEFAULT_COMPLAINT_BUTTON);
-    }, 1500);
-
-    $('#complaint-button').fadeOut();
-    complaintSent = false;
+    registerEvents();
 };
 
 function registerEvents() {
-    $('#complaint-button').click(complaint);
-
     $('body').keypress(function(event) {
         if (event.which === ENTER) {
-            if (state == STATE.WRITING_PROPOSITION) {
-                return sendProposition();
+            if (playgroundApp.state == STATE.WRITING_PROPOSITION) {
+                return playgroundApp.sendProposition();
             }
-            if (state == STATE.READING_REMARKS) {
-                return startNextExercise();
+            if (playgroundApp.state == STATE.READING_REMARKS) {
+                return playgroundApp.startNextExercise();
             }
-            if (state == STATE.READING_STUDY_CONCLUSION) {
-                return closeStudy();
+            if (playgroundApp.state == STATE.READING_STUDY_CONCLUSION) {
+                return playgroundApp.closeStudy();
             }
         }
     });

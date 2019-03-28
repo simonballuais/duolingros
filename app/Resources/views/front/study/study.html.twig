@@ -70,9 +70,11 @@ whenDocumentReady(function () {
               <textarea
                      cols="50"
                      rows="4"
+                     ref="proposition"
                      id="proposition"
                      v-model="proposition"
                      placeholder="réponse ..."
+                     :readonly="blockPropositionInput"
               >
               </textarea>
             </div> <!-- col -->
@@ -104,8 +106,9 @@ whenDocumentReady(function () {
 
       <div class="row">
           <button class="btn btn-warning btn-lg pull-right ripple"
-                  id="complaint-button"
+                  id="complain-button"
                   style="display: none"
+                  v-on:click="complain()"
                   >
             Euuuh bah si lol ...
       </div> <!-- row -->

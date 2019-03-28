@@ -45,8 +45,9 @@ class StudyController extends Controller
     public function sendPropositionAction(Request $request)
     {
         $sm = $this->get('app.study_manager');
+        $requestContent = json_decode($request->getContent());
 
-        $proposition = new Proposition($request->get('text'));
+        $proposition = new Proposition($requestContent->text);
         $correction = $sm->tryProposition($proposition);
 
         return new JsonResponse([
