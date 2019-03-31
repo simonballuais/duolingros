@@ -4,14 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="book_lesson")
+ * @ORM\Table(name="course")
  */
-class BookLesson
+class Course
 {
     /**
      * @ORM\Column(type="integer")
@@ -26,24 +24,18 @@ class BookLesson
     protected $title;
 
     /**
-        * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=200)
      */
     protected $subtitle;
 
     /**
-     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="bookLesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="BookLesson", mappedBy="course", cascade={"persist"})
      */
-    protected $lessonList;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Course", inversedBy="bookLessonList", cascade={"persist"})
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
-     */
-    protected $course;
+    protected $bookLessonList;
 
     public function __construct()
     {
-        $this->lessonList = new ArrayCollection();
+        $this->bookLessonList = new ArrayCollection();
     }
 
     public function getId()
@@ -80,27 +72,14 @@ class BookLesson
         return $this;
     }
 
-
-    public function getLessonList()
+    public function getBookLessonList()
     {
-        return $this->lessonList;
+        return $this->bookLessonList;
     }
 
-    public function setLessonList($lessonList)
+    public function setBookLessonList($bookLessonList)
     {
-        $this->lessonList = $lessonList;
-
-        return $this;
-    }
-
-    public function getCourse()
-    {
-        return $this->course;
-    }
-
-    public function setCourse($course)
-    {
-        $this->course = $course;
+        $this->bookLessonList = $bookLessonList;
 
         return $this;
     }

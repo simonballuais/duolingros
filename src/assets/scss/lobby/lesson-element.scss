@@ -14,14 +14,14 @@
         border-bottom: 1px solid #DDDDDD;
         padding-bottom: 10px;
         margin: 15px;
-        color: var(--dark-gray);;
+        color: $dark-gray;;
     }
 
     h2 {
         font-size: 14pt;
         text-align: center;
         margin: 0;
-        color: var(--gray);
+        color: $gray;
         padding-left: 3px;
         padding-right: 3px;
     }
@@ -37,14 +37,14 @@
             }
 
             &:hover {
-                background-color: var(--primary-light);
+                background-color: $primary-light;
             }
 
             a {
                 display: block;
                 padding-left: 15px;
                 padding-right: 15px;
-                border-bottom: 1px solid var(--light-gray);
+                border-bottom: 1px solid $primary-light;
                 font-size: 12pt;
                 width: 100%;
             }

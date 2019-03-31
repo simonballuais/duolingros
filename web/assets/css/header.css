@@ -1,35 +1,24 @@
 /*
-Error: Undefined variable: "$dark-gray".
-        on line 17 of src/assets/scss/lobby/lesson-element.scss
+Error: Undefined variable: "$primary".
+        on line 6 of src/assets/scss/header.scss
 
-12:         text-align: center;
-13:         font-size: 24pt;
-14:         border-bottom: 1px solid #DDDDDD;
-15:         padding-bottom: 10px;
-16:         margin: 15px;
-17:         color: $dark-gray;;
-18:     }
-19: 
-20:     h2 {
-21:         font-size: 14pt;
-22:         text-align: center;
+1: #header {
+2:     left: -30px;
+3:     right: -30px;
+4:     top: 0px;
+5:     height: 50pt;
+6:     background-color: $primary;
+7:     box-shadow: 0px 0px 30px black;
+8:     color: $white;
+9: 
+10:     #logout {
+11:         float: right;
 
 Backtrace:
-src/assets/scss/lobby/lesson-element.scss:17
+src/assets/scss/header.scss:6
 /usr/lib/ruby/vendor_ruby/sass/script/tree/variable.rb:49:in `_perform'
 /usr/lib/ruby/vendor_ruby/sass/script/tree/node.rb:50:in `perform'
 /usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:395:in `visit_prop'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:115:in `with_frame'
-/usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `with_base'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `block (2 levels) in visit_rule'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `map'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:431:in `block in visit_rule'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:429:in `visit_rule'
 /usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:36:in `visit'
 /usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:158:in `block in visit'
 /usr/lib/ruby/vendor_ruby/sass/stack.rb:79:in `block in with_base'
@@ -80,4 +69,4 @@ src/assets/scss/lobby/lesson-element.scss:17
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$dark-gray\".\A         on line 17 of src/assets/scss/lobby/lesson-element.scss\A \A 12:         text-align: center;\A 13:         font-size: 24pt;\A 14:         border-bottom: 1px solid #DDDDDD;\A 15:         padding-bottom: 10px;\A 16:         margin: 15px;\A 17:         color: $dark-gray;;\A 18:     }\A 19: \A 20:     h2 {\A 21:         font-size: 14pt;\A 22:         text-align: center;"; }
+  content: "Error: Undefined variable: \"$primary\".\A         on line 6 of src/assets/scss/header.scss\A \A 1: #header {\A 2:     left: -30px;\A 3:     right: -30px;\A 4:     top: 0px;\A 5:     height: 50pt;\A 6:     background-color: $primary;\A 7:     box-shadow: 0px 0px 30px black;\A 8:     color: $white;\A 9: \A 10:     #logout {\A 11:         float: right;"; }

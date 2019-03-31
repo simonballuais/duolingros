@@ -37,7 +37,13 @@
     {% endblock javascript %}
 </head>
 
-{% include 'front/header.html.twig' %}
+<div id="header">
+  <div id="header-content">
+  {% block header_content %} {% endblock header_content %}
+  </div>
+
+  {% include 'front/user_menu.html.twig' %}
+</div>
 
 <body class="hold-transition skin-blue sidebar-mini" style="background-color: #ecf0f5;">
 {% block body %} {% endblock body %}

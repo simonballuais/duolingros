@@ -1,10 +1,6 @@
-:root {
-    --primary: #039BE5;
-    --primary-light: #DDEEFF;
-    --dark-gray: #555555;
-    --gray: #999999;
-    --light-gray: #EEEEEE;
-}
+@import 'variables';
+@import 'header';
+
 
 #title {
     h1 {
@@ -66,43 +62,12 @@
     color: #f00;
 }
 
-#header {
-    left: -30px;
-    right: -30px;
-    top: 0px;
-    height: 50pt;
-    background-color: var(--primary);
-    box-shadow: 0px 0px 30px black;
-    color: white;
-
-    #logout {
-        float: right;
-        color: var(--light-gray);
-        margin: 12pt;
-        font-size: 20pt;
-        border-left: 1px solid white;
-        padding-left: 10pt;
-    }
-
-    #logout:hover {
-        color: white;
-    }
-
-    #username {
-        font-weight: lighter;
-        float: right;
-        padding-top: 13pt;
-        font-size: 18pt;
-        bottom: 0px;
-    }
-}
-
 textarea.proposition {
     margin-top: 10px;
 }
 
 a {
-    color: var(--primary);
+    color: $primary;
 }
 
 h1 {

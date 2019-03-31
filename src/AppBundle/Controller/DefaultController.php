@@ -4,14 +4,18 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Course;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage", options={"expose" = true})
+     * @Route("/{course}",
+     *        name="homepage",
+     *        options={"expose" = true},
+     *        defaults={"course" = 1}
+     *        )
      */
-    public function indexAction(Request $request)
+    public function indexAction(Course $course)
     {
         $blm = $this->get('app.book_lesson_manager');
         $bookLessons = $blm->getAllWithCurrentLearning($this->getUser());
@@ -23,11 +27,18 @@ class DefaultController extends Controller
 
         $quote = $this->get('app.quote_generator')->generateTitleQuote();
 
-        return $this->render('front/lobby.html.twig',
-        [
-            "quote" => $quote,
-            "bookLessons" => $bookLessons,
-            "lastLesson" => $lastLessonId,
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $repoCourse = $em->getRepository("AppBundle:Course");
+        $allCourses = $repoCourse->findAll();
+
+        return $this->render(
+            'front/lobby/lobby.html.twig',
+            [
+                "quote" => $quote,
+                "currentCourse" => $course,
+                "allCourses" => $allCourses,
+                "lastLesson" => $lastLessonId,
+            ]
+        );
     }
 }

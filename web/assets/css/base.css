@@ -1,9 +1,60 @@
-:root {
-  --primary: #039BE5;
-  --primary-light: #DDEEFF;
-  --dark-gray: #555555;
-  --gray: #999999;
-  --light-gray: #EEEEEE; }
+#header {
+  left: -30px;
+  right: -30px;
+  top: 0px;
+  height: 50pt;
+  background-color: #039BE5;
+  box-shadow: 0px 0px 30px black;
+  color: #EEEEEE; }
+  #header #logout {
+    float: right;
+    color: #EEEEEE;
+    margin: 12pt;
+    font-size: 20pt;
+    border-left: 1px solid #FFFFFF;
+    padding-left: 10pt; }
+  #header #logout:hover {
+    color: #FFFFFF; }
+  #header #username {
+    font-weight: lighter;
+    float: right;
+    padding-top: 13pt;
+    font-size: 18pt;
+    bottom: 0px; }
+  #header #header-content {
+    display: inline-block;
+    height: 100%; }
+    #header #header-content #course-menu {
+      height: 100%;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
+      #header #header-content #course-menu li {
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 20pt;
+        font-weight: lighter;
+        padding: 20px; }
+        #header #header-content #course-menu li.current-course {
+          font-weight: normal;
+          background-color: #1fb4fc; }
+        #header #header-content #course-menu li a {
+          display: inline-block;
+          color: #EEEEEE; }
+          #header #header-content #course-menu li a span {
+            display: block;
+            margin-top: -8px;
+            font-size: 10pt;
+            font-style: italic;
+            padding-left: 20px; }
+        #header #header-content #course-menu li.separator {
+          margin: 10px;
+          padding: 0;
+          font-size: 42px; }
 
 #title h1 {
   font-size: 56pt; }
@@ -58,35 +109,11 @@
   margin: 0 5px 0 -15px;
   color: #f00; }
 
-#header {
-  left: -30px;
-  right: -30px;
-  top: 0px;
-  height: 50pt;
-  background-color: var(--primary);
-  box-shadow: 0px 0px 30px black;
-  color: white; }
-  #header #logout {
-    float: right;
-    color: var(--light-gray);
-    margin: 12pt;
-    font-size: 20pt;
-    border-left: 1px solid white;
-    padding-left: 10pt; }
-  #header #logout:hover {
-    color: white; }
-  #header #username {
-    font-weight: lighter;
-    float: right;
-    padding-top: 13pt;
-    font-size: 18pt;
-    bottom: 0px; }
-
 textarea.proposition {
   margin-top: 10px; }
 
 a {
-  color: var(--primary); }
+  color: #039BE5; }
 
 h1 {
   font-size: 56pt; }

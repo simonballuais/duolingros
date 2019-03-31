@@ -1,3 +1,128 @@
+#header {
+  left: -30px;
+  right: -30px;
+  top: 0px;
+  height: 50pt;
+  background-color: #039BE5;
+  box-shadow: 0px 0px 30px black;
+  color: #EEEEEE; }
+  #header #logout {
+    float: right;
+    color: #EEEEEE;
+    margin: 12pt;
+    font-size: 20pt;
+    border-left: 1px solid #FFFFFF;
+    padding-left: 10pt; }
+  #header #logout:hover {
+    color: #FFFFFF; }
+  #header #username {
+    font-weight: lighter;
+    float: right;
+    padding-top: 13pt;
+    font-size: 18pt;
+    bottom: 0px; }
+  #header #header-content {
+    display: inline-block;
+    height: 100%; }
+    #header #header-content #course-menu {
+      height: 100%;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
+      #header #header-content #course-menu li {
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 20pt;
+        font-weight: lighter;
+        padding: 20px; }
+        #header #header-content #course-menu li.current-course {
+          font-weight: normal;
+          background-color: #1fb4fc; }
+        #header #header-content #course-menu li a {
+          display: inline-block;
+          color: #EEEEEE; }
+          #header #header-content #course-menu li a span {
+            display: block;
+            margin-top: -8px;
+            font-size: 10pt;
+            font-style: italic;
+            padding-left: 20px; }
+        #header #header-content #course-menu li.separator {
+          margin: 10px;
+          padding: 0;
+          font-size: 42px; }
+
+#title h1 {
+  font-size: 56pt; }
+#title h2 {
+  padding-left: 30px;
+  margin: 0;
+  margin-bottom: 30px; }
+
+#alerts {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+#alert_success_js {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+#alert_danger_js {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+.ad-login {
+  margin: auto;
+  background-color: lightgray;
+  color: white;
+  margin: 7%; }
+
+.daterangepicker {
+  z-index: 2000 !important; }
+
+.fill-vertically {
+  height: 100%; }
+
+.has-error ul {
+  padding-left: 20px;
+  list-style: none; }
+
+.has-error li {
+  margin-bottom: 10px; }
+
+.has-error li:before {
+  font-family: 'FontAwesome';
+  content: '\f071';
+  margin: 0 5px 0 -15px;
+  color: #f00; }
+
+textarea.proposition {
+  margin-top: 10px; }
+
+a {
+  color: #039BE5; }
+
+h1 {
+  font-size: 56pt; }
+
+h2 {
+  padding-left: 30px;
+  margin: 0;
+  margin-bottom: 30px; }
+
 #book-lesson-list {
   display: flex;
   flex-wrap: wrap;
@@ -18,12 +143,12 @@
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 10px;
     margin: 15px;
-    color: var(--dark-gray); }
+    color: #555555; }
   .book-lesson-element h2 {
     font-size: 14pt;
     text-align: center;
     margin: 0;
-    color: var(--gray);
+    color: #999999;
     padding-left: 3px;
     padding-right: 3px; }
   .book-lesson-element ul {
@@ -33,12 +158,12 @@
     .book-lesson-element ul li:last-child {
       border-bottom: 0; }
     .book-lesson-element ul li:hover {
-      background-color: var(--primary-light); }
+      background-color: #DDEEFF; }
     .book-lesson-element ul li a {
       display: block;
       padding-left: 15px;
       padding-right: 15px;
-      border-bottom: 1px solid var(--light-gray);
+      border-bottom: 1px solid #DDEEFF;
       font-size: 12pt;
       width: 100%; }
     .book-lesson-element ul li .hotness-indicator {

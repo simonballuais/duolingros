@@ -1,0 +1,78 @@
+#header {
+    left: -30px;
+    right: -30px;
+    top: 0px;
+    height: 50pt;
+    background-color: $primary;
+    box-shadow: 0px 0px 30px black;
+    color: $white;
+
+    #logout {
+        float: right;
+        color: $light-gray;
+        margin: 12pt;
+        font-size: 20pt;
+        border-left: 1px solid $light-white;
+        padding-left: 10pt;
+    }
+
+    #logout:hover {
+        color: $light-white;
+    }
+
+    #username {
+        font-weight: lighter;
+        float: right;
+        padding-top: 13pt;
+        font-size: 18pt;
+        bottom: 0px;
+    }
+
+    #header-content {
+        display: inline-block;
+        height: 100%;
+
+        #course-menu {
+            height: 100%;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            li {
+                color: $light-white;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 20pt;
+                font-weight: lighter;
+                padding: 20px;
+
+                &.current-course {
+                    font-weight: normal;
+                    background-color: $light-primary;
+                }
+
+                & a {
+                    display: inline-block;
+                    color: $light-gray;
+
+                    & span {
+                        display: block;
+                        margin-top: -8px;
+                        font-size: 10pt;
+                        font-style: italic;
+                        padding-left: 20px;
+                    }
+                }
+
+                &.separator {
+                    margin: 10px;
+                    padding: 0;
+                    font-size: 42px;
+                }
+            }
+        }
+    }
+}

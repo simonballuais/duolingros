@@ -20,6 +20,24 @@ setTimeout(function() {
 {% endif %}
 {% endblock additional_javascript %}
 
+{% block header_content %}
+  <ul id="course-menu">
+    {% for course in allCourses %}
+      {% if loop.index != 1 %} <li class="separator">&middot;</li> {% endif %}
+
+      <li class="{% if course == currentCourse %}current-course{% endif %}">
+        <a href="{{ path('homepage', {'course': course.id}) }}">
+          {{ course.title }}
+
+          <span>
+            {{ course.subtitle }}
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock header_content %}
+
 {% block body %}
 <div class="container"
      id="container"
@@ -36,7 +54,8 @@ setTimeout(function() {
     </div> <!-- col -->
   </div> <!-- row -->
     <div id="book-lesson-list">
-      {% include 'front/book_lesson_list.html.twig' %}
+      {% include 'front/lobby/book_lesson_list.html.twig'
+         with {'bookLessons': currentCourse.bookLessonList} %}
     </div>
 </div> <!-- container -->
 {% endblock body %}
