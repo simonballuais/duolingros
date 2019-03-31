@@ -26,6 +26,7 @@ class ComplaintController extends Controller
             'admin/complaint/index.html.twig',
             [
                 'complaints' => $complaints,
+                'allCourses' => [],
             ]
         );
     }

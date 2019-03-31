@@ -32,29 +32,33 @@
       justify-content: flex-start;
       align-items: center; }
       #header #header-content #course-menu li {
+        margin-left: 10px;
         color: #FFFFFF;
         display: flex;
         align-items: center;
         height: 100%;
         font-size: 20pt;
-        font-weight: lighter;
-        padding: 20px; }
+        font-weight: lighter; }
         #header #header-content #course-menu li.current-course {
           font-weight: normal;
           background-color: #1fb4fc; }
         #header #header-content #course-menu li a {
           display: inline-block;
-          color: #EEEEEE; }
+          color: #EEEEEE;
+          height: 100%;
+          width: 100%;
+          padding: 10px 20px 10px 20px;
+          border-bottom: 8px solid transparent;
+          transition: border-bottom 0.2s; }
+          #header #header-content #course-menu li a:hover {
+            border-bottom: 8px solid #1fb4fc;
+            color: #FFFFFF; }
           #header #header-content #course-menu li a span {
             display: block;
             margin-top: -8px;
             font-size: 10pt;
             font-style: italic;
             padding-left: 20px; }
-        #header #header-content #course-menu li.separator {
-          margin: 10px;
-          padding: 0;
-          font-size: 42px; }
 
 #title h1 {
   font-size: 56pt; }

@@ -39,7 +39,21 @@
 
 <div id="header">
   <div id="header-content">
-  {% block header_content %} {% endblock header_content %}
+    {% block header_content %}
+      <ul id="course-menu">
+        {% for course in allCourses %}
+          <li class="{% if course == currentCourse %}current-course{% endif %}">
+            <a href="{{ path('homepage', {'course': course.id}) }}">
+              {{ course.title }}
+
+              <span>
+                {{ course.subtitle }}
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endblock header_content %}
   </div>
 
   {% include 'front/user_menu.html.twig' %}

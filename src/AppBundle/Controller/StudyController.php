@@ -19,10 +19,14 @@ class StudyController extends Controller
     public function lobbyAction()
     {
         $lessonList = $this->get('app.lesson_manager')->getAll();
+        $em = $this->getDoctrine()->getManager();
+        $repoCourse = $em->getRepository("AppBundle:Course");
+        $courses = $repoCourse->findAll();
 
         return $this->render('front/study/lobby.html.twig',
             [
-                "lessonList" => $lessonList
+                'lessonList' => $lessonList,
+                'allCourses' => $courses,
             ]);
     }
 
@@ -32,10 +36,18 @@ class StudyController extends Controller
      */
     public function studyAction(Lesson $lesson)
     {
-        return $this->render("front/study/study.html.twig",
+        $em = $this->getDoctrine()->getManager();
+        $repoCourse = $em->getRepository("AppBundle:Course");
+        $courses = $repoCourse->findAll();
+
+        return $this->render(
+            'front/study/study.html.twig',
             [
-                "lesson" => $lesson
-            ]);
+                'lesson' => $lesson,
+                'allCourses' => $courses,
+                'currentCourse' => $lesson->getBookLesson()->getCourse(),
+            ]
+        );
     }
 }
 ?>
