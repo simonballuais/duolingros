@@ -101,12 +101,24 @@ class Lesson
 
         return $this;
     }
-    public function getRandomExercise()
+    public function getRandomExercise($except = null)
     {
-        $index = rand(0, count($this->exerciseList) - 1);
+        if (count($this->exerciseList) === 1) {
+            return $this->exerciseList[0];
+        }
 
-        return $this->exerciseList[$index];
+        do {
+            $exercise = $this->pickRandomExercise();
+        } while ($exercise->getId() === $except);
+
+        return $exercise;
     }
+
+    public function pickRandomExercise()
+    {
+        return $this->exerciseList[array_rand($this->exerciseList->toArray())];
+    }
+
     public function __toString()
     {
         return sprintf("Lesson [%s] - %s", $this->id, $this->title);

@@ -54,6 +54,7 @@ class StudyManager
 
         if ($correction->isOk()) {
             $this->setCurrentAmountSucceeded($this->getCurrentAmountSucceeded() + 1);
+            $this->setLastSolvedExerciseId($exercise->getId());
         }
 
         $this->setCurrentAmountPlayed($this->getCurrentAmountPlayed() + 1);
@@ -73,7 +74,7 @@ class StudyManager
         }
 
         $lesson = $this->getCurrentLesson();
-        $exercise = $lesson->getRandomExercise();
+        $exercise = $lesson->getRandomExercise($this->getLastSolvedExerciseId());
         $this->setCurrentExerciseText($exercise->getText());
 
         return $exercise;
@@ -184,5 +185,17 @@ class StudyManager
         $proposition = new Proposition($sessionProposition);
 
         return $proposition;
+    }
+
+    public function getLastSolvedExerciseId()
+    {
+        return $this->session->get('last_solved_exercise_id');
+    }
+
+    public function setLastSolvedExerciseId($id)
+    {
+        $this->session->set('last_solved_exercise_id', $id);
+
+        return $this;
     }
 }
