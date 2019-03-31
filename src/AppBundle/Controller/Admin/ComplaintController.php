@@ -13,33 +13,14 @@ use AppBundle\Entity\Complaint;
 class ComplaintController extends Controller
 {
     /**
-     * @Route("/admin/complaint", name="admin_complaint")
-     * @Method({"GET", "POST"})
+     * @Route("/admin/complaints", name="admin_complaint")
+     * @Method({"GET"})
      */
-    public function listAction(Request $request)
+    public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $repoComplaint = $em->getRepository("AppBundle:Complaint");
         $complaints = $repoComplaint->findAll();
-
-        if ($request->getMethod() === 'POST') {
-            foreach ($request->request->all() as $text => $answerList) {
-                $complaint = $answerList['_complaint'];
-                unset($answerList['_complaint']);
-
-                $text = str_replace('_', ' ', $text);
-                $repoExercise = $em->getRepository("AppBundle:Exercise");
-                $exercise = $repoExercise->findOneByText($text);
-                $exercise->setAnswerList($answerList);
-
-                $complaintToDelete = $repoComplaint->findOneById($complaint);
-                $em->remove($complaintToDelete);
-
-                $em->flush();
-
-                return $this->redirectToRoute('admin_complaint');
-            }
-        }
 
         return $this->render(
             'admin/complaint/index.html.twig',
@@ -47,6 +28,34 @@ class ComplaintController extends Controller
                 'complaints' => $complaints,
             ]
         );
+    }
+
+    /**
+     * @Route("/admin/complaints/{complaint}", name="admin_post_complaint")
+     * @Method({"POST"})
+     */
+    public function postAction(Request $request, Complaint $complaint)
+    {
+        $exercise = $complaint->getExercise();
+        $em = $this->getDoctrine()->getManager();
+        $repoExercise = $em->getRepository("AppBundle:Exercise");
+
+        $exercise->setText($request->get('exercise-text'));
+        $newAnswerList = $request->request->get('answers');
+        $newAnswerListWithoutEmptyAnswer = [];
+
+        foreach ($newAnswerList as $answer) {
+            if ($answer) {
+                $newAnswerListWithoutEmptyAnswer[] = $answer;
+            }
+        }
+
+        $exercise->setAnswerList($newAnswerListWithoutEmptyAnswer);
+
+        //$em->remove($complaintToDelete);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_complaint');
     }
 
     /**

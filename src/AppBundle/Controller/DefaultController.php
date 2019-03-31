@@ -12,7 +12,8 @@ class DefaultController extends Controller
      * @Route("/{course}",
      *        name="homepage",
      *        options={"expose" = true},
-     *        defaults={"course" = 1}
+     *        defaults={"course" = 1},
+     *        requirements={"course"="\d+"}
      *        )
      */
     public function indexAction(Course $course)

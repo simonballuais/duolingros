@@ -8,9 +8,36 @@
   {{ parent() }}
 
   <script type="text/javascript">
+function addAnswerEntry(e) {
+  e.preventDefault();
+  let complaintId = $(this).attr('complaint-id');
+  let container = $('#complaint-' + complaintId);
+  let answerCount = container.attr('answer-count');
+  let answersContainer = container.find('.answers');
+  answerCount ++;
+
+  answersContainer.append(`
+    <div class="row">
+        <div class="col-md-12">
+          <textarea rows="4" type='text'
+                    name='answers[$answerCount]'
+                    style='width: 100%; font-size: 13pt;'
+                    exercise-text=''
+                    proposition-text=''
+                    class='form-control proposition'
+                    ></textarea>
+        </div>
+    </div>
+  `);
+
+  container.attr('answer-count', answerCount);
+}
+
 let postTimeout;
 
 $(document).ready(function () {
+  $('a.add-answer').on('click', addAnswerEntry);
+
   $('.proposition').on('keyup', function () {
     let $this = $(this);
     let propositionText = $this.attr('proposition-text');
