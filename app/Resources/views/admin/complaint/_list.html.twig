@@ -4,53 +4,63 @@
        style="margin: 10px"
        answer-count="{{ complaint.exercise.answerList|length }}"
        >
-    <form action="{{ path('admin_post_complaint', {'complaint': complaint.id}) }}"
-          method="POST"
-          >
-      <div class="box-header">
-        <input name="exercise-text" value="{{ complaint.exercise.text }}">
-      </div> <!-- box-header -->
+       <form action="{{ path('admin_post_complaint', {'complaint': complaint.id}) }}"
+             method="POST"
+             >
+             <div class="box-header">
+               <input name="exercise-text" value="{{ complaint.exercise.text }}">
+             </div> <!-- box-header -->
 
-      <div class="box-body">
-        <div class="row">
-          <div style='color: red' class="col-md-10" style="font-size: 12pt">
-            {{ complaint.propositionText }}
-          </div> <!-- col -->
-          <div class="col-md-2">
-            <button type='submit' class='btn btn-primary'>
-              Ouki
-            </button>
-            <a href="{{ path('complaint_delete', {'complaint': complaint.id}) }}"
-               class='btn btn-danger'
-               >
-               Tropa
-            </a>
-          </div> <!-- col -->
-        </div> <!-- row -->
-        <div class="answers">
-          <div class="row">
-            {% for answer in complaint.exercise.answerList %}
-              <div class="col-md-12">
-                <textarea rows="4" type='text'
-                          name='answers[{{ loop.index }}]'
-                          style='width: 100%; font-size: 13pt;'
-                          exercise-text='{{ complaint.exercise.text }}'
-                          proposition-text='{{ complaint.propositionText }}'
-                          class='form-control proposition'
-                          >{{ answer }}</textarea>
-              </div> <!-- col -->
-            {% endfor %}
+    <div class="box-body">
+      <div class="row">
+        <div style='color: red' class="col-md-10" style="font-size: 12pt">
+          {{ complaint.propositionText }}
+        </div> <!-- col -->
+        <div class="col-md-2">
+          <button type='submit' class='btn btn-primary'>
+            Ouki
+          </button>
+          <a href="{{ path('complaint_delete', {'complaint': complaint.id}) }}"
+             class='btn btn-danger'
+             >
+             Tropa
+          </a>
+        </div> <!-- col -->
+      </div> <!-- row -->
+      <div class="answers">
+        {% for answer in complaint.exercise.answerList %}
+          <div class="row" answer-index="{{ loop.index }}">
+            <div class="col-md-11">
+              <textarea rows="4" type='text'
+                        name='answers[{{ loop.index }}]'
+                        style='width: 100%; font-size: 13pt;'
+                        exercise-text='{{ complaint.exercise.text }}'
+                        proposition-text='{{ complaint.propositionText }}'
+                        class='form-control proposition'
+                        >{{ answer }}</textarea>
+            </div> <!-- col -->
+            <div class="col-md-1">
+              <a class="remove-answer"
+                 complaint-id="{{ complaint.id }}"
+                 answer-index="{{ loop.index }}"
+                 style="font-size: 26pt; color: red"
+                 href="#"
+                 >
+                 x
+              </a>
+            </div> <!-- col -->
           </div> <!-- row -->
-        </div>
+        {% endfor %}
+      </div>
 
-        <a class="add-answer"
-           complaint-id="{{ complaint.id }}"
-           style="font-size: 26pt; color: green"
-           href="#"
-           >
-          +
-        </a>
-      </div> <!-- box-body -->
-    </form>
+      <a class="add-answer"
+         complaint-id="{{ complaint.id }}"
+         style="font-size: 26pt; color: green"
+         href="#"
+         >
+         +
+      </a>
+    </div> <!-- box-body -->
+       </form>
   </div> <!-- box-body -->
 {% endfor %}

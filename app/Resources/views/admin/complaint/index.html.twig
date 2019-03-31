@@ -17,7 +17,7 @@ function addAnswerEntry(e) {
   answerCount ++;
 
   answersContainer.append(`
-    <div class="row">
+    <div class="row" answer-index="$answerCount">
         <div class="col-md-12">
           <textarea rows="4" type='text'
                     name='answers[$answerCount]'
@@ -33,10 +33,25 @@ function addAnswerEntry(e) {
   container.attr('answer-count', answerCount);
 }
 
+function removeAnswerEntry(e) {
+  e.preventDefault();
+  let complaintId = $(this).attr('complaint-id');
+  let answerIndex = $(this).attr('answer-index');
+  let container = $('#complaint-' + complaintId);
+  let answerCount = container.attr('answer-count');
+  let answersContainer = container.find('.answers');
+  let answerToRemove = answersContainer.find('div[answer-index=' + answerIndex + ']');
+  answerCount --;
+
+  answerToRemove.remove();
+  container.attr('answer-count', answerCount);
+}
+
 let postTimeout;
 
 $(document).ready(function () {
   $('a.add-answer').on('click', addAnswerEntry);
+  $('a.remove-answer').on('click', removeAnswerEntry);
 
   $('.proposition').on('keyup', function () {
     let $this = $(this);

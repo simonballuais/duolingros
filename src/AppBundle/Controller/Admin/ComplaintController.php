@@ -51,8 +51,7 @@ class ComplaintController extends Controller
         }
 
         $exercise->setAnswerList($newAnswerListWithoutEmptyAnswer);
-
-        //$em->remove($complaintToDelete);
+        $em->remove($complaint);
         $em->flush();
 
         return $this->redirectToRoute('admin_complaint');
