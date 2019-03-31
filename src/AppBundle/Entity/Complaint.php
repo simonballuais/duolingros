@@ -25,7 +25,7 @@ class Complaint
 
     /**
      * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="complaints", cascade={"persist"})
-     * @ORM\JoinColumn(name="exercise_text", referencedColumnName="text")
+     * @ORM\JoinColumn(name="exercise_id", referencedColumnName="id")
      */
     protected $exercise;
 

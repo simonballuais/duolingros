@@ -18,8 +18,14 @@ class Exercise
     public $OPTION_GROUP_REGEX; // to find imediatly resolvable option groups such as (a|b|c) but not (a|b (c|d)|e)
 
     /**
-     * @ORM\Column(type="string", length=225)
+     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=225)
      */
     protected $text;
 
@@ -227,5 +233,17 @@ class Exercise
     public function getCorrector()
     {
         return $this->corrector;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
