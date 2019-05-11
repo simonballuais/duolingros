@@ -49,6 +49,11 @@ class Lesson
     protected $exerciseList;
 
     /**
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
+     */
+    protected $questionList;
+
+    /**
      * @ORM\OneToMany(targetEntity="Learning", mappedBy="lesson", cascade={"persist"})
      */
     protected $learningList;
@@ -64,6 +69,7 @@ class Lesson
     public function __construct()
     {
         $this->exerciseList = new ArrayCollection();
+        $this->questionList = new ArrayCollection();
         $this->learningList = new ArrayCollection();
         $this->exercisePerStudy = 3;
     }
@@ -187,5 +193,17 @@ class Lesson
     public function getBookLesson()
     {
         return $this->bookLesson;
+    }
+
+    public function getQuestionList()
+    {
+        return $this->questionList;
+    }
+
+    public function setQuestionList($questionList)
+    {
+        $this->questionList = $questionList;
+
+        return $this;
     }
 }

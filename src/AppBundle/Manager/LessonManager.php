@@ -51,6 +51,24 @@ class LessonManager
         return $this->repo->findOneById($id);
     }
 
+    public function update($form)
+    {
+        foreach ($form->get('questionList') as $questionForm) {
+            $question = $questionForm->getData();
+            $this->entityManager->persist($question);
+            $question->setLesson($lesson);
+
+            foreach ($questionForm->getPropositionList() as $propositionForm) {
+                var_dump($propositionForm->get('answer')->getData()); die();
+                $proposition = $propositionForm->getData();
+                $this->entityManager->persist($proposition);
+                $proposition->setQuestion($question);
+            }
+        }
+
+        $this->entityManager->flush();
+    }
+
     public function createOrUpdate($title, $bookLessonId, $id="")
     {
         $bookLessonRepo = $this->entityManager->getRepository('AppBundle:BookLesson');

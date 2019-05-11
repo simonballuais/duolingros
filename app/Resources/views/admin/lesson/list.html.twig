@@ -1,0 +1,61 @@
+{% extends 'front/base.html.twig' %}
+
+{% block additional_stylesheet %}
+  <link rel="stylesheet" href="{{ asset('assets/css/admin/lesson.css') }}" />
+{% endblock additional_stylesheet %}
+
+{% block additional_javascript %}
+  <script src="{{ asset('assets/js/admin/lesson.js') }}"> </script>
+{% endblock additional_javascript %}
+
+{% block body %}
+  <div class="container">
+    {{ form_start(form) }}
+    {{ form_widget(form.title) }}
+
+    <h3>
+      {{ form_label(form.questionList) }}
+    </h3>
+
+    <ul class="question-list"
+        data-prototype="{{ form_widget(form.questionList.vars.prototype)|e('html_attr') }}">
+    {% for question in form.questionList %}
+      <li>
+        {{ form_row(question.text) }}
+
+        <h4>
+          {{ form_label(question.propositionList) }}
+        </h4>
+
+        <ul class="proposition-list"
+            data-prototype="{{ form_widget(question.propositionList.vars.prototype)|e('html_attr') }}">
+
+        {% for proposition in question.propositionList %}
+          <li>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                  {{ form_row(proposition.text) }}
+                </div> <!-- col -->
+                <div class="col-sm-4">
+                  {{ form_row(proposition.image) }}
+                </div> <!-- col -->
+                <div class="col-sm-4">
+                  {{ form_row(proposition.answer) }}
+                </div> <!-- col -->
+              </div> <!-- row -->
+            </div> <!-- container -->
+          </li>
+        {% endfor %}
+        </ul>
+      </li>
+
+      <hr>
+    {% endfor %}
+    </ul>
+
+    <input type="submit" value="OKI">
+
+    {{ form_end(form) }}
+  </div>
+{% endblock body %}
