@@ -26,34 +26,34 @@
 {% macro printQuestionRow(question) %}
   {% import _self as formMacros %}
 
-  <li>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-          <button type="button" class="remove-question">
+  <div class="box">
+    <li>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1">
+            <button type="button" class="remove-question">
               X
-          </button>
-        </div> <!-- col -->
-        <div class="col-sm-11">
-          {{ form_row(question.text) }}
-        </div> <!-- col -->
-      </div> <!-- row -->
-    </div> <!-- container -->
+            </button>
+          </div> <!-- col -->
+          <div class="col-sm-11">
+            {{ form_row(question.text) }}
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
 
-    <h4>
-      {{ form_label(question.propositionList) }}
-    </h4>
+      <h4>
+        {{ form_label(question.propositionList) }}
+      </h4>
 
-    <ul class="proposition-list"
-        data-prototype="{{ formMacros.printPropositionRow(question.propositionList.vars.prototype)|e('html_attr') }}">
+      <ul class="proposition-list"
+          data-prototype="{{ formMacros.printPropositionRow(question.propositionList.vars.prototype)|e('html_attr') }}">
 
-    {% for proposition in question.propositionList %}
-      {{ formMacros.printPropositionRow(proposition) }}
-    {% endfor %}
-    </ul>
-  </li>
-
-  <hr>
+        {% for proposition in question.propositionList %}
+          {{ formMacros.printPropositionRow(proposition) }}
+        {% endfor %}
+      </ul>
+    </li>
+  </div> <!-- box -->
 {% endmacro %}
 
 {% import _self as formMacros %}
