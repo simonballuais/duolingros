@@ -1,5 +1,63 @@
 {% extends 'front/base.html.twig' %}
 
+{% macro printPropositionRow(proposition) %}
+  <li>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          <button type="button" class="remove-proposition">
+              X
+          </button>
+        </div> <!-- col -->
+        <div class="col-sm-4">
+          {{ form_row(proposition.text) }}
+        </div> <!-- col -->
+        <div class="col-sm-4">
+          {{ form_row(proposition.image) }}
+        </div> <!-- col -->
+        <div class="col-sm-3">
+          {{ form_row(proposition.rightAnswer) }}
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </li>
+{% endmacro %}
+
+{% macro printQuestionRow(question) %}
+  {% import _self as formMacros %}
+
+  <li>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          <button type="button" class="remove-question">
+              X
+          </button>
+        </div> <!-- col -->
+        <div class="col-sm-11">
+          {{ form_row(question.text) }}
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+
+    <h4>
+      {{ form_label(question.propositionList) }}
+    </h4>
+
+    <ul class="proposition-list"
+        data-prototype="{{ formMacros.printPropositionRow(question.propositionList.vars.prototype)|e('html_attr') }}">
+
+    {% for proposition in question.propositionList %}
+      {{ formMacros.printPropositionRow(proposition) }}
+    {% endfor %}
+    </ul>
+  </li>
+
+  <hr>
+{% endmacro %}
+
+{% import _self as formMacros %}
+
 {% block additional_stylesheet %}
   <link rel="stylesheet" href="{{ asset('assets/css/admin/lesson.css') }}" />
 {% endblock additional_stylesheet %}
@@ -18,40 +76,11 @@
     </h3>
 
     <ul class="question-list"
-        data-prototype="{{ form_widget(form.questionList.vars.prototype)|e('html_attr') }}">
-    {% for question in form.questionList %}
-      <li>
-        {{ form_row(question.text) }}
+        data-prototype="{{ formMacros.printQuestionRow(form.questionList.vars.prototype)|e('html_attr') }}">
 
-        <h4>
-          {{ form_label(question.propositionList) }}
-        </h4>
-
-        <ul class="proposition-list"
-            data-prototype="{{ form_widget(question.propositionList.vars.prototype)|e('html_attr') }}">
-
-        {% for proposition in question.propositionList %}
-          <li>
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-4">
-                  {{ form_row(proposition.text) }}
-                </div> <!-- col -->
-                <div class="col-sm-4">
-                  {{ form_row(proposition.image) }}
-                </div> <!-- col -->
-                <div class="col-sm-4">
-                  {{ form_row(proposition.answer) }}
-                </div> <!-- col -->
-              </div> <!-- row -->
-            </div> <!-- container -->
-          </li>
-        {% endfor %}
-        </ul>
-      </li>
-
-      <hr>
-    {% endfor %}
+      {% for question in form.questionList %}
+        {{ formMacros.printQuestionRow(question) }}
+      {% endfor %}
     </ul>
 
     <input type="submit" value="OKI">

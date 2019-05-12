@@ -21,7 +21,9 @@ class QuestionType extends AbstractType
                 [
                     'entry_type' => PropositionType::class,
                     'allow_add' => true,
+                    'allow_delete' => true,
                     'label' => 'Propositions',
+                    'by_reference' => false,
                 ]
             )
             ;

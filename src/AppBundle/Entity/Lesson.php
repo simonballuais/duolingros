@@ -206,4 +206,14 @@ class Lesson
 
         return $this;
     }
+
+    public function addQuestion($question)
+    {
+        $this->questionList[] = $question;
+    }
+
+    public function removeQuestion($question)
+    {
+        $this->questionList->removeElement($question);
+    }
 }

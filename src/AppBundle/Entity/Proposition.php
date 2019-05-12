@@ -40,6 +40,11 @@ class Proposition
      */
     protected $rightAnswerFor;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $rightAnswer;
+
     public function __construct()
     {
         $this->rightAnswerFor = new ArrayCollection();
@@ -89,6 +94,18 @@ class Proposition
     public function setQuestion($question)
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function isRightAnswer()
+    {
+        return $this->rightAnswer;
+    }
+
+    public function setRightAnswer($rightAnswer = true)
+    {
+        $this->rightAnswer = $rightAnswer;
 
         return $this;
     }

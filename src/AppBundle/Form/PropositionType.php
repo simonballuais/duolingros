@@ -15,11 +15,7 @@ class PropositionType extends AbstractType
         $builder
             ->add('image')
             ->add('text')
-            ->add('answer', CheckboxType::class,
-                [
-                    'label' => 'Bonne réponse',
-                    'mapped' => false,
-                ])
+            ->add('rightAnswer')
             ;
     }
 

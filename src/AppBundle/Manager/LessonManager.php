@@ -53,14 +53,20 @@ class LessonManager
 
     public function update($form)
     {
+        $lesson = $form->getData();
+
         foreach ($form->get('questionList') as $questionForm) {
             $question = $questionForm->getData();
             $this->entityManager->persist($question);
             $question->setLesson($lesson);
 
-            foreach ($questionForm->getPropositionList() as $propositionForm) {
-                var_dump($propositionForm->get('answer')->getData()); die();
+            foreach ($questionForm->get('propositionList') as $propositionForm) {
                 $proposition = $propositionForm->getData();
+
+                if ($proposition->isRightAnswer()) {
+                    $question->setAnswer($proposition);
+                }
+
                 $this->entityManager->persist($proposition);
                 $proposition->setQuestion($question);
             }

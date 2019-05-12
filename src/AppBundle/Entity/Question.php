@@ -69,18 +69,6 @@ class Question
         return $this;
     }
 
-    public function getPropositions()
-    {
-        return $this->propositions;
-    }
-
-    public function setPropositions($propositions)
-    {
-        $this->propositions = $propositions;
-
-        return $this;
-    }
-
     public function getLesson()
     {
         return $this->lesson;
@@ -105,6 +93,16 @@ class Question
         return $this;
     }
 
+    public function addProposition($proposition)
+    {
+        $this->propositionList[] = $proposition;
+    }
+
+    public function removeProposition($proposition)
+    {
+        $this->propositionList->removeElement($proposition);
+    }
+
     public function getAnswer()
     {
         return $this->answer;
@@ -112,6 +110,11 @@ class Question
 
     public function setAnswer($answer)
     {
+        foreach ($this->propositionList as $proposition) {
+            $proposition->setRightAnswer(false);
+        }
+
+        $answer->setRightAnswer();
         $this->answer = $answer;
 
         return $this;

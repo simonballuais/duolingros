@@ -21,10 +21,21 @@ class LessonController extends Controller
         Lesson $lesson
     ) {
         $form = $this->createForm(LessonType::class, $lesson);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $this->get('app.lesson_manager')->update($lesson);
+        if ($request->getMethod() === 'POST') {
+            foreach ($lesson->getQuestionList() as $question) {
+                foreach ($question->getPropositionList() as $proposition) {
+                    $proposition->setQuestion(null);
+                }
+
+                $question->setLesson(null);
+            }
+
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $this->get('app.lesson_manager')->update($form);
+            }
 
             return $this->redirectToRoute(
                 'admin_questions',
