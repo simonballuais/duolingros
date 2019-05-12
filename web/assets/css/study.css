@@ -192,6 +192,28 @@ label.lesson {
 
 div#playground {
   height: 100vh; }
+  div#playground div.question-container .proposition-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; }
+    div#playground div.question-container .proposition-list div.proposition {
+      display: block;
+      width: 150px;
+      height: 150px;
+      text-align: center;
+      border-radius: 5px;
+      border: 2px solid #EEEEEE;
+      transition: background-color 0.25s, border 0.25s, color 0.25s; }
+      div#playground div.question-container .proposition-list div.proposition:hover {
+        cursor: pointer;
+        border: 3px solid #84d6fd;
+        background-color: #84d6fd; }
+      div#playground div.question-container .proposition-list div.proposition.selected {
+        border: 3px solid #039BE5;
+        background-color: #1fb4fc;
+        color: #EEEEEE; }
+      div#playground div.question-container .proposition-list div.proposition .proposition-text {
+        font-size: 18px; }
 
 #text-row {
   box-shadow: 0px 0px 20px #AAAAAA;

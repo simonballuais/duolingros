@@ -86,6 +86,17 @@ class Question
         return $this->propositionList;
     }
 
+    public function getPossiblePropositions()
+    {
+        $possiblePropositions = [];
+
+        foreach ($this->propositionList as $proposition) {
+            $possiblePropositions[] = $proposition->getText();
+        }
+
+        return $possiblePropositions;
+    }
+
     public function setPropositionList($propositionList)
     {
         $this->propositionList = $propositionList;
@@ -118,5 +129,10 @@ class Question
         $this->answer = $answer;
 
         return $this;
+    }
+
+    public function getExerciseType()
+    {
+        return 'question';
     }
 }

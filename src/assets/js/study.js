@@ -49,6 +49,9 @@ export function startLesson(lessonId) {
             conclusionFooter: '',
             state: STATE.IDDLE,
             complainSent: false,
+            exerciseType: null,
+            possiblePropositions: null,
+            selectedProposition: null,
         },
         methods: {
             getRandomSuccessMessage() {
@@ -80,13 +83,24 @@ export function startLesson(lessonId) {
                 if (undefined !== data.correctionStatus) {
                     this.correctionStatus = data.correctionStatus;
                 }
+
+                if (undefined !== data.exerciseType) {
+                    this.exerciseType = data.exerciseType;
+                }
+
+                if (undefined !== data.possiblePropositions) {
+                    this.possiblePropositions = data.possiblePropositions;
+                }
             },
             sendProposition() {
                 this.blockPropositionInput = true
 
                 axios.post(
                     Routing.generate('api_study_proposition_send'),
-                    { text: this.proposition }
+                    {
+                        text: this.proposition,
+                        propositionId: this.selectedProposition.id
+                    }
                 )
                 .then((response) => {
                     this.refreshLessonView(response.data);
@@ -199,7 +213,23 @@ export function startLesson(lessonId) {
                 window.location.replace(Routing.generate('homepage'));
             },
             focusInput() {
-                this.$nextTick(() => this.$refs.proposition.focus);
+                if (this.doingExercise()) {
+                    this.$nextTick(() => this.$refs.proposition.focus);
+                }
+            },
+            doingExercise(){
+                return this.exerciseType === 'exercise';
+            },
+            doingQuestion(){
+                return this.exerciseType === 'question';
+            },
+            selectProposition(proposition) {
+                if (this.selectProposition == proposition) {
+                    this.selectedProposition = null;
+                    return;
+                }
+
+                this.selectedProposition = proposition;
             }
         },
         mounted() {

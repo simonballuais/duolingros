@@ -55,7 +55,7 @@ whenDocumentReady(function () {
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" v-if="exerciseType == 'exercise'">
             <div class="col-sm-6">
               <textarea
                      cols="50"
@@ -79,6 +79,35 @@ whenDocumentReady(function () {
               </textarea>
             </div> <!-- col -->
           </div> <!-- row -->
+
+          <div class="question-container" v-if="exerciseType == 'question'">
+            <h2>
+              ${ exerciseText }
+            </h2>
+
+            <hr>
+
+            <div class="proposition-list">
+              <div class="proposition"
+                   v-for="proposition in possiblePropositions"
+                   v-on:click="selectProposition(proposition)"
+                   v-bind:class="{'selected': proposition == selectedProposition}"
+                   >
+                <span class="proposition-text">
+                  ${ proposition.text }
+                </span>
+              </div>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-lg btn-primary pull-right ripple"
+                    id="answer-question"
+                    v-on:click="sendProposition()"
+                    >
+              Envoyer
+            </button>
+          </div>
       </div> <!-- row -->
 
       <div class="row">
@@ -111,6 +140,7 @@ whenDocumentReady(function () {
                   v-on:click="complain()"
                   >
             Euuuh bah si lol ...
+          </button>
       </div> <!-- row -->
 
       <div id="lesson-conclusion-modal" class="modal fade" role="dialog">

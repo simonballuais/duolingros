@@ -80,6 +80,41 @@ label.lesson {
 
 div#playground {
     height: 100vh;
+
+    div.question-container {
+        .proposition-list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            div.proposition {
+                display: block;
+                width: 150px;
+                height: 150px;
+                text-align: center;
+                border-radius: 5px;
+                border: 2px solid $light-gray;
+                transition: background-color 0.25s, border 0.25s, color 0.25s;
+
+                &:hover {
+                    cursor: pointer;
+                    border: 3px solid $very-light-primary;
+                    background-color: $very-light-primary;
+                }
+
+                &.selected {
+                    border: 3px solid $primary;
+                    background-color: $light-primary;
+                    color: $white;
+                    font-weight: bold;
+                }
+
+                .proposition-text {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
 }
 
 #text-row {

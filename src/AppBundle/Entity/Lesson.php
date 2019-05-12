@@ -107,22 +107,33 @@ class Lesson
 
         return $this;
     }
+
     public function getRandomExercise($except = null)
     {
-        if (count($this->exerciseList) === 1) {
-            return $this->exerciseList[0];
+        $pickables = array_merge(
+            $this->exerciseList->toArray(),
+            $this->questionList->toArray()
+        );
+
+        if (count($pickables) === 1) {
+            return $pickables[0];
         }
 
         do {
-            $exercise = $this->pickRandomExercise();
-        } while ($exercise->getId() === $except);
+            $result = $this->pickRandomExercise();
+        } while ($result->getId() === $except);
 
-        return $exercise;
+        return $result;
     }
 
     public function pickRandomExercise()
     {
-        return $this->exerciseList[array_rand($this->exerciseList->toArray())];
+        $pickables = array_merge(
+            $this->exerciseList->toArray(),
+            $this->questionList->toArray()
+        );
+
+        return $pickables[array_rand($pickables)];
     }
 
     public function __toString()

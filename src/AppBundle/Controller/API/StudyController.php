@@ -31,7 +31,9 @@ class StudyController extends Controller
         return new JsonResponse([
             'lessonTitle' => $lesson->getTitle(),
             'progress' => 0,
-            'exerciseText' => $sm->getCurrentExerciseText()
+            'exerciseText' => $sm->getCurrentExerciseText(),
+            'exerciseType' => $exercise->getExerciseType(),
+            'possiblePropositions' => $this->serializePropositions($exercise->getPossiblePropositions()),
         ]);
     }
 
@@ -46,6 +48,10 @@ class StudyController extends Controller
     {
         $sm = $this->get('app.study_manager');
         $requestContent = json_decode($request->getContent());
+
+        if ($requestContent->propositionId) {
+            
+        }
 
         $proposition = new Proposition($requestContent->text);
         $correction = $sm->tryProposition($proposition);
@@ -72,8 +78,10 @@ class StudyController extends Controller
 
         if (null !== $exercise) {
             return new JsonResponse([
+                'exerciseType' => $exercise->getExerciseType(),
                 'progress' => $sm->getProgress(),
-                'exerciseText' => $exercise->getText()
+                'exerciseText' => $exercise->getText(),
+                'possiblePropositions' => $this->serializePropositions($exercise->getPossiblePropositions()),
             ]);
         }
 
@@ -176,5 +184,19 @@ class StudyController extends Controller
             'remarks' => $correction->getRemarks(),
         ]);
     }
+
+    public function serializePropositions($propositions)
+    {
+        $result = [];
+
+        foreach ($propositions as $proposition) {
+            $result[] = [
+                'id' => $proposition->getId(),
+                'text' => $proposition->getText(),
+            ];
+        }
+
+        return $result;
+    }
 }
-?>
+

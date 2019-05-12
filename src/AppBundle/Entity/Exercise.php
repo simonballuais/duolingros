@@ -246,4 +246,14 @@ class Exercise
     {
         return $this->id;
     }
+
+    public function getExerciseType()
+    {
+        return 'exercise';
+    }
+
+    public function getPossiblePropositions()
+    {
+        return null;
+    }
 }
