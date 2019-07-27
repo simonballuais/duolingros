@@ -26,21 +26,15 @@ class StudyController extends Controller
      */
     public function startStudyAction(Lesson $lesson)
     {
+        $serializer = $this->get('jms_serializer');
         $sm = $this->get('app.study_manager');
-        $translation = $sm->startStudy($lesson);
-
-        $possiblePropositions = [];
-
-        if ($translation instanceof Question) {
-            $possiblePropositions = $this->serializePropositions($translation->getPropositionList());
-        }
+        $exercise = $sm->startStudy($lesson);
+        $exercise = json_decode($serializer->serialize($exercise, 'json'));
 
         return new JsonResponse([
             'lessonTitle' => $lesson->getTitle(),
             'progress' => 0,
-            'translationText' => $sm->getCurrentExercise()->getText(),
-            'exerciseType' => $translation->getExerciseType(),
-            'possiblePropositions' => $possiblePropositions,
+            'exercise' => $exercise,
         ]);
     }
 
@@ -77,23 +71,23 @@ class StudyController extends Controller
     public function getNewExeriseAction()
     {
         $sm = $this->get('app.study_manager');
-        $translation = $sm->getNextExercise();
+        $exercise = $sm->getNextExercise();
 
-        $possiblePropositions = [];
+        if ($exercise) {
+            $serializer = $this->get('jms_serializer');
+            $exercise = json_decode($serializer->serialize($exercise, 'json'));
 
-        if ($translation instanceof Question) {
-            $possiblePropositions = $this->serializePropositions($translation->getPropositionList());
-        }
-
-        if (null !== $translation) {
             return new JsonResponse([
-                'exerciseType' => $translation->getExerciseType(),
                 'progress' => $sm->getProgress(),
-                'translationText' => $translation->getText(),
-                'possiblePropositions' => $possiblePropositions,
+                'exercise' => $exercise,
             ]);
         }
 
+        return $this->endStudy();
+    }
+
+    public function endStudy()
+    {
         $lm = $this->get('app.learning_manager');
         $em = $this->getDoctrine()->getManager();
 

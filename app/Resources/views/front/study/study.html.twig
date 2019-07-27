@@ -55,14 +55,14 @@ whenDocumentReady(function () {
             </div>
           </div>
 
-          <div class="row" v-if="exerciseType == 'translation'">
+          <div class="row" v-if="doingTranslation()">
             <div class="col-sm-6">
               <textarea
                      cols="50"
                      rows="4"
                      id="translation"
                      readonly="true"
-                     v-bind:value="translationText"
+                     v-bind:value="exercise.text"
               >
               </textarea>
             </div> <!-- col -->
@@ -80,9 +80,9 @@ whenDocumentReady(function () {
             </div> <!-- col -->
           </div> <!-- row -->
 
-          <div class="question-container" v-if="exerciseType == 'question'">
+          <div class="question-container" v-if="doingQuestion()">
             <h2>
-              ${ questionText }
+              ${ exercise.text }
               &nbsp;:
             </h2>
 
@@ -90,7 +90,7 @@ whenDocumentReady(function () {
 
             <div class="proposition-list">
               <div class="proposition"
-                   v-for="proposition in possiblePropositions"
+                   v-for="proposition in exercise.propositionList"
                    v-on:click="selectProposition(proposition)"
                    v-bind:class="{'selected': proposition == selectedProposition}"
                    >

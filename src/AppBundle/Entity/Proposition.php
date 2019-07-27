@@ -5,10 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="question_proposition")
+*
+* @Serializer\ExclusionPolicy("all")
  */
 class Proposition
 {
@@ -16,16 +19,25 @@ class Proposition
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("id")
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=128)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("text")
      */
     protected $text;
 
     /**
      * @ORM\Column(type="string", length=512)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("image")
      */
     protected $image;
 

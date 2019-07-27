@@ -38,7 +38,7 @@ export function startLesson(lessonId) {
             blockPropositionInput: false,
             lessonTitle: '...',
             progress: 0,
-            translationText: '...',
+            exercise: null,
             goodRun: false,
             remarks: [],
             remarksFg: "red",
@@ -72,8 +72,8 @@ export function startLesson(lessonId) {
                     this.lessonTitle = data.lessonTitle;
                 }
 
-                if (undefined !== data.translationText) {
-                    this.translationText = data.translationText;
+                if (undefined !== data.exercise) {
+                    this.exercise = data.exercise;
                 }
 
                 if (undefined !== data.remarks) {
@@ -82,14 +82,6 @@ export function startLesson(lessonId) {
 
                 if (undefined !== data.correctionStatus) {
                     this.correctionStatus = data.correctionStatus;
-                }
-
-                if (undefined !== data.exerciseType) {
-                    this.exerciseType = data.exerciseType;
-                }
-
-                if (undefined !== data.possiblePropositions) {
-                    this.possiblePropositions = data.possiblePropositions;
                 }
             },
             sendProposition() {
@@ -217,10 +209,10 @@ export function startLesson(lessonId) {
                 }
             },
             doingTranslation(){
-                return this.exerciseType === 'translation';
+                return this.exercise && this.exercise.type === 'translation';
             },
             doingQuestion(){
-                return this.exerciseType === 'question';
+                return this.exercise && this.exercise.type === 'question';
             },
             selectProposition(proposition) {
                 if (this.selectProposition == proposition) {

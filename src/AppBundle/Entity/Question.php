@@ -4,10 +4,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
 * @ORM\Entity
 * @ORM\Table(name="question")
+*
+* @Serializer\ExclusionPolicy("all")
 */
 class Question
 {
@@ -15,16 +18,25 @@ class Question
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("id")
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=225)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("text")
      */
     protected $text;
 
     /**
      * @ORM\OneToMany(targetEntity="Proposition", mappedBy="question", cascade={"persist"})
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("propositionList")
      */
     protected $propositionList;
 
@@ -120,6 +132,10 @@ class Question
         return $this;
     }
 
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("type")
+     */
     public function getExerciseType()
     {
         return 'question';

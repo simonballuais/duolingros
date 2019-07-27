@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 use AppBundle\Model\PropositionInterface;
 use AppBundle\Model\Exercise;
@@ -11,6 +12,8 @@ use AppBundle\Model\Exercise;
 /**
 * @ORM\Entity
 * @ORM\Table(name="translation")
+*
+* @Serializer\ExclusionPolicy("all")
 */
 class Translation implements Exercise
 {
@@ -21,11 +24,17 @@ class Translation implements Exercise
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("id")
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=225)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("text")
      */
     protected $text;
 
@@ -228,6 +237,10 @@ class Translation implements Exercise
         return $this->id;
     }
 
+    /**
+     * @Serializer\VirtualProperty()
+     * @Serializer\SerializedName("type")
+     */
     public function getExerciseType()
     {
         return 'translation';
