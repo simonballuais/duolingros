@@ -11,6 +11,11 @@ class Proposition implements PropositionInterface
         $this->text = $text;
     }
 
+    public function getValue()
+    {
+        return $this->text;
+    }
+
     public function getText()
     {
         return $this->text;

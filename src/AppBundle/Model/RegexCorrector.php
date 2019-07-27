@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Model;
 
+use AppBundle\Model\Exercise;
 use AppBundle\Tool\StringComparer;
 
 class RegexCorrector implements CorrectorInterface
@@ -16,8 +17,11 @@ class RegexCorrector implements CorrectorInterface
         $this->logger = $logger;
     }
 
-    public function correct($answerList, PropositionInterface $proposition)
-    {
+    public function correct(
+        Exercise $translation,
+        PropositionInterface $proposition
+    ) {
+        $answerList = $translation->getAnswerList();
         $this->logger->debug("Début de correction de $proposition");
 
         $correction = new Correction();
@@ -160,4 +164,4 @@ class RegexCorrector implements CorrectorInterface
         return $purifiedString;
     }
 }
-?>
+

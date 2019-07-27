@@ -38,7 +38,7 @@ class StudyController extends Controller
         return new JsonResponse([
             'lessonTitle' => $lesson->getTitle(),
             'progress' => 0,
-            'translationText' => $sm->getCurrentTranslationText(),
+            'translationText' => $sm->getCurrentExercise()->getText(),
             'exerciseType' => $translation->getExerciseType(),
             'possiblePropositions' => $possiblePropositions,
         ]);
@@ -79,12 +79,18 @@ class StudyController extends Controller
         $sm = $this->get('app.study_manager');
         $translation = $sm->getNextExercise();
 
+        $possiblePropositions = [];
+
+        if ($translation instanceof Question) {
+            $possiblePropositions = $this->serializePropositions($translation->getPropositionList());
+        }
+
         if (null !== $translation) {
             return new JsonResponse([
                 'exerciseType' => $translation->getExerciseType(),
                 'progress' => $sm->getProgress(),
                 'translationText' => $translation->getText(),
-                'possiblePropositions' => $this->serializePropositions($translation->getPossiblePropositions()),
+                'possiblePropositions' => $possiblePropositions,
             ]);
         }
 

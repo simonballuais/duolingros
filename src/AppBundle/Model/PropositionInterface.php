@@ -3,6 +3,6 @@ namespace AppBundle\Model;
 
 interface PropositionInterface
 {
-    public function getText();
+    public function getValue();
 }
-?>
+

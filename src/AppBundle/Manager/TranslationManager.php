@@ -16,12 +16,10 @@ class TranslationManager
     const SERVICE_NAME = 'app.translation_manager';
 
     protected $entityManager;
-    protected $defaultCorrector;
 
-    public function __construct($entityManager, $defaultCorrector)
+    public function __construct($entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->defaultCorrector = $defaultCorrector;
     }
 
     public function createOrUpdate($text, $answerList, $lesson)
@@ -36,11 +34,10 @@ class TranslationManager
         return $translation;
     }
 
-    public function get($text)
+    public function get($id)
     {
         $repoTranslation = $this->entityManager->getRepository("AppBundle:Translation");
-        $translation = $repoTranslation->findOneBy(['text' => $text]);
-        $translation->setCorrector($this->defaultCorrector);
+        $translation = $repoTranslation->findOneById($id);
 
         return $translation;
     }
@@ -49,7 +46,6 @@ class TranslationManager
     {
         $repoTranslation = $this->entityManager->getRepository("AppBundle:Translation");
         $translations = $repoTranslation->findAll();
-        $translation->setCorrector($this->defaultCorrector);
 
         return $translations;
     }

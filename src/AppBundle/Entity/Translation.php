@@ -5,7 +5,6 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use AppBundle\Model\Correction;
 use AppBundle\Model\PropositionInterface;
 use AppBundle\Model\Exercise;
 
@@ -41,8 +40,6 @@ class Translation implements Exercise
      */
     protected $lesson;
 
-    protected $corrector;
-
     public function __construct()
     {
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
@@ -51,11 +48,6 @@ class Translation implements Exercise
            $this->NOT_A_GROUP_DELIMITER_REGEX,
            $this->NOT_A_GROUP_DELIMITER_REGEX
        );
-    }
-
-    public function treatProposition(PropositionInterface $proposition)
-    {
-        return $this->corrector->correct($this->getConcreteAnswerList(), $proposition);
     }
 
     public function matches(PropositionInterface $proposition)
@@ -222,18 +214,6 @@ class Translation implements Exercise
         $optionGroups = array_reverse($optionGroups);
 
         return $optionGroups;
-    }
-
-    public function setCorrector($corrector)
-    {
-        $this->corrector = $corrector;
-
-        return $this;
-    }
-
-    public function getCorrector()
-    {
-        return $this->corrector;
     }
 
     public function setId($id)

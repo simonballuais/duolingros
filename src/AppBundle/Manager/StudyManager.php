@@ -6,6 +6,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use AppBundle\Model\PropositionInterface;
 use AppBundle\Model\Proposition;
+use AppBundle\Model\Exercise;
+use AppBundle\Entity\Translation;
+use AppBundle\Entity\Question;
 
 
 class StudyManager
@@ -14,7 +17,8 @@ class StudyManager
 
     protected $currentLesson;
     protected $currentLessonId;
-    protected $currentTranslationText;
+    protected $currentExerciseType;
+    protected $currentExerciseId;
     protected $targetAmountPlayed;
     protected $currentAmountPlayed;
     protected $currentAmountSucceeded;
@@ -23,13 +27,20 @@ class StudyManager
     protected $entityManager;
     protected $lessonManager;
     protected $translationManager;
+    protected $correctionManager;
 
-    public function __construct($entityManager, $session, $lessonManager, $translationManager)
-    {
+    public function __construct(
+        $entityManager,
+        $session,
+        $lessonManager,
+        $translationManager,
+        $correctionManager
+    ) {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->lessonManager = $lessonManager;
         $this->translationManager = $translationManager;
+        $this->correctionManager = $correctionManager;
 
         $session->start();
     }
@@ -39,27 +50,39 @@ class StudyManager
         $this->setCurrentLessonId($lesson->getId());
         $this->setCurrentAmountPlayed(0);
         $this->setCurrentAmountSucceeded(0);
-        $this->setTargetAmountPlayed($lesson->getTranslationPerStudy());
-        $translation = $this->getNextExercise();
-        $this->setCurrentTranslationText($translation->getText());
+        $this->setTargetAmountPlayed($lesson->getExercisePerStudy());
+        $exercise = $this->getNextExercise();
+        $this->setCurrentExerciseId($exercise->getId());
+        $this->setCurrentExerciseType(get_class($exercise));
 
-        return $translation;
+        return $exercise;
     }
 
     public function tryProposition(PropositionInterface $proposition)
     {
-        $translation = $this->translationManager->get($this->getCurrentTranslationText());
-        $correction = $translation->treatProposition($proposition);
+        $exercise = $this->getCurrentExercise();
+        $correction = $this->correctionManager->correct($exercise, $proposition);
         $this->setLastSubmittedProposition($proposition);
 
         if ($correction->isOk()) {
             $this->setCurrentAmountSucceeded($this->getCurrentAmountSucceeded() + 1);
-            $this->setLastSolvedTranslationId($translation->getId());
+            $this->setLastSolvedExerciseId($exercise->getId());
         }
 
         $this->setCurrentAmountPlayed($this->getCurrentAmountPlayed() + 1);
 
         return $correction;
+    }
+
+    public function getCurrentExercise(): Exercise
+    {
+        if ($this->getCurrentExerciseType() === Translation::Class) {
+            return $this->translationManager->get($this->getCurrentExerciseId());
+        }
+
+        if ($this->getCurrentExerciseType() === Question::Class) {
+            return $this->questionManager->get($this->getCurrentExerciseId());
+        }
     }
 
     public function isOver()
@@ -74,10 +97,11 @@ class StudyManager
         }
 
         $lesson = $this->getCurrentLesson();
-        $translation = $lesson->getRandomTranslation($this->getLastSolvedTranslationId());
-        $this->setCurrentTranslationText($translation->getText());
+        $exercise = $lesson->getRandomExercise($this->getLastSolvedExerciseId());
+        $this->setCurrentExerciseId($exercise->getId());
+        $this->setCurrentExerciseType(get_class($exercise));
 
-        return $translation;
+        return $exercise;
     }
 
     public function getMistakes()
@@ -110,14 +134,26 @@ class StudyManager
         return $this;
     }
 
-    public function getCurrentTranslationText()
+    public function getCurrentExerciseId()
     {
-        return $this->session->get('current_translation_text');
+        return $this->session->get('current_exercise_id');
     }
 
-    public function setCurrentTranslationText($currentTranslationText)
+    public function setCurrentExerciseId($currentExerciseId)
     {
-        $this->session->set('current_translation_text', $currentTranslationText);
+        $this->session->set('current_exercise_id', $currentExerciseId);
+
+        return $this;
+    }
+
+    public function getCurrentExerciseType()
+    {
+        return $this->session->get('current_exercise_type');
+    }
+
+    public function setCurrentExerciseType($currentExerciseType)
+    {
+        $this->session->set('current_exercise_type', $currentExerciseType);
 
         return $this;
     }
@@ -187,14 +223,14 @@ class StudyManager
         return $proposition;
     }
 
-    public function getLastSolvedTranslationId()
+    public function getLastSolvedExerciseId()
     {
-        return $this->session->get('last_solved_translation_id');
+        return $this->session->get('last_solved_exercise_id');
     }
 
-    public function setLastSolvedTranslationId($id)
+    public function setLastSolvedExerciseId($id)
     {
-        $this->session->set('last_solved_translation_id', $id);
+        $this->session->set('last_solved_exercise_id', $id);
 
         return $this;
     }

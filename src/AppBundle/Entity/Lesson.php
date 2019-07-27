@@ -41,7 +41,7 @@ class Lesson
     /**
      * @ORM\Column(type="integer")
      */
-    protected $translationPerStudy;
+    protected $exercisePerStudy;
 
     /**
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
@@ -108,7 +108,7 @@ class Lesson
         return $this;
     }
 
-    public function getRandomTranslation($except = null)
+    public function getRandomExercise($except = null)
     {
         $pickables = array_merge(
             $this->translationList->toArray(),
@@ -120,13 +120,13 @@ class Lesson
         }
 
         do {
-            $result = $this->pickRandomTranslation();
+            $result = $this->pickRandomExercise();
         } while ($result->getId() === $except);
 
         return $result;
     }
 
-    public function pickRandomTranslation()
+    public function pickRandomExercise()
     {
         $pickables = array_merge(
             $this->translationList->toArray(),
@@ -141,14 +141,14 @@ class Lesson
         return sprintf("Lesson [%s] - %s", $this->id, $this->title);
     }
 
-    public function getTranslationPerStudy()
+    public function getExercisePerStudy()
     {
-        return $this->translationPerStudy;
+        return $this->exercisePerStudy;
     }
 
-    public function setTranslationPerStudy($translationPerStudy)
+    public function setExercisePerStudy($exercisePerStudy)
     {
-        $this->translationPerStudy = $translationPerStudy;
+        $this->exercisePerStudy = $exercisePerStudy;
 
         return $this;
     }
