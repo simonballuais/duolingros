@@ -38,7 +38,7 @@ class LoadLessonData implements FixtureInterface, ContainerAwareInterface, Order
 
             $lesson = $em->createOrUpdate($title, $bookLessonId, $id);
 
-            $lesson->setExercisePerStudy($csvLine[2]);
+            $lesson->setTranslationPerStudy($csvLine[2]);
             $lesson->setDescription($csvLine[3]);
         }
 

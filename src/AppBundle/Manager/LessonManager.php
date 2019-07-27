@@ -15,8 +15,8 @@ class LessonManager
     protected $repo;
 
     protected $currentLessonId;
-    protected $currentExercisePlayed;
-    protected $exerciseToPlay;
+    protected $currentTranslationPlayed;
+    protected $translationToPlay;
 
     public function __construct($entityManager, $session)
     {
@@ -109,26 +109,26 @@ class LessonManager
         return $this;
     }
 
-    public function getCurrentExercisePlayed()
+    public function getCurrentTranslationPlayed()
     {
-        return $this->currentExercisePlayed;
+        return $this->currentTranslationPlayed;
     }
 
-    public function setCurrentExercisePlayed($currentExercisePlayed)
+    public function setCurrentTranslationPlayed($currentTranslationPlayed)
     {
-        $this->currentExercisePlayed = $currentExercisePlayed;
+        $this->currentTranslationPlayed = $currentTranslationPlayed;
 
         return $this;
     }
 
-    public function getExerciseToPlay()
+    public function getTranslationToPlay()
     {
-        return $this->exerciseToPlay;
+        return $this->translationToPlay;
     }
 
-    public function setExerciseToPlay($exerciseToPlay)
+    public function setTranslationToPlay($translationToPlay)
     {
-        $this->exerciseToPlay = $exerciseToPlay;
+        $this->translationToPlay = $translationToPlay;
 
         return $this;
     }

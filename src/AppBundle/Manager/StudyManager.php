@@ -14,7 +14,7 @@ class StudyManager
 
     protected $currentLesson;
     protected $currentLessonId;
-    protected $currentExerciseText;
+    protected $currentTranslationText;
     protected $targetAmountPlayed;
     protected $currentAmountPlayed;
     protected $currentAmountSucceeded;
@@ -22,14 +22,14 @@ class StudyManager
     protected $session;
     protected $entityManager;
     protected $lessonManager;
-    protected $exerciseManager;
+    protected $translationManager;
 
-    public function __construct($entityManager, $session, $lessonManager, $exerciseManager)
+    public function __construct($entityManager, $session, $lessonManager, $translationManager)
     {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->lessonManager = $lessonManager;
-        $this->exerciseManager = $exerciseManager;
+        $this->translationManager = $translationManager;
 
         $session->start();
     }
@@ -39,22 +39,22 @@ class StudyManager
         $this->setCurrentLessonId($lesson->getId());
         $this->setCurrentAmountPlayed(0);
         $this->setCurrentAmountSucceeded(0);
-        $this->setTargetAmountPlayed($lesson->getExercisePerStudy());
-        $exercise = $this->getNextExercise();
-        $this->setCurrentExerciseText($exercise->getText());
+        $this->setTargetAmountPlayed($lesson->getTranslationPerStudy());
+        $translation = $this->getNextExercise();
+        $this->setCurrentTranslationText($translation->getText());
 
-        return $exercise;
+        return $translation;
     }
 
     public function tryProposition(PropositionInterface $proposition)
     {
-        $exercise = $this->exerciseManager->get($this->getCurrentExerciseText());
-        $correction = $exercise->treatProposition($proposition);
+        $translation = $this->translationManager->get($this->getCurrentTranslationText());
+        $correction = $translation->treatProposition($proposition);
         $this->setLastSubmittedProposition($proposition);
 
         if ($correction->isOk()) {
             $this->setCurrentAmountSucceeded($this->getCurrentAmountSucceeded() + 1);
-            $this->setLastSolvedExerciseId($exercise->getId());
+            $this->setLastSolvedTranslationId($translation->getId());
         }
 
         $this->setCurrentAmountPlayed($this->getCurrentAmountPlayed() + 1);
@@ -74,10 +74,10 @@ class StudyManager
         }
 
         $lesson = $this->getCurrentLesson();
-        $exercise = $lesson->getRandomExercise($this->getLastSolvedExerciseId());
-        $this->setCurrentExerciseText($exercise->getText());
+        $translation = $lesson->getRandomTranslation($this->getLastSolvedTranslationId());
+        $this->setCurrentTranslationText($translation->getText());
 
-        return $exercise;
+        return $translation;
     }
 
     public function getMistakes()
@@ -110,14 +110,14 @@ class StudyManager
         return $this;
     }
 
-    public function getCurrentExerciseText()
+    public function getCurrentTranslationText()
     {
-        return $this->session->get('current_exercise_text');
+        return $this->session->get('current_translation_text');
     }
 
-    public function setCurrentExerciseText($currentExerciseText)
+    public function setCurrentTranslationText($currentTranslationText)
     {
-        $this->session->set('current_exercise_text', $currentExerciseText);
+        $this->session->set('current_translation_text', $currentTranslationText);
 
         return $this;
     }
@@ -187,14 +187,14 @@ class StudyManager
         return $proposition;
     }
 
-    public function getLastSolvedExerciseId()
+    public function getLastSolvedTranslationId()
     {
-        return $this->session->get('last_solved_exercise_id');
+        return $this->session->get('last_solved_translation_id');
     }
 
-    public function setLastSolvedExerciseId($id)
+    public function setLastSolvedTranslationId($id)
     {
-        $this->session->set('last_solved_exercise_id', $id);
+        $this->session->set('last_solved_translation_id', $id);
 
         return $this;
     }

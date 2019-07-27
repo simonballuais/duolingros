@@ -55,14 +55,14 @@ whenDocumentReady(function () {
             </div>
           </div>
 
-          <div class="row" v-if="exerciseType == 'exercise'">
+          <div class="row" v-if="exerciseType == 'translation'">
             <div class="col-sm-6">
               <textarea
                      cols="50"
                      rows="4"
-                     id="exercise"
+                     id="translation"
                      readonly="true"
-                     v-bind:value="exerciseText"
+                     v-bind:value="translationText"
               >
               </textarea>
             </div> <!-- col -->
@@ -82,7 +82,8 @@ whenDocumentReady(function () {
 
           <div class="question-container" v-if="exerciseType == 'question'">
             <h2>
-              ${ exerciseText }
+              ${ questionText }
+              &nbsp;:
             </h2>
 
             <hr>

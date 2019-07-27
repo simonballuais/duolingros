@@ -7,12 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use AppBundle\Model\Correction;
 use AppBundle\Model\PropositionInterface;
+use AppBundle\Model\Exercise;
 
 /**
 * @ORM\Entity
-* @ORM\Table(name="exercise")
+* @ORM\Table(name="translation")
 */
-class Exercise
+class Translation implements Exercise
 {
     public $NOT_A_GROUP_DELIMITER_REGEX; // not ( [ {
     public $OPTION_GROUP_REGEX; // to find imediatly resolvable option groups such as (a|b|c) but not (a|b (c|d)|e)
@@ -35,7 +36,7 @@ class Exercise
     protected $answerList;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="exerciseList", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="translationList", cascade={"persist"})
      * @ORM\JoinColumn(name="lesson_id", referencedColumnName="id")
      */
     protected $lesson;
@@ -249,7 +250,7 @@ class Exercise
 
     public function getExerciseType()
     {
-        return 'exercise';
+        return 'translation';
     }
 
     public function getPossiblePropositions()

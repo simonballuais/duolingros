@@ -3,10 +3,10 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-use AppBundle\Entity\Exercise;
+use AppBundle\Entity\Translation;
 
 
-class ExerciseTest extends WebTestCase
+class TranslationTest extends WebTestCase
 {
     public function testConcretise()
     {
@@ -56,11 +56,11 @@ class ExerciseTest extends WebTestCase
 
 
         foreach ($cases as $case) {
-            $exercise = new Exercise();
-            $exercise->setAnswerList($case["answerList"]);
+            $translation = new Translation();
+            $translation->setAnswerList($case["answerList"]);
 
             $expectedConcreteAnswerList = $case["expectedConcreteAnswerList"];
-            $concreteAnswerList = $exercise->getConcreteAnswerList();
+            $concreteAnswerList = $translation->getConcreteAnswerList();
 
             $this->assertEquals(
                 $expectedConcreteAnswerList,
@@ -108,10 +108,10 @@ class ExerciseTest extends WebTestCase
         ];
 
         foreach ($cases as $case) {
-            $exercise = new Exercise();
+            $translation = new Translation();
 
             $expectedOptionGroups = $case["expectedOptionGroups"];
-            $concreteOptionGroups = $exercise->findNonRecursiveOptionGroups($case["candidate"]);
+            $concreteOptionGroups = $translation->findNonRecursiveOptionGroups($case["candidate"]);
 
             $this->assertEquals(
                 $expectedOptionGroups,

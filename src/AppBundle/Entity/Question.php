@@ -86,17 +86,6 @@ class Question
         return $this->propositionList;
     }
 
-    public function getPossiblePropositions()
-    {
-        $possiblePropositions = [];
-
-        foreach ($this->propositionList as $proposition) {
-            $possiblePropositions[] = $proposition->getText();
-        }
-
-        return $possiblePropositions;
-    }
-
     public function setPropositionList($propositionList)
     {
         $this->propositionList = $propositionList;

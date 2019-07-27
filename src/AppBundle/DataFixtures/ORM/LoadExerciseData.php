@@ -8,20 +8,20 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
-class LoadExerciseData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+class LoadTranslationData implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     protected $container;
 
     public function load(ObjectManager $manager)
     {
-        $em = $this->container->get('app.exercise_manager');
+        $em = $this->container->get('app.translation_manager');
         $lm = $this->container->get('app.lesson_manager');
         $csvDirectory = $this->container->getParameter('csv_directory');
 
-        $file = fopen($csvDirectory . "/exercise.csv", "r");
+        $file = fopen($csvDirectory . "/translation.csv", "r");
 
         if (is_null($file)) {
-            echo("Impossible de trouver le fichier exercise.csv\n");
+            echo("Impossible de trouver le fichier translation.csv\n");
             return;
         }
 
@@ -48,7 +48,7 @@ class LoadExerciseData implements FixtureInterface, ContainerAwareInterface, Ord
             array_shift($answerList);
             array_shift($answerList);
 
-            $exercise = $em->createOrUpdate($text, $answerList, $lesson, $id);
+            $translation = $em->createOrUpdate($text, $answerList, $lesson, $id);
 
             $index++;
         }

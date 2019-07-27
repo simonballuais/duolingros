@@ -11,14 +11,14 @@ use Symfony\Component\Console\Question\Question;
 use AppBundle\Model\Proposition;
 
 
-class PlayExerciseCommand extends ContainerAwareCommand
+class PlayTranslationCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('app:exercise:play')
-            ->setDescription('Jouer un Exercise')
-            ->setHelp('Jouer un Exercise')
+            ->setName('app:translation:play')
+            ->setDescription('Jouer un Translation')
+            ->setHelp('Jouer un Translation')
             ->setDefinition(
                 new InputDefinition([
                         new InputOption('index', 'i', InputOption::VALUE_REQUIRED),
@@ -32,22 +32,22 @@ class PlayExerciseCommand extends ContainerAwareCommand
         $helper = $this->getHelper('question');
         $index = intval($input->getOption('index'));
 
-        $em = $this->getContainer()->get('app.exercise_manager');
+        $em = $this->getContainer()->get('app.translation_manager');
 
-        $exercises = $em->getAll();
+        $translations = $em->getAll();
 
-        if (!isset($exercises[$index])) {
-            $output->writeln("Cet Exercise n'existe pas");
+        if (!isset($translations[$index])) {
+            $output->writeln("Cet Translation n'existe pas");
             return;
         }
 
-        $exercise = $exercises[$index];
-        $output->writeln($exercise->getText());
+        $translation = $translations[$index];
+        $output->writeln($translation->getText());
 
         $question = new Question("Votre réponse : ");
         $answer = $helper->ask($input, $output, $question);
         $proposition = new Proposition($answer);
-        $correction = $exercise->treatProposition($proposition);
+        $correction = $translation->treatProposition($proposition);
 
         if ($correction->isOk()) {
             $output->writeLn("Oki");

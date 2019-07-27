@@ -21,14 +21,14 @@ class ComplaintManager
         $this->repo = $entityManager->getRepository("AppBundle:Complaint");
     }
 
-    public function addComplaint($exercise, $propositionText)
+    public function addComplaint($translation, $propositionText)
     {
         if (!$propositionText) {
             return;
         }
 
         $existingComplaint = $this->repo->findOneBy([
-            "exercise" => $exercise,
+            "translation" => $translation,
             "propositionText" => $propositionText
         ]);
 
@@ -36,7 +36,7 @@ class ComplaintManager
             return $existingComplaint;
         }
 
-        $complaint = new Complaint($exercise, $propositionText);
+        $complaint = new Complaint($translation, $propositionText);
         $this->entityManager->persist($complaint);
 
         return $complaint;

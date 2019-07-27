@@ -24,10 +24,10 @@ class Complaint
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Exercise", inversedBy="complaints", cascade={"persist"})
-     * @ORM\JoinColumn(name="exercise_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Translation", inversedBy="complaints", cascade={"persist"})
+     * @ORM\JoinColumn(name="translation_id", referencedColumnName="id")
      */
-    protected $exercise;
+    protected $translation;
 
     /**
      * @ORM\Column(type="string", length=400)
@@ -39,9 +39,9 @@ class Complaint
      */
     protected $status;
 
-    public function __construct($exercise, $propositionText)
+    public function __construct($translation, $propositionText)
     {
-        $this->exercise = $exercise;
+        $this->translation = $translation;
         $this->propositionText = $propositionText;
         $this->status = self::IN_PROGRESS;
     }
@@ -51,14 +51,14 @@ class Complaint
         return $this->id;
     }
 
-    public function getExercise()
+    public function getTranslation()
     {
-        return $this->exercise;
+        return $this->translation;
     }
 
-    public function setExercise($exercise)
+    public function setTranslation($translation)
     {
-        $this->exercise = $exercise;
+        $this->translation = $translation;
 
         return $this;
     }

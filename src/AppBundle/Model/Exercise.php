@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Model;
 
-interface ExerciseInterface
+interface Exercise
 {
     public function treatProposition(PropositionInterface $proposition);
 }
-?>
+

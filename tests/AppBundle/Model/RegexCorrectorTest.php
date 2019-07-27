@@ -5,7 +5,7 @@ namespace Tests\AppBundle\Model;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 use AppBundle\Model\Proposition;
-use AppBundle\Entity\Exercise;
+use AppBundle\Entity\Translation;
 
 class RegexCorrectorTest extends WebTestCase
 {
@@ -25,9 +25,9 @@ class RegexCorrectorTest extends WebTestCase
         ];
 
         foreach ($cases as $case) {
-            $exercise = new Exercise();
-            $exercise->setAnswerList($case["answerList"]);
-            $correction = $exercise->treatProposition($case["proposition"]);
+            $translation = new Translation();
+            $translation->setAnswerList($case["answerList"]);
+            $correction = $translation->treatProposition($case["proposition"]);
 
             $this->assertEquals(
                 $case["expectedRemarks"],

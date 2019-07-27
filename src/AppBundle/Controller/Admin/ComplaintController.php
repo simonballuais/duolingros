@@ -37,11 +37,11 @@ class ComplaintController extends Controller
      */
     public function postAction(Request $request, Complaint $complaint)
     {
-        $exercise = $complaint->getExercise();
+        $translation = $complaint->getTranslation();
         $em = $this->getDoctrine()->getManager();
-        $repoExercise = $em->getRepository("AppBundle:Exercise");
+        $repoTranslation = $em->getRepository("AppBundle:Translation");
 
-        $exercise->setText($request->get('exercise-text'));
+        $translation->setText($request->get('translation-text'));
         $newAnswerList = $request->request->get('answers');
         $newAnswerListWithoutEmptyAnswer = [];
 
@@ -51,7 +51,7 @@ class ComplaintController extends Controller
             }
         }
 
-        $exercise->setAnswerList($newAnswerListWithoutEmptyAnswer);
+        $translation->setAnswerList($newAnswerListWithoutEmptyAnswer);
         $em->remove($complaint);
         $em->flush();
 

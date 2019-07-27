@@ -38,7 +38,7 @@ export function startLesson(lessonId) {
             blockPropositionInput: false,
             lessonTitle: '...',
             progress: 0,
-            exerciseText: '...',
+            translationText: '...',
             goodRun: false,
             remarks: [],
             remarksFg: "red",
@@ -72,8 +72,8 @@ export function startLesson(lessonId) {
                     this.lessonTitle = data.lessonTitle;
                 }
 
-                if (undefined !== data.exerciseText) {
-                    this.exerciseText = data.exerciseText;
+                if (undefined !== data.translationText) {
+                    this.translationText = data.translationText;
                 }
 
                 if (undefined !== data.remarks) {
@@ -99,7 +99,6 @@ export function startLesson(lessonId) {
                     Routing.generate('api_study_proposition_send'),
                     {
                         text: this.proposition,
-                        propositionId: this.selectedProposition.id
                     }
                 )
                 .then((response) => {
@@ -213,12 +212,12 @@ export function startLesson(lessonId) {
                 window.location.replace(Routing.generate('homepage'));
             },
             focusInput() {
-                if (this.doingExercise()) {
+                if (this.doingTranslation()) {
                     this.$nextTick(() => this.$refs.proposition.focus);
                 }
             },
-            doingExercise(){
-                return this.exerciseType === 'exercise';
+            doingTranslation(){
+                return this.exerciseType === 'translation';
             },
             doingQuestion(){
                 return this.exerciseType === 'question';
@@ -235,6 +234,7 @@ export function startLesson(lessonId) {
         mounted() {
             axios.get(Routing.generate('api_study_start', {lesson: lessonId}))
             .then((response) => {
+                console.log(response.data);
                 this.refreshLessonView(response.data);
                 this.proposition = '';
                 this.blockPropositionInput = false;

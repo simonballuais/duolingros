@@ -41,12 +41,12 @@ class Lesson
     /**
      * @ORM\Column(type="integer")
      */
-    protected $exercisePerStudy;
+    protected $translationPerStudy;
 
     /**
-     * @ORM\OneToMany(targetEntity="Exercise", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
      */
-    protected $exerciseList;
+    protected $translationList;
 
     /**
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
@@ -68,10 +68,10 @@ class Lesson
 
     public function __construct()
     {
-        $this->exerciseList = new ArrayCollection();
+        $this->translationList = new ArrayCollection();
         $this->questionList = new ArrayCollection();
         $this->learningList = new ArrayCollection();
-        $this->exercisePerStudy = 3;
+        $this->translationPerStudy = 3;
     }
 
      /**
@@ -108,10 +108,10 @@ class Lesson
         return $this;
     }
 
-    public function getRandomExercise($except = null)
+    public function getRandomTranslation($except = null)
     {
         $pickables = array_merge(
-            $this->exerciseList->toArray(),
+            $this->translationList->toArray(),
             $this->questionList->toArray()
         );
 
@@ -120,16 +120,16 @@ class Lesson
         }
 
         do {
-            $result = $this->pickRandomExercise();
+            $result = $this->pickRandomTranslation();
         } while ($result->getId() === $except);
 
         return $result;
     }
 
-    public function pickRandomExercise()
+    public function pickRandomTranslation()
     {
         $pickables = array_merge(
-            $this->exerciseList->toArray(),
+            $this->translationList->toArray(),
             $this->questionList->toArray()
         );
 
@@ -141,14 +141,14 @@ class Lesson
         return sprintf("Lesson [%s] - %s", $this->id, $this->title);
     }
 
-    public function getExercisePerStudy()
+    public function getTranslationPerStudy()
     {
-        return $this->exercisePerStudy;
+        return $this->translationPerStudy;
     }
 
-    public function setExercisePerStudy($exercisePerStudy)
+    public function setTranslationPerStudy($translationPerStudy)
     {
-        $this->exercisePerStudy = $exercisePerStudy;
+        $this->translationPerStudy = $translationPerStudy;
 
         return $this;
     }

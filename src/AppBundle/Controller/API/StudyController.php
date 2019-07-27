@@ -9,7 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Exercise;
+use AppBundle\Entity\Translation;
+use AppBundle\Entity\Question;
 use AppBundle\Model\Proposition;
 use AppBundle\Manager\LearningManager;
 
@@ -26,14 +27,20 @@ class StudyController extends Controller
     public function startStudyAction(Lesson $lesson)
     {
         $sm = $this->get('app.study_manager');
-        $exercise = $sm->startStudy($lesson);
+        $translation = $sm->startStudy($lesson);
+
+        $possiblePropositions = [];
+
+        if ($translation instanceof Question) {
+            $possiblePropositions = $this->serializePropositions($translation->getPropositionList());
+        }
 
         return new JsonResponse([
             'lessonTitle' => $lesson->getTitle(),
             'progress' => 0,
-            'exerciseText' => $sm->getCurrentExerciseText(),
-            'exerciseType' => $exercise->getExerciseType(),
-            'possiblePropositions' => $this->serializePropositions($exercise->getPossiblePropositions()),
+            'translationText' => $sm->getCurrentTranslationText(),
+            'exerciseType' => $translation->getExerciseType(),
+            'possiblePropositions' => $possiblePropositions,
         ]);
     }
 
@@ -48,10 +55,6 @@ class StudyController extends Controller
     {
         $sm = $this->get('app.study_manager');
         $requestContent = json_decode($request->getContent());
-
-        if ($requestContent->propositionId) {
-            
-        }
 
         $proposition = new Proposition($requestContent->text);
         $correction = $sm->tryProposition($proposition);
@@ -74,14 +77,14 @@ class StudyController extends Controller
     public function getNewExeriseAction()
     {
         $sm = $this->get('app.study_manager');
-        $exercise = $sm->getNextExercise();
+        $translation = $sm->getNextExercise();
 
-        if (null !== $exercise) {
+        if (null !== $translation) {
             return new JsonResponse([
-                'exerciseType' => $exercise->getExerciseType(),
+                'exerciseType' => $translation->getExerciseType(),
                 'progress' => $sm->getProgress(),
-                'exerciseText' => $exercise->getText(),
-                'possiblePropositions' => $this->serializePropositions($exercise->getPossiblePropositions()),
+                'translationText' => $translation->getText(),
+                'possiblePropositions' => $this->serializePropositions($translation->getPossiblePropositions()),
             ]);
         }
 
@@ -139,13 +142,13 @@ class StudyController extends Controller
         $em = $this->getDoctrine()->getManager();
         $sm = $this->get('app.study_manager');
         $cm = $this->get('app.complaint_manager');
-        $repoExercise = $em->getRepository("AppBundle:Exercise");
+        $repoTranslation = $em->getRepository("AppBundle:Translation");
 
         $proposition = $sm->getLastSubmittedProposition();
-        $exerciseText = $sm->getCurrentExerciseText();
-        $exercise = $repoExercise->findOneBy(["text" => $exerciseText]);
+        $translationText = $sm->getCurrentTranslationText();
+        $translation = $repoTranslation->findOneBy(["text" => $translationText]);
 
-        $complaint = $cm->addComplaint($exercise, $proposition);
+        $complaint = $cm->addComplaint($translation, $proposition);
         $em->flush();
 
         $message = "Bien reçu Michel !";
@@ -169,15 +172,15 @@ class StudyController extends Controller
      */
     public function testProposition(Request $request)
     {
-        $exerciseText = $request->get('exercise');
+        $translationText = $request->get('translation');
         $propositionText = $request->get('proposition');
 
         $proposition = new Proposition($propositionText);
-        $em = $this->get('app.exercise_manager');
-        $exercise = new Exercise();
-        $exercise->setCorrector($this->get('app.corrector.regex'));
-        $exercise->setAnswerList([$exerciseText]);
-        $correction = $exercise->treatProposition($proposition);
+        $em = $this->get('app.translation_manager');
+        $translation = new Translation();
+        $translation->setCorrector($this->get('app.corrector.regex'));
+        $translation->setAnswerList([$translationText]);
+        $correction = $translation->treatProposition($proposition);
 
         return new JsonResponse([
             'isOk' => $correction->isOk(),
