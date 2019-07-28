@@ -85,10 +85,18 @@ export function startLesson(lessonId) {
                 }
             },
             sendProposition() {
+                if (this.doingTranslation()) {
+                    this.sendTranslationProposition();
+                }
+                if (this.doingQuestion()) {
+                    this.sendQuestionAnswer();
+                }
+            },
+            sendTranslationProposition() {
                 this.blockPropositionInput = true
 
                 axios.post(
-                    Routing.generate('api_study_proposition_send'),
+                    Routing.generate('api_study_answer_translation'),
                     {
                         text: this.proposition,
                     }
@@ -97,6 +105,34 @@ export function startLesson(lessonId) {
                     this.refreshLessonView(response.data);
                     this.state = STATE.READING_REMARKS;
                     this.focusInput();
+                    $('#correction-status').fadeIn();
+
+                    if (response.data.isOk) {
+                        this.correctionStatus = this.getRandomSuccessMessage()
+                        this.remarksBg = BG_GREEN;
+                        this.remarksFg = FG_GREEN;
+                    }
+                    else {
+                        this.correctionStatus = this.getRandomFailureMessage()
+                        this.remarksBg = BG_RED;
+                        this.remarksFg = FG_RED;
+                        setTimeout(function() {
+                            $('#complain-button').fadeIn();
+                        }, 150);
+                    }
+                })
+                .catch((error) => { console.error(error) })
+            },
+            sendQuestionAnswer() {
+                axios.post(
+                    Routing.generate('api_study_answer_question'),
+                    {
+                        answer: this.selectedProposition.id,
+                    }
+                )
+                .then((response) => {
+                    this.refreshLessonView(response.data);
+                    this.state = STATE.READING_REMARKS;
                     $('#correction-status').fadeIn();
 
                     if (response.data.isOk) {
@@ -213,6 +249,9 @@ export function startLesson(lessonId) {
             },
             doingQuestion(){
                 return this.exercise && this.exercise.type === 'question';
+            },
+            readingRemarks() {
+                return this.state === STATE.READING_REMARKS;
             },
             selectProposition(proposition) {
                 if (this.selectProposition == proposition) {

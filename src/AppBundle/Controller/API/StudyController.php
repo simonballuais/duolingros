@@ -39,18 +39,41 @@ class StudyController extends Controller
     }
 
     /**
-     * @Route("/api/study/proposition/send",
-     *        name="api_study_proposition_send",
+     * @Route("/api/study/translation/answer",
+     *        name="api_study_answer_translation",
      *        options={"expose"=true}
      *        )
      * @Method({"POST"})
      */
-    public function sendPropositionAction(Request $request)
+    public function answerTranslation(Request $request)
     {
         $sm = $this->get('app.study_manager');
         $requestContent = json_decode($request->getContent());
 
         $proposition = new Proposition($requestContent->text);
+        $correction = $sm->tryProposition($proposition);
+
+        return new JsonResponse([
+            'proposition' => $request->get('text'),
+            'isOk' => $correction->isOk(),
+            'remarks' => $correction->getRemarks(),
+            'progress' => $sm->getProgress(),
+        ]);
+    }
+
+    /**
+     * @Route("/api/study/question/answer",
+     *        name="api_study_answer_question",
+     *        options={"expose"=true}
+     *        )
+     * @Method({"POST"})
+     */
+    public function answerQuestion(Request $request)
+    {
+        $sm = $this->get('app.study_manager');
+        $requestContent = json_decode($request->getContent());
+
+        $proposition = new Proposition($requestContent->answer);
         $correction = $sm->tryProposition($proposition);
 
         return new JsonResponse([

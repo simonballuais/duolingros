@@ -83,7 +83,6 @@ whenDocumentReady(function () {
           <div class="question-container" v-if="doingQuestion()">
             <h2>
               ${ exercise.text }
-              &nbsp;:
             </h2>
 
             <hr>
@@ -105,8 +104,17 @@ whenDocumentReady(function () {
             <button class="btn btn-lg btn-primary pull-right ripple"
                     id="answer-question"
                     v-on:click="sendProposition()"
+                    v-if="! (doingQuestion() && readingRemarks())"
                     >
               Envoyer
+            </button>
+
+            <button class="btn btn-lg btn-success pull-right ripple"
+                    id="answer-question"
+                    v-on:click="startNextExercise()"
+                    v-if="doingQuestion() && readingRemarks()"
+                    >
+              Passer à la suite
             </button>
           </div>
       </div> <!-- row -->

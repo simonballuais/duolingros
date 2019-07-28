@@ -34,12 +34,14 @@ class StudyManager
         $session,
         $lessonManager,
         $translationManager,
+        $questionManager,
         $correctionManager
     ) {
         $this->entityManager = $entityManager;
         $this->session = $session;
         $this->lessonManager = $lessonManager;
         $this->translationManager = $translationManager;
+        $this->questionManager = $questionManager;
         $this->correctionManager = $correctionManager;
 
         $session->start();

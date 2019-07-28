@@ -9,7 +9,13 @@ services:
 
     app.study_manager:
         class: AppBundle\Manager\StudyManager
-        arguments: ['@doctrine.orm.entity_manager', '@session', '@app.lesson_manager', '@app.translation_manager', '@app.correction_manager']
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@session'
+            - '@app.lesson_manager'
+            - '@app.translation_manager'
+            - '@app.question_manager'
+            - '@app.correction_manager'
 
     app.learning_manager:
         class: AppBundle\Manager\LearningManager
@@ -17,6 +23,10 @@ services:
 
     app.corrector.regex:
         class: AppBundle\Model\RegexCorrector
+        arguments: ['@logger']
+
+    app.corrector.question:
+        class: AppBundle\Model\QuestionCorrector
         arguments: ['@logger']
 
     app.translation_manager:
@@ -29,7 +39,7 @@ services:
 
     app.correction_manager:
         class: AppBundle\Manager\CorrectionManager
-        arguments: ['@app.corrector.regex']
+        arguments: ['@app.corrector.regex', '@app.corrector.question']
 
     app.complaint_manager:
         class: AppBundle\Manager\ComplaintManager

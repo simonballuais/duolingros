@@ -12,6 +12,8 @@ use AppBundle\Services\Mailer;
 use AppBundle\Model\CorrectionInterface;
 use AppBundle\Model\Exercise;
 use AppBundle\Model\PropositionInterface;
+use AppBundle\Model\RegexCorrector;
+use AppBundle\Model\QuestionCorrector;
 use AppBundle\Entity\Translation;
 use AppBundle\Entity\Question;
 
@@ -21,9 +23,12 @@ class CorrectionManager
 
     protected $regexCorrector;
 
-    public function __construct($regexCorrector)
-    {
+    public function __construct(
+        RegexCorrector $regexCorrector,
+        QuestionCorrector $questionCorrector
+    ) {
         $this->regexCorrector = $regexCorrector;
+        $this->questionCorrector = $questionCorrector;
     }
 
     public function correct(
@@ -40,6 +45,10 @@ class CorrectionManager
     {
         if ($exercise instanceof Translation) {
             return $this->regexCorrector;
+        }
+
+        if ($exercise instanceof Question) {
+            return $this->questionCorrector;
         }
     }
 }

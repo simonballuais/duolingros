@@ -6,13 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
 
+use AppBundle\Model\Exercise;
+
 /**
 * @ORM\Entity
 * @ORM\Table(name="question")
 *
 * @Serializer\ExclusionPolicy("all")
 */
-class Question
+class Question implements Exercise
 {
     /**
      * @ORM\Column(type="integer")
