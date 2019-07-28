@@ -109,6 +109,20 @@ div#playground {
                     font-weight: bold;
                 }
 
+                &.selected-but-wrong {
+                    border: 3px solid $orange;
+                    background-color: $salient-orange;
+                    color: $white;
+                    font-weight: bold;
+                }
+
+                &.right {
+                    border: 3px solid $green;
+                    background-color: $salient-green;
+                    color: $white;
+                    font-weight: bold;
+                }
+
                 .proposition-text {
                     font-size: 18px;
                 }

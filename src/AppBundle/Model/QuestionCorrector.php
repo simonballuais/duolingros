@@ -25,6 +25,8 @@ class QuestionCorrector implements CorrectorInterface
                 $question->getId()
             ));
 
+            $correction->setRightAnswer($question->getPropositionList()->first());
+
             return $correction;
         }
 
@@ -34,6 +36,8 @@ class QuestionCorrector implements CorrectorInterface
                 $question->getAnswer()->getText()
             ));
         }
+
+        $correction->setRightAnswer($question->getAnswer());
 
         return $correction;
     }

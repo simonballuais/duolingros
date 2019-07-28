@@ -6,11 +6,13 @@ class Correction implements CorrectionInterface
 {
     protected $remarks;
     protected $isOkDespiteRemarks;
+    protected $rightAnswer;
 
     public function __construct($remarks = [])
     {
         $this->remarks = $remarks;
         $this->isOkDespiteRemark = false;
+        $this->rightAnswer = null;
     }
 
     public function getRemarks()
@@ -46,5 +48,17 @@ class Correction implements CorrectionInterface
 
         return $this;
     }
+
+    public function getRightAnswer()
+    {
+        return $this->rightAnswer;
+    }
+
+    public function setRightAnswer($rightAnswer)
+    {
+        $this->rightAnswer = $rightAnswer;
+
+        return $this;
+    }
 }
-?>
+

@@ -52,6 +52,7 @@ export function startLesson(lessonId) {
             exerciseType: null,
             possiblePropositions: null,
             selectedProposition: null,
+            rightAnswer: null,
         },
         methods: {
             getRandomSuccessMessage() {
@@ -114,6 +115,7 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
+                    this.rightAnswer = response.data.rightAnswer;
                     this.showCorrection(response.data);
                 })
                 .catch((error) => { console.error(error) })

@@ -91,7 +91,15 @@ whenDocumentReady(function () {
               <div class="proposition"
                    v-for="proposition in exercise.propositionList"
                    v-on:click="selectProposition(proposition)"
-                   v-bind:class="{'selected': proposition == selectedProposition}"
+                   v-bind:class="{
+                      'selected': ! readingRemarks() && selectedProposition
+                                  && proposition.id == selectedProposition.id,
+                      'selected-but-wrong': readingRemarks() && selectedProposition
+                                            && proposition.id == selectedProposition.id
+                                            && selectedProposition.id != rightAnswer.id,
+                      'right': readingRemarks()
+                               && proposition.id == rightAnswer.id
+                   }"
                    >
                 <span class="proposition-text">
                   ${ proposition.text }

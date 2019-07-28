@@ -81,6 +81,7 @@ class StudyController extends Controller
             'isOk' => $correction->isOk(),
             'remarks' => $correction->getRemarks(),
             'progress' => $sm->getProgress(),
+            'rightAnswer' => ['id' => $correction->getRightAnswer()->getId()],
         ]);
     }
 

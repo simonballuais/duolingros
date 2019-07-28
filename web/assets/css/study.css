@@ -211,7 +211,18 @@ div#playground {
       div#playground div.question-container .proposition-list div.proposition.selected {
         border: 3px solid #039BE5;
         background-color: #1fb4fc;
-        color: #EEEEEE; }
+        color: #EEEEEE;
+        font-weight: bold; }
+      div#playground div.question-container .proposition-list div.proposition.selected-but-wrong {
+        border: 3px solid #e08e0b;
+        background-color: #f39c12;
+        color: #EEEEEE;
+        font-weight: bold; }
+      div#playground div.question-container .proposition-list div.proposition.right {
+        border: 3px solid #008d4c;
+        background-color: #00a65a;
+        color: #EEEEEE;
+        font-weight: bold; }
       div#playground div.question-container .proposition-list div.proposition .proposition-text {
         font-size: 18px; }
 

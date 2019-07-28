@@ -46,6 +46,8 @@ class RegexCorrector implements CorrectorInterface
             $answerList
         );
 
+        $correction->setRightAnswer($closestGoodAnswer);
+
         $purifiedAnswer = $this->purifyString($closestGoodAnswer);
         $this->logger->debug("Réponse la plus proche de la proposition : $purifiedAnswer");
 
