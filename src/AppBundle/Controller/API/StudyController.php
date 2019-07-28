@@ -112,6 +112,7 @@ class StudyController extends Controller
 
     public function endStudy()
     {
+        $sm = $this->get('app.study_manager');
         $lm = $this->get('app.learning_manager');
         $em = $this->getDoctrine()->getManager();
 
