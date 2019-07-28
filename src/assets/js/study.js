@@ -102,24 +102,7 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
-                    this.refreshLessonView(response.data);
-                    this.state = STATE.READING_REMARKS;
-                    this.focusInput();
-                    $('#correction-status').fadeIn();
-
-                    if (response.data.isOk) {
-                        this.correctionStatus = this.getRandomSuccessMessage()
-                        this.remarksBg = BG_GREEN;
-                        this.remarksFg = FG_GREEN;
-                    }
-                    else {
-                        this.correctionStatus = this.getRandomFailureMessage()
-                        this.remarksBg = BG_RED;
-                        this.remarksFg = FG_RED;
-                        setTimeout(function() {
-                            $('#complain-button').fadeIn();
-                        }, 150);
-                    }
+                    this.showCorrection(response.data);
                 })
                 .catch((error) => { console.error(error) })
             },
@@ -131,25 +114,29 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
-                    this.refreshLessonView(response.data);
-                    this.state = STATE.READING_REMARKS;
-                    $('#correction-status').fadeIn();
-
-                    if (response.data.isOk) {
-                        this.correctionStatus = this.getRandomSuccessMessage()
-                        this.remarksBg = BG_GREEN;
-                        this.remarksFg = FG_GREEN;
-                    }
-                    else {
-                        this.correctionStatus = this.getRandomFailureMessage()
-                        this.remarksBg = BG_RED;
-                        this.remarksFg = FG_RED;
-                        setTimeout(function() {
-                            $('#complain-button').fadeIn();
-                        }, 150);
-                    }
+                    this.showCorrection(response.data);
                 })
                 .catch((error) => { console.error(error) })
+            },
+            showCorrection(correction) {
+                this.refreshLessonView(correction);
+                this.state = STATE.READING_REMARKS;
+                $('#correction-status').fadeIn();
+
+                if (correction.isOk) {
+                    this.correctionStatus = this.getRandomSuccessMessage();
+                    this.remarksBg = BG_GREEN;
+                    this.remarksFg = FG_GREEN;
+                }
+                else {
+                    this.correctionStatus = this.getRandomFailureMessage()
+                    this.remarksBg = BG_RED;
+                    this.remarksFg = FG_RED;
+
+                    setTimeout(function() {
+                        $('#complain-button').fadeIn();
+                    }, 150);
+                }
             },
             startNextExercise() {
                 $('#correction-status').fadeOut();
