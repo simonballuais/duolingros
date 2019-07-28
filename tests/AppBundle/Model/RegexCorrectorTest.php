@@ -2,15 +2,26 @@
 
 namespace Tests\AppBundle\Model;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
+use AppBundle\Model\RegexCorrector;
 use AppBundle\Model\Proposition;
 use AppBundle\Entity\Translation;
 
-class RegexCorrectorTest extends WebTestCase
+class RegexCorrectorTest extends TestCase
 {
+    private $logger;
+
+    public function setUp()
+    {
+        $this->logger = $this->createMock(LoggerInterface::class);
+    }
+
     public function testRightAnswers()
     {
+        $corrector = $this->getRegexCorrector();
+
         $cases =
         [
             [
@@ -27,7 +38,11 @@ class RegexCorrectorTest extends WebTestCase
         foreach ($cases as $case) {
             $translation = new Translation();
             $translation->setAnswerList($case["answerList"]);
-            $correction = $translation->treatProposition($case["proposition"]);
+
+            $correction = $corrector->correct(
+                $translation,
+                $case["proposition"]
+            );
 
             $this->assertEquals(
                 $case["expectedRemarks"],
@@ -59,5 +74,12 @@ class RegexCorrectorTest extends WebTestCase
                 ]
             ],
         ];
+    }
+
+    public function getRegexCorrector(): RegexCorrector
+    {
+        return new RegexCorrector(
+            $this->logger
+        );
     }
 }

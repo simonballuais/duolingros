@@ -41,8 +41,7 @@ export function startLesson(lessonId) {
             exercise: null,
             goodRun: false,
             remarks: [],
-            remarksFg: "red",
-            remarksBg: "red",
+            currentCorrection: null,
             correctionStatus: 'Oki :)',
             conclusionHeader: '',
             conclusionBody: '',
@@ -103,7 +102,8 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
-                    this.showCorrection(response.data);
+                    this.currentCorrection = response.data;
+                    this.showCorrection();
                 })
                 .catch((error) => { console.error(error) })
             },
@@ -115,25 +115,23 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
+                    this.selectedProposition = null;
+                    this.currentCorrection = response.data;
                     this.rightAnswer = response.data.rightAnswer;
-                    this.showCorrection(response.data);
+                    this.showCorrection();
                 })
                 .catch((error) => { console.error(error) })
             },
-            showCorrection(correction) {
-                this.refreshLessonView(correction);
+            showCorrection() {
+                this.refreshLessonView(this.currentCorrection);
                 this.state = STATE.READING_REMARKS;
                 $('#correction-status').fadeIn();
 
-                if (correction.isOk) {
+                if (this.currentCorrection.isOk) {
                     this.correctionStatus = this.getRandomSuccessMessage();
-                    this.remarksBg = BG_GREEN;
-                    this.remarksFg = FG_GREEN;
                 }
                 else {
                     this.correctionStatus = this.getRandomFailureMessage()
-                    this.remarksBg = BG_RED;
-                    this.remarksFg = FG_RED;
 
                     setTimeout(function() {
                         $('#complain-button').fadeIn();

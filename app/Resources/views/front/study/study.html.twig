@@ -130,15 +130,17 @@ whenDocumentReady(function () {
       <div class="row">
         <div class="jumbotron"
              id="correction-status"
-             v-bind:style="{
-               'background-color': remarksBg,
+             v-bind:class="{
+                'not-ok': currentCorrection && !currentCorrection.isOk,
+                'ok': currentCorrection && currentCorrection.isOk,
              }"
              style="display: none"
           >
           <h1 class="display-3"
-             v-bind:style="{
-               'color': remarksFg,
-             }"
+              v-bind:class="{
+                 'not-ok': currentCorrection && !currentCorrection.isOk,
+                 'ok': currentCorrection && currentCorrection.isOk,
+              }"
               >
             ${ correctionStatus }
           </h1>

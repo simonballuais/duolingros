@@ -7,6 +7,16 @@
     padding-top: 20px;
     border-radius: 0;
     box-shadow: 0px 0px 20px #AAAAAA;
+
+    &.ok {
+        color: $white;
+        background-color: $green;
+    }
+
+    &.not-ok {
+        color: $black;
+        background-color: $red;
+    }
 }
 
 #complain-button {
