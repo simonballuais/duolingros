@@ -54,9 +54,18 @@ class Question implements Exercise
      */
     protected $lesson;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("isNoPictures")
+     */
+    protected $noPictures;
+
     public function __construct()
     {
         $this->propositionList = new ArrayCollection();
+        $this->noPictures = false;
     }
 
     public function getId()
@@ -141,5 +150,17 @@ class Question implements Exercise
     public function getExerciseType()
     {
         return 'question';
+    }
+
+    public function isNoPictures()
+    {
+        return $this->noPictures;
+    }
+
+    public function setNoPictures($noPictures)
+    {
+        $this->noPictures = $noPictures;
+
+        return $this;
     }
 }

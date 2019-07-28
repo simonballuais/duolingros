@@ -7,11 +7,6 @@ Array.prototype.sample = function () {
 const DEFAULT_COMPLAIN_BUTTON = 'Euuuh bah si lol ...';
 const ENTER = 13;
 
-const BG_RED = '#e22d2d';
-const BG_GREEN = '#2de230';
-const FG_RED = '#440d0d';
-const FG_GREEN = '#0d440e';
-
 const ARROW = {
     UP: 38,
     DOWN: 40,
@@ -55,10 +50,10 @@ export function startLesson(lessonId) {
         },
         methods: {
             getRandomSuccessMessage() {
-                return ['Oki :)', 'Yes maggle !', 'Bien ouej kiki'].sample()
+                return ['Oki :)', 'Yes maggle !', 'Bien ouej kiki', 'C bn sa'].sample()
             },
             getRandomFailureMessage () {
-                return ['Tropa :(', 'Nope.', 'Euh ...'].sample()
+                return ['Tropa :(', 'Nope.', 'Euh ...', 'Tacru'].sample()
             },
             getPropositionInput() {
                 return document.getElementById('proposition');
@@ -115,7 +110,6 @@ export function startLesson(lessonId) {
                     }
                 )
                 .then((response) => {
-                    this.selectedProposition = null;
                     this.currentCorrection = response.data;
                     this.rightAnswer = response.data.rightAnswer;
                     this.showCorrection();
@@ -139,6 +133,7 @@ export function startLesson(lessonId) {
                 }
             },
             startNextExercise() {
+                this.selectedProposition = null;
                 $('#correction-status').fadeOut();
                 this.hideComplainButton();
 

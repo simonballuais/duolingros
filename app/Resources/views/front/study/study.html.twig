@@ -80,7 +80,8 @@ whenDocumentReady(function () {
             </div> <!-- col -->
           </div> <!-- row -->
 
-          <div class="question-container" v-if="doingQuestion()">
+          <div class="question-container with-pictures"
+               v-if="doingQuestion() && exercise && exercise.noPictures">
             <h2>
               ${ exercise.text }
             </h2>
@@ -106,25 +107,54 @@ whenDocumentReady(function () {
                 </span>
               </div>
             </div>
-
-            <hr>
-
-            <button class="btn btn-lg btn-primary pull-right ripple"
-                    id="answer-question"
-                    v-on:click="sendProposition()"
-                    v-if="! (doingQuestion() && readingRemarks())"
-                    >
-              Envoyer
-            </button>
-
-            <button class="btn btn-lg btn-success pull-right ripple"
-                    id="answer-question"
-                    v-on:click="startNextExercise()"
-                    v-if="doingQuestion() && readingRemarks()"
-                    >
-              Passer à la suite
-            </button>
           </div>
+
+          <div class="question-container no-pictures row"
+               v-if="doingQuestion() && exercise && !exercise.noPictures">
+            <div class="col-sm-4 exercise-text">
+              <h2>
+                ${ exercise.text }
+              </h2>
+            </div> <!-- col -->
+
+            <div class="proposition-list col-sm-8">
+              <div class="proposition"
+                   v-for="proposition in exercise.propositionList"
+                   v-on:click="selectProposition(proposition)"
+                   v-bind:class="{
+                      'selected': ! readingRemarks() && selectedProposition
+                                  && proposition.id == selectedProposition.id,
+                      'selected-but-wrong': readingRemarks() && selectedProposition
+                                            && proposition.id == selectedProposition.id
+                                            && selectedProposition.id != rightAnswer.id,
+                      'right': readingRemarks()
+                               && proposition.id == rightAnswer.id
+                   }"
+                   >
+                <span class="proposition-text">
+                  ${ proposition.text }
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <button class="btn btn-lg btn-primary pull-right ripple"
+                  id="answer-question"
+                  v-on:click="sendProposition()"
+                  v-if="! readingRemarks()"
+                  >
+            Envoyer
+          </button>
+
+          <button class="btn btn-lg btn-success pull-right ripple"
+                  id="answer-question"
+                  v-on:click="startNextExercise()"
+                  v-if="readingRemarks()"
+                  >
+            Passer à la suite
+          </button>
       </div> <!-- row -->
 
       <div class="row">

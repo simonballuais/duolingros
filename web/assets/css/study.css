@@ -198,11 +198,32 @@ label.lesson {
 
 div#playground {
   height: 100vh; }
-  div#playground div.question-container .proposition-list {
+  div#playground div.question-container .proposition-list div.proposition:hover {
+    cursor: pointer;
+    border: 3px solid #84d6fd;
+    background-color: #84d6fd; }
+  div#playground div.question-container .proposition-list div.proposition.selected {
+    border: 3px solid #039BE5;
+    background-color: #1fb4fc;
+    color: #EEEEEE;
+    font-weight: bold; }
+  div#playground div.question-container .proposition-list div.proposition.selected-but-wrong {
+    border: 3px solid #e08e0b;
+    background-color: #f39c12;
+    color: #EEEEEE;
+    font-weight: bold; }
+  div#playground div.question-container .proposition-list div.proposition.right {
+    border: 3px solid #008d4c;
+    background-color: #00a65a;
+    color: #EEEEEE;
+    font-weight: bold; }
+  div#playground div.question-container .proposition-list div.proposition .proposition-text {
+    font-size: 18px; }
+  div#playground div.question-container.with-pictures .proposition-list {
     display: flex;
     flex-direction: row;
     justify-content: space-around; }
-    div#playground div.question-container .proposition-list div.proposition {
+    div#playground div.question-container.with-pictures .proposition-list div.proposition {
       display: block;
       width: 150px;
       height: 150px;
@@ -210,27 +231,23 @@ div#playground {
       border-radius: 5px;
       border: 2px solid #EEEEEE;
       transition: background-color 0.25s, border 0.25s, color 0.25s; }
-      div#playground div.question-container .proposition-list div.proposition:hover {
-        cursor: pointer;
-        border: 3px solid #84d6fd;
-        background-color: #84d6fd; }
-      div#playground div.question-container .proposition-list div.proposition.selected {
-        border: 3px solid #039BE5;
-        background-color: #1fb4fc;
-        color: #EEEEEE;
-        font-weight: bold; }
-      div#playground div.question-container .proposition-list div.proposition.selected-but-wrong {
-        border: 3px solid #e08e0b;
-        background-color: #f39c12;
-        color: #EEEEEE;
-        font-weight: bold; }
-      div#playground div.question-container .proposition-list div.proposition.right {
-        border: 3px solid #008d4c;
-        background-color: #00a65a;
-        color: #EEEEEE;
-        font-weight: bold; }
-      div#playground div.question-container .proposition-list div.proposition .proposition-text {
-        font-size: 18px; }
+  div#playground div.question-container.no-pictures .proposition-list {
+    border-left: 1px solid gray;
+    display: flex;
+    flex-direction: column; }
+    div#playground div.question-container.no-pictures .proposition-list div.proposition {
+      display: flex;
+      width: 100%;
+      height: 50px;
+      text-align: left;
+      border-radius: 5px;
+      border: 2px solid #EEEEEE;
+      transition: background-color 0.25s, border 0.25s, color 0.25s;
+      align-items: center;
+      padding: 5px;
+      margin: 3px; }
+      div#playground div.question-container.no-pictures .proposition-list div.proposition span.proposition-text {
+        display: flex; }
 
 #text-row {
   box-shadow: 0px 0px 20px #AAAAAA;
