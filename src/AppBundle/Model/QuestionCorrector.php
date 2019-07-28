@@ -14,10 +14,27 @@ class QuestionCorrector implements CorrectorInterface
     }
 
     public function correct(
-        Exercise $translation,
+        Exercise $question,
         PropositionInterface $proposition
     ) {
         $correction = new Correction();
+
+        if (! $question->getAnswer()) {
+            $this->logger->critical(sprintf(
+                'The question %s has no answer set',
+                $question->getId()
+            ));
+
+            return $correction;
+        }
+
+        if ($proposition->getValue() != $question->getAnswer()->getId()) {
+            $correction->addRemark(sprintf(
+                'La bonne réponse était : <b>%s</b>',
+                $question->getAnswer()->getText()
+            ));
+        }
+
         return $correction;
     }
 }

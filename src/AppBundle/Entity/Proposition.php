@@ -10,8 +10,8 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * @ORM\Entity
  * @ORM\Table(name="question_proposition")
-*
-* @Serializer\ExclusionPolicy("all")
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Proposition
 {
