@@ -1,5 +1,6 @@
 {% extends 'front/base.html.twig' %}
 
+
 {% macro printPropositionRow(proposition) %}
   <li>
     <div class="container">
@@ -59,6 +60,56 @@
   </div> <!-- box -->
 {% endmacro %}
 
+{% macro printAnswerRow(answer) %}
+  <li>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+          <button type="button" class="remove-answer">
+              X
+          </button>
+        </div> <!-- col -->
+        <div class="col-sm-11">
+          {{ form_row(answer) }}
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </li>
+{% endmacro %}
+
+{% macro printTranslationRow(translation) %}
+  {% import _self as formMacros %}
+
+  <div class="box">
+    <li>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-1">
+            <button type="button" class="remove-translation">
+              X
+            </button>
+          </div> <!-- col -->
+          <div class="col-sm-5">
+            {{ form_row(translation.text) }}
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+
+      <h4>
+        {{ form_label(translation.answerList) }}
+      </h4>
+
+      <ul class="answer-list"
+          data-prototype="{{ formMacros.printAnswerRow(translation.answerList.vars.prototype)|e('html_attr') }}">
+
+        {% for answer in translation.answerList %}
+          {{ formMacros.printAnswerRow(answer) }}
+        {% endfor %}
+      </ul>
+    </li>
+  </div> <!-- box -->
+{% endmacro %}
+
 {% import _self as formMacros %}
 
 {% block additional_stylesheet %}
@@ -74,6 +125,8 @@
     {{ form_start(form) }}
     {{ form_widget(form.title) }}
 
+    <input type="submit" value="OKI">
+
     <h3>
       {{ form_label(form.questionList) }}
     </h3>
@@ -83,6 +136,18 @@
 
       {% for question in form.questionList %}
         {{ formMacros.printQuestionRow(question) }}
+      {% endfor %}
+    </ul>
+
+    <h3>
+      {{ form_label(form.questionList) }}
+    </h3>
+
+    <ul class="translation-list"
+        data-prototype="{{ formMacros.printTranslationRow(form.translationList.vars.prototype)|e('html_attr') }}">
+
+      {% for translation in form.translationList %}
+        {{ formMacros.printTranslationRow(translation) }}
       {% endfor %}
     </ul>
 

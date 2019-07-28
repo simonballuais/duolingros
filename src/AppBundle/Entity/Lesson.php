@@ -227,4 +227,16 @@ class Lesson
     {
         $this->questionList->removeElement($question);
     }
+
+    public function getTranslationList()
+    {
+        return $this->translationList;
+    }
+
+    public function setTranslationList($translationList)
+    {
+        $this->translationList = $translationList;
+
+        return $this;
+    }
 }

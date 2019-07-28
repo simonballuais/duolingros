@@ -1,4 +1,8 @@
-ul.question-list {
+input {
+    width: 70%;
+}
+
+ul.question-list, ul.translation-list {
     list-style: none;
 
     .box {
@@ -6,6 +10,6 @@ ul.question-list {
     }
 }
 
-ul.proposition-list {
+ul.proposition-list, ul.answer-list {
     list-style: none;
 }

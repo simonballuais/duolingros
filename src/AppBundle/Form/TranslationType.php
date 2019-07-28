@@ -6,34 +6,24 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use AppBundle\Entity\Translation;
+use AppBundle\Entity\Proposition;
 
-use AppBundle\Entity\Lesson;
-
-class LessonType extends AbstractType
+class TranslationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('text')
             ->add(
-                'questionList',
+                'answerList',
                 CollectionType::class,
                 [
-                    'entry_type' => QuestionType::class,
+                    'entry_type' => TextType::class,
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'label' => 'Questions',
-                    'by_reference' => false,
-                ]
-            )
-            ->add(
-                'translationList',
-                CollectionType::class,
-                [
-                    'entry_type' => TranslationType::class,
-                    'allow_add' => true,
-                    'allow_delete' => true,
-                    'label' => 'Questions',
+                    'label' => 'Answers',
                     'by_reference' => false,
                 ]
             )
@@ -42,7 +32,7 @@ class LessonType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([ 'data_class' => Lesson::class]);
+        $resolver->setDefaults([ 'data_class' => Translation::class]);
     }
-    }
-?>
+}
+

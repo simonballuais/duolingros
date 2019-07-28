@@ -1,4 +1,4 @@
-let questionList;
+let questionList, translationList;
 
 $(document).ready(function(e) {
     questionList = $('ul.question-list');
@@ -6,6 +6,13 @@ $(document).ready(function(e) {
 
     questionList.find('ul.proposition-list').each(function() {
         addAddButtonToPropositionList($(this));
+    });
+
+    translationList = $('ul.translation-list');
+    addAddButtonToTranslationList();
+
+    translationList.find('ul.answer-list').each(function() {
+        addAddButtonToAnswerList($(this));
     });
 });
 
@@ -18,8 +25,25 @@ function addAddButtonToQuestionList() {
     newQuestionButton.on('click', addQuestionEntry);
 }
 
+function addAddButtonToTranslationList() {
+    let newTranslationButton = $('<button>+<button>');
+    let newTranslationLi = $('<li></li>').append(newTranslationButton);
+    translationList.append(newTranslationLi);
+    translationList.data('index', translationList.find('ul.proposition-list').length);
+
+    newTranslationButton.on('click', addTranslationEntry);
+}
+
 function addQuestionEntry() {
     let newLi = addFormEntry(questionList);
+    let newPropositionList = newLi.find('ul.proposition-list');
+    console.log(newLi);
+    console.log(newPropositionList);
+    addAddButtonToPropositionList(newPropositionList);
+}
+
+function addTranslationEntry() {
+    let newLi = addFormEntry(translationList);
     let newPropositionList = newLi.find('ul.proposition-list');
     console.log(newLi);
     console.log(newPropositionList);
@@ -49,7 +73,21 @@ function addAddButtonToPropositionList(propositionList) {
     newPropositionButton.on('click', () => addPropositionEntry(propositionList));
 }
 
+function addAddButtonToAnswerList(answerList) {
+    let newAnswerButton = $('<button>+<button>');
+    let newAnswerLi = $('<li></li>').append(newAnswerButton);
+
+    answerList.append(newAnswerLi);
+    answerList.data('index', answerList.find('li').length);
+
+    newAnswerButton.on('click', () => addAnswerEntry(answerList));
+}
+
 function addPropositionEntry(collection) {
+    addFormEntry(collection);
+}
+
+function addAnswerEntry(collection) {
     addFormEntry(collection);
 }
 
@@ -59,6 +97,14 @@ $(document).ready(function(e) {
     });
 
     $('.remove-proposition').on('click', function (e) {
+        $(this).parent().parent().parent().parent().remove();
+    });
+
+    $('.remove-translation').on('click', function (e) {
+        $(this).parent().parent().parent().parent().remove();
+    });
+
+    $('.remove-answer').on('click', function (e) {
         $(this).parent().parent().parent().parent().remove();
     });
 });
