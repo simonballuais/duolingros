@@ -33,7 +33,7 @@ class LessonType extends AbstractType
                     'entry_type' => TranslationType::class,
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'label' => 'Questions',
+                    'label' => 'Traductions',
                     'by_reference' => false,
                 ]
             )

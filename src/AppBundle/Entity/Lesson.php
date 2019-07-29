@@ -64,6 +64,11 @@ class Lesson
      */
     protected $bookLesson;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $order;
+
     protected $currentLearning;
 
     public function __construct()
@@ -236,6 +241,18 @@ class Lesson
     public function setTranslationList($translationList)
     {
         $this->translationList = $translationList;
+
+        return $this;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder($order)
+    {
+        $this->order = $order;
 
         return $this;
     }

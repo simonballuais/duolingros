@@ -26,12 +26,13 @@ class BookLesson
     protected $title;
 
     /**
-        * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=200)
      */
     protected $subtitle;
 
     /**
      * @ORM\OneToMany(targetEntity="Lesson", mappedBy="bookLesson", cascade={"persist"})
+     * @ORM\OrderBy({"order": "ASC"})<`0`>
      */
     protected $lessonList;
 
