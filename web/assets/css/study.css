@@ -225,12 +225,24 @@ div#playground {
     justify-content: space-around; }
     div#playground div.question-container.with-pictures .proposition-list div.proposition {
       display: block;
-      width: 150px;
-      height: 150px;
+      width: 225px;
+      height: 225px;
       text-align: center;
       border-radius: 5px;
       border: 2px solid #EEEEEE;
       transition: background-color 0.25s, border 0.25s, color 0.25s; }
+    div#playground div.question-container.with-pictures .proposition-list div.proposition {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly; }
+      div#playground div.question-container.with-pictures .proposition-list div.proposition img {
+        width: 75%;
+        height: 75%;
+        object-fit: contain;
+        border-radius: 5px;
+        border: 2px solid #EEEEEE;
+        background: #FFFFFF; }
   div#playground div.question-container.no-pictures .proposition-list {
     border-left: 1px solid gray;
     display: flex;

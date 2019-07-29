@@ -34,7 +34,7 @@ class Proposition
     protected $text;
 
     /**
-     * @ORM\Column(type="string", length=512)
+     * @ORM\Column(type="string", length=16000)
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("image")

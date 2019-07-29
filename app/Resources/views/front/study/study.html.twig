@@ -81,7 +81,7 @@ whenDocumentReady(function () {
           </div> <!-- row -->
 
           <div class="question-container with-pictures"
-               v-if="doingQuestion() && exercise && exercise.noPictures">
+               v-if="doingQuestion() && exercise && !exercise.isNoPictures">
             <h2>
               ${ exercise.text }
             </h2>
@@ -105,12 +105,14 @@ whenDocumentReady(function () {
                 <span class="proposition-text">
                   ${ proposition.text }
                 </span>
+
+                <img v-bind:src="proposition.image">
               </div>
             </div>
           </div>
 
           <div class="question-container no-pictures row"
-               v-if="doingQuestion() && exercise && !exercise.noPictures">
+               v-if="doingQuestion() && exercise && exercise.isNoPictures">
             <div class="col-sm-4 exercise-text">
               <h2>
                 ${ exercise.text }
