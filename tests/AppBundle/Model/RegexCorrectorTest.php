@@ -13,7 +13,7 @@ class RegexCorrectorTest extends TestCase
 {
     private $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
     }
@@ -22,8 +22,7 @@ class RegexCorrectorTest extends TestCase
     {
         $corrector = $this->getRegexCorrector();
 
-        $cases =
-        [
+        $cases = [
             [
                 "answerList" => [
                     "bonne réponse",
@@ -53,8 +52,7 @@ class RegexCorrectorTest extends TestCase
 
     public function testGenerateCorrectedAnswer()
     {
-        $cases =
-        [
+        $cases = [
             [
                 "answerList" => [
                     "coincoin"

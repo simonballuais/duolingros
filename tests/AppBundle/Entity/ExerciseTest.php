@@ -2,9 +2,7 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 use AppBundle\Entity\Translation;
-
 
 class TranslationTest extends WebTestCase
 {
@@ -62,7 +60,7 @@ class TranslationTest extends WebTestCase
             $expectedConcreteAnswerList = $case["expectedConcreteAnswerList"];
             $concreteAnswerList = $translation->getConcreteAnswerList();
 
-            $this->assertEquals(
+            $this->assertEqualsCanonicalizing(
                 $expectedConcreteAnswerList,
                 $concreteAnswerList,
                 "Inconsistence de concrétisation de réponse",
@@ -113,7 +111,7 @@ class TranslationTest extends WebTestCase
             $expectedOptionGroups = $case["expectedOptionGroups"];
             $concreteOptionGroups = $translation->findNonRecursiveOptionGroups($case["candidate"]);
 
-            $this->assertEquals(
+            $this->assertEqualsCanonicalizing(
                 $expectedOptionGroups,
                 $concreteOptionGroups,
                 "Inconsistence de recherche de groupe d'options",

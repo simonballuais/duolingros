@@ -54,6 +54,7 @@ class Learning
         $this->goodStreak = 0;
         $this->lastPractice = new \DateTime();
         $this->lastPractice->modify('-1 day');
+        $this->lastScores = [];
     }
 
      /**
