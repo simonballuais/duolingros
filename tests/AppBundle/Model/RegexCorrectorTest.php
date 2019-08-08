@@ -18,12 +18,32 @@ class RegexCorrectorTest extends TestCase
         $this->logger = $this->createMock(LoggerInterface::class);
     }
 
-    public function testRightAnswers()
+    /**
+     * @dataProvider provideRightAnswersCases
+     * @dataProvider provideRightAnswersCases
+     */
+    public function testRightAnswers($answerList, $proposition, $expectedRemarks)
     {
         $corrector = $this->getRegexCorrector();
 
-        $cases = [
-            [
+        $translation = new Translation();
+        $translation->setAnswerList($answerList);
+
+        $correction = $corrector->correct(
+            $translation,
+            $proposition
+        );
+
+        $this->assertEquals(
+            $expectedRemarks,
+            $correction->getRemarks()
+        );
+    }
+
+    public function provideRightAnswersCases(): array
+    {
+        return [
+            'changing case' => [
                 "answerList" => [
                     "bonne réponse",
                     "yes c'est goody"
@@ -31,35 +51,14 @@ class RegexCorrectorTest extends TestCase
                 "proposition" => new Proposition("Bonne réponse"),
                 "expectedRemarks" => [
                 ]
-            ]
-        ];
-
-        foreach ($cases as $case) {
-            $translation = new Translation();
-            $translation->setAnswerList($case["answerList"]);
-
-            $correction = $corrector->correct(
-                $translation,
-                $case["proposition"]
-            );
-
-            $this->assertEquals(
-                $case["expectedRemarks"],
-                $correction->getRemarks()
-            );
-        }
-    }
-
-    public function testGenerateCorrectedAnswer()
-    {
-        $cases = [
-            [
+            ],
+            'completely wrong' => [
                 "answerList" => [
                     "coincoin"
                 ],
                 "proposition" => new Proposition(""),
                 "expectedRemarks" => [
-                    "<strong>coincoin</strong>"
+                    "Vouliez-vous dire \"<strong>coincoin</strong>\" ?"
                 ]
             ],
             [
@@ -68,7 +67,7 @@ class RegexCorrectorTest extends TestCase
                 ],
                 "proposition" => new Proposition(""),
                 "expectedRemarks" => [
-                    "<strong>coincoin</strong>"
+                    "Vouliez-vous dire \"<strong>coincoin</strong>\" ?"
                 ]
             ],
         ];
