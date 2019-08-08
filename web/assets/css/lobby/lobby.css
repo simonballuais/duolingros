@@ -136,17 +136,15 @@ h2 {
   box-shadow: 0px 0px 20px #AAAAAA;
   background-color: white;
   padding: 0;
-  height: 300px;
-  width: 250px;
+  width: 100%;
   margin-left: 10px;
   margin: 10px;
   overflow: hidden; }
   .book-lesson-element h1 {
     text-align: center;
     font-size: 24pt;
-    border-bottom: 1px solid #DDDDDD;
-    padding-bottom: 10px;
     margin: 15px;
+    margin-bottom: 5px;
     color: #555555; }
   .book-lesson-element h2 {
     font-size: 14pt;
@@ -155,25 +153,31 @@ h2 {
     color: #999999;
     padding-left: 3px;
     padding-right: 3px; }
-  .book-lesson-element ul {
+  .book-lesson-element .lesson-list {
     margin-top: 15px;
     list-style: none;
-    padding: 0; }
-    .book-lesson-element ul li:last-child {
-      border-bottom: 0; }
-    .book-lesson-element ul li:hover {
-      background-color: #DDEEFF; }
-    .book-lesson-element ul li a {
-      display: block;
-      padding-left: 15px;
-      padding-right: 15px;
-      border-bottom: 1px solid #DDEEFF;
-      font-size: 12pt;
-      width: 100%; }
-    .book-lesson-element ul li .hotness-indicator {
-      float: right;
-      color: orange;
-      font-size: 12pt;
-      padding-top: 3px; }
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 15px; }
+    .book-lesson-element .lesson-list .lesson-element {
+      padding: 10px;
+      border-bottom: 1px solid #DDDDDD;
+      font-size: 16px; }
+      .book-lesson-element .lesson-list .lesson-element:last-child {
+        border-bottom: 0; }
+      .book-lesson-element .lesson-list .lesson-element:hover {
+        background-color: #DDEEFF; }
+      .book-lesson-element .lesson-list .lesson-element a {
+        display: block;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 12pt;
+        width: 100%; }
+      .book-lesson-element .lesson-list .lesson-element .hotness-indicator {
+        float: right;
+        color: orange;
+        font-size: 12pt;
+        padding-top: 3px; }
 
 /*# sourceMappingURL=lobby.css.map */

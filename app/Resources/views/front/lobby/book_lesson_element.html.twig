@@ -1,14 +1,14 @@
 <div class="book-lesson-element">
-<h1>
+  <h1>
     {{ bookLesson.title }}
   </h1>
   <h2>
-    {{ bookLesson.subtitle }} 
+    {{ bookLesson.subtitle }}
   </h2>
-  <ul>
+  <div class="lesson-list">
     {% for lesson in bookLesson.lessonList %}
-      <li>
-        <a href="{{ path('front_study_action', {'lesson': lesson.id}) }}"
+      <a class="lesson-element"
+           href="{{ path('front_study_action', {'lesson': lesson.id}) }}"
            id="lesson-{{ lesson.id }}"
            >
           {{ lesson.title }}
@@ -23,7 +23,6 @@
           {% endif %}
         {% endif %}
         </a>
-      </li>
     {% endfor %}
-  </ul>
+  </div>
 </div>

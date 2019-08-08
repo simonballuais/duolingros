@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$dark-gray".
-        on line 17 of src/assets/scss/lobby/lesson-element.scss
+        on line 15 of src/assets/scss/lobby/lesson-element.scss
 
-12:         text-align: center;
-13:         font-size: 24pt;
-14:         border-bottom: 1px solid #DDDDDD;
-15:         padding-bottom: 10px;
-16:         margin: 15px;
-17:         color: $dark-gray;;
-18:     }
-19: 
-20:     h2 {
-21:         font-size: 14pt;
-22:         text-align: center;
+10:     h1 {
+11:         text-align: center;
+12:         font-size: 24pt;
+13:         margin: 15px;
+14:         margin-bottom: 5px;
+15:         color: $dark-gray;;
+16:     }
+17: 
+18:     h2 {
+19:         font-size: 14pt;
+20:         text-align: center;
 
 Backtrace:
-src/assets/scss/lobby/lesson-element.scss:17
+src/assets/scss/lobby/lesson-element.scss:15
 /usr/lib/ruby/vendor_ruby/sass/script/tree/variable.rb:49:in `_perform'
 /usr/lib/ruby/vendor_ruby/sass/script/tree/node.rb:50:in `perform'
 /usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:395:in `visit_prop'
@@ -66,18 +66,15 @@ src/assets/scss/lobby/lesson-element.scss:17
 /usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
 /usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `each'
 /usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:471:in `on_file_changed'
-/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:328:in `block in watch'
-/usr/lib/ruby/vendor_ruby/listen/event/config.rb:23:in `call'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:115:in `_process_changes'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:19:in `block in loop_for'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:15:in `loop'
-/usr/lib/ruby/vendor_ruby/listen/event/processor.rb:15:in `loop_for'
-/usr/lib/ruby/vendor_ruby/listen/event/loop.rb:84:in `_wait_for_changes'
-/usr/lib/ruby/vendor_ruby/listen/event/loop.rb:42:in `block in setup'
-/usr/lib/ruby/vendor_ruby/listen/internals/thread_pool.rb:6:in `block in add'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:293:in `watch'
+/usr/lib/ruby/vendor_ruby/sass/plugin.rb:109:in `method_missing'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:379:in `watch_or_update'
+/usr/lib/ruby/vendor_ruby/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:52:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec/base.rb:19:in `parse!'
+/usr/bin/sass:8:in `<main>'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$dark-gray\".\A         on line 17 of src/assets/scss/lobby/lesson-element.scss\A \A 12:         text-align: center;\A 13:         font-size: 24pt;\A 14:         border-bottom: 1px solid #DDDDDD;\A 15:         padding-bottom: 10px;\A 16:         margin: 15px;\A 17:         color: $dark-gray;;\A 18:     }\A 19: \A 20:     h2 {\A 21:         font-size: 14pt;\A 22:         text-align: center;"; }
+  content: "Error: Undefined variable: \"$dark-gray\".\A         on line 15 of src/assets/scss/lobby/lesson-element.scss\A \A 10:     h1 {\A 11:         text-align: center;\A 12:         font-size: 24pt;\A 13:         margin: 15px;\A 14:         margin-bottom: 5px;\A 15:         color: $dark-gray;;\A 16:     }\A 17: \A 18:     h2 {\A 19:         font-size: 14pt;\A 20:         text-align: center;"; }
