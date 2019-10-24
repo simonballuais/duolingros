@@ -30,10 +30,16 @@ class User extends BaseUser
      */
     protected $learningList;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UnlockedLesson", mappedBy="user", cascade={"persist"})
+     */
+    protected $unlockedLessons;
+
     public function __construct()
     {
         parent::__construct();
         $this->learningList = new ArrayCollection();
+        $this->unlockedLessons = new ArrayCollection();
     }
 
     public function getLearningList()
@@ -44,6 +50,18 @@ class User extends BaseUser
     public function setLearningList($learningList)
     {
         $this->learningList = $learningList;
+
+        return $this;
+    }
+
+    public function getUnlockedLessons()
+    {
+        return $this->unlockedLessons;
+    }
+
+    public function setUnlockedLessons($unlockedLessons)
+    {
+        $this->unlockedLessons = $unlockedLessons;
 
         return $this;
     }

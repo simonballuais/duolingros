@@ -1,0 +1,22 @@
+<a class="lesson-element"
+     href="{{ path('front_study_action', {'lesson': lesson.id}) }}"
+     id="lesson-{{ lesson.id }}"
+     >
+    {{ lesson.title }}
+
+  {% if lesson.currentLearning is not null %}
+    {% if lesson.currentLearning.hotness >= 3 %}
+      <i class="fas fa-star hotness indicator"></i>
+      <i class="fas fa-star hotness indicator"></i>
+      <i class="fas fa-star hotness indicator"></i>
+    {% elseif lesson.currentLearning.hotness >= 2 %}
+      <i class="far fa-star hotness indicator"></i>
+      <i class="fas fa-star hotness indicator"></i>
+      <i class="fas fa-star hotness indicator"></i>
+    {% else %}
+      <i class="far fa-star hotness indicator"></i>
+      <i class="far fa-star hotness indicator"></i>
+      <i class="far fa-star hotness indicator"></i>
+    {% endif %}
+  {% endif %}
+</a>

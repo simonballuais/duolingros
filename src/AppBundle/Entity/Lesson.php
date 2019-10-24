@@ -1,5 +1,4 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +11,6 @@ use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\AccessorOrder;
-
 
 /**
  * @ORM\Entity
@@ -69,6 +67,11 @@ class Lesson
      */
     protected $order;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UnlockedLesson", mappedBy="lesson", cascade={"persist"})
+     */
+    protected $unlockedLessons;
+
     protected $currentLearning;
 
     public function __construct()
@@ -77,6 +80,7 @@ class Lesson
         $this->questionList = new ArrayCollection();
         $this->learningList = new ArrayCollection();
         $this->translationPerStudy = 3;
+        $this->unlockedLessons = new ArrayCollection();
     }
 
      /**
@@ -255,5 +259,34 @@ class Lesson
         $this->order = $order;
 
         return $this;
+    }
+
+    public function getUnlockedLessons()
+    {
+        return $this->unlockedLessons;
+    }
+
+    public function setUnlockedLessons($unlockedLessons)
+    {
+        $this->unlockedLessons = $unlockedLessons;
+
+        return $this;
+    }
+
+    public function isUnlockedForUser(User $user): bool
+    {
+        if ($this->order === 1) {
+            return true;
+        }
+
+        foreach ($this->unlockedLessons as $unlockedLesson) {
+            if ($unlockedLesson->getUser()->getId() === $user->getId()
+                && $unlockedLesson->isUnlocked()
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
