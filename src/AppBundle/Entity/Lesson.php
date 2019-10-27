@@ -72,6 +72,17 @@ class Lesson
      */
     protected $unlockedLessons;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="childrenLessons", cascade={"persist"})
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    protected $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="parent", cascade={"persist"})
+     */
+    protected $childrenLessons;
+
     protected $currentLearning;
 
     public function __construct()
@@ -81,6 +92,7 @@ class Lesson
         $this->learningList = new ArrayCollection();
         $this->translationPerStudy = 3;
         $this->unlockedLessons = new ArrayCollection();
+        $this->childrenLesson = new ArrayCollection();
     }
 
      /**
@@ -275,7 +287,7 @@ class Lesson
 
     public function isUnlockedForUser(User $user): bool
     {
-        if ($this->order === 1) {
+        if (!$this->parent) {
             return true;
         }
 
@@ -288,5 +300,29 @@ class Lesson
         }
 
         return false;
+    }
+
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getChildrenLessons()
+    {
+        return $this->childrenLessons;
+    }
+
+    public function setChildrenLessons($childrenLessons)
+    {
+        $this->childrenLessons = $childrenLessons;
+
+        return $this;
     }
 }
