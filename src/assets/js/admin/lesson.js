@@ -129,3 +129,12 @@ $(document).on('paste', '.proposition-file-input', function(e) {
         $(e.target).parent().parent().parent().find('img').attr('src', response.data);
     });
 });
+
+$(document).on('click', '.copy-image', function (e) {
+    let el = document.createElement('textarea');
+    el.value = $(e.target).parent().parent().parent().find('img').attr('src');
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+});

@@ -69,6 +69,11 @@ class LessonController extends Controller
         Proposition $proposition
     ) {
         $content = json_decode($request->getContent());
+
+        if (!$content || !$content->imageContent) {
+            return new Response("", 400);
+        }
+
         $proposition->setImage($content->imageContent);
 
         $this->getDoctrine()->getManager()->flush();
