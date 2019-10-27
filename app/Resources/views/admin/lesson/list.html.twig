@@ -1,6 +1,5 @@
 {% extends 'front/base.html.twig' %}
 
-
 {% macro printPropositionRow(proposition) %}
   <li>
     <div class="container">
@@ -10,13 +9,22 @@
               X
           </button>
         </div> <!-- col -->
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           {{ form_row(proposition.text) }}
         </div> <!-- col -->
-        <div class="col-sm-4">
+        <div class="col-sm-2">
           {{ form_row(proposition.image) }}
         </div> <!-- col -->
         <div class="col-sm-3">
+          <img src="
+                {% if proposition.vars.value is not null %}
+                  {{ proposition.vars.value.image }}
+                {% endif %}
+                "
+               style="max-width: 150px; max-height: 150px"
+          >
+        </div> <!-- col -->
+        <div class="col-sm-2">
           {{ form_row(proposition.rightAnswer) }}
         </div> <!-- col -->
       </div> <!-- row -->

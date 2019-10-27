@@ -1,3 +1,4 @@
+import axios from 'axios';
 let questionList, translationList;
 
 $(document).ready(function(e) {
@@ -106,5 +107,25 @@ $(document).ready(function(e) {
 
     $('.remove-answer').on('click', function (e) {
         $(this).parent().parent().parent().parent().remove();
+    });
+});
+
+$(document).on('paste', '.proposition-file-input', function(e) {
+    e.preventDefault();
+    let propositionId = e.target.getAttribute('proposition-id');
+
+    if (!propositionId) {
+        return;
+    }
+
+    let imageContent = e.originalEvent.clipboardData.getData('text');
+
+    axios.post(
+        Routing.generate('api_post_proposition_image', {proposition: propositionId}),
+        {
+            imageContent: imageContent,
+        }
+    ).then((response) => {
+        $(e.target).parent().parent().parent().find('img').attr('src', response.data);
     });
 });

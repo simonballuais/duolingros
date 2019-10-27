@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Lesson;
+use AppBundle\Entity\Proposition;
 use AppBundle\Form\LessonType;
 
 class LessonController extends Controller
@@ -53,6 +54,26 @@ class LessonController extends Controller
                 'allCourses' => [],
             ]
         );
+    }
+
+    /**
+     * @Route(
+     *     "/api/proposition/{proposition}/image",
+     *     name="api_post_proposition_image",
+     *     options={"expose"=true}
+     * )
+     * @Method({"POST"})
+     */
+    public function uploadBase32Image(
+        Request $request,
+        Proposition $proposition
+    ) {
+        $content = json_decode($request->getContent());
+        $proposition->setImage($content->imageContent);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return new Response($proposition->getImage());
     }
 }
 
