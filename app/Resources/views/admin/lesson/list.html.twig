@@ -38,8 +38,8 @@
 {% macro printQuestionRow(question) %}
   {% import _self as formMacros %}
 
-  <div class="box">
-    <li>
+  <li>
+    <div class="box">
       <div class="container">
         <div class="row">
           <div class="col-sm-1">
@@ -70,8 +70,8 @@
           {{ formMacros.printPropositionRow(proposition) }}
         {% endfor %}
       </ul>
-    </li>
-  </div> <!-- box -->
+    </div> <!-- box -->
+  </li>
 {% endmacro %}
 
 {% macro printAnswerRow(answer) %}
@@ -94,8 +94,8 @@
 {% macro printTranslationRow(translation) %}
   {% import _self as formMacros %}
 
-  <div class="box">
-    <li>
+  <li>
+    <div class="box">
       <div class="container">
         <div class="row">
           <div class="col-sm-1">
@@ -123,8 +123,8 @@
           {{ formMacros.printAnswerRow(answer) }}
         {% endfor %}
       </ul>
-    </li>
-  </div> <!-- box -->
+    </div> <!-- box -->
+  </li>
 {% endmacro %}
 
 {% import _self as formMacros %}

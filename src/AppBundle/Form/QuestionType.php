@@ -26,6 +26,8 @@ class QuestionType extends AbstractType
                     'allow_delete' => true,
                     'label' => 'Propositions',
                     'by_reference' => false,
+                    'prototype' => true,
+                    'prototype_name' => '__proposition_name__',
                 ]
             )
             ;

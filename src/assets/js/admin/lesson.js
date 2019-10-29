@@ -18,7 +18,7 @@ $(document).ready(function(e) {
 });
 
 function addAddButtonToQuestionList() {
-    let newQuestionButton = $('<button>+<button>');
+    let newQuestionButton = $('<button>+</button>');
     let newQuestionLi = $('<li></li>').append(newQuestionButton);
     questionList.append(newQuestionLi);
     questionList.data('index', questionList.find('ul.proposition-list').length);
@@ -27,7 +27,7 @@ function addAddButtonToQuestionList() {
 }
 
 function addAddButtonToTranslationList() {
-    let newTranslationButton = $('<button>+<button>');
+    let newTranslationButton = $('<button>+</button>');
     let newTranslationLi = $('<li></li>').append(newTranslationButton);
     translationList.append(newTranslationLi);
     translationList.data('index', translationList.find('ul.proposition-list').length);
@@ -38,34 +38,27 @@ function addAddButtonToTranslationList() {
 function addQuestionEntry() {
     let newLi = addFormEntry(questionList);
     let newPropositionList = newLi.find('ul.proposition-list');
-    console.log(newLi);
-    console.log(newPropositionList);
     addAddButtonToPropositionList(newPropositionList);
 }
 
 function addTranslationEntry() {
     let newLi = addFormEntry(translationList);
-    let newPropositionList = newLi.find('ul.proposition-list');
-    console.log(newLi);
-    console.log(newPropositionList);
-    addAddButtonToPropositionList(newPropositionList);
+    let newAnswerList = newLi.find('ul.answer-list');
+    addAddButtonToAnswerList(newAnswerList);
 }
 
-function addFormEntry(collection) {
-    let prototype = collection.data('prototype');
-    let index = collection.data('index');
-    let newEntry = prototype;
-    newEntry = newEntry.replace(/__name__/g, index);
-    collection.data('index', index + 1);
-    let newLi = $('<li></li>').append(newEntry);
+function addFormEntry(collection, formNamePlaceholder = /__name__/g) {
+    let newEntry = collection.data('prototype');
+    let index = collection.find('> li').length - 1;
+    newEntry = $(newEntry.replace(formNamePlaceholder, index));
     let lastEntry = collection.find('> li').last();
-    lastEntry.before(newLi);
+    lastEntry.before(newEntry);
 
-    return newLi;
+    return newEntry;
 }
 
 function addAddButtonToPropositionList(propositionList) {
-    let newPropositionButton = $('<button>+<button>');
+    let newPropositionButton = $('<button>+</button>');
     let newPropositionLi = $('<li></li>').append(newPropositionButton);
 
     propositionList.append(newPropositionLi);
@@ -75,7 +68,7 @@ function addAddButtonToPropositionList(propositionList) {
 }
 
 function addAddButtonToAnswerList(answerList) {
-    let newAnswerButton = $('<button>+<button>');
+    let newAnswerButton = $('<button>+</button>');
     let newAnswerLi = $('<li></li>').append(newAnswerButton);
 
     answerList.append(newAnswerLi);
@@ -85,29 +78,20 @@ function addAddButtonToAnswerList(answerList) {
 }
 
 function addPropositionEntry(collection) {
-    addFormEntry(collection);
+    addFormEntry(collection, /__proposition_name__/g);
 }
 
 function addAnswerEntry(collection) {
-    addFormEntry(collection);
+    addFormEntry(collection, /__answer_name__/g);
 }
 
 $(document).ready(function(e) {
-    $('.remove-question').on('click', function (e) {
-        $(this).parent().parent().parent().parent().remove();
-    });
+    let removeParentLi = function () { $(this).parent().parent().parent().parent().remove() };
 
-    $('.remove-proposition').on('click', function (e) {
-        $(this).parent().parent().parent().parent().remove();
-    });
-
-    $('.remove-translation').on('click', function (e) {
-        $(this).parent().parent().parent().parent().remove();
-    });
-
-    $('.remove-answer').on('click', function (e) {
-        $(this).parent().parent().parent().parent().remove();
-    });
+    $(document).on('click', '.remove-question', removeParentLi);
+    $(document).on('click', '.remove-proposition', removeParentLi);
+    $(document).on('click', '.remove-translation', removeParentLi);
+    $(document).on('click', '.remove-answer', removeParentLi);
 });
 
 $(document).on('paste', '.proposition-file-input', function(e) {

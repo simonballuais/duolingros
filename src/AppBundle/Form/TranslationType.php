@@ -26,6 +26,8 @@ class TranslationType extends AbstractType
                     'allow_delete' => true,
                     'label' => 'Answers',
                     'by_reference' => false,
+                    'prototype' => true,
+                    'prototype_name' => '__answer_name__',
                 ]
             )
             ;
