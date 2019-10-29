@@ -49,6 +49,11 @@ class Translation implements Exercise
      */
     protected $lesson;
 
+    /**
+     * @ORM\Column(type="integer", options={"default":1}, nullable=true)
+     */
+    protected $difficulty;
+
     public function __construct()
     {
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
@@ -249,5 +254,21 @@ class Translation implements Exercise
     public function getPossiblePropositions()
     {
         return null;
+    }
+
+    public function getDifficulty(): int
+    {
+        if (!$this->difficulty) {
+            return 1;
+        }
+
+        return $this->difficulty;
+    }
+
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
     }
 }

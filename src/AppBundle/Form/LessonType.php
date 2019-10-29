@@ -44,5 +44,5 @@ class LessonType extends AbstractType
     {
         $resolver->setDefaults([ 'data_class' => Lesson::class]);
     }
-    }
-?>
+}
+

@@ -62,6 +62,11 @@ class Question implements Exercise
      */
     protected $noPictures;
 
+    /**
+     * @ORM\Column(type="integer", options={"default":1}, nullable=true)
+     */
+    protected $difficulty;
+
     public function __construct()
     {
         $this->propositionList = new ArrayCollection();
@@ -160,6 +165,22 @@ class Question implements Exercise
     public function setNoPictures($noPictures)
     {
         $this->noPictures = $noPictures;
+
+        return $this;
+    }
+
+    public function getDifficulty(): int
+    {
+        if (!$this->difficulty) {
+            return 1;
+        }
+
+        return $this->difficulty;
+    }
+
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
 
         return $this;
     }

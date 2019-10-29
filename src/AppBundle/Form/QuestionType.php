@@ -15,6 +15,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('text')
+            ->add('difficulty')
             ->add('noPictures')
             ->add(
                 'propositionList',

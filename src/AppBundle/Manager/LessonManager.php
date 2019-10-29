@@ -72,6 +72,12 @@ class LessonManager
             }
         }
 
+        foreach ($form->get('translationList') as $translationForm) {
+            $translation = $translationForm->getData();
+            $this->entityManager->persist($translation);
+            $translation->setLesson($lesson);
+        }
+
         $this->entityManager->flush();
     }
 

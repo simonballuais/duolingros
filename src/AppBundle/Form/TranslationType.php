@@ -16,6 +16,7 @@ class TranslationType extends AbstractType
     {
         $builder
             ->add('text')
+            ->add('difficulty')
             ->add(
                 'answerList',
                 CollectionType::class,

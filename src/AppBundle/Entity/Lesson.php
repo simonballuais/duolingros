@@ -43,11 +43,13 @@ class Lesson
 
     /**
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OrderBy({"difficulty": "ASC"})
      */
     protected $translationList;
 
     /**
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OrderBy({"difficulty": "ASC"})
      */
     protected $questionList;
 
@@ -131,10 +133,7 @@ class Lesson
 
     public function getRandomExercise($except = null)
     {
-        $pickables = array_merge(
-            $this->translationList->toArray(),
-            $this->questionList->toArray()
-        );
+        $pickables = $this->getAllExercises();
 
         if (count($pickables) === 1) {
             return $pickables[0];
@@ -149,12 +148,29 @@ class Lesson
 
     public function pickRandomExercise()
     {
-        $pickables = array_merge(
+        $pickables = $this->getAllExercises();
+
+        return $pickables[array_rand($pickables)];
+    }
+
+    public function getAllExercises()
+    {
+        return array_merge(
             $this->translationList->toArray(),
             $this->questionList->toArray()
         );
 
-        return $pickables[array_rand($pickables)];
+    }
+
+    public function getAllExerciseGroupedByDifficulty()
+    {
+        $exercises = [];
+
+        foreach ($this->getAllExercises() as $exercise) {
+            $exercises[$exercise->getDifficulty()] = $exercise;
+        }
+
+        return $exercises;
     }
 
     public function __toString()

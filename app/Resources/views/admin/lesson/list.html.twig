@@ -50,8 +50,11 @@
           <div class="col-sm-5">
             {{ form_row(question.text) }}
           </div> <!-- col -->
-          <div class="col-sm-6">
+          <div class="col-sm-3">
             {{ form_row(question.noPictures) }}
+          </div> <!-- col -->
+          <div class="col-sm-2">
+            {{ form_row(question.difficulty) }}
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->
@@ -100,8 +103,11 @@
               X
             </button>
           </div> <!-- col -->
-          <div class="col-sm-5">
+          <div class="col-sm-8">
             {{ form_row(translation.text) }}
+          </div> <!-- col -->
+          <div class="col-sm-2">
+            {{ form_row(translation.difficulty) }}
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->
