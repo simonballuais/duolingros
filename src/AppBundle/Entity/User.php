@@ -65,4 +65,17 @@ class User extends BaseUser
 
         return $this;
     }
+
+    public function getLearningForLesson(Lesson $lesson)
+    {
+        foreach ($this->learningList as $learning) {
+            $lesson = $learning->getLesson();
+
+            if ($learning->getLesson()->getId() === $lesson->getId()) {
+                return $learning;
+            }
+        }
+
+        return null;
+    }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 use AppBundle\Model\PropositionInterface;
 use AppBundle\Model\Proposition;
@@ -22,6 +23,7 @@ class StudyManager
     protected $targetAmountPlayed;
     protected $currentAmountPlayed;
     protected $currentAmountSucceeded;
+    protected $user;
 
     protected $session;
     protected $entityManager;
@@ -35,7 +37,8 @@ class StudyManager
         $lessonManager,
         $translationManager,
         $questionManager,
-        $correctionManager
+        $correctionManager,
+        TokenStorageInterface $tokenStorage
     ) {
         $this->entityManager = $entityManager;
         $this->session = $session;
@@ -43,6 +46,7 @@ class StudyManager
         $this->translationManager = $translationManager;
         $this->questionManager = $questionManager;
         $this->correctionManager = $correctionManager;
+        $this->user = $tokenStorage->getToken()->getUser();
 
         $session->start();
     }
@@ -99,7 +103,10 @@ class StudyManager
         }
 
         $lesson = $this->getCurrentLesson();
-        $exercise = $lesson->getRandomExercise($this->getLastSolvedExerciseId());
+        $exercise = $lesson->getRandomExercise(
+            $this->getLastSolvedExerciseId(),
+            $this->getCurrentDifficulty()
+        );
         $this->setCurrentExerciseId($exercise->getId());
         $this->setCurrentExerciseType(get_class($exercise));
 
@@ -203,6 +210,22 @@ class StudyManager
         }
 
         return $this->currentLesson;
+    }
+
+    public function getCurrentLearning()
+    {
+        return $this->user->getLearningForLesson($this->getCurrentLesson());
+    }
+
+    public function getCurrentDifficulty()
+    {
+        $currentLearning = $this->getCurrentLearning();
+
+        if (!$currentLearning) {
+            return 0;
+        }
+
+        return $currentLearning->getDifficultyReached();
     }
 
     public function setLastSubmittedProposition($proposition)

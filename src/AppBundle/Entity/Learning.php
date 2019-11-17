@@ -20,6 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Learning
 {
+    const MAX_DIFFICULTY = 5;
+
     /**
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="User", inversedBy="learnings", cascade={"persist"})
@@ -49,12 +51,18 @@ class Learning
      */
     protected $lastScores;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $difficultyReached;
+
     public function __construct()
     {
         $this->goodStreak = 0;
         $this->lastPractice = new \DateTime();
         $this->lastPractice->modify('-1 day');
         $this->lastScores = [];
+        $this->difficultyReached = 0;
     }
 
      /**
@@ -219,6 +227,34 @@ class Learning
      public function setLastScores($lastScores)
     {
         $this->lastScores = $lastScores;
+
+        return $this;
+    }
+
+     /**
+      * @Groups({"Default"})
+      * @SerializedName("difficultyReached")
+      * @VirtualProperty
+      */
+    public function getDifficultyReached()
+    {
+        return $this->difficultyReached;
+    }
+
+    public function setDifficultyReached($difficultyReached)
+    {
+        $this->difficultyReached = $difficultyReached;
+
+        return $this;
+    }
+
+    public function increaseMaxDifficulty()
+    {
+        if ($this->difficultyReached === self::MAX_DIFFICULTY) {
+            return $this;
+        }
+
+        $this->difficultyReached += 1;
 
         return $this;
     }

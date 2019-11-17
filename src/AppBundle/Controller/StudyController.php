@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Lesson;
 
-
 class StudyController extends Controller
 {
     /**

@@ -33,14 +33,10 @@ class LessonManager
     public function getAllWithCurrentLearning($user)
     {
         $lessonList = $this->getAll();
-        $learningList = $user->getLearningList();
 
-        foreach ($learningList as $learning) {
-            foreach ($lessonList as $lesson) {
-                if ($learning->getLesson()->getId() === $lesson->getId()) {
-                    $lesson->setCurrentLearning($learning);
-                }
-            }
+        foreach ($lessonList as $lesson) {
+            $learning = $user->getLearningForLesson($lesson);
+            $lesson->setCurrentLearning($learning);
         }
 
         return $lessonList;

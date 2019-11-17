@@ -43,6 +43,7 @@ class LearningManager
 
         if ($successPercentage >= self::GOOD_PERCENTAGE) {
             $learning->increaseGoodStreak();
+            $learning->increaseMaxDifficulty();
         } else {
             if ($now->format('d/m/Y') != $lastPractice->format('d/m/Y')) {
                 $learning->resetGoodStreak(0);

@@ -131,17 +131,25 @@ class Lesson
         return $this;
     }
 
-    public function getRandomExercise($except = null)
-    {
+    public function getRandomExercise(
+        $except = null,
+        $maxDifficulty = 0
+    ) {
         $pickables = $this->getAllExercises();
 
         if (count($pickables) === 1) {
             return $pickables[0];
         }
 
+        $i = 0;
+
         do {
             $result = $this->pickRandomExercise();
-        } while ($result->getId() === $except);
+            $i += 1;
+
+            $isResultBad = $result->getDifficulty() > $maxDifficulty
+                || $result->getId() === $except;
+        } while ($i <= 100 && $isResultBad);
 
         return $result;
     }

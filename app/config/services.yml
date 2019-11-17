@@ -1,4 +1,8 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
     app.lesson_manager:
         class: AppBundle\Manager\LessonManager
         arguments: ['@doctrine.orm.entity_manager', '@session']

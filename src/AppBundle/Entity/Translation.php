@@ -258,7 +258,7 @@ class Translation implements Exercise
 
     public function getDifficulty(): int
     {
-        if (!$this->difficulty) {
+        if (null === $this->difficulty) {
             return 1;
         }
 
