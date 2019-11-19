@@ -1,6 +1,6 @@
 # Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
+/var/cache/*
+/var/log/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 
@@ -9,10 +9,10 @@
 
 # Cache, session files and logs (Symfony3)
 /var/cache/*
-/var/logs/*
+/var/log/*
 /var/sessions/*
 !var/cache/.gitkeep
-!var/logs/.gitkeep
+!var/log/.gitkeep
 !var/sessions/.gitkeep
 
 /vendor/*
@@ -51,3 +51,17 @@
 db_temp.sql
 node_modules
 .sass-cache
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

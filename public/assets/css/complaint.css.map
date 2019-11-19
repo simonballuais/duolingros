@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UAAW;EACP,gBAAgB,EAAE,OAAO;EACzB,MAAM,EAAE,IAAI;EAEZ,aAAG;IACC,KAAK,EAAE,OAAO",
+"sources": ["../../../assets/scss/complaint.scss"],
+"names": [],
+"file": "complaint.css"
+}

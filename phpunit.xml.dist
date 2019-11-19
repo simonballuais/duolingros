@@ -11,6 +11,21 @@
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_DIR" value="app/" />
         <env name="SYMFONY_PHPUNIT_VERSION" value="8.0" />
+
+        <!-- ###+ symfony/framework-bundle ### -->
+        <env name="APP_ENV" value="dev"/>
+        <env name="APP_SECRET" value="850dfbe5f6cefda0b3592ded37a58d78"/>
+        <!-- env name="TRUSTED_PROXIES" value="127.0.0.1,127.0.0.2" -->
+        <!-- env name="TRUSTED_HOSTS" value="'^localhost|example\.com$'" -->
+        <!-- ###- symfony/framework-bundle ### -->
+
+        <!-- ###+ doctrine/doctrine-bundle ### -->
+        <!-- Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url -->
+        <!-- For an SQLite database, use: "sqlite:///%kernel.project_dir%/var/data.db" -->
+        <!-- For a PostgreSQL database, use: "postgresql://db_user:db_password@127.0.0.1:5432/db_name?serverVersion=11" -->
+        <!-- IMPORTANT: You MUST configure your db driver and server version, either here or in config/packages/doctrine.yaml -->
+        <env name="DATABASE_URL" value="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7"/>
+        <!-- ###- doctrine/doctrine-bundle ### -->
     </php>
 
     <testsuites>

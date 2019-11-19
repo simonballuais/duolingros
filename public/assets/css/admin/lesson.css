@@ -1,0 +1,12 @@
+input {
+  width: 70%; }
+
+ul.question-list, ul.translation-list {
+  list-style: none; }
+  ul.question-list .box, ul.translation-list .box {
+    padding: 10px; }
+
+ul.proposition-list, ul.answer-list {
+  list-style: none; }
+
+/*# sourceMappingURL=lesson.css.map */

@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\AppBundle\Model;
+namespace Tests\App\Model;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
-use AppBundle\Model\RegexCorrector;
-use AppBundle\Model\Proposition;
-use AppBundle\Entity\Translation;
+use App\Model\RegexCorrector;
+use App\Model\Proposition;
+use App\Entity\Translation;
 
 class RegexCorrectorTest extends TestCase
 {

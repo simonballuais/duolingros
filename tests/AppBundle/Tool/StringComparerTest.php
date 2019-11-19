@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\AppBundle\Controller;
+namespace Tests\ApAppler;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use AppBundle\Tool\StringComparer;
+use App\Tool\StringComparer;
 
 class StringComparerTest extends WebTestCase
 {

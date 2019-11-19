@@ -2,12 +2,12 @@ const path = require('path')
 
 module.exports = {
     entry: {
-        'study': './src/assets/js/study.js',
-        'admin/lesson': './src/assets/js/admin/lesson.js',
+        'study': './assets/js/study.js',
+        'admin/lesson': './assets/js/admin/lesson.js',
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'web/assets/js'),
+        path: path.resolve(__dirname, 'public/assets/js'),
         libraryTarget: 'var',
         library: 'Study'
     },

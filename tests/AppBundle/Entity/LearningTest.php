@@ -1,9 +1,9 @@
 <?php
-namespace Tests\AppBundle\Controller;
+namespace Tests\App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-use AppBundle\Entity\Learning;
+use App\Entity\Learning;
 
 
 class LeaningTest extends WebTestCase

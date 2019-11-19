@@ -1,0 +1,182 @@
+#header {
+  left: -30px;
+  right: -30px;
+  top: 0px;
+  height: 50pt;
+  background-color: #039BE5;
+  box-shadow: 0px 0px 30px black;
+  color: #EEEEEE; }
+  #header #logout {
+    float: right;
+    color: #EEEEEE;
+    margin: 12pt;
+    font-size: 20pt;
+    border-left: 1px solid #FFFFFF;
+    padding-left: 10pt; }
+  #header #logout:hover {
+    color: #FFFFFF; }
+  #header #username {
+    font-weight: lighter;
+    float: right;
+    padding-top: 13pt;
+    font-size: 18pt;
+    bottom: 0px; }
+  #header #header-content {
+    display: inline-block;
+    height: 100%; }
+    #header #header-content #course-menu {
+      height: 100%;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center; }
+      #header #header-content #course-menu li {
+        margin-left: 10px;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 20pt;
+        font-weight: lighter; }
+        #header #header-content #course-menu li.current-course {
+          font-weight: normal;
+          background-color: #1fb4fc; }
+        #header #header-content #course-menu li a {
+          display: inline-block;
+          color: #EEEEEE;
+          height: 100%;
+          width: 100%;
+          padding: 10px 20px 10px 20px;
+          border-bottom: 8px solid transparent;
+          transition: border-bottom 0.2s; }
+          #header #header-content #course-menu li a:hover {
+            border-bottom: 8px solid #1fb4fc;
+            color: #FFFFFF; }
+          #header #header-content #course-menu li a span {
+            display: block;
+            margin-top: -8px;
+            font-size: 10pt;
+            font-style: italic;
+            padding-left: 20px; }
+
+#title h1 {
+  font-size: 56pt; }
+#title h2 {
+  padding-left: 30px;
+  margin: 0;
+  margin-bottom: 30px; }
+
+#alerts {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+#alert_success_js {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+#alert_danger_js {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  right: 10%;
+  z-index: 10000; }
+
+.ad-login {
+  margin: auto;
+  background-color: lightgray;
+  color: white;
+  margin: 7%; }
+
+.daterangepicker {
+  z-index: 2000 !important; }
+
+.fill-vertically {
+  height: 100%; }
+
+.has-error ul {
+  padding-left: 20px;
+  list-style: none; }
+
+.has-error li {
+  margin-bottom: 10px; }
+
+.has-error li:before {
+  font-family: 'FontAwesome';
+  content: '\f071';
+  margin: 0 5px 0 -15px;
+  color: #f00; }
+
+textarea.proposition {
+  margin-top: 10px; }
+
+a {
+  color: #039BE5; }
+
+h1 {
+  font-size: 56pt; }
+
+h2 {
+  padding-left: 30px;
+  margin: 0;
+  margin-bottom: 30px; }
+
+#book-lesson-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.book-lesson-element {
+  box-shadow: 0px 0px 20px #AAAAAA;
+  background-color: white;
+  padding: 0;
+  width: 100%;
+  margin-left: 10px;
+  margin: 10px;
+  overflow: hidden; }
+  .book-lesson-element h1 {
+    text-align: center;
+    font-size: 24pt;
+    margin: 15px;
+    margin-bottom: 5px;
+    color: #555555; }
+  .book-lesson-element h2 {
+    font-size: 14pt;
+    text-align: center;
+    margin: 0;
+    color: #999999;
+    padding-left: 3px;
+    padding-right: 3px; }
+  .book-lesson-element .lesson-list {
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 15px; }
+    .book-lesson-element .lesson-list .lesson-element {
+      padding: 10px;
+      border-bottom: 1px solid #DDDDDD;
+      font-size: 16px; }
+      .book-lesson-element .lesson-list .lesson-element:last-child {
+        border-bottom: 0; }
+      .book-lesson-element .lesson-list .lesson-element .indicator {
+        float: right;
+        font-size: 18pt;
+        padding-top: 3px; }
+    .book-lesson-element .lesson-list a.lesson-element:hover {
+      background-color: #DDEEFF; }
+    .book-lesson-element .lesson-list a.lesson-element .hotness {
+      color: orange; }
+    .book-lesson-element .lesson-list span.lesson-element {
+      color: #999999; }
+      .book-lesson-element .lesson-list span.lesson-element .locked {
+        color: #999999; }
+
+/*# sourceMappingURL=lobby.css.map */
