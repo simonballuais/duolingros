@@ -7,3 +7,8 @@ fos_user:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+authentication_token:
+    path: /api/authentication_token
+    methods: ['POST']
+

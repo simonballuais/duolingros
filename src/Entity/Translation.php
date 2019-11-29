@@ -21,7 +21,7 @@ use App\Model\Exercise;
  *     denormalizationContext={"groups"={"write"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
- *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "get",
  *          "post"={"security"="is_granted('ROLE_ADMIN')"}
  *     },
  *     itemOperations={
