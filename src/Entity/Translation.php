@@ -5,16 +5,33 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+use ApiPlatform\Core\Annotation as API;
 
 use App\Model\PropositionInterface;
 use App\Model\Exercise;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="translation")
-*
-* @Serializer\ExclusionPolicy("all")
-*/
+ * @ORM\Entity
+ * @ORM\Table(name="translation")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *     }
+ * )
+ *
+ * @Serializer\ExclusionPolicy("all")
+ */
 class Translation implements Exercise
 {
     public $NOT_A_GROUP_DELIMITER_REGEX; // not ( [ {
@@ -25,6 +42,8 @@ class Translation implements Exercise
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
+     * @Groups({"read", "write"})
+     *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
      */
@@ -32,6 +51,8 @@ class Translation implements Exercise
 
     /**
      * @ORM\Column(type="string", length=225)
+     *
+     * @Groups({"read", "write"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
@@ -50,6 +71,8 @@ class Translation implements Exercise
     protected $lesson;
 
     /**
+     * @Groups({"read", "write"})
+     *
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      */
     protected $difficulty;

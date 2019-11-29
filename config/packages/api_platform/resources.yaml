@@ -1,0 +1,6 @@
+App\Entity\Translation:
+    attributes:
+        normalization_context:
+            groups: ["read", "write"]
+        denormalization_context:
+            groups: ["write"]
