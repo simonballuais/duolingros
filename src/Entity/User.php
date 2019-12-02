@@ -6,9 +6,9 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use App\Entity\Learning;
-
 
 /**
  * @ORM\Entity
@@ -19,6 +19,8 @@ use App\Entity\Learning;
 class User extends BaseUser
 {
     /**
+     * @Groups({"security"})
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -77,5 +79,13 @@ class User extends BaseUser
         }
 
         return null;
+    }
+
+    /**
+     * @Groups({"security"})
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 }
