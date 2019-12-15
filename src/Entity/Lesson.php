@@ -4,18 +4,40 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Groups as JMSGroups;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\AccessorOrder;
+use ApiPlatform\Core\Annotation as API;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="lesson")
  * @ExclusionPolicy("all")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readCollection"}}
+ *          },
+ *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readItem"}}
+ *          },
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *     }
+ * )
  */
 class Lesson
 {
@@ -23,21 +45,29 @@ class Lesson
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Groups({"readCollection", "readItem",  "write"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @Groups({"readCollection", "readItem", "write"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
+     *
+     * @Groups({"readCollection", "readItem", "write"})
      */
     protected $description;
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"readItem", "write"})
      */
     protected $exercisePerStudy;
 
@@ -66,6 +96,8 @@ class Lesson
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"readItem", "write"})
      */
     protected $order;
 
@@ -98,7 +130,7 @@ class Lesson
     }
 
      /**
-      * @Groups({"Default"})
+      * @JMSGroups({"Default"})
       * @SerializedName("title")
       * @VirtualProperty
       */
@@ -115,7 +147,7 @@ class Lesson
     }
 
      /**
-      * @Groups({"Default"})
+      * @JMSGroups({"Default"})
       * @SerializedName("id")
       * @VirtualProperty
       */
@@ -218,7 +250,7 @@ class Lesson
     }
 
      /**
-      * @Groups({"Default"})
+      * @JMSGroups({"Default"})
       * @SerializedName("currentLearning")
       * @VirtualProperty
       */

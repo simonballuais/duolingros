@@ -4,3 +4,10 @@ App\Entity\Translation:
             groups: ["read", "write"]
         denormalization_context:
             groups: ["write"]
+
+App\Entity\Lesson:
+    attributes:
+        normalization_context:
+            groups: ["read", "write"]
+        denormalization_context:
+            groups: ["write"]

@@ -19,8 +19,6 @@ use App\Entity\Learning;
 class User extends BaseUser
 {
     /**
-     * @Groups({"security"})
-     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
