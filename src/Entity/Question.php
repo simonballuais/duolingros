@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use App\Model\Exercise;
 
@@ -23,6 +24,8 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $id;
 
@@ -31,6 +34,8 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $text;
 
@@ -39,12 +44,16 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("propositionList")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $propositionList;
 
     /**
      * @ORM\ManyToOne(targetEntity="Proposition", inversedBy="rightAnswerFor", cascade={"persist"})
      * @ORM\JoinColumn(name="right_answer_for_id", referencedColumnName="id", nullable=true)
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $answer;
 
@@ -59,11 +68,15 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("isNoPictures")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $noPictures;
 
     /**
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $difficulty;
 
@@ -138,11 +151,14 @@ class Question implements Exercise
 
     public function setAnswer($answer)
     {
-        foreach ($this->propositionList as $proposition) {
-            $proposition->setRightAnswer(false);
+        if ($answer) {
+            foreach ($this->propositionList as $proposition) {
+                $proposition->setRightAnswer(false);
+            }
+
+            $answer->setRightAnswer();
         }
 
-        $answer->setRightAnswer();
         $this->answer = $answer;
 
         return $this;

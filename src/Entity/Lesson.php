@@ -35,7 +35,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readItem"}}
  *          },
- *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeItem"}}
+ *          }
  *     }
  * )
  */
@@ -46,40 +49,44 @@ class Lesson
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"readCollection", "readItem",  "write"})
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"readCollection", "readItem", "write"})
+     * @Groups({"readCollection", "writeItem", "readItem", "write"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      *
-     * @Groups({"readCollection", "readItem", "write"})
+     * @Groups({"readCollection", "writeItem", "readItem", "write"})
      */
     protected $description;
 
     /**
      * @ORM\Column(type="integer")
      *
-     * @Groups({"readItem", "write"})
+     * @Groups({"readItem", "write", "writeItem"})
      */
     protected $exercisePerStudy;
 
     /**
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
      * @ORM\OrderBy({"difficulty": "ASC"})
+     *
+     * @Groups({"writeItem", "readItem", "write"})
      */
     protected $translationList;
 
     /**
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
      * @ORM\OrderBy({"difficulty": "ASC"})
+     *
+     * @Groups({"writeItem", "readItem", "write"})
      */
     protected $questionList;
 
@@ -97,7 +104,7 @@ class Lesson
     /**
      * @ORM\Column(type="integer")
      *
-     * @Groups({"readItem", "write"})
+     * @Groups({"writeItem", "readItem", "write"})
      */
     protected $order;
 

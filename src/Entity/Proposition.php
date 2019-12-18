@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -22,6 +23,8 @@ class Proposition
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $id;
 
@@ -30,6 +33,8 @@ class Proposition
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $text;
 
@@ -54,6 +59,8 @@ class Proposition
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $rightAnswer;
 

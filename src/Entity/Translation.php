@@ -42,7 +42,7 @@ class Translation implements Exercise
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"read", "write"})
+     * @Groups({"read", "write", "readItem"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
@@ -52,7 +52,7 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="string", length=225)
      *
-     * @Groups({"read", "write"})
+     * @Groups({"read", "write", "readItem"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
@@ -61,6 +61,8 @@ class Translation implements Exercise
 
     /**
      * @ORM\Column(type="array")
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $answerList;
 
@@ -74,6 +76,8 @@ class Translation implements Exercise
      * @Groups({"read", "write"})
      *
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
+     *
+     * @Groups({"read", "write", "readItem"})
      */
     protected $difficulty;
 
@@ -116,7 +120,7 @@ class Translation implements Exercise
 
     public function getAnswerList()
     {
-        return $this->answerList;
+        return array_values($this->answerList);
     }
 
     public function setAnswerList($answerList)
