@@ -5,11 +5,35 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use ApiPlatform\Core\Annotation as API;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="book_lesson")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readCollection"}}
+ *          },
+ *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readItem"}}
+ *          },
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeItem"}}
+ *          }
+ *     }
+ * )
  */
 class BookLesson
 {
@@ -17,16 +41,22 @@ class BookLesson
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=200)
+     *
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $subtitle;
 

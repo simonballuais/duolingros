@@ -12,7 +12,9 @@ use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\AccessorOrder;
 use ApiPlatform\Core\Annotation as API;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity
@@ -40,6 +42,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "normalization_context"={"groups"={"writeItem"}}
  *          }
  *     }
+ * )
+ * @API\ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "bookLesson": "exact"
+ *      }
  * )
  */
 class Lesson
