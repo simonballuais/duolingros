@@ -63,6 +63,8 @@ class BookLesson
     /**
      * @ORM\OneToMany(targetEntity="Lesson", mappedBy="bookLesson", cascade={"persist"})
      * @ORM\OrderBy({"order": "ASC"})<`0`>
+     *
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $lessonList;
 
