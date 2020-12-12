@@ -1,13 +1,49 @@
 {% extends 'nologged_base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+window.addEventListener('load', (event) => {
+    document.getElementById('loginForm').addEventListener(
+        'submit',
+        function (e) {
+            let username = document.getElementById('username').value;
+            let req = new XMLHttpRequest();
+            let password = document.getElementById('password').value;
+
+            e.preventDefault();
+
+            req.addEventListener("load", function (e) {
+                let response = JSON.parse(e.target.response);
+
+                if (response && response.token) {
+                    localStorage.setItem('authToken', response.token);
+                }
+
+                document.getElementById('loginForm').submit();
+            });
+
+            req.open("POST", "/duolingros/api/login");
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send(JSON.stringify({
+                "email": username,
+                "password": password
+            }));
+        }
+    );
+});
+    </script>
+{% endblock javascripts %}
+
 {% block content%}
 <div class="login-box-body">
     <p class="login-box-msg">Se connecter</p>
     {% if error %}
     <div class="alert alert-danger alert-dismissable">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-
+    <form action="{{ path("fos_user_security_check") }}" method="post" id="loginForm" name="loginForm">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         <div class="form-group has-feedback">
             <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="{{ 'security.login.username'|trans }}"  />

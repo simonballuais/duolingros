@@ -29,7 +29,7 @@ class Proposition implements PropositionInterface
 
     public function __toString()
     {
-        return $this->text;
+        return $this->text ?? "";
     }
 }
-?>
+

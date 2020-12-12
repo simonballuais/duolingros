@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+const axiosConfigured = axios.create()
+axiosConfigured.defaults.headers.common['Content-Type'] = 'application/json'
+axiosConfigured.defaults.headers.common['Accept'] = 'application/json'
+axiosConfigured.defaults.headers.put['Content-Type'] = 'application/json'
+axiosConfigured.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("authToken")
+
 Array.prototype.sample = function () {
     return this[Math.floor(Math.random() * this.length)];
 }
@@ -90,7 +96,7 @@ export function startLesson(lessonId) {
             sendTranslationProposition() {
                 this.blockPropositionInput = true
 
-                axios.post(
+                axiosConfigured.post(
                     Routing.generate('api_study_answer_translation'),
                     {
                         text: this.proposition,
@@ -103,7 +109,7 @@ export function startLesson(lessonId) {
                 .catch((error) => { console.error(error) })
             },
             sendQuestionAnswer() {
-                axios.post(
+                axiosConfigured.post(
                     Routing.generate('api_study_answer_question'),
                     {
                         answer: this.selectedProposition.id,
@@ -127,9 +133,11 @@ export function startLesson(lessonId) {
                 else {
                     this.correctionStatus = this.getRandomFailureMessage()
 
-                    setTimeout(function() {
-                        $('#complain-button').fadeIn();
-                    }, 150);
+                    if (this.doingTranslation()) {
+                        setTimeout(function() {
+                            $('#complain-button').fadeIn();
+                        }, 150);
+                    }
                 }
             },
             startNextExercise() {
@@ -137,7 +145,7 @@ export function startLesson(lessonId) {
                 $('#correction-status').fadeOut();
                 this.hideComplainButton();
 
-                axios.get(Routing.generate('api_study_get_new_exercise'))
+                axiosConfigured.get(Routing.generate('api_study_get_new_exercise'))
                 .then((response) => {
                     if (response.data.studyOver) {
                         return this.finishStudy(response.data);
@@ -184,6 +192,7 @@ export function startLesson(lessonId) {
                     type        : 'PUT',
                     url         : Routing.generate('api_study_complaint'),
                     dataType    : 'json',
+                    headers     : {"Authorization": "Bearer " + localStorage.getItem("authToken")},
                     success     : function(data) {
                         $('#complain-button').html('<i class="fa fa-check-circle fa-fw"></i>' + data.message);
                     },
@@ -245,7 +254,7 @@ export function startLesson(lessonId) {
             }
         },
         mounted() {
-            axios.get(Routing.generate('api_study_start', {lesson: lessonId}))
+            axiosConfigured.get(Routing.generate('api_study_start', {lesson: lessonId}))
             .then((response) => {
                 console.log(response.data);
                 this.refreshLessonView(response.data);
