@@ -27,7 +27,7 @@ use App\Model\Exercise;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"},
  *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
@@ -59,7 +59,7 @@ class Question implements Exercise
     protected $text;
 
     /**
-     * @ORM\OneToMany(targetEntity="Proposition", mappedBy="question", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Proposition", mappedBy="question", cascade={"persist", "remove"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("propositions")
