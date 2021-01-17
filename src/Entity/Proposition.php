@@ -23,7 +23,8 @@ use ApiPlatform\Core\Annotation as API;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
  *

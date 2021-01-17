@@ -158,6 +158,11 @@ class Question implements Exercise
         $proposition->setQuestion($this);
     }
 
+    public function removeProposition($proposition)
+    {
+        $this->propositions->removeElement($proposition);
+    }
+
     public function getAnswer()
     {
         return $this->answer;

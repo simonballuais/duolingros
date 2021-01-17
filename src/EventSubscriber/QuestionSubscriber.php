@@ -35,9 +35,13 @@ final class QuestionSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $defaultProposition = new Proposition();
-        $question->addProposition($defaultProposition);
-        $this->em->persist($defaultProposition);
+        for ($i = 0; $i < 3; $i++)
+        {
+            $defaultProposition = new Proposition();
+            $question->addProposition($defaultProposition);
+            $this->em->persist($defaultProposition);
+        }
+
         $this->em->flush($defaultProposition);
     }
 }
