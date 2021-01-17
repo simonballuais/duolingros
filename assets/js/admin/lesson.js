@@ -1,18 +1,18 @@
 import axios from 'axios';
-let questionList, translationList;
+let questions, translations;
 
 $(document).ready(function(e) {
-    questionList = $('ul.question-list');
+    questions = $('ul.question-list');
     addAddButtonToQuestionList();
 
-    questionList.find('ul.proposition-list').each(function() {
-        addAddButtonToPropositionList($(this));
+    questions.find('ul.proposition-list').each(function() {
+        addAddButtonToPropositions($(this));
     });
 
-    translationList = $('ul.translation-list');
+    translations = $('ul.translation-list');
     addAddButtonToTranslationList();
 
-    translationList.find('ul.answer-list').each(function() {
+    translations.find('ul.answer-list').each(function() {
         addAddButtonToAnswerList($(this));
     });
 });
@@ -20,8 +20,8 @@ $(document).ready(function(e) {
 function addAddButtonToQuestionList() {
     let newQuestionButton = $('<button>+</button>');
     let newQuestionLi = $('<li></li>').append(newQuestionButton);
-    questionList.append(newQuestionLi);
-    questionList.data('index', questionList.find('ul.proposition-list').length);
+    questions.append(newQuestionLi);
+    questions.data('index', questions.find('ul.proposition-list').length);
 
     newQuestionButton.on('click', addQuestionEntry);
 }
@@ -29,20 +29,20 @@ function addAddButtonToQuestionList() {
 function addAddButtonToTranslationList() {
     let newTranslationButton = $('<button>+</button>');
     let newTranslationLi = $('<li></li>').append(newTranslationButton);
-    translationList.append(newTranslationLi);
-    translationList.data('index', translationList.find('ul.proposition-list').length);
+    translations.append(newTranslationLi);
+    translations.data('index', translations.find('ul.proposition-list').length);
 
     newTranslationButton.on('click', addTranslationEntry);
 }
 
 function addQuestionEntry() {
-    let newLi = addFormEntry(questionList);
-    let newPropositionList = newLi.find('ul.proposition-list');
-    addAddButtonToPropositionList(newPropositionList);
+    let newLi = addFormEntry(questions);
+    let newPropositions = newLi.find('ul.proposition-list');
+    addAddButtonToPropositions(newPropositions);
 }
 
 function addTranslationEntry() {
-    let newLi = addFormEntry(translationList);
+    let newLi = addFormEntry(translations);
     let newAnswerList = newLi.find('ul.answer-list');
     addAddButtonToAnswerList(newAnswerList);
 }
@@ -57,14 +57,14 @@ function addFormEntry(collection, formNamePlaceholder = /__name__/g) {
     return newEntry;
 }
 
-function addAddButtonToPropositionList(propositionList) {
+function addAddButtonToPropositions(propositions) {
     let newPropositionButton = $('<button>+</button>');
     let newPropositionLi = $('<li></li>').append(newPropositionButton);
 
-    propositionList.append(newPropositionLi);
-    propositionList.data('index', propositionList.find('li').length);
+    propositions.append(newPropositionLi);
+    propositions.data('index', propositions.find('li').length);
 
-    newPropositionButton.on('click', () => addPropositionEntry(propositionList));
+    newPropositionButton.on('click', () => addPropositionEntry(propositions));
 }
 
 function addAddButtonToAnswerList(answerList) {

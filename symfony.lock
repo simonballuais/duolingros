@@ -19,6 +19,9 @@
     "components/jquery": {
         "version": "3.4.1"
     },
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -119,6 +122,9 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
+    },
     "friendsofsymfony/jsrouting-bundle": {
         "version": "2.3",
         "recipe": {
@@ -162,6 +168,15 @@
             "config/packages/jms_serializer.yaml",
             "config/packages/prod/jms_serializer.yaml"
         ]
+    },
+    "laminas/laminas-code": {
+        "version": "3.4.1"
+    },
+    "laminas/laminas-eventmanager": {
+        "version": "3.2.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.1.1"
     },
     "lcobucci/jwt": {
         "version": "3.3.1"
@@ -371,11 +386,17 @@
     "symfony/dependency-injection": {
         "version": "v3.4.35"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/doctrine-bridge": {
         "version": "v3.4.35"
     },
     "symfony/dotenv": {
         "version": "v4.3.8"
+    },
+    "symfony/error-handler": {
+        "version": "v4.4.18"
     },
     "symfony/event-dispatcher": {
         "version": "v4.3.8"
@@ -425,6 +446,9 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
+    },
+    "symfony/http-client-contracts": {
+        "version": "v1.1.10"
     },
     "symfony/http-foundation": {
         "version": "v4.3.8"
@@ -485,6 +509,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.12.0"
     },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.22.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.12.0"
     },
@@ -496,6 +523,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.22.0"
     },
     "symfony/polyfill-util": {
         "version": "v1.13.0"
@@ -548,6 +578,9 @@
     },
     "symfony/serializer": {
         "version": "v4.3.8"
+    },
+    "symfony/serializer-pack": {
+        "version": "v1.0.4"
     },
     "symfony/service-contracts": {
         "version": "v1.1.8"

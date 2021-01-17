@@ -28,7 +28,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Learning", mappedBy="user", cascade={"persist"})
      */
-    protected $learningList;
+    protected $learnings;
 
     /**
      * @ORM\OneToMany(targetEntity="UnlockedLesson", mappedBy="user", cascade={"persist"})
@@ -38,18 +38,18 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->learningList = new ArrayCollection();
+        $this->learnings = new ArrayCollection();
         $this->unlockedLessons = new ArrayCollection();
     }
 
-    public function getLearningList()
+    public function getLearnings()
     {
-        return $this->learningList;
+        return $this->learnings;
     }
 
-    public function setLearningList($learningList)
+    public function setLearnings($learnings)
     {
-        $this->learningList = $learningList;
+        $this->learnings = $learnings;
 
         return $this;
     }
@@ -68,7 +68,7 @@ class User extends BaseUser
 
     public function getLearningForLesson(Lesson $lesson)
     {
-        foreach ($this->learningList as $learning) {
+        foreach ($this->learnings as $learning) {
             $lesson = $learning->getLesson();
 
             if ($learning->getLesson()->getId() === $lesson->getId()) {

@@ -78,7 +78,7 @@ whenDocumentReady(function () {
 
             <div class="proposition-list">
               <div class="proposition"
-                   v-for="proposition in exercise.propositionList"
+                   v-for="proposition in exercise.propositions"
                    v-on:click="selectProposition(proposition)"
                    v-bind:class="{
                       'selected': ! readingRemarks() && selectedProposition
@@ -109,7 +109,7 @@ whenDocumentReady(function () {
 
             <div class="proposition-list col-sm-8">
               <div class="proposition"
-                   v-for="proposition in exercise.propositionList"
+                   v-for="proposition in exercise.propositions"
                    v-on:click="selectProposition(proposition)"
                    v-bind:class="{
                       'selected': ! readingRemarks() && selectedProposition

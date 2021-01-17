@@ -60,13 +60,13 @@
       </div> <!-- container -->
 
       <h4>
-        {{ form_label(question.propositionList) }}
+        {{ form_label(question.propositions) }}
       </h4>
 
       <ul class="proposition-list"
-          data-prototype="{{ formMacros.printPropositionRow(question.propositionList.vars.prototype)|e('html_attr') }}">
+          data-prototype="{{ formMacros.printPropositionRow(question.propositions.vars.prototype)|e('html_attr') }}">
 
-        {% for proposition in question.propositionList %}
+        {% for proposition in question.propositions %}
           {{ formMacros.printPropositionRow(proposition) }}
         {% endfor %}
       </ul>
@@ -145,25 +145,25 @@
     <input type="submit" value="OKI">
 
     <h3>
-      {{ form_label(form.questionList) }}
+      {{ form_label(form.questions) }}
     </h3>
 
     <ul class="question-list"
-        data-prototype="{{ formMacros.printQuestionRow(form.questionList.vars.prototype)|e('html_attr') }}">
+        data-prototype="{{ formMacros.printQuestionRow(form.questions.vars.prototype)|e('html_attr') }}">
 
-      {% for question in form.questionList %}
+      {% for question in form.questions %}
         {{ formMacros.printQuestionRow(question) }}
       {% endfor %}
     </ul>
 
     <h3>
-      {{ form_label(form.translationList) }}
+      {{ form_label(form.translations) }}
     </h3>
 
     <ul class="translation-list"
-        data-prototype="{{ formMacros.printTranslationRow(form.translationList.vars.prototype)|e('html_attr') }}">
+        data-prototype="{{ formMacros.printTranslationRow(form.translations.vars.prototype)|e('html_attr') }}">
 
-      {% for translation in form.translationList %}
+      {% for translation in form.translations %}
         {{ formMacros.printTranslationRow(translation) }}
       {% endfor %}
     </ul>

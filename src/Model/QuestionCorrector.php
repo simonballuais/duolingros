@@ -26,7 +26,7 @@ class QuestionCorrector implements CorrectorInterface
                 $question->getId()
             ));
 
-            $correction->setRightAnswer($question->getPropositionList()->first());
+            $correction->setRightAnswer($question->getPropositions()->first());
 
             return $correction;
         }

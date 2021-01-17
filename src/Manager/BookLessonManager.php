@@ -54,12 +54,12 @@ class BookLessonManager
     public function getAllWithCurrentLearning($user)
     {
         $bookLessons = $this->getAll();
-        $learningList = $user->getLearningList();
+        $learnings = $user->getLearnings();
 
         foreach ($bookLessons as $bookLesson) {
             $lessonList = $bookLesson->getLessonList();
 
-            foreach ($learningList as $learning) {
+            foreach ($learnings as $learning) {
                 foreach ($lessonList as $lesson) {
                     if ($learning->getLesson()->getId() === $lesson->getId()) {
                         $lesson->setCurrentLearning($learning);

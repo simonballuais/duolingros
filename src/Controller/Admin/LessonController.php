@@ -26,8 +26,8 @@ class LessonController extends Controller
         $form = $this->createForm(LessonType::class, $lesson);
 
         if ($request->getMethod() === 'POST') {
-            foreach ($lesson->getQuestionList() as $question) {
-                foreach ($question->getPropositionList() as $proposition) {
+            foreach ($lesson->getQuestions() as $question) {
+                foreach ($question->getPropositions() as $proposition) {
                     $proposition->setQuestion(null);
                 }
 

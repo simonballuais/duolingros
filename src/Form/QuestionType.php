@@ -18,7 +18,7 @@ class QuestionType extends AbstractType
             ->add('difficulty')
             ->add('noPictures')
             ->add(
-                'propositionList',
+                'propositions',
                 CollectionType::class,
                 [
                     'entry_type' => PropositionType::class,

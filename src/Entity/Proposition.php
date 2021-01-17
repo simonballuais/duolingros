@@ -8,9 +8,25 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use ApiPlatform\Core\Annotation as API;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="question_proposition")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *     }
+ * )
  *
  * @Serializer\ExclusionPolicy("all")
  */
@@ -43,6 +59,8 @@ class Proposition
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("image")
+     *
+     * @Groups({"read", "readItem"})
      */
     protected $image;
 

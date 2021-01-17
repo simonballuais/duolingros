@@ -30,7 +30,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readCollection"}}
  *          },
- *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeCollection"}}
+ *          }
  *     },
  *     itemOperations={
  *          "get"={
@@ -43,6 +46,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          }
  *     }
  * )
+ *
  * @API\ApiFilter(
  *      SearchFilter::class,
  *      properties={
@@ -57,21 +61,21 @@ class Lesson
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "write"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"readCollection", "writeItem", "readItem", "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "write"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      *
-     * @Groups({"readCollection", "writeItem", "readItem", "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "write"})
      */
     protected $description;
 
@@ -88,7 +92,7 @@ class Lesson
      *
      * @Groups({"writeItem", "readItem", "write"})
      */
-    protected $translationList;
+    protected $translations;
 
     /**
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
@@ -96,12 +100,12 @@ class Lesson
      *
      * @Groups({"writeItem", "readItem", "write"})
      */
-    protected $questionList;
+    protected $questions;
 
     /**
      * @ORM\OneToMany(targetEntity="Learning", mappedBy="lesson", cascade={"persist"})
      */
-    protected $learningList;
+    protected $learnings;
 
     /**
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
@@ -136,9 +140,9 @@ class Lesson
 
     public function __construct()
     {
-        $this->translationList = new ArrayCollection();
-        $this->questionList = new ArrayCollection();
-        $this->learningList = new ArrayCollection();
+        $this->translations = new ArrayCollection();
+        $this->questions = new ArrayCollection();
+        $this->learnings = new ArrayCollection();
         $this->translationPerStudy = 3;
         $this->unlockedLessons = new ArrayCollection();
         $this->childrenLesson = new ArrayCollection();
@@ -211,8 +215,8 @@ class Lesson
     public function getAllExercises()
     {
         return array_merge(
-            $this->translationList->toArray(),
-            $this->questionList->toArray()
+            $this->translations->toArray(),
+            $this->questions->toArray()
         );
 
     }
@@ -245,14 +249,14 @@ class Lesson
         return $this;
     }
 
-    public function getLearningList()
+    public function getLearnings()
     {
-        return $this->learningList;
+        return $this->learnings;
     }
 
-    public function setLearningList($learningList)
+    public function setLearnings($learnings)
     {
-        $this->learningList = $learningList;
+        $this->learnings = $learnings;
 
         return $this;
     }
@@ -298,36 +302,37 @@ class Lesson
         return $this->bookLesson;
     }
 
-    public function getQuestionList()
+    public function getQuestions()
     {
-        return $this->questionList;
+        return $this->questions;
     }
 
-    public function setQuestionList($questionList)
+    public function setQuestions($questions)
     {
-        $this->questionList = $questionList;
+        $this->questions = $questions;
 
         return $this;
     }
 
     public function addQuestion($question)
     {
-        $this->questionList[] = $question;
+        $this->questions[] = $question;
+        $question->setLesson($this);
     }
 
     public function removeQuestion($question)
     {
-        $this->questionList->removeElement($question);
+        $this->questions->removeElement($question);
     }
 
-    public function getTranslationList()
+    public function getTranslations()
     {
-        return $this->translationList;
+        return $this->translations;
     }
 
-    public function setTranslationList($translationList)
+    public function setTranslations($translations)
     {
-        $this->translationList = $translationList;
+        $this->translations = $translations;
 
         return $this;
     }

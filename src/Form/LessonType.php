@@ -16,7 +16,7 @@ class LessonType extends AbstractType
         $builder
             ->add('title')
             ->add(
-                'questionList',
+                'questions',
                 CollectionType::class,
                 [
                     'entry_type' => QuestionType::class,
@@ -27,7 +27,7 @@ class LessonType extends AbstractType
                 ]
             )
             ->add(
-                'translationList',
+                'translations',
                 CollectionType::class,
                 [
                     'entry_type' => TranslationType::class,

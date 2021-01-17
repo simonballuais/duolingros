@@ -67,14 +67,12 @@ class Translation implements Exercise
     protected $answerList;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="translationList", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="translations", cascade={"persist"})
      * @ORM\JoinColumn(name="lesson_id", referencedColumnName="id")
      */
     protected $lesson;
 
     /**
-     * @Groups({"read", "write"})
-     *
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      *
      * @Groups({"read", "write", "readItem"})

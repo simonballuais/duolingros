@@ -23,9 +23,7 @@
         "symfony/security-bundle": "^4.3",
         "symfony/translation": "^4.3",
         "symfony/validator": "^4.3",
-        "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/doctrine-cache-bundle": "^1.2",
 
         "jms/serializer-bundle": "^2",
         "friendsofsymfony/user-bundle": "~2.0@dev",
@@ -33,8 +31,9 @@
         "twbs/bootstrap": "^3.3",
         "components/jquery": "^3.1",
         "symfony/apache-pack": "^1.0",
-        "api-platform/api-pack": "^1.2",
-        "lexik/jwt-authentication-bundle": "^2.6"
+        "api-platform/api-pack": "1.2.*",
+        "lexik/jwt-authentication-bundle": "^2.6",
+        "symfony/yaml": "^4.4"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -43,7 +42,6 @@
         "phpunit/phpunit": "^8.2",
         "symfony/dotenv": "^4.3",
         "symfony/maker-bundle": "^1.14",
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "symfony/profiler-pack": "^1.0"
     },
     "scripts": {

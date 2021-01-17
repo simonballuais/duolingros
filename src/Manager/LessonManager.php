@@ -53,12 +53,12 @@ class LessonManager
     {
         $lesson = $form->getData();
 
-        foreach ($form->get('questionList') as $questionForm) {
+        foreach ($form->get('questions') as $questionForm) {
             $question = $questionForm->getData();
             $this->em->persist($question);
             $question->setLesson($lesson);
 
-            foreach ($questionForm->get('propositionList') as $propositionForm) {
+            foreach ($questionForm->get('propositions') as $propositionForm) {
                 $proposition = $propositionForm->getData();
 
                 if ($proposition->isRightAnswer()) {
@@ -70,7 +70,7 @@ class LessonManager
             }
         }
 
-        foreach ($form->get('translationList') as $translationForm) {
+        foreach ($form->get('translations') as $translationForm) {
             $translation = $translationForm->getData();
             $this->em->persist($translation);
             $translation->setLesson($lesson);

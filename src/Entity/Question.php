@@ -7,13 +7,32 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+use ApiPlatform\Core\Annotation as API;
+
 use App\Model\Exercise;
 
 /**
 * @ORM\Entity
 * @ORM\Table(name="question")
 *
-* @Serializer\ExclusionPolicy("all")
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"write"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeCollection"}}
+ *          }
+ *     },
+ *     itemOperations={
+ *          "get"={"security"="is_granted('ROLE_USER')"},
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *     }
+ * )
+ *
+ * @Serializer\ExclusionPolicy("all")
 */
 class Question implements Exercise
 {
@@ -43,11 +62,11 @@ class Question implements Exercise
      * @ORM\OneToMany(targetEntity="Proposition", mappedBy="question", cascade={"persist"})
      *
      * @Serializer\Expose()
-     * @Serializer\SerializedName("propositionList")
+     * @Serializer\SerializedName("propositions")
      *
      * @Groups({"read", "write", "readItem"})
      */
-    protected $propositionList;
+    protected $propositions;
 
     /**
      * @ORM\ManyToOne(targetEntity="Proposition", inversedBy="rightAnswerFor", cascade={"persist"})
@@ -58,7 +77,7 @@ class Question implements Exercise
     protected $answer;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="questionList", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="questions", cascade={"persist"})
      * @ORM\JoinColumn(name="lesson_id", referencedColumnName="id")
      */
     protected $lesson;
@@ -82,7 +101,7 @@ class Question implements Exercise
 
     public function __construct()
     {
-        $this->propositionList = new ArrayCollection();
+        $this->propositions = new ArrayCollection();
         $this->noPictures = false;
     }
 
@@ -122,26 +141,32 @@ class Question implements Exercise
         return $this;
     }
 
-    public function getPropositionList()
+    public function getPropositions()
     {
-        return $this->propositionList;
+        return $this->propositions;
     }
 
-    public function setPropositionList($propositionList)
+    public function setPropositions($propositions)
     {
-        $this->propositionList = $propositionList;
+        $this->propositions = $propositions;
 
         return $this;
     }
 
     public function addProposition($proposition)
     {
-        $this->propositionList[] = $proposition;
+        $this->propositions[] = $proposition;
     }
 
-    public function removeProposition($proposition)
+    public function semoveProposition($proposition)
     {
-        $this->propositionList->removeElement($proposition);
+        var_dump('CCACAA');
+        $this->propositions->removeElement($proposition);
+    }
+
+    public function removeProposition($proposition) {
+        var_dump('narsute');
+
     }
 
     public function getAnswer()
@@ -152,7 +177,7 @@ class Question implements Exercise
     public function setAnswer($answer)
     {
         if ($answer) {
-            foreach ($this->propositionList as $proposition) {
+            foreach ($this->propositions as $proposition) {
                 $proposition->setRightAnswer(false);
             }
 
