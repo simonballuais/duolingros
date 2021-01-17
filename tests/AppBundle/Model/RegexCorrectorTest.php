@@ -22,12 +22,12 @@ class RegexCorrectorTest extends TestCase
      * @dataProvider provideRightAnswersCases
      * @dataProvider provideRightAnswersCases
      */
-    public function testRightAnswers($answerList, $proposition, $expectedRemarks)
+    public function testRightAnswers($answers, $proposition, $expectedRemarks)
     {
         $corrector = $this->getRegexCorrector();
 
         $translation = new Translation();
-        $translation->setAnswerList($answerList);
+        $translation->setAnswers($answers);
 
         $correction = $corrector->correct(
             $translation,
@@ -44,7 +44,7 @@ class RegexCorrectorTest extends TestCase
     {
         return [
             'changing case' => [
-                "answerList" => [
+                "answers" => [
                     "bonne réponse",
                     "yes c'est goody"
                 ],
@@ -53,7 +53,7 @@ class RegexCorrectorTest extends TestCase
                 ]
             ],
             'completely wrong' => [
-                "answerList" => [
+                "answers" => [
                     "coincoin"
                 ],
                 "proposition" => new Proposition(""),
@@ -62,7 +62,7 @@ class RegexCorrectorTest extends TestCase
                 ]
             ],
             [
-                "answerList" => [
+                "answers" => [
                     "coincoin"
                 ],
                 "proposition" => new Proposition(""),

@@ -17,7 +17,6 @@ use App\Model\Exercise;
 *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -44,7 +43,7 @@ class Question implements Exercise
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $id;
 
@@ -54,7 +53,7 @@ class Question implements Exercise
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $text;
 
@@ -64,15 +63,15 @@ class Question implements Exercise
      * @Serializer\Expose()
      * @Serializer\SerializedName("propositions")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"writeItem", "readItem", "writeLesson"})
      */
     protected $propositions;
 
     /**
      * @ORM\ManyToOne(targetEntity="Proposition", inversedBy="rightAnswerFor", cascade={"persist"})
-     * @ORM\JoinColumn(name="right_answer_for_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="right_answer", referencedColumnName="id", nullable=true)
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "readItem"})
      */
     protected $answer;
 
@@ -88,14 +87,14 @@ class Question implements Exercise
      * @Serializer\Expose()
      * @Serializer\SerializedName("isNoPictures")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $noPictures;
 
     /**
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $difficulty;
 
@@ -156,17 +155,7 @@ class Question implements Exercise
     public function addProposition($proposition)
     {
         $this->propositions[] = $proposition;
-    }
-
-    public function semoveProposition($proposition)
-    {
-        var_dump('CCACAA');
-        $this->propositions->removeElement($proposition);
-    }
-
-    public function removeProposition($proposition) {
-        var_dump('narsute');
-
+        $proposition->setQuestion($this);
     }
 
     public function getAnswer()

@@ -2,7 +2,7 @@
   <div class="box"
        id="complaint-{{ complaint.id }}"
        style="margin: 10px"
-       answer-count="{{ complaint.translation.answerList|length }}"
+       answer-count="{{ complaint.translation.answers|length }}"
        >
        <form action="{{ path('admin_post_complaint', {'complaint': complaint.id}) }}"
              method="POST"
@@ -28,7 +28,7 @@
         </div> <!-- col -->
       </div> <!-- row -->
       <div class="answers">
-        {% for answer in complaint.translation.answerList %}
+        {% for answer in complaint.translation.answers %}
           <div class="row" answer-index="{{ loop.index }}">
             <div class="col-md-11">
               <textarea rows="4" type='text'

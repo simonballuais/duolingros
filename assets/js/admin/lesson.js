@@ -13,7 +13,7 @@ $(document).ready(function(e) {
     addAddButtonToTranslationList();
 
     translations.find('ul.answer-list').each(function() {
-        addAddButtonToAnswerList($(this));
+        addAddButtonToAnswers($(this));
     });
 });
 
@@ -43,8 +43,8 @@ function addQuestionEntry() {
 
 function addTranslationEntry() {
     let newLi = addFormEntry(translations);
-    let newAnswerList = newLi.find('ul.answer-list');
-    addAddButtonToAnswerList(newAnswerList);
+    let newAnswers = newLi.find('ul.answer-list');
+    addAddButtonToAnswers(newAnswers);
 }
 
 function addFormEntry(collection, formNamePlaceholder = /__name__/g) {
@@ -67,14 +67,14 @@ function addAddButtonToPropositions(propositions) {
     newPropositionButton.on('click', () => addPropositionEntry(propositions));
 }
 
-function addAddButtonToAnswerList(answerList) {
+function addAddButtonToAnswers(answerm) {
     let newAnswerButton = $('<button>+</button>');
     let newAnswerLi = $('<li></li>').append(newAnswerButton);
 
-    answerList.append(newAnswerLi);
-    answerList.data('index', answerList.find('li').length);
+    answers.append(newAnswerLi);
+    answers.data('index', answers.find('li').length);
 
-    newAnswerButton.on('click', () => addAnswerEntry(answerList));
+    newAnswerButton.on('click', () => addAnswerEntry(answers));
 }
 
 function addPropositionEntry(collection) {

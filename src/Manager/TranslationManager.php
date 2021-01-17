@@ -20,11 +20,11 @@ class TranslationManager
         $this->em = $em;
     }
 
-    public function createOrUpdate($text, $answerList, $lesson)
+    public function createOrUpdate($text, $answers, $lesson)
     {
         $translation = new Translation();
         $translation->setText($text);
-        $translation->setAnswerList($answerList);
+        $translation->setAnswers($answers);
         $translation->setLesson($lesson);
 
         $this->em->merge($translation);

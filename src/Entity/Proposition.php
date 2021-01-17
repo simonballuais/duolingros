@@ -16,7 +16,6 @@ use ApiPlatform\Core\Annotation as API;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -40,7 +39,7 @@ class Proposition
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $id;
 
@@ -50,7 +49,7 @@ class Proposition
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $text;
 
@@ -60,13 +59,13 @@ class Proposition
      * @Serializer\Expose()
      * @Serializer\SerializedName("image")
      *
-     * @Groups({"read", "readItem"})
+     * @Groups({"read", "readItem", "writeLesson"})
      */
     protected $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="Question", inversedBy="propositionList", cascade={"persist"})
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id", nullable=false)
      */
     protected $question;
 
@@ -78,13 +77,16 @@ class Proposition
     /**
      * @ORM\Column(type="boolean")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $rightAnswer;
 
     public function __construct()
     {
         $this->rightAnswerFor = new ArrayCollection();
+        $this->rightAnswer = false;
+        $this->text = '';
+        $this->image = '';
     }
 
     public function getId()

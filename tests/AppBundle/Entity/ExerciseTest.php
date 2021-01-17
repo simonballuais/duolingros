@@ -10,8 +10,8 @@ class TranslationTest extends WebTestCase
     {
         $cases = [
             [
-                "answerList" => ["J'ai une (carrotte (orange|verte)|orange (pas mûre|pourrie|))"],
-                "expectedConcreteAnswerList" => [
+                "answers" => ["J'ai une (carrotte (orange|verte)|orange (pas mûre|pourrie|))"],
+                "expectedConcreteAnswers" => [
                     "J'ai une carrotte orange",
                     "J'ai une carrotte verte",
                     "J'ai une orange pas mûre",
@@ -20,8 +20,8 @@ class TranslationTest extends WebTestCase
                 ]
             ],
             [
-                "answerList" => ["J'ai (une|deux|trois) grosses (carrottes|oranges)"],
-                "expectedConcreteAnswerList" => [
+                "answers" => ["J'ai (une|deux|trois) grosses (carrottes|oranges)"],
+                "expectedConcreteAnswers" => [
                     "J'ai une grosses carrottes",
                     "J'ai deux grosses carrottes",
                     "J'ai trois grosses carrottes",
@@ -31,8 +31,8 @@ class TranslationTest extends WebTestCase
                 ]
             ],
             [
-                "answerList" => ["Une pierre a tué (un (chien (tout kiki|)|cheval (au trot|au gallop))|une (chienne|chatte (qui miaule|qui fait caca dans la douche)))"],
-                "expectedConcreteAnswerList" => [
+                "answers" => ["Une pierre a tué (un (chien (tout kiki|)|cheval (au trot|au gallop))|une (chienne|chatte (qui miaule|qui fait caca dans la douche)))"],
+                "expectedConcreteAnswers" => [
                     "Une pierre a tué un chien",
                     "Une pierre a tué un chien tout kiki",
                     "Une pierre a tué un cheval au trot",
@@ -43,8 +43,8 @@ class TranslationTest extends WebTestCase
                 ]
             ],
             [
-                "answerList" => ["(qui (est-ce qui est|c'est)|c'est qui qui est) le plus fort"],
-                "expectedConcreteAnswerList" => [
+                "answers" => ["(qui (est-ce qui est|c'est)|c'est qui qui est) le plus fort"],
+                "expectedConcreteAnswers" => [
                     "qui c'est le plus fort",
                     "qui est-ce qui est le plus fort",
                     "c'est qui qui est le plus fort",
@@ -55,14 +55,14 @@ class TranslationTest extends WebTestCase
 
         foreach ($cases as $case) {
             $translation = new Translation();
-            $translation->setAnswerList($case["answerList"]);
+            $translation->setAnswers($case["answers"]);
 
-            $expectedConcreteAnswerList = $case["expectedConcreteAnswerList"];
-            $concreteAnswerList = $translation->getConcreteAnswerList();
+            $expectedConcreteAnswers = $case["expectedConcreteAnswers"];
+            $concreteAnswers = $translation->getConcreteAnswers();
 
             $this->assertEqualsCanonicalizing(
-                $expectedConcreteAnswerList,
-                $concreteAnswerList,
+                $expectedConcreteAnswers,
+                $concreteAnswers,
                 "Inconsistence de concrétisation de réponse",
                 $delta = 0.0,
                 $maxDepth = 10,

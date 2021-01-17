@@ -22,7 +22,7 @@ class RegexCorrector implements CorrectorInterface
         Exercise $translation,
         PropositionInterface $proposition
     ) {
-        $answerList = $translation->getAnswerList();
+        $answers = $translation->getAnswers();
         $this->logger->debug("Début de correction de $proposition");
 
         $correction = new Correction();
@@ -30,7 +30,7 @@ class RegexCorrector implements CorrectorInterface
         $purifiedProposition = $this->purifyString($proposition->getText());
         $this->logger->debug("Proposition analysée : $purifiedProposition");
 
-        foreach ($answerList as $answer) {
+        foreach ($answers as $answer) {
             $purifiedAnswer = $this->purifyString($answer);
             $this->logger->debug("Réponse envisagée : $purifiedAnswer");
 
@@ -44,7 +44,7 @@ class RegexCorrector implements CorrectorInterface
 
         $closestGoodAnswer = StringComparer::findClosestCandidate(
             $proposition->getText(),
-            $answerList
+            $answers
         );
 
         $correction->setRightAnswer($closestGoodAnswer);

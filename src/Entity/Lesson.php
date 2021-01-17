@@ -23,7 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}},
+ *     denormalizationContext={"groups"={"writeLesson"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={
@@ -61,28 +61,28 @@ class Lesson
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "writeLesson"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "write"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson"})
      */
     protected $description;
 
     /**
      * @ORM\Column(type="integer")
      *
-     * @Groups({"readItem", "write", "writeItem"})
+     * @Groups({"readItem", "writeLesson", "writeItem"})
      */
     protected $exercisePerStudy;
 
@@ -90,7 +90,7 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
-     * @Groups({"writeItem", "readItem", "write"})
+     * @Groups({"writeItem", "readItem", "writeLesson"})
      */
     protected $translations;
 
@@ -98,7 +98,7 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
-     * @Groups({"writeItem", "readItem", "write"})
+     * @Groups({"writeItem", "readItem", "writeLesson"})
      */
     protected $questions;
 
@@ -116,7 +116,7 @@ class Lesson
     /**
      * @ORM\Column(type="integer")
      *
-     * @Groups({"writeItem", "readItem", "write"})
+     * @Groups({"writeItem", "readItem", "writeLesson"})
      */
     protected $order;
 
@@ -335,6 +335,17 @@ class Lesson
         $this->translations = $translations;
 
         return $this;
+    }
+
+    public function addTranslation($translation)
+    {
+        $this->translations[] = $translation;
+        $translation->setLesson($this);
+    }
+
+    public function removeTranslation($translation)
+    {
+        $this->translations->removeElement($translation);
     }
 
     public function getOrder()

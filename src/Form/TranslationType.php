@@ -18,7 +18,7 @@ class TranslationType extends AbstractType
             ->add('text')
             ->add('difficulty')
             ->add(
-                'answerList',
+                'answers',
                 CollectionType::class,
                 [
                     'entry_type' => TextType::class,

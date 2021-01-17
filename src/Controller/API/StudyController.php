@@ -208,7 +208,7 @@ class StudyController extends Controller
 
         $proposition = new Proposition($propositionText);
         $translation = new Translation();
-        $translation->setAnswerList([$translationText]);
+        $translation->setAnswers([$translationText]);
 
         $correction = $this->sm->tryPropositionForExercise(
             $proposition,

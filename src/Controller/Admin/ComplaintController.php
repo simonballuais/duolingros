@@ -42,16 +42,16 @@ class ComplaintController extends Controller
         $repoTranslation = $em->getRepository("App:Translation");
 
         $translation->setText($request->get('translation-text'));
-        $newAnswerList = $request->request->get('answers');
-        $newAnswerListWithoutEmptyAnswer = [];
+        $newAnswers = $request->request->get('answers');
+        $newAnswersWithoutEmptyAnswer = [];
 
-        foreach ($newAnswerList as $answer) {
+        foreach ($newAnswers as $answer) {
             if ($answer) {
-                $newAnswerListWithoutEmptyAnswer[] = $answer;
+                $newAnswersWithoutEmptyAnswer[] = $answer;
             }
         }
 
-        $translation->setAnswerList($newAnswerListWithoutEmptyAnswer);
+        $translation->setAnswers($newAnswersWithoutEmptyAnswer);
         $em->remove($complaint);
         $em->flush();
 

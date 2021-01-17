@@ -18,7 +18,7 @@ use App\Model\Exercise;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}},
+ *     denormalizationContext={"groups"={"writeLesson"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -42,7 +42,7 @@ class Translation implements Exercise
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
@@ -52,7 +52,7 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="string", length=225)
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
@@ -62,9 +62,9 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="array")
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
-    protected $answerList;
+    protected $answers;
 
     /**
      * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="translations", cascade={"persist"})
@@ -75,7 +75,7 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      *
-     * @Groups({"read", "write", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $difficulty;
 
@@ -116,14 +116,18 @@ class Translation implements Exercise
         return $this;
     }
 
-    public function getAnswerList()
+    public function getAnswers()
     {
-        return array_values($this->answerList);
+        if (null === $this->answers) {
+            $this->answers = [];
+        }
+
+        return array_values($this->answers);
     }
 
-    public function setAnswerList($answerList)
+    public function setAnswers($answers)
     {
-        $this->answerList = $answerList;
+        $this->answers = $answers;
 
         return $this;
     }
@@ -132,7 +136,7 @@ class Translation implements Exercise
     {
         return sprintf("%s\n    %s",
             $this->text,
-            implode("\n    ", $this->answerList)
+            implode("\n    ", $this->answers)
         );
     }
 
@@ -148,52 +152,52 @@ class Translation implements Exercise
         return $this;
     }
 
-    public function getConcreteAnswerList()
+    public function getConcreteAnswers()
     {
-        $concreteAnswerList = [];
+        $concreteAnswers = [];
 
-        foreach ($this->answerList as $answer) {
-            $concreteAnswerList = array_merge(
-                $concreteAnswerList,
+        foreach ($this->answers as $answer) {
+            $concreteAnswers = array_merge(
+                $concreteAnswers,
                 $this->concretiseAnswer($answer)
             );
         }
 
-        return $concreteAnswerList;
+        return $concreteAnswers;
     }
 
-    public function concretiseAnswer($answerList)
+    public function concretiseAnswer($answers)
     {
-        if (!is_array($answerList)) {
-            $answerList = [$answerList];
+        if (!is_array($answers)) {
+            $answers = [$answers];
         }
 
-        $concretisedAnswerList = [];
+        $concretisedAnswers = [];
 
-        foreach ($answerList as $answer) {
+        foreach ($answers as $answer) {
             $optionGroups = $this->findNonRecursiveOptionGroups($answer);
-            $probablyConcretisedAnswerList = $this->distributeOptionGroups($answer, $optionGroups);
+            $probablyConcretisedAnswers = $this->distributeOptionGroups($answer, $optionGroups);
 
-            foreach ($probablyConcretisedAnswerList as $probablyConcretisedAnswer) {
+            foreach ($probablyConcretisedAnswers as $probablyConcretisedAnswer) {
                 $optionGroups = $this->findNonRecursiveOptionGroups($probablyConcretisedAnswer);
 
                 if (count($optionGroups)) {
                     $actuallyConcretisedAnswers = $this->concretiseAnswer($probablyConcretisedAnswer);
 
-                    $concretisedAnswerList = array_merge(
-                        $concretisedAnswerList,
+                    $concretisedAnswers = array_merge(
+                        $concretisedAnswers,
                         $actuallyConcretisedAnswers
                     );
                 }
                 else {
-                    $concretisedAnswerList[] = trim($probablyConcretisedAnswer);
+                    $concretisedAnswers[] = trim($probablyConcretisedAnswer);
                 }
             }
         }
 
-        $concretisedAnswerList = array_flip(array_flip($concretisedAnswerList));
+        $concretisedAnswers = array_flip(array_flip($concretisedAnswers));
 
-        return $concretisedAnswerList;
+        return $concretisedAnswers;
     }
 
     public function distributeOptionGroups($answer, $optionGroups)
@@ -201,9 +205,9 @@ class Translation implements Exercise
         return $this->recursiveDistribution([$answer], $optionGroups);
     }
 
-    public function recursiveDistribution($answerList, $optionGroups)
+    public function recursiveDistribution($answers, $optionGroups)
     {
-        $distributedAnswerList = [];
+        $distributedAnswers = [];
 
         $optionGroup = array_pop($optionGroups);
 
@@ -216,9 +220,9 @@ class Translation implements Exercise
         $replaceTarget = str_replace(')', '\)', $replaceTarget);
         $replaceTarget = '/' . $replaceTarget . '/';
 
-        foreach ($answerList as $distributableAnswer) {
+        foreach ($answers as $distributableAnswer) {
             foreach ($options as $option) {
-                $distributedAnswerList[] = preg_replace(
+                $distributedAnswers[] = preg_replace(
                     $replaceTarget,
                     $option,
                     $distributableAnswer,
@@ -228,10 +232,10 @@ class Translation implements Exercise
         }
 
         if (count($optionGroups)) {
-            return $this->recursiveDistribution($distributedAnswerList, $optionGroups);
+            return $this->recursiveDistribution($distributedAnswers, $optionGroups);
         }
 
-        return $distributedAnswerList;
+        return $distributedAnswers;
     }
 
     public function findNonRecursiveOptionGroups($candidate)
