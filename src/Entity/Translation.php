@@ -20,11 +20,13 @@ use App\Model\Exercise;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"writeLesson"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeCollection"}}
+ *          }
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},

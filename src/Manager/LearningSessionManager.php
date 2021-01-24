@@ -41,4 +41,11 @@ class LearningSessionManager
 
         return $ls;
     }
+
+    public function submit(LearningSession $ls)
+    {
+        $ls->setStatus(LearningSession::STATUS_SUBMITTED);
+
+        $this->em->flush();
+    }
 }
