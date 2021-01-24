@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -26,7 +28,8 @@ use App\Model\Exercise;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
  *
@@ -42,27 +45,31 @@ class Translation implements Exercise
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
+     * @Serializer\Groups({"startLearningSession"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=225)
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
+     * @Serializer\Groups({"startLearningSession"})
      */
     protected $text;
 
     /**
      * @ORM\Column(type="array")
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Serializer\Expose()
+     * @Serializer\Groups({"startLearningSession"})
      */
     protected $answers;
 
@@ -79,6 +86,11 @@ class Translation implements Exercise
      */
     protected $difficulty;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Complaint", mappedBy="translation", cascade={"persist", "remove"})
+     */
+    protected $complaints;
+
     public function __construct()
     {
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
@@ -86,7 +98,8 @@ class Translation implements Exercise
             '/\(%s*?\|%s*?\)/',
            $this->NOT_A_GROUP_DELIMITER_REGEX,
            $this->NOT_A_GROUP_DELIMITER_REGEX
-       );
+        );
+        $this->complaints = new ArrayCollection();
     }
 
     public function matches(PropositionInterface $proposition)

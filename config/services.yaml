@@ -31,3 +31,8 @@ services:
         tags: ['controller.service_arguments']
 
 
+    App\Service\RedisService:
+        arguments:
+            $redisUrl: '%env(resolve:REDIS_URL)%'
+            $redisPort: '%env(resolve:REDIS_PORT)%'
+            $redisPassword: '%env(resolve:REDIS_PASSWORD)%'

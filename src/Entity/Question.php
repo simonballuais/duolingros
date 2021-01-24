@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Expose;
 
 use ApiPlatform\Core\Annotation as API;
 
@@ -43,8 +44,9 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
+     * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "writeCollection", "startLearningSession"})
      */
     protected $id;
 
@@ -53,8 +55,9 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
+     * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
      */
     protected $text;
 
@@ -63,8 +66,9 @@ class Question implements Exercise
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("propositions")
+     * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"writeItem", "readItem", "writeLesson"})
+     * @Groups({"writeItem", "readItem", "writeLesson", "startLearningSession"})
      */
     protected $propositions;
 
@@ -72,7 +76,9 @@ class Question implements Exercise
      * @ORM\ManyToOne(targetEntity="Proposition", inversedBy="rightAnswerFor", cascade={"persist"})
      * @ORM\JoinColumn(name="right_answer", referencedColumnName="id", nullable=true)
      *
-     * @Groups({"read", "readItem"})
+     * @Groups({"read", "readItem", "startLearningSession"})
+     * @Serializer\Groups({"startLearningSession"})
+     * @Serializer\Expose()
      */
     protected $answer;
 
@@ -88,14 +94,17 @@ class Question implements Exercise
      * @Serializer\Expose()
      * @Serializer\SerializedName("isNoPictures")
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Serializer\Groups({"startLearningSession"})
+     * @Serializer\Expose()
      */
     protected $noPictures;
 
     /**
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Serializer\Expose()
      */
     protected $difficulty;
 

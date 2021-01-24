@@ -39,6 +39,7 @@ class Proposition
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("id")
+     * @Serializer\Groups({"startLearningSession"})
      *
      * @Groups({"read", "writeLesson", "readItem"})
      */
@@ -49,16 +50,18 @@ class Proposition
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
+     * @Serializer\Groups({"startLearningSession"})
      *
      * @Groups({"read", "writeLesson", "readItem"})
      */
     protected $text;
 
     /**
-     * @ORM\Column(type="string", length=20000, nullable=true)
+     * @ORM\Column(type="string", length=128000, nullable=true)
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("image")
+     * @Serializer\Groups({"startLearningSession"})
      *
      * @Groups({"read", "readItem", "writeLesson"})
      */
@@ -79,6 +82,9 @@ class Proposition
      * @ORM\Column(type="boolean")
      *
      * @Groups({"read", "writeLesson", "readItem"})
+     *
+     * @Serializer\Groups({"startLearningSession"})
+     * @Serializer\Expose()
      */
     protected $rightAnswer;
 

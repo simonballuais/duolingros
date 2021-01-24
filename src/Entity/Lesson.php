@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation\AccessorOrder;
 use ApiPlatform\Core\Annotation as API;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
-
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * @ORM\Entity
@@ -61,14 +61,14 @@ class Lesson
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "writeLesson"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "writeLesson", "startLearningSession"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson"})
+     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson", "startLearningSession"})
      */
     protected $title;
 
@@ -108,6 +108,12 @@ class Lesson
     protected $learnings;
 
     /**
+     * @ORM\OneToMany(targetEntity="LearningSession", mappedBy="lesson", cascade={"persist"})
+     */
+    protected $learningSessions;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
      * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
      */
@@ -143,6 +149,7 @@ class Lesson
         $this->translations = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->learnings = new ArrayCollection();
+        $this->learningSessions = new ArrayCollection();
         $this->translationPerStudy = 3;
         $this->unlockedLessons = new ArrayCollection();
         $this->childrenLesson = new ArrayCollection();
@@ -257,6 +264,18 @@ class Lesson
     public function setLearnings($learnings)
     {
         $this->learnings = $learnings;
+
+        return $this;
+    }
+
+    public function getLearningSessions()
+    {
+        return $this->learningSessions;
+    }
+
+    public function setLearningSessions($learningSessions)
+    {
+        $this->learningSessions = $learningSessions;
 
         return $this;
     }
@@ -411,5 +430,23 @@ class Lesson
         $this->childrenLessons = $childrenLessons;
 
         return $this;
+    }
+
+    public function getTranslationsOfDifficulty($difficulty)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->eq('difficulty', $difficulty))
+        ;
+
+        return $this->translations->matching($criteria);
+    }
+
+    public function getQuestionsOfDifficulty($difficulty)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->eq('difficulty', $difficulty))
+        ;
+
+        return $this->questions->toArray();
     }
 }
