@@ -80,13 +80,6 @@ class Lesson
     protected $description;
 
     /**
-     * @ORM\Column(type="integer")
-     *
-     * @Groups({"readItem", "writeLesson", "writeItem"})
-     */
-    protected $exercisePerStudy;
-
-    /**
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
@@ -112,15 +105,16 @@ class Lesson
      */
     protected $learningSessions;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
      * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
+     *
+     * @Groups({"writeCollection", "writeItem", "writeLesson", "startLearningSession"})
      */
     protected $bookLesson;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="lesson_order")
      *
      * @Groups({"writeItem", "readItem", "writeLesson"})
      */
@@ -153,6 +147,7 @@ class Lesson
         $this->translationPerStudy = 3;
         $this->unlockedLessons = new ArrayCollection();
         $this->childrenLesson = new ArrayCollection();
+        $this->order = 1;
     }
 
      /**
@@ -242,18 +237,6 @@ class Lesson
     public function __toString()
     {
         return sprintf("Lesson [%s] - %s", $this->id, $this->title);
-    }
-
-    public function getExercisePerStudy()
-    {
-        return $this->exercisePerStudy;
-    }
-
-    public function setExercisePerStudy($exercisePerStudy)
-    {
-        $this->exercisePerStudy = $exercisePerStudy;
-
-        return $this;
     }
 
     public function getLearnings()

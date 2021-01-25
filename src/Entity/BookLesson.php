@@ -14,14 +14,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={
  *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readCollection"}}
  *          },
- *          "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeCollection"}}
+ *          }
  *     },
  *     itemOperations={
  *          "get"={
@@ -49,14 +51,14 @@ class BookLesson
     /**
      * @ORM\Column(type="string", length=100)
      *
-     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
+     * @Groups({"readCollection", "writeItem", "readItem",  "write", "writeCollection"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=200)
      *
-     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
+     * @Groups({"readCollection", "writeItem", "readItem",  "write", "writeCollection"})
      */
     protected $subtitle;
 
@@ -71,6 +73,8 @@ class BookLesson
     /**
      * @ORM\ManyToOne(targetEntity="Course", inversedBy="bookLessonList", cascade={"persist"})
      * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
+     *
+     * @Groups({"readCollection", "writeItem", "write", "writeCollection"})
      */
     protected $course;
 

@@ -4,10 +4,36 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation as API;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="course")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"read"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readCollection"}}
+ *          },
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeCollection"}}
+ *          }
+ *     },
+ *     itemOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_USER')",
+ *              "normalization_context"={"groups"={"readItem"}}
+ *          },
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeItem"}}
+ *          }
+ *     }
+ * )
  */
 class Course
 {

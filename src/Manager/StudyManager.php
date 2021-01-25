@@ -57,7 +57,6 @@ class StudyManager
         $this->setCurrentLessonId($lesson->getId());
         $this->setCurrentAmountPlayed(0);
         $this->setCurrentAmountSucceeded(0);
-        $this->setTargetAmountPlayed($lesson->getExercisePerStudy());
         $exercise = $this->getNextExercise();
         $this->setCurrentExerciseId($exercise->getId());
         $this->setCurrentExerciseType(get_class($exercise));
