@@ -34,9 +34,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *              "security"="is_granted('ROLE_ADMIN')",
  *              "normalization_context"={"groups"={"writeItem"}}
  *          },
- *          "patch"={
+ *          "delete"={
  *              "security"="is_granted('ROLE_ADMIN')",
- *              "normalization_context"={"groups"={"writeItem"}}
+ *              "normalization_context"={"groups"={"deleteItem"}}
  *          }
  *     }
  * )

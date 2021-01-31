@@ -43,6 +43,10 @@ use Doctrine\Common\Collections\Criteria;
  *          "put"={
  *              "security"="is_granted('ROLE_ADMIN')",
  *              "normalization_context"={"groups"={"writeItem"}}
+ *          },
+ *          "delete"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"deleteItem"}}
  *          }
  *     }
  * )
@@ -80,7 +84,7 @@ class Lesson
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist", "remove"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
      * @Groups({"writeItem", "readItem", "writeLesson"})
@@ -88,7 +92,7 @@ class Lesson
     protected $translations;
 
     /**
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist", "remove"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
      * @Groups({"writeItem", "readItem", "writeLesson"})
@@ -96,12 +100,12 @@ class Lesson
     protected $questions;
 
     /**
-     * @ORM\OneToMany(targetEntity="Learning", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Learning", mappedBy="lesson", cascade={"persist", "remove"})
      */
     protected $learnings;
 
     /**
-     * @ORM\OneToMany(targetEntity="LearningSession", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="LearningSession", mappedBy="lesson", cascade={"persist", "remove"})
      */
     protected $learningSessions;
 
@@ -109,7 +113,7 @@ class Lesson
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
      * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
      *
-     * @Groups({"startLearningSession"})
+     * @Groups({"writeCollection", "writeItem", "writeLesson", "startLearningSession"})
      */
     protected $bookLesson;
 
@@ -132,7 +136,7 @@ class Lesson
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="parent", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="parent", cascade={"persist", "remove"})
      */
     protected $childrenLessons;
 
