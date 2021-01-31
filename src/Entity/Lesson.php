@@ -109,7 +109,7 @@ class Lesson
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
      * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
      *
-     * @Groups({"writeCollection", "writeItem", "writeLesson", "startLearningSession"})
+     * @Groups({"startLearningSession"})
      */
     protected $bookLesson;
 

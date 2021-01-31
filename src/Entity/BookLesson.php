@@ -33,6 +33,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "put"={
  *              "security"="is_granted('ROLE_ADMIN')",
  *              "normalization_context"={"groups"={"writeItem"}}
+ *          },
+ *          "patch"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"writeItem"}}
  *          }
  *     }
  * )
@@ -73,8 +77,6 @@ class BookLesson
     /**
      * @ORM\ManyToOne(targetEntity="Course", inversedBy="bookLessonList", cascade={"persist"})
      * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
-     *
-     * @Groups({"readCollection", "writeItem", "write", "writeCollection"})
      */
     protected $course;
 
