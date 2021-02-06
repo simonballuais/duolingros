@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\Expose;
@@ -75,10 +76,6 @@ class Question implements Exercise
     /**
      * @ORM\ManyToOne(targetEntity="Proposition", inversedBy="rightAnswerFor", cascade={"persist"})
      * @ORM\JoinColumn(name="right_answer", referencedColumnName="id", nullable=true)
-     *
-     * @Groups({"read", "readItem", "startLearningSession"})
-     * @Serializer\Groups({"startLearningSession"})
-     * @Serializer\Expose()
      */
     protected $answer;
 
@@ -173,9 +170,21 @@ class Question implements Exercise
         $this->propositions->removeElement($proposition);
     }
 
+    /**
+     * @Groups({"read", "readItem", "startLearningSession"})
+     * @Serializer\VirtualProperty()
+     * @Serializer\Groups({"startLearningSession"})
+     * @Serializer\Expose()
+     */
     public function getAnswer()
     {
-        return $this->answer;
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->eq('rightAnswer', true))
+        ;
+
+        $result = $this->propositions->matching($criteria);
+
+        return $result[0] ?? null;
     }
 
     public function setAnswer($answer)
@@ -187,8 +196,6 @@ class Question implements Exercise
 
             $answer->setRightAnswer();
         }
-
-        $this->answer = $answer;
 
         return $this;
     }

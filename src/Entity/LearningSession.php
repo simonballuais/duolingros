@@ -23,7 +23,7 @@ class LearningSession
 {
     const STATUS_STARTED = 'started';
     const STATUS_SUBMITTED = 'submitted';
-    const STATUS_CORRECTED = 'corrected';
+    const STATUS_ACCEPTED = 'accepted';
     const STATUS_GAVE_UP = 'gave_up';
 
     /**
@@ -74,6 +74,13 @@ class LearningSession
      * @Groups({"startLearningSession"})
      */
     protected $startedAt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Expose
+     * @Groups({"startLearningSession"})
+     */
+    protected $submittedAt;
 
     public function __construct()
     {
@@ -157,5 +164,30 @@ class LearningSession
     public function getQuestions()
     {
         return $this->lesson->getQuestionsOfDifficulty($this->difficulty);
+    }
+
+    public function getSubmittedAt()
+    {
+        return $this->submittedAt;
+    }
+
+    public function setSubmittedAt($submittedAt)
+    {
+        $this->submittedAt = $submittedAt;
+
+        return $this;
+    }
+
+    public function isStarted(): bool
+    {
+        return self::STATUS_STARTED === $this->status;
+    }
+
+    public function accept(): self
+    {
+        $this->status = self::STATUS_ACCEPTED;
+        $this->setSubmittedAt(new DateTime());
+
+        return $this;
     }
 }
