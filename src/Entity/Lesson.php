@@ -42,7 +42,7 @@ use Doctrine\Common\Collections\Criteria;
  *          },
  *          "put"={
  *              "security"="is_granted('ROLE_ADMIN')",
- *              "normalization_context"={"groups"={"writeItem"}}
+ *              "normalization_context"={"groups"={"lesson.writeItem"}}
  *          },
  *          "delete"={
  *              "security"="is_granted('ROLE_ADMIN')",
@@ -65,21 +65,21 @@ class Lesson
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem",  "writeLesson", "startLearningSession"})
+     * @Groups({"readCollection", "writeCollection", "lesson.writeItem", "readItem",  "writeLesson", "startLearningSession"})
      */
     protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson", "startLearningSession"})
+     * @Groups({"readCollection", "writeCollection", "lesson.writeItem", "readItem", "writeLesson", "startLearningSession"})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      *
-     * @Groups({"readCollection", "writeCollection", "writeItem", "readItem", "writeLesson"})
+     * @Groups({"readCollection", "writeCollection", "lesson.writeItem", "readItem", "writeLesson"})
      */
     protected $description;
 
@@ -87,7 +87,7 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Translation", mappedBy="lesson", cascade={"persist", "remove"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
-     * @Groups({"writeItem", "readItem", "writeLesson"})
+     * @Groups({"lesson.writeItem", "readItem", "writeLesson"})
      */
     protected $translations;
 
@@ -95,7 +95,7 @@ class Lesson
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist", "remove"})
      * @ORM\OrderBy({"difficulty": "ASC"})
      *
-     * @Groups({"writeItem", "readItem", "writeLesson"})
+     * @Groups({"lesson.writeItem", "readItem", "writeLesson"})
      */
     protected $questions;
 
@@ -113,14 +113,14 @@ class Lesson
      * @ORM\ManyToOne(targetEntity="BookLesson", inversedBy="lessons", cascade={"persist"})
      * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
      *
-     * @Groups({"writeCollection", "writeItem", "writeLesson", "startLearningSession"})
+     * @Groups({"writeCollection", "lesson.writeItem", "writeLesson", "startLearningSession"})
      */
     protected $bookLesson;
 
     /**
      * @ORM\Column(type="integer", name="lesson_order")
      *
-     * @Groups({"writeItem", "readItem", "writeLesson"})
+     * @Groups({"lesson.writeItem", "readItem", "writeLesson"})
      */
     protected $order;
 
@@ -434,6 +434,6 @@ class Lesson
             ->andWhere(Criteria::expr()->eq('difficulty', $difficulty))
         ;
 
-        return $this->questions->toArray();
+        return $this->questions->matching($criteria);
     }
 }
