@@ -35,11 +35,17 @@ class User extends BaseUser
      */
     protected $unlockedLessons;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Progress", mappedBy="user", cascade={"persist"})
+     */
+    protected $progresses;
+
     public function __construct()
     {
         parent::__construct();
         $this->learnings = new ArrayCollection();
         $this->unlockedLessons = new ArrayCollection();
+        $this->progresses = new ArrayCollection();
     }
 
     public function getLearnings()
@@ -85,5 +91,17 @@ class User extends BaseUser
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function getProgresses()
+    {
+        return $this->progresses;
+    }
+
+    public function setProgresses($progresses)
+    {
+        $this->progresses = $progresses;
+
+        return $this;
     }
 }

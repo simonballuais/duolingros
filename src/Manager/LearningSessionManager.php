@@ -17,6 +17,7 @@ use App\Entity\Translation;
 use App\Entity\Question;
 use App\Entity\User;
 use App\Entity\Lesson;
+use App\Entity\Progress;
 use App\Manager\LessonManager;
 use App\Manager\TranslationManager;
 use App\Manager\QuestionManager;
@@ -147,6 +148,18 @@ class LearningSessionManager
         }
 
         $ls->accept();
+        $this->addProgress($ls->getUser(), $ls->getLesson(), $ls->getDifficulty());
         $this->em->flush();
+    }
+
+    public function addProgress($user, $lesson, $difficulty): void
+    {
+        $progress = new Progress();
+        $progress->setLesson($lesson);
+        $progress->setUser($user);
+        $progress->setDifficulty($difficulty);
+
+        $this->em->persist($progress);
+        $this->em->flush($progress);
     }
 }

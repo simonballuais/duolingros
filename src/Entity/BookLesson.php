@@ -80,6 +80,8 @@ class BookLesson
      */
     protected $course;
 
+    protected $progress;
+
     public function __construct()
     {
         $this->lessonList = new ArrayCollection();
@@ -140,6 +142,18 @@ class BookLesson
     public function setCourse($course)
     {
         $this->course = $course;
+
+        return $this;
+    }
+
+    public function getProgress()
+    {
+        return $this->progress;
+    }
+
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
 
         return $this;
     }
