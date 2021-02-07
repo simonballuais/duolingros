@@ -114,6 +114,15 @@ class Progress
         return $this->lesson->getId();
     }
 
+    public function getBookLessonId()
+    {
+        if (!$this->lesson) {
+            return null;
+        }
+
+        return $this->lesson->getBookLessonId();
+    }
+
     public function isUnlocked()
     {
         return true;

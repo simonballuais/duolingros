@@ -308,6 +308,15 @@ class Lesson
         return $this->bookLesson;
     }
 
+    public function getBookLessonId()
+    {
+        if (!$this->bookLesson) {
+            return null;
+        }
+
+        return $this->bookLesson->getId();
+    }
+
     public function getQuestions()
     {
         return $this->questions;
