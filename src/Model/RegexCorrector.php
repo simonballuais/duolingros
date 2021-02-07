@@ -22,7 +22,7 @@ class RegexCorrector implements CorrectorInterface
         Exercise $translation,
         PropositionInterface $proposition
     ) {
-        $answers = $translation->getAnswers();
+        $answers = $translation->getConcreteAnswers();
         $this->logger->debug("Début de correction de $proposition");
 
         $correction = new Correction();
@@ -73,7 +73,6 @@ class RegexCorrector implements CorrectorInterface
                 $correctedAnswer = "<strong>" . $closestGoodAnswer . "<strong>";
                 $correction->addRemark("On aurait pu dire : \"$correctedAnswer\" ?");
             }
-
         }
 
         return $correction;

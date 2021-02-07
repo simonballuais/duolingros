@@ -12,6 +12,7 @@ use App\Model\PropositionInterface;
 use App\Model\Proposition;
 use App\Model\Exercise;
 use App\Model\QuestionCorrector;
+use App\Model\RegexCorrector;
 use App\Entity\Translation;
 use App\Entity\Question;
 use App\Entity\User;
@@ -26,13 +27,16 @@ class LearningSessionManager
 {
     private $em;
     private $questionCorrector;
+    private $translationCorrector;
 
     public function __construct(
         EntityManagerInterface $em,
-        QuestionCorrector $questionCorrector
+        QuestionCorrector $questionCorrector,
+        RegexCorrector $translationCorrector
     ) {
         $this->em = $em;
         $this->questionCorrector = $questionCorrector;
+        $this->translationCorrector = $translationCorrector;
     }
 
     public function start(User $user, Lesson $lesson, $difficulty)
@@ -110,10 +114,39 @@ class LearningSessionManager
         }
 
         foreach ($ls->getTranslations() as $translation) {
-            
+            $translationId = $translation->getId();
+
+            if (!isset($answersToTranslation[$translationId])) {
+                throw new IncorrectLearningSessionSubmissionException(sprintf(
+                    "Missing answer to translation %s",
+                    $translationId
+                ));
+            }
+
+            $pa = $answersToTranslation[$translation->getId()];
+
+            if (!isset($pa['proposedAnswer'])) {
+                throw new IncorrectLearningSessionSubmissionException(sprintf(
+                    "Can't get proposed proposed answer to translation %s",
+                    $translationId
+                ));
+            }
+
+            $proposition = new Proposition($pa['proposedAnswer']);
+            $correction = $this->translationCorrector->correct(
+                $translation,
+                $proposition
+            );
+
+            if (!$correction->isOk()) {
+                throw new IncorrectLearningSessionSubmissionException(sprintf(
+                    "Proposed answer to translation %s is wrong.",
+                    $translationId
+                ));
+            }
         }
 
         $ls->accept();
-        //$this->em->flush();
+        $this->em->flush();
     }
 }
