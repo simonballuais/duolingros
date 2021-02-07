@@ -15,9 +15,10 @@ use ApiPlatform\Core\Annotation as API;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\Criteria;
+use App\Repository\LessonRepository;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=LessonRepository::class)
  * @ORM\Table(name="lesson")
  * @ExclusionPolicy("all")
  *

@@ -66,6 +66,30 @@ class Progress
      */
     protected $difficulty;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"progress.readItem", "progress.readCollection"})
+     */
+    protected $completed;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"progress.readItem", "progress.readCollection"})
+     */
+    protected $cycleProgression;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BookLesson")
+     * @ORM\JoinColumn(name="book_lesson_id", referencedColumnName="id")
+     */
+    protected $bookLesson;
+
+    public function __construct()
+    {
+        $this->completed = false;
+        $this->cycleProgression = 0;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -105,7 +129,7 @@ class Progress
     /**
      * @Groups({"progress.readItem", "progress.readCollection"})
      */
-    public function getLessonId()
+    public function getCurrentLessonId()
     {
         if (!$this->lesson) {
             return null;
@@ -114,13 +138,29 @@ class Progress
         return $this->lesson->getId();
     }
 
+    /**
+     * @Groups({"progress.readItem", "progress.readCollection"})
+     */
+    public function getTotalLessonCount()
+    {
+        return $this->getBookLesson()->getLessonList()->count();
+    }
+
+    /**
+     * @Groups({"progress.readItem", "progress.readCollection"})
+     */
     public function getBookLessonId()
     {
-        if (!$this->lesson) {
+        if (!$this->bookLesson) {
             return null;
         }
 
-        return $this->lesson->getBookLessonId();
+        return $this->bookLesson->getId();
+    }
+
+    public function getBookLesson()
+    {
+        return $this->bookLesson;
     }
 
     public function isUnlocked()
@@ -136,6 +176,53 @@ class Progress
     public function setDifficulty($difficulty)
     {
         $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function incrementDifficulty(): self
+    {
+        if ($this->difficulty < 5) {
+            $this->difficulty++;
+        }
+
+        return self;
+    }
+
+    public function isCompleted()
+    {
+        return $this->completed;
+    }
+
+    public function setCompleted($completed)
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
+
+    public function getCycleProgression()
+    {
+        return $this->cycleProgression;
+    }
+
+    public function setCycleProgression($cycleProgression)
+    {
+        $this->cycleProgression = $cycleProgression;
+
+        return $this;
+    }
+
+    public function incrementCycleProgression(): self
+    {
+        $this->cycleProgression++;
+
+        return $this;
+    }
+
+    public function setBookLesson(BookLesson $bookLesson): self
+    {
+        $this->bookLesson = $bookLesson;
 
         return $this;
     }

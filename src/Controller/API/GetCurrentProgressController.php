@@ -23,18 +23,6 @@ class GetCurrentProgressController
             ['user' => $this->security->getUser()]
         );
 
-        $indexedProgress = [];
-
-        foreach ($progress as $p) {
-            $bookLessonId = $p->getBookLessonId();
-
-            if (!isset($indexedProgress[$bookLessonId])) {
-                $indexedProgress[$bookLessonId] = [];
-            }
-
-            $indexedProgress[$bookLessonId][] = $p;
-        }
-
-        return $indexedProgress;
+        return $progress;
     }
 }

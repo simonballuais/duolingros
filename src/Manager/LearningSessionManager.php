@@ -14,6 +14,7 @@ use App\Model\Exercise;
 use App\Model\QuestionCorrector;
 use App\Model\RegexCorrector;
 use App\Entity\Translation;
+use App\Entity\BookLesson;
 use App\Entity\Question;
 use App\Entity\User;
 use App\Entity\Lesson;
@@ -148,18 +149,56 @@ class LearningSessionManager
         }
 
         $ls->accept();
-        $this->addProgress($ls->getUser(), $ls->getLesson(), $ls->getDifficulty());
+        $this->updateProgress($ls->getUser(), $ls->getBookLesson());
         $this->em->flush();
     }
 
-    public function addProgress($user, $lesson, $difficulty): void
+    public function updateProgress($user, BookLesson $bookLesson)
     {
+        $progress = $this->em->getRepository(Progress::class)->findOneBy([
+            'user' => $user,
+            'bookLesson' => $bookLesson
+        ]);
+
+        if (!$progress) {
+            $progress = $this->initiateProgress($user, $bookLesson);
+        }
+
+        $this->moveProgressForward($progress);
+    }
+
+    public function initiateProgress($user, BookLesson $bookLesson): Progress
+    {
+        $firstLesson = $this->em->getRepository(Lesson::class)
+            ->getFirstLessonOfBookLesson($bookLesson);
+
         $progress = new Progress();
-        $progress->setLesson($lesson);
+        $progress->setLesson($firstLesson);
         $progress->setUser($user);
-        $progress->setDifficulty($difficulty);
+        $progress->setBookLesson($bookLesson);
+        $progress->setDifficulty(1);
 
         $this->em->persist($progress);
-        $this->em->flush($progress);
+
+        return $progress;
+    }
+
+    public function moveProgressForward(Progress $progress): void
+    {
+        $originalOrder = $progress->getLesson()->getOrder();
+        $nextLesson = $this->em->getRepository(Lesson::class)
+            ->getNextLessonAfter($progress->getLesson());
+
+        $progress->setLesson($nextLesson);
+        $progress->incrementCycleProgression();
+
+        if ($nextLesson->getOrder() < $originalOrder) {
+            $progress->incrementDifficulty();
+            $progress->setCycleProgression(0);
+
+            if ($progress->getDifficulty() === 5) {
+                $progress->setCompleted();
+            }
+        }
     }
 }

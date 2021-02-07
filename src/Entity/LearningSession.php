@@ -190,4 +190,9 @@ class LearningSession
 
         return $this;
     }
+
+    public function getBookLesson()
+    {
+        return $this->lesson->getBookLesson();
+    }
 }
