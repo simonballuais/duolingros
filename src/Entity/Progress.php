@@ -186,7 +186,7 @@ class Progress
             $this->difficulty++;
         }
 
-        return self;
+        return $this;
     }
 
     public function isCompleted()

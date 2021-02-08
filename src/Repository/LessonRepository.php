@@ -37,11 +37,11 @@ class LessonRepository extends EntityRepository
             ->setParameter('bookLesson', $lesson->getBookLesson())
             ->setParameter('order', $currentOrder)
             ->setMaxResults(1)
-            ->getResult()[0]
+            ->getOneOrNullResult()
         ;
 
         if (!$nextLesson) {
-            $nextLesson = $this->getFirstLessonOfBookLesson($bookLesson);
+            $nextLesson = $this->getFirstLessonOfBookLesson($lesson->getBookLesson());
         }
 
         return $nextLesson;
@@ -57,7 +57,7 @@ class LessonRepository extends EntityRepository
             ')
             ->setParameter('bookLesson', $bookLesson)
             ->setMaxResults(1)
-            ->getResult()[0]
+            ->getOneOrNullResult()
         ;
     }
 }
