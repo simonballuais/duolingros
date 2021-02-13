@@ -1,0 +1,1 @@
+55 23 * * * php ./bin/console app:check-series >> /var/log/duolingros/series_update_$(date +\%Y\%m\%d\%H\%M\%S).txt

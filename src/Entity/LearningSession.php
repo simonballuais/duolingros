@@ -12,10 +12,11 @@ use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\AccessorOrder;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTime;
+use App\Repository\LearningSessionRepository;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=LearningSessionRepository::class)
  * @ORM\Table(name="learning_session")
  * @ExclusionPolicy("all")
  */

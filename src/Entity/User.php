@@ -8,11 +8,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation as API;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\UserRepository;
 
 use App\Entity\Learning;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="fos_user")
  * @UniqueEntity("email")
  * @UniqueEntity("username")
@@ -191,5 +192,21 @@ class User extends BaseUser
         $this->currentSerie = $currentSerie;
 
         return $this;
+    }
+
+    public function incrementCurrentSerie(): self
+    {
+        $this->currentSerie++;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return sprintf(
+            '(%s) - %s',
+            $this->id,
+            $this->username
+        );
     }
 }
