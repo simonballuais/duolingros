@@ -5,6 +5,7 @@ namespace App\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation as API;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -15,6 +16,27 @@ use App\Entity\Learning;
  * @ORM\Table(name="fos_user")
  * @UniqueEntity("email")
  * @UniqueEntity("username")
+ *
+ * @API\ApiResource(
+ *     normalizationContext={"groups"={"user.read"}},
+ *     attributes={"securit"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"user.readCollection"}}
+ *          },
+ *     },
+ *     itemOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_ADMIN') or object == user",
+ *              "normalization_context"={"groups"={"user.readItem"}}
+ *          },
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN') or object == user",
+ *              "normalization_context"={"groups"={"user.writeItem"}}
+ *          },
+ *     }
+ * )
  */
 class User extends BaseUser
 {
@@ -22,6 +44,8 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Groups({"user.readCollection", "user.readItem"})
      */
     protected $id;
 
@@ -39,6 +63,27 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Progress", mappedBy="user", cascade={"persist"})
      */
     protected $progresses;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Groups({"user.readCollection", "user.writeItem", "user.readItem"})
+     */
+    protected $dailyObjective;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Groups({"user.readCollection", "user.readItem"})
+     */
+    protected $learningSessionCountThatDay;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @Groups({"user.readCollection", "user.readItem"})
+     */
+    protected $currentSerie;
 
     public function __construct()
     {
@@ -101,6 +146,42 @@ class User extends BaseUser
     public function setProgresses($progresses)
     {
         $this->progresses = $progresses;
+
+        return $this;
+    }
+
+    public function getDailyObjective()
+    {
+        return $this->dailyObjective;
+    }
+
+    public function setDailyObjective($dailyObjective)
+    {
+        $this->dailyObjective = $dailyObjective;
+
+        return $this;
+    }
+
+    public function getLearningSessionCountThatDay()
+    {
+        return $this->learningSessionCountThatDay;
+    }
+
+    public function setLearningSessionCountThatDay($learningSessionCountThatDay)
+    {
+        $this->learningSessionCountThatDay = $learningSessionCountThatDay;
+
+        return $this;
+    }
+
+    public function getCurrentSerie()
+    {
+        return $this->currentSerie;
+    }
+
+    public function setCurrentSerie($currentSerie)
+    {
+        $this->currentSerie = $currentSerie;
 
         return $this;
     }
