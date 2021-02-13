@@ -165,6 +165,7 @@ class LearningSessionManager
         }
 
         $this->moveProgressForward($progress);
+        $user->incrementLearningSessionCountThatDay();
     }
 
     public function initiateProgress($user, BookLesson $bookLesson): Progress

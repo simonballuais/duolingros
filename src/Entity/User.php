@@ -45,7 +45,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @Groups({"user.readCollection", "user.readItem"})
+     * @Groups({"user.readCollection", "user.readItem", "security"})
      */
     protected $id;
 
@@ -67,21 +67,21 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="integer", nullable=true)
      *
-     * @Groups({"user.readCollection", "user.writeItem", "user.readItem"})
+     * @Groups({"user.readCollection", "user.writeItem", "user.readItem", "security"})
      */
     protected $dailyObjective;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      *
-     * @Groups({"user.readCollection", "user.readItem"})
+     * @Groups({"user.readCollection", "user.readItem", "security"})
      */
     protected $learningSessionCountThatDay;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      *
-     * @Groups({"user.readCollection", "user.readItem"})
+     * @Groups({"user.readCollection", "user.readItem", "security"})
      */
     protected $currentSerie;
 
@@ -131,7 +131,7 @@ class User extends BaseUser
     }
 
     /**
-     * @Groups({"security"})
+     * @Groups({"user.readCollection", "user.readItem", "security"})
      */
     public function getUsername()
     {
@@ -170,6 +170,13 @@ class User extends BaseUser
     public function setLearningSessionCountThatDay($learningSessionCountThatDay)
     {
         $this->learningSessionCountThatDay = $learningSessionCountThatDay;
+
+        return $this;
+    }
+
+    public function incrementLearningSessionCountThatDay(): self
+    {
+        $this->learningSessionCountThatDay++;
 
         return $this;
     }
