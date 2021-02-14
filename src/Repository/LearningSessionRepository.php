@@ -30,6 +30,29 @@ class LearningSessionRepository extends EntityRepository
         return (int)$result;
     }
 
+    public function findAcceptedCountForUserInTimespan($user, $start, $end)
+    {
+        $result = $this->getEntityManager()
+            ->createQuery('
+                select count(ls.id)
+                from App\Entity\Learningsession ls
+                where ls.user = :user
+                    and ls.startedAt >= :start
+                    and ls.startedAt <= :end
+                    and ls.status = :accepted
+            ')
+            ->setParameters([
+                'user' => $user,
+                'start' => $start,
+                'end' => $end,
+                'accepted' => LearningSession::STATUS_ACCEPTED,
+            ])
+            ->getSingleScalarResult()
+        ;
+
+        return (int)$result;
+    }
+
     public function getLastSevenDaysCountsForUser($user): array
     {
         $sixDaysAgo = (new DateTime())->modify('-6 days')->setTime(0, 0, 0);

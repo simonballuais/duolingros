@@ -2,6 +2,7 @@
 
 namespace App\Manager;
 
+use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -148,8 +149,11 @@ class LearningSessionManager
             }
         }
 
+        $user = $ls->getUser();
         $ls->accept();
-        $this->updateProgress($ls->getUser(), $ls->getBookLesson());
+        $this->updateProgress($user, $ls->getBookLesson());
+        $user->incrementLearningSessionCountThatDay();
+        $this->incrementSerieIfNeeded($user);
         $this->em->flush();
     }
 
@@ -165,7 +169,6 @@ class LearningSessionManager
         }
 
         $this->moveProgressForward($progress);
-        $user->incrementLearningSessionCountThatDay();
     }
 
     public function initiateProgress($user, BookLesson $bookLesson): Progress
@@ -200,6 +203,24 @@ class LearningSessionManager
             if ($progress->getDifficulty() === 5) {
                 $progress->setCompleted();
             }
+        }
+    }
+
+    public function incrementSerieIfNeeded(User $user): void
+    {
+        $start = (new DateTime())->setTime(0, 0, 0);
+        $end = (new DateTime())->setTime(23, 59, 59);
+
+        $lsCountToday = $this->em->getRepository(LearningSession::class)->findAcceptedCountForUserInTimespan(
+            $user,
+            $start,
+            $end
+        );
+
+        var_dump($lsCountToday);
+
+        if (!$lsCountToday) {
+            $user->incrementCurrentSerie();
         }
     }
 }

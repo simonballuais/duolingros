@@ -51,10 +51,9 @@ class CheckSeriesCommand extends ContainerAwareCommand
 
             if ($sessionCount) {
                 $output->writeln(sprintf(
-                    '%s : has session, incrementing serie',
+                    '%s : has session, keeping serie',
                     $user
                 ));
-                $user->incrementCurrentSerie();
             } else {
                 $output->writeln(sprintf(
                     '%s : has no session, reseting serie',

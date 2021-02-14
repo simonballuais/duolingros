@@ -82,7 +82,16 @@ class LearningSessionController extends Controller
         $data = $this->getDoctrine()->getEntityManager()->getRepository(LearningSession::class)
             ->getLastSevenDaysCountsForUser($this->getUser());
 
-        return new JsonResponse($data);
+        $formattedResults = [];
+
+        foreach ($data as $dayKey => $count) {
+            $formattedResults[] = [
+                'day' => $dayKey,
+                'count' => $count,
+            ];
+        }
+
+        return new JsonResponse($formattedResults);
     }
 }
 
