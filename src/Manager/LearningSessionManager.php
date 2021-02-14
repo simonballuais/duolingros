@@ -217,8 +217,6 @@ class LearningSessionManager
             $end
         );
 
-        var_dump($lsCountToday);
-
         if (!$lsCountToday) {
             $user->incrementCurrentSerie();
         }
