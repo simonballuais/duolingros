@@ -70,5 +70,19 @@ class LearningSessionController extends Controller
 
         return new Response(null, 201);
     }
+
+    /**
+     * @Route("/api/last-seven-days-graph",
+     *        name="api_last_seven_days_graph",
+     *        )
+     * @Method({"GET"})
+     */
+    public function getLastSevenDaysGraph()
+    {
+        $data = $this->getDoctrine()->getEntityManager()->getRepository(LearningSession::class)
+            ->getLastSevenDaysCountsForUser($this->getUser());
+
+        return new JsonResponse($data);
+    }
 }
 
