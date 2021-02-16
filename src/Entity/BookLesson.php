@@ -17,7 +17,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={
- *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readCollection"}}
  *          },
  *          "post"={
@@ -27,7 +26,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *          "get"={
- *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readItem"}}
  *          },
  *          "put"={
@@ -68,7 +66,7 @@ class BookLesson
 
     /**
      * @ORM\OneToMany(targetEntity="Lesson", mappedBy="bookLesson", cascade={"persist"})
-     * @ORM\OrderBy({"order": "ASC"})<`0`>
+     * @ORM\OrderBy({"order": "ASC"})
      *
      * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */

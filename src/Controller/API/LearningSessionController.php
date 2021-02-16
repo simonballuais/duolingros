@@ -93,5 +93,47 @@ class LearningSessionController extends Controller
 
         return new JsonResponse($formattedResults);
     }
+
+    /**
+     * @Route("/api/anonymous-learning-sessions/start-lesson/{lesson}/{difficulty}",
+     *        name="api_start_anonymous_learning_session",
+     *        )
+     * @Method({"POST"})
+     */
+    public function startAnonymousSession(Lesson $lesson, $difficulty)
+    {
+        $ls = $this->lsm->startAnonymous($lesson, $difficulty);
+        $context = SerializationContext::create()->setGroups(['startLearningSession']);
+
+        $serializer = $this->get('jms_serializer');
+        $ls = json_decode($serializer->serialize($ls, 'json', $context));
+
+        return new JsonResponse($ls);
+    }
+
+    /**
+     * @Route("/api/anonymous-learning-sessions/{learningSession}/submit",
+     *        name="api_submit_anonymous_learning_session",
+     *        )
+     * @Method({"POST"})
+     */
+    public function submitAnonymousSession(Request $request, LearningSession $learningSession)
+    {
+        $body = json_decode($request->getContent(), true);
+
+        if (!isset($body['proposedAnswers'])) {
+            return new Response("No proposedAnswers field found", 400);
+        }
+
+        $proposedAnswers = $body['proposedAnswers'];
+
+        try {
+            $this->lsm->submitAnonymousSession($learningSession, $proposedAnswers);
+        } catch (IncorrectLearningSessionSubmissionException $e) {
+            return new Response($e->getMessage(), 400);
+        }
+
+        return new Response(null, 201);
+    }
 }
 

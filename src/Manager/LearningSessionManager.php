@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Manager;
 
 use DateTime;
@@ -44,10 +43,22 @@ class LearningSessionManager
 
     public function start(User $user, Lesson $lesson, $difficulty)
     {
-        $ls = new LearningSession();
+        $ls = $this->startAnonymous($lesson, $difficulty);
         $ls->setUser($user);
+
+        return $ls;
+    }
+
+    public function startAnonymous(Lesson $lesson, $difficulty)
+    {
+        $ls = new LearningSession();
         $ls->setLesson($lesson);
         $ls->setDifficulty($difficulty);
+        $lastLessonOfBookLesson = $this->em
+            ->getRepository(Lesson::class)
+            ->getLastLessonOfBookLesson($ls->getBookLesson())
+        ;
+        $ls->setLastLesson($lesson->getId() === $lastLessonOfBookLesson->getId());
         $this->em->persist($ls);
         $this->em->flush();
 
@@ -55,6 +66,24 @@ class LearningSessionManager
     }
 
     public function submit(LearningSession $ls, array $proposedAnswers)
+    {
+        $this->correct($ls, $proposedAnswers);
+        $user = $ls->getUser();
+        $ls->accept();
+        $this->updateProgress($user, $ls->getBookLesson());
+        $user->incrementLearningSessionCountThatDay();
+        $this->incrementSerieIfNeeded($user);
+        $this->em->flush();
+    }
+
+    public function submitAnonymousSession($ls, array $proposedAnswers)
+    {
+        $this->correct($ls, $proposedAnswers);
+        $ls->accept();
+        $this->em->flush();
+    }
+
+    public function correct(LearningSession $ls, array $proposedAnswers)
     {
         if (!$ls->isStarted()) {
             throw new IncorrectLearningSessionSubmissionException("LearningSession already corrected or aborted");
@@ -148,13 +177,6 @@ class LearningSessionManager
                 ));
             }
         }
-
-        $user = $ls->getUser();
-        $ls->accept();
-        $this->updateProgress($user, $ls->getBookLesson());
-        $user->incrementLearningSessionCountThatDay();
-        $this->incrementSerieIfNeeded($user);
-        $this->em->flush();
     }
 
     public function updateProgress($user, BookLesson $bookLesson)

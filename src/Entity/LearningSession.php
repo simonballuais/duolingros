@@ -38,7 +38,7 @@ class LearningSession
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="learnings", cascade={"persist"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     protected $user;
 
@@ -82,6 +82,12 @@ class LearningSession
      * @Groups({"startLearningSession"})
      */
     protected $submittedAt;
+
+    /**
+     * @Expose
+     * @Groups({"startLearningSession"})
+     */
+    protected $lastLesson;
 
     public function __construct()
     {
@@ -195,5 +201,17 @@ class LearningSession
     public function getBookLesson()
     {
         return $this->lesson->getBookLesson();
+    }
+
+    public function getLastLesson()
+    {
+        return $this->lastLesson;
+    }
+
+    public function setLastLesson($lastLesson)
+    {
+        $this->lastLesson = $lastLesson;
+
+        return $this;
     }
 }

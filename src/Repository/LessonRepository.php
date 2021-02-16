@@ -60,5 +60,19 @@ class LessonRepository extends EntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function getLastLessonOfBookLesson(BookLesson $bookLesson): Lesson
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                select l from App\Entity\Lesson l
+                where l.bookLesson = :bookLesson
+                order by l.order DESC
+            ')
+            ->setParameter('bookLesson', $bookLesson)
+            ->setMaxResults(1)
+            ->getOneOrNullResult()
+        ;
+    }
 }
 
