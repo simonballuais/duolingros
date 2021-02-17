@@ -36,3 +36,6 @@ services:
             $redisUrl: '%env(resolve:REDIS_URL)%'
             $redisPort: '%env(resolve:REDIS_PORT)%'
             $redisPassword: '%env(resolve:REDIS_PASSWORD)%'
+
+    jms_serializer.naming_strategy:
+        alias: jms_serializer.identical_property_naming_strategy

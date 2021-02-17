@@ -45,6 +45,7 @@ class LearningSessionManager
     {
         $ls = $this->startAnonymous($lesson, $difficulty);
         $ls->setUser($user);
+        $this->em->flush();
 
         return $ls;
     }

@@ -198,6 +198,11 @@ class LearningSession
         return $this;
     }
 
+    /**
+     * @VirtualProperty
+     * @SerializedName("book_lesson")
+     * @Groups({"startLearningSession"})
+     */
     public function getBookLesson()
     {
         return $this->lesson->getBookLesson();

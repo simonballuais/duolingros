@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation as API;
 use Symfony\Component\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Groups as JMSGroups;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity
@@ -45,7 +47,8 @@ class BookLesson
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     *
+     * @Expose
+     * @JMSGroups({"startLearningSession"})
      * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      */
     protected $id;
@@ -69,6 +72,8 @@ class BookLesson
      * @ORM\OrderBy({"order": "ASC"})
      *
      * @Groups({"readCollection", "writeItem", "readItem",  "write"})
+     * @Expose
+     * @JMSGroups({"startLearningSession"})
      */
     protected $lessonList;
 

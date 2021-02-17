@@ -67,6 +67,8 @@ class Lesson
      * @ORM\GeneratedValue(strategy="AUTO")
      *
      * @Groups({"readCollection", "writeCollection", "lesson.writeItem", "readItem",  "writeLesson", "startLearningSession"})
+     * @Expose
+     * @JMSGroups({"startLearningSession"})
      */
     protected $id;
 
@@ -121,7 +123,9 @@ class Lesson
     /**
      * @ORM\Column(type="integer", name="lesson_order")
      *
-     * @Groups({"lesson.writeItem", "readItem", "writeLesson"})
+     * @Groups({"readCollection", "lesson.writeItem", "readItem", "writeLesson"})
+     * @Expose
+     * @JMSGroups({"startLearningSession"})
      */
     protected $order;
 
