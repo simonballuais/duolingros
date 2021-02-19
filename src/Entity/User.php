@@ -86,6 +86,21 @@ class User extends BaseUser
      */
     protected $currentSerie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $nickname;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $initialLevel;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $reason;
+
     public function __construct()
     {
         parent::__construct();
@@ -208,5 +223,41 @@ class User extends BaseUser
             $this->id,
             $this->username
         );
+    }
+
+    public function getNickname()
+    {
+        return $this->nickname;
+    }
+
+    public function setNickname($nickname)
+    {
+        $this->nickname = $nickname;
+
+        return $this;
+    }
+
+    public function getInitialLevel()
+    {
+        return $this->initialLevel;
+    }
+
+    public function setInitialLevel($initialLevel)
+    {
+        $this->initialLevel = $initialLevel;
+
+        return $this;
+    }
+
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+
+        return $this;
     }
 }

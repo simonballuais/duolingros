@@ -39,3 +39,4 @@ services:
 
     jms_serializer.naming_strategy:
         alias: jms_serializer.identical_property_naming_strategy
+
