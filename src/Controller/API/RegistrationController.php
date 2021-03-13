@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use JMS\Serializer\SerializationContext;
+use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Lesson;
 use App\Entity\LearningSession;
 use App\Entity\Translation;
@@ -18,6 +19,8 @@ use App\Entity\User;
 use App\Model\RegexCorrector;
 use App\Manager\RegistrationManager;
 use App\Exception\RegistrationFailedException;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RegistrationController extends Controller
 {
@@ -34,8 +37,11 @@ class RegistrationController extends Controller
      *        )
      * @Method({"POST"})
      */
-    public function submitProfile(Request $request)
-    {
+    public function submitProfile(
+        Request $request,
+        JWTTokenManagerInterface $tokenManager,
+        SerializerInterface $serializer
+    ) {
         $body = json_decode($request->getContent(), true);
 
         if (!$body) {
@@ -76,7 +82,7 @@ class RegistrationController extends Controller
         $anonymousLearningSessions = $body['anonymousLearningSessions'];
 
         try {
-            $this->rm->submitProfile(
+            $user = $this->rm->submitProfile(
                 $email,
                 $username,
                 $password,
@@ -85,14 +91,22 @@ class RegistrationController extends Controller
                 $dailyObjective,
                 $anonymousLearningSessions
             );
+
+            $jwtToken = $tokenManager->create($user);
         } catch (RegistrationFailedException $e) {
-            
+            throw new HttpException(400, 'Couldnt proccess the infos');
         }
 
-        return new Response(
-            'oki', // todo: login token
-            200
+        $userJson = $serializer->serialize(
+            $user,
+            'json',
+            ['groups' => 'security']
         );
+
+        return new JsonResponse([
+            'user' => json_decode($userJson),
+            'token' => $jwtToken,
+        ]);
     }
 }
 

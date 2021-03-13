@@ -52,7 +52,7 @@ class RegistrationManager
         $currentLevel,
         $dailyObjective,
         $anonymousLearningSessions
-    ): void {
+    ): User {
         $newUser = $this->um->createUser();
         $newUser->setEmail($email);
         $newUser->setUsername($email);
@@ -93,5 +93,7 @@ class RegistrationManager
         }
 
         $this->em->flush();
+
+        return $newUser;
     }
 }
