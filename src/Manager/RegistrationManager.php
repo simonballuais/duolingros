@@ -26,7 +26,7 @@ use App\Manager\CorrectionManager;
 use App\Exception\RegistrationFailedException;
 use App\Exception\IncorrectLearningSessionSubmissionException;
 use FOS\UserBundle\Model\UserManagerInterface;
-
+use Symfony\Component\Uid\Uuid;
 
 class RegistrationManager
 {
@@ -63,6 +63,7 @@ class RegistrationManager
         $newUser->setDailyObjective($dailyObjective);
         $newUser->setReason($reason);
         $newUser->setInitialLevel($currentLevel);
+        $newUser->setEmailValidationCode(Uuid::v4());
         $this->um->updateUser($newUser);
 
         $repoLs = $this->em->getRepository(LearningSession::class);
@@ -93,7 +94,7 @@ class RegistrationManager
             }
         }
 
-        $this->em->flush();
+        //$this->em->flush();
 
         return $newUser;
     }

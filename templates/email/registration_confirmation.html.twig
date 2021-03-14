@@ -1,0 +1,19 @@
+{% extends 'email/base.html.twig' %}
+
+{% block content %}
+<row>
+    <columns small="12">
+        <h1>Bonjour {{ user.nickname }}</h1>
+        <p class="lead">Votre profil a bien été créé !</p>
+        <p>Il ne vous reste plus qu'a confirmer votre adresse email en cliquant sur ce lien :</p>
+
+        <center>
+            <button class="large primary"
+                    href="{{ confirmationUrl }}"
+            >
+                Vérifier mon adresse email
+            </button>
+        </center>
+    </columns>
+</row>
+{% endblock content %}

@@ -3,6 +3,7 @@ namespace App\Controller\API;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +22,7 @@ use App\Manager\RegistrationManager;
 use App\Exception\RegistrationFailedException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Service\MailerService;
 
 class RegistrationController extends Controller
 {
@@ -40,7 +42,8 @@ class RegistrationController extends Controller
     public function submitProfile(
         Request $request,
         JWTTokenManagerInterface $tokenManager,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        MailerService $mailerService
     ) {
         $body = json_decode($request->getContent(), true);
 
@@ -103,10 +106,28 @@ class RegistrationController extends Controller
             ['groups' => 'security']
         );
 
+        $mailerService->sendRegistrationConfirmation($user);
+
         return new JsonResponse([
             'user' => json_decode($userJson),
             'token' => $jwtToken,
         ]);
+    }
+
+    /**
+     * @Route("/api/confirm-email/{emailCode}",
+     *        name="api_confirm_email",
+     *        )
+     * @Entity("user", expr="repository.findOneByEmailValidationCode(emailCode)")
+     * @Method({"POST"})
+     */
+    public function confirmEmail(User $user)
+    {
+        $user->setEmailValidated(true);
+        $user->setEmailValidationCode(null);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new Response(null, 204);
     }
 }
 

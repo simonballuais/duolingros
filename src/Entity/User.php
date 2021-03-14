@@ -103,12 +103,23 @@ class User extends BaseUser
      */
     protected $reason;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false, options={"default"=false})
+     */
+    protected $emailValidated;
+
+    /**
+     * @ORM\Column(type="string", length=36, nullable=true)
+     */
+    protected $emailValidationCode;
+
     public function __construct()
     {
         parent::__construct();
         $this->learnings = new ArrayCollection();
         $this->unlockedLessons = new ArrayCollection();
         $this->progresses = new ArrayCollection();
+        $this->emailValidated = false;
     }
 
     public function getLearnings()
@@ -269,5 +280,29 @@ class User extends BaseUser
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getEmailValidated()
+    {
+        return $this->emailValidated;
+    }
+
+    public function setEmailValidated($emailValidated)
+    {
+        $this->emailValidated = $emailValidated;
+
+        return $this;
+    }
+
+    public function getEmailValidationCode()
+    {
+        return $this->emailValidationCode;
+    }
+
+    public function setEmailValidationCode($emailValidationCode)
+    {
+        $this->emailValidationCode = $emailValidationCode;
+
+        return $this;
     }
 }
