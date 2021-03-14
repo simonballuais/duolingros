@@ -56,6 +56,7 @@ class RegistrationManager
         $newUser = $this->um->createUser();
         $newUser->setEmail($email);
         $newUser->setUsername($email);
+        $newUser->setNickname($username);
         $newUser->setPlainPassword($password);
         $newUser->setEnabled(true);
         $newUser->setSuperAdmin(false);

@@ -88,6 +88,8 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({"user.writeItem", "user.readItem"})
      */
     protected $nickname;
 
@@ -259,5 +261,13 @@ class User extends BaseUser
         $this->reason = $reason;
 
         return $this;
+    }
+
+    /**
+     * @Groups({"user.readCollection", "user.readItem", "security"})
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
