@@ -9,9 +9,10 @@ use ApiPlatform\Core\Annotation as API;
 use Symfony\Component\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\Groups as JMSGroups;
 use JMS\Serializer\Annotation\Expose;
+use App\Repository\BookLessonRepository;
 
 /**
- * @ORM\Entity
+ t @ORM\Entity(repositoryClass=BookLessonRepository::class)
  * @ORM\Table(name="book_lesson")
  *
  * @API\ApiResource(
@@ -83,11 +84,26 @@ class BookLesson
      */
     protected $course;
 
+    /**
+     * @ORM\Column(type="integer", name="order")
+     *
+     * @Groups({"readCollection", "writeItem", "readItem",  "write"})
+     * @Expose
+     * @JMSGroups({"startLearningSession"})
+     */
+    protected $order;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    protected $disabled;
+
     protected $progress;
 
     public function __construct()
     {
         $this->lessonList = new ArrayCollection();
+        $this->diabled = true;
     }
 
     public function getId()
@@ -157,6 +173,30 @@ class BookLesson
     public function setProgress($progress)
     {
         $this->progress = $progress;
+
+        return $this;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder($order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    public function setDisabled($disabled)
+    {
+        $this->disabled = $disabled;
 
         return $this;
     }

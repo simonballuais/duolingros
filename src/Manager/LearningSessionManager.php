@@ -11,6 +11,7 @@ use App\Entity\LearningSession;
 use App\Model\PropositionInterface;
 use App\Model\Proposition;
 use App\Model\Exercise;
+use App\Entity\Course;
 use App\Model\QuestionCorrector;
 use App\Model\RegexCorrector;
 use App\Entity\Translation;
@@ -191,6 +192,10 @@ class LearningSessionManager
             $progress = $this->initiateProgress($user, $bookLesson);
         }
 
+        if ($progress->isCompleted()) {
+            throw new IncorrectLearningSessionSubmissionException('Progress is already completed');
+        }
+
         $this->moveProgressForward($progress);
     }
 
@@ -220,11 +225,30 @@ class LearningSessionManager
         $progress->incrementCycleProgression();
 
         if ($nextLesson->getOrder() < $originalOrder) {
+            if ($progress->getDifficulty() === 5) {
+                $progress->setCompleted();
+                $this->em->flush();
+                $this->unlockNextCourseIfPossible(
+                    $progress->getUser(),
+                    $progress->getBookLesson()->getCourse()
+                );
+
+                return;
+            }
+
             $progress->incrementDifficulty();
             $progress->setCycleProgression(0);
 
-            if ($progress->getDifficulty() === 5) {
-                $progress->setCompleted();
+            if ($progress->getDifficulty() === 2) {
+                $nextBookLesson = $this->em->getRepository(BookLesson::class)
+                    ->getNextBookLessonAfter($progress->getBookLesson());
+
+                if ($nextBookLesson) {
+                    $progress = $this->initiateProgress(
+                        $progress->getUser(),
+                        $nextBookLesson
+                    );
+                }
             }
         }
     }
@@ -242,6 +266,25 @@ class LearningSessionManager
 
         if (!$lsCountToday) {
             $user->incrementCurrentSerie();
+        }
+    }
+
+    public function unlockNextCourseIfPossible($user, $course): void
+    {
+        $hasUserCompletedWholeCourse = $this->em->getRepository(Progress::class)
+            ->hasUserCompletedWholeCourse($user, $course);
+
+        if ($hasUserCompletedWholeCourse) {
+            $nextCourse = $this->em->getRepository(Course::class)
+                ->getCourseAfter($course);
+
+            if ($nextCourse) {
+                $firstBookLessonOfNextCourse = $nextCourse->getFirstBookLesson();
+
+                if ($firstBookLessonOfNextCourse) {
+                    $this->initiateProgress($user, $firstBookLessonOfNextCourse);
+                }
+            }
         }
     }
 }

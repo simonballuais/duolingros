@@ -69,7 +69,7 @@ class SecurityController extends Controller
      * @Route("/api/password-change/{token}",
      *        name="api_password_change",
      *        )
-     * @Method({"GET"})
+     * @Method({"POST"})
      * @Entity("user", expr="repository.findOneByConfirmationToken(token)")
      */
     public function passwordChange(
@@ -94,6 +94,7 @@ class SecurityController extends Controller
         }
 
         $user->setPlainPassword($newPassword);
+        $user->setConfirmationToken(null);
         $userManager->updateUser($user);
         $mailer->sendPasswordChanged($user);
         $user->setPasswordRequestedAt(new DateTime());

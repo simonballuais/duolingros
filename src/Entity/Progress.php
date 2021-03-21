@@ -7,9 +7,10 @@ use ApiPlatform\Core\Annotation as API;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\API\GetCurrentProgressController;
+use App\Repository\ProgressRepository;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ProgressRepository::class)
  * @ORM\Table(name="progress")
  *
  * @API\ApiResource(
@@ -194,7 +195,7 @@ class Progress
         return $this->completed;
     }
 
-    public function setCompleted($completed)
+    public function setCompleted($completed = true)
     {
         $this->completed = $completed;
 
