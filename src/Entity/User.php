@@ -113,6 +113,13 @@ class User extends BaseUser
      */
     protected $emailValidationCode;
 
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @Groups({"user.readCollection", "user.writeItem", "user.readItem", "security"})
+     */
+    protected $totalLevels;
+
     public function __construct()
     {
         parent::__construct();
@@ -304,5 +311,22 @@ class User extends BaseUser
         $this->emailValidationCode = $emailValidationCode;
 
         return $this;
+    }
+
+    public function getTotalLevels()
+    {
+        return $this->totalLevels;
+    }
+
+    public function setTotalLevels($totalLevels)
+    {
+        $this->totalLevels = $totalLevels;
+
+        return $this;
+    }
+
+    public function incrementTotalLevels(): void
+    {
+        $this->totalLevels++;
     }
 }

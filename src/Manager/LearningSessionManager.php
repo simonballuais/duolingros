@@ -75,6 +75,7 @@ class LearningSessionManager
         $this->updateProgress($user, $ls->getBookLesson());
         $user->incrementLearningSessionCountThatDay();
         $this->incrementSerieIfNeeded($user);
+        $user->incrementTotalLevels();
         $this->em->flush();
     }
 
