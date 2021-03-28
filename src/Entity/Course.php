@@ -19,7 +19,6 @@ use App\Repository\CourseRepository;
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={
- *              "security"="is_granted('ROLE_USER')",
  *              "normalization_context"={"groups"={"readCollection"}}
  *          },
  *          "post"={

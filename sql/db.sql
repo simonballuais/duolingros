@@ -127,6 +127,7 @@ CREATE TABLE `fos_user` (
   `reason` int(11) NOT NULL,
   `email_validated` tinyint(1) NOT NULL DEFAULT '0',
   `email_validation_code` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `total_levels` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_957A647992FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_957A6479A0D96FBF` (`email_canonical`),
@@ -140,7 +141,7 @@ CREATE TABLE `fos_user` (
 
 LOCK TABLES `fos_user` WRITE;
 /*!40000 ALTER TABLE `fos_user` DISABLE KEYS */;
-INSERT INTO `fos_user` VALUES (35,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$DvDfHS/RyLX9.9MZLQ6vEOL3ZtpJ7aKf2MHntTeZbAL1TUG5l4Voq','2021-03-21 21:05:21',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',NULL,36,1,NULL,0,0,0,NULL),(36,'2','2','simon.ballu2@gmail.com','simon.ballu2@gmail.com',1,NULL,'$2y$13$DvDfHS/RyLX9.9MZLQ6vEOL3ZtpJ7aKf2MHntTeZbAL1TUG5l4Voq','2021-02-07 15:34:39',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',NULL,NULL,NULL,NULL,0,0,0,NULL);
+INSERT INTO `fos_user` VALUES (35,'simon','simon','simon.ballu@gmail.com','simon.ballu@gmail.com',1,NULL,'$2y$13$DvDfHS/RyLX9.9MZLQ6vEOL3ZtpJ7aKf2MHntTeZbAL1TUG5l4Voq','2021-03-24 22:20:21',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',5,1,0,NULL,0,0,0,NULL,12),(36,'2','2','simon.ballu2@gmail.com','simon.ballu2@gmail.com',1,NULL,'$2y$13$DvDfHS/RyLX9.9MZLQ6vEOL3ZtpJ7aKf2MHntTeZbAL1TUG5l4Voq','2021-02-07 15:34:39',NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',NULL,NULL,NULL,NULL,0,0,0,NULL,0);
 /*!40000 ALTER TABLE `fos_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +198,7 @@ CREATE TABLE `learning_session` (
   KEY `IDX_14E36D27CDF80196` (`lesson_id`),
   CONSTRAINT `FK_14E36D27A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`),
   CONSTRAINT `FK_14E36D27CDF80196` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=346 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,7 +207,6 @@ CREATE TABLE `learning_session` (
 
 LOCK TABLES `learning_session` WRITE;
 /*!40000 ALTER TABLE `learning_session` DISABLE KEYS */;
-INSERT INTO `learning_session` VALUES (35,75,2,'started','N;','2021-03-21 18:55:02',301,NULL),(35,48,1,'accepted','N;','2021-03-21 19:00:49',302,'2021-03-21 19:00:55'),(35,75,1,'accepted','N;','2021-03-21 19:00:59',303,'2021-03-21 19:01:00'),(35,48,2,'accepted','N;','2021-03-21 19:01:07',304,'2021-03-21 19:01:13'),(35,75,2,'accepted','N;','2021-03-21 19:01:16',305,'2021-03-21 19:01:19'),(35,48,3,'accepted','N;','2021-03-21 19:01:23',306,'2021-03-21 19:01:25'),(35,4,1,'accepted','N;','2021-03-21 19:01:27',307,'2021-03-21 19:01:28'),(35,5,1,'accepted','N;','2021-03-21 19:01:31',308,'2021-03-21 19:01:32'),(35,4,2,'started','N;','2021-03-21 19:01:40',309,NULL),(35,4,2,'accepted','N;','2021-03-21 19:02:04',310,'2021-03-21 19:02:06'),(35,5,2,'accepted','N;','2021-03-21 19:02:09',311,'2021-03-21 19:02:10'),(35,4,3,'accepted','N;','2021-03-21 19:02:15',312,'2021-03-21 19:02:16'),(35,5,3,'accepted','N;','2021-03-21 19:02:19',313,'2021-03-21 19:02:21'),(35,4,4,'accepted','N;','2021-03-21 19:02:26',314,'2021-03-21 19:02:28'),(35,5,4,'started','N;','2021-03-21 19:02:33',315,NULL),(35,5,4,'started','N;','2021-03-21 19:02:53',316,NULL),(35,5,4,'accepted','N;','2021-03-21 19:09:48',317,'2021-03-21 19:09:50'),(35,4,5,'accepted','N;','2021-03-21 19:09:56',318,'2021-03-21 19:09:58'),(35,5,5,'started','N;','2021-03-21 19:10:01',319,NULL),(35,5,5,'started','N;','2021-03-21 19:10:28',320,NULL),(35,5,5,'started','N;','2021-03-21 19:11:21',321,NULL),(35,5,5,'accepted','N;','2021-03-21 19:11:49',322,'2021-03-21 19:11:54'),(35,4,3,'accepted','N;','2021-03-21 19:13:24',323,'2021-03-21 19:13:27'),(35,5,3,'accepted','N;','2021-03-21 19:13:30',324,'2021-03-21 19:13:31'),(35,4,4,'accepted','N;','2021-03-21 19:13:38',325,'2021-03-21 19:13:39'),(35,5,4,'accepted','N;','2021-03-21 19:13:42',326,'2021-03-21 19:13:44'),(35,4,5,'accepted','N;','2021-03-21 19:13:49',327,'2021-03-21 19:13:50'),(35,5,5,'accepted','N;','2021-03-21 19:13:54',328,'2021-03-21 19:13:55'),(35,4,5,'accepted','N;','2021-03-21 19:15:27',329,'2021-03-21 19:15:30'),(35,5,5,'accepted','N;','2021-03-21 19:15:51',330,'2021-03-21 19:15:53'),(35,4,3,'accepted','N;','2021-03-21 19:16:26',331,'2021-03-21 19:16:29'),(35,5,3,'accepted','N;','2021-03-21 19:17:00',332,'2021-03-21 19:17:01'),(35,6,3,'accepted','N;','2021-03-21 19:17:47',333,'2021-03-21 19:17:49'),(35,4,3,'accepted','N;','2021-03-21 19:18:48',334,'2021-03-21 19:18:51'),(35,5,3,'accepted','N;','2021-03-21 19:18:54',335,'2021-03-21 19:18:55'),(35,4,4,'accepted','N;','2021-03-21 19:19:02',336,'2021-03-21 19:19:04'),(35,5,4,'accepted','N;','2021-03-21 19:19:07',337,'2021-03-21 19:19:08'),(35,4,5,'accepted','N;','2021-03-21 20:07:28',338,'2021-03-21 20:07:30'),(35,5,5,'accepted','N;','2021-03-21 20:07:33',339,'2021-03-21 20:07:34'),(35,75,3,'accepted','N;','2021-03-21 20:08:20',340,'2021-03-21 20:08:21'),(35,48,4,'started','N;','2021-03-21 20:08:25',341,NULL),(35,48,4,'started','N;','2021-03-21 20:08:45',342,NULL),(35,48,4,'accepted','N;','2021-03-21 20:08:57',343,'2021-03-21 20:08:59'),(35,75,4,'accepted','N;','2021-03-21 20:09:05',344,'2021-03-21 20:09:06'),(35,48,5,'accepted','N;','2021-03-21 21:05:12',345,'2021-03-21 21:05:16');
 /*!40000 ALTER TABLE `learning_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +264,7 @@ CREATE TABLE `progress` (
   CONSTRAINT `FK_2201F246A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fos_user` (`id`),
   CONSTRAINT `FK_2201F246CDF80196` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`),
   CONSTRAINT `FK_2201F246DF5617D0` FOREIGN KEY (`book_lesson_id`) REFERENCES `book_lesson` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +273,7 @@ CREATE TABLE `progress` (
 
 LOCK TABLES `progress` WRITE;
 /*!40000 ALTER TABLE `progress` DISABLE KEYS */;
-INSERT INTO `progress` VALUES (7,35,75,5,0,1,1),(8,35,4,5,1,2,2);
+INSERT INTO `progress` VALUES (7,35,48,5,1,2,1),(12,35,4,2,0,0,2);
 /*!40000 ALTER TABLE `progress` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-21 23:05:26
+-- Dump completed on 2021-03-25  0:21:03

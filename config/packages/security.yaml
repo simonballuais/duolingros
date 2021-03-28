@@ -57,6 +57,7 @@ security:
         - { path: ^/api/password-change, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/anonymous-learning-sessions/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/book_lessons, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/courses, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/docs, role: IS_AUTHENTICATED_ANONYMOUSLY }
