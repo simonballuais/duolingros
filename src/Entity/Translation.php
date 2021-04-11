@@ -112,6 +112,7 @@ class Translation implements Exercise
            $this->NOT_A_GROUP_DELIMITER_REGEX
         );
         $this->complaints = new ArrayCollection();
+        $this->words = [];
     }
 
     public function matches(PropositionInterface $proposition)
