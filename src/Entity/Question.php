@@ -98,6 +98,18 @@ class Question implements Exercise
     protected $noPictures;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("direction")
+     *
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Serializer\Groups({"startLearningSession"})
+     * @Serializer\Expose()
+     */
+    protected $direction;
+
+    /**
      * @ORM\Column(type="integer", options={"default":1}, nullable=true)
      *
      * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
@@ -233,6 +245,18 @@ class Question implements Exercise
     public function setDifficulty($difficulty)
     {
         $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function getDirection()
+    {
+        return $this->direction;
+    }
+
+    public function setDirection($direction)
+    {
+        $this->direction = $direction;
 
         return $this;
     }

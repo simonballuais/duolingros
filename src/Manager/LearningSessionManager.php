@@ -75,7 +75,6 @@ class LearningSessionManager
         $this->updateProgress($user, $ls->getBookLesson());
         $user->incrementLearningSessionCountThatDay();
         $this->incrementSerieIfNeeded($user);
-        $user->incrementTotalLevels();
         $this->em->flush();
     }
 
@@ -226,6 +225,8 @@ class LearningSessionManager
         $progress->incrementCycleProgression();
 
         if ($nextLesson->getOrder() < $originalOrder) {
+            $progress->getUser()->incrementTotalLevels();
+
             if ($progress->getDifficulty() === 5) {
                 $progress->setCompleted();
                 $this->em->flush();

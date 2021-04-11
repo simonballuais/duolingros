@@ -31,6 +31,8 @@ class CheckSeriesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln('Starting series check');
+
         $startOfYesterday = (new DateTime())->modify('-1 day')->setTime(0, 0, 0);
         $endOfYesterday = (new DateTime())->modify('-1 day')->setTime(23, 59, 59);
 
@@ -64,6 +66,9 @@ class CheckSeriesCommand extends ContainerAwareCommand
 
             $this->em->flush();
             $this->em->clear();
+
         }
+
+        $output->writeln('Done');
     }
 }

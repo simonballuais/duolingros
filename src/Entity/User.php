@@ -114,7 +114,7 @@ class User extends BaseUser
     protected $emailValidationCode;
 
     /**
-     * @ORM\Column(type="integer", options={"default"=0})
+     * @ORM\Column(type="integer", options={"default"=0}, nullable=true)
      *
      * @Groups({"user.readCollection", "user.writeItem", "user.readItem", "security"})
      */

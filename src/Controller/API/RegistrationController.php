@@ -57,7 +57,7 @@ class RegistrationController extends Controller
         }
 
         $email = $body['email'];
-        $username = $body['username'];
+        $username = $body['username'] ?? null;
         $password = $body['password'];
         $dailyObjective = $body['dailyObjective'];
         $reason = $body['reason'];

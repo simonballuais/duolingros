@@ -93,6 +93,16 @@ class Translation implements Exercise
      */
     protected $complaints;
 
+    /**
+     * @ORM\Column(type="json")
+     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     *
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("words")
+     * @Serializer\Groups({"startLearningSession"})
+     */
+    protected $words;
+
     public function __construct()
     {
         $this->NOT_A_GROUP_DELIMITER_REGEX = '[^\(\{\[]';
@@ -314,5 +324,15 @@ class Translation implements Exercise
         $this->difficulty = $difficulty;
 
         return $this;
+    }
+
+    public function setWords($words): void
+    {
+        $this->words = $words;
+    }
+
+    public function getWords()
+    {
+        return $this->words;
     }
 }
