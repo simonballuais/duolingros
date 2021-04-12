@@ -120,7 +120,7 @@ class Question implements Exercise
     public function __construct()
     {
         $this->propositions = new ArrayCollection();
-        $this->noPictures = false;
+        $this->noPictures = true;
     }
 
     public function getId()
@@ -195,8 +195,9 @@ class Question implements Exercise
         ;
 
         $result = $this->propositions->matching($criteria);
+        $result = $result->toArray();
 
-        return $result[0] ?? null;
+        return array_pop($result);
     }
 
     public function setAnswer($answer)
