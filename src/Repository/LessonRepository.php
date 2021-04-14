@@ -74,5 +74,29 @@ class LessonRepository extends EntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findOneById($id): Lesson
+    {
+        $lesson = $this->getEntityManager()->createQuery('
+            select l, t from App\Entity\Lesson l
+            join l.translations t
+            where l.id = :id
+        ')
+            ->setParameter('id', $id)
+            ->getOneOrNullResult()
+        ;
+
+        $this->getEntityManager()->createQuery('
+            select l, q, p from App\Entity\Lesson l
+            join l.questions q
+            join q.propositions p
+            where l.id = :id
+        ')
+            ->setParameter('id', $id)
+            ->getOneOrNullResult()
+        ;
+
+        return $lesson;
+    }
 }
 
