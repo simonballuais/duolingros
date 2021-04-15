@@ -95,7 +95,7 @@ class Translation implements Exercise
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Groups({"read", "readItem", "startLearningSession"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("words")
