@@ -9,3 +9,7 @@ api_platform:
             apiKey:
                 name: Authorization
                 type: header
+
+    collection:
+        pagination:
+            items_per_page: 200

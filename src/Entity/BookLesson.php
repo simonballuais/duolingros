@@ -85,7 +85,7 @@ class BookLesson
     protected $course;
 
     /**
-     * @ORM\Column(type="integer", name="order")
+     * @ORM\Column(type="integer", name="book_lesson_order", options={"default"=0})
      *
      * @Groups({"readCollection", "writeItem", "readItem",  "write"})
      * @Expose
@@ -104,6 +104,7 @@ class BookLesson
     {
         $this->lessonList = new ArrayCollection();
         $this->diabled = true;
+        $this->order = 0;
     }
 
     public function getId()
