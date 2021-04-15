@@ -75,11 +75,11 @@ class LessonRepository extends EntityRepository
         ;
     }
 
-    public function findOneById($id): Lesson
+    public function findOneById($id): ?Lesson
     {
         $lesson = $this->getEntityManager()->createQuery('
             select l, t from App\Entity\Lesson l
-            join l.translations t
+            left join l.translations t
             where l.id = :id
         ')
             ->setParameter('id', $id)
@@ -88,8 +88,8 @@ class LessonRepository extends EntityRepository
 
         $this->getEntityManager()->createQuery('
             select l, q, p from App\Entity\Lesson l
-            join l.questions q
-            join q.propositions p
+            left join l.questions q
+            left join q.propositions p
             where l.id = :id
         ')
             ->setParameter('id', $id)

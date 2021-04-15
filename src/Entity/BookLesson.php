@@ -158,6 +158,14 @@ class BookLesson
         return $this->course;
     }
 
+    /**
+     * @Groups({"readCollection", "readItem"})
+     */
+    public function getCourseId()
+    {
+        return $this->course->getId();
+    }
+
     public function setCourse($course)
     {
         $this->course = $course;
