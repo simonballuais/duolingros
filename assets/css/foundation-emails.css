@@ -1031,8 +1031,8 @@ table.button {
   table.button table td {
     text-align: left;
     color: #fefefe;
-    background: #2199e8;
-    border: 2px solid #2199e8; }
+    background: #17a2b8;
+    border: 2px solid #17a2b8; }
     table.button table td a {
       font-family: Helvetica, Arial, sans-serif;
       font-size: 16px;
@@ -1042,7 +1042,7 @@ table.button {
       text-align: left;
       display: inline-block;
       padding: 8px 16px 8px 16px;
-      border: 0 solid #2199e8;
+      border: 0 solid #17a2b8;
       border-radius: 3px; }
   table.button.radius table td {
     border-radius: 3px;

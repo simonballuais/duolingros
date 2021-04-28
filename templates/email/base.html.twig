@@ -1,17 +1,21 @@
 {% apply inky_to_html|inline_css(source('@styles/foundation-emails.css'))|inline_css(source('@styles/email.css')) %}
-<container>
-    <spacer size="16"></spacer>
-    {% block content %} {% endblock content %}
-
-    <wrapper class="secondary">
+<div class="main-wrapper">
+    <container class="container">
         <spacer size="16"></spacer>
+        {% block content %} {% endblock content %}
 
-        <row>
-            <columns small="12" large="6">
-                <h5>Contact</h5>
-                <p>Email: <a href="contact@miteny.com">contact@mitenygasy.com</a></p>
-            </columns>
-        </row>
-    </wrapper>
-</container>
+        <wrapper class="secondary">
+            <spacer size="16"></spacer>
+
+            <row>
+                <columns small="12" large="6">
+                    <p>Contact: <a href="contact@miteny.com">contact@mitenygasy.com</a></p>
+                </columns>
+                <columns small="12" large="6">
+                    <p><a href="mitenygasy.com">MitenyGasy.com</a></p>
+                </columns>
+            </row>
+        </wrapper>
+    </container>
+</div>
 {% endapply %}

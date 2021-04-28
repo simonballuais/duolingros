@@ -1,3 +1,8 @@
+.main-wrapper {
+    padding: 20px;
+    background-color: #fafafa;
+}
+
 .header {
     background: #8a8a8a;
 }
@@ -20,5 +25,16 @@
 }
 
 .wrapper.secondary {
-    background: #f3f3f3;
+    background-color: #fafafa ! important;
+    border-top: 1px solid #cacaca;
+}
+
+.container {
+    background-color: #fafafa ! important;
+    border-radius: 15px;
+    color: #212529;
+}
+
+.primary {
+    background-color: #17a2b8 ! important;
 }
