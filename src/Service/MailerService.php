@@ -20,7 +20,7 @@ class MailerService
     {
         $this->mailer = $mailer;
         $this->router = $router;
-        $this->feBaseUrl = "http://coincoin.me:8080/#";
+        $this->feBaseUrl = "http://pp.coincoin.me";
     }
 
     public function sendRegistrationConfirmation(User $user)

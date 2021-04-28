@@ -95,8 +95,15 @@ class BookLesson
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"readCollection", "readItem"})
      */
     protected $disabled;
+
+    /**
+     * @ORM\Column(type="string", length=1024, nullable=true)
+     * @Groups({"readCollection", "readItem"})
+     */
+    protected $courseLink;
 
     protected $progress;
 
@@ -206,6 +213,18 @@ class BookLesson
     public function setDisabled($disabled)
     {
         $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    public function getCourseLink()
+    {
+        return $this->courseLink;
+    }
+
+    public function setCourseLink($courseLink)
+    {
+        $this->courseLink = $courseLink;
 
         return $this;
     }
