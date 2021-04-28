@@ -1,0 +1,11 @@
+{% extends 'email/base.html.twig' %}
+
+{% block content %}
+<row>
+    <columns small="12">
+        <h1>new user wtf</h1>
+        <p>{{ user.nickname }}</p>
+        <p>{{ user.email }}</p>
+    </columns>
+</row>
+{% endblock content %}

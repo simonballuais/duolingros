@@ -34,6 +34,15 @@ class MailerService
                 'confirmationUrl' => $this->feBaseUrl . "/confirm-email?t=" . $user->getEmailValidationCode(),
             ])
         );
+
+        $this->mailer->send((new TemplatedEmail())
+            ->to(new Address($user->getEmail()))
+            ->subject('New user miteny gasy')
+            ->htmlTemplate('email/registration_admin_notification.html.twig')
+            ->context([
+                'user' => $user,
+            ])
+        );
     }
 
     public function sendResetPassword(User $user)
