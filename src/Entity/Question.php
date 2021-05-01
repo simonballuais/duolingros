@@ -64,7 +64,7 @@ class Question implements Exercise
 
     /**
      * @ORM\OneToMany(targetEntity="Proposition", mappedBy="question", cascade={"persist", "remove"})
-     * @OrderBy({"rightAnswer" = "DESC"})
+     * @ORM\OrderBy({"rightAnswer" = "DESC"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("propositions")
