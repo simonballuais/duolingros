@@ -7,10 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Repository\WordRepository;
 
 /**
-* @ORM\Entity
-* @ORM\Table(name="word", indexes={@ORM\Index(name="key_idx", columns={"key"})})
+* @ORM\Entity(repositoryClass=WordRepository::class)
+* @ORM\Table(name="word", indexes={@ORM\Index(name="original_idx", columns={"original"})})
 */
 class Word
 {
@@ -22,14 +23,14 @@ class Word
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=128, unique=true)
+     * @ORM\Column(type="string", length=128, unique=true, nullable=true)
      */
-    protected $key;
+    protected $original;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
-    protected $value;
+    protected $translations;
 
     public function getId()
     {
@@ -45,24 +46,24 @@ class Word
 
     public function getKey()
     {
-        return $this->key;
+        return $this->original;
     }
 
     public function setKey($key)
     {
-        $this->key = $key;
+        $this->original = $key;
 
         return $this;
     }
 
     public function getValue()
     {
-        return $this->value;
+        return $this->translations;
     }
 
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->translations = $value;
 
         return $this;
     }

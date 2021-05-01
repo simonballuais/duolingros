@@ -96,7 +96,7 @@ class Lesson
 
     /**
      * @ORM\OneToMany(targetEntity="Question", mappedBy="lesson", cascade={"persist", "remove"})
-     * @ORM\OrderBy({"difficulty": "ASC", "noPictures": "ASC"})
+     * @ORM\OrderBy({"difficulty": "ASC", })
      *
      * @Groups({"lesson.writeItem", "readItem", "writeLesson"})
      */

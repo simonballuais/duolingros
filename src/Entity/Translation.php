@@ -182,6 +182,8 @@ class Translation implements Exercise
     {
         $concreteAnswers = [];
 
+        var_dump($this->id);
+
         foreach ($this->answers as $answer) {
             $concreteAnswers = array_merge(
                 $concreteAnswers,
