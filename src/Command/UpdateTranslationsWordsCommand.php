@@ -41,7 +41,7 @@ class UpdateTranslationsWordsCommand extends ContainerAwareCommand
             $wordElements = explode(" ", $this->purifyString($translation->getText()));
 
             foreach ($wordElements as $element) {
-                $word = $wordRepo->findOneByKey(strtolower($element));
+                $word = $wordRepo->findOneByOriginal(strtolower($element));
 
                 if ($word) {
                     $wordValue = $word->getValue();
