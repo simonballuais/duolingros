@@ -329,4 +329,12 @@ class User extends BaseUser
     {
         $this->totalLevels++;
     }
+
+    /**
+     * @Groups({"user.readCollection", "user.readItem", "security"})
+     */
+    public function isSuperAdmin(): bool
+    {
+        return $this->hasRole('ROLE_SUPER_ADMIN');
+    }
 }
