@@ -19,6 +19,7 @@ use App\Model\Exercise;
 *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"question.writeItem"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -29,7 +30,10 @@ use App\Model\Exercise;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"question.writeItem"}}
+ *          },
  *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
@@ -58,7 +62,7 @@ class Question implements Exercise
      * @Serializer\SerializedName("text")
      * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Groups({"read", "question.writeItem", "writeLesson", "readItem", "startLearningSession"})
      */
     protected $text;
 
@@ -70,7 +74,7 @@ class Question implements Exercise
      * @Serializer\SerializedName("propositions")
      * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"writeItem", "readItem", "writeLesson", "startLearningSession"})
+     * @Groups({"readItem", "writeLesson", "startLearningSession"})
      */
     protected $propositions;
 

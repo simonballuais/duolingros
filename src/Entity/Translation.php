@@ -20,6 +20,7 @@ use App\Model\Exercise;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"translation.writeItem"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -30,7 +31,10 @@ use App\Model\Exercise;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"translation.writeItem"}}
+ *          },
  *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
@@ -58,7 +62,7 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="string", length=225)
      *
-     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Groups({"translation.writeItem", "read", "writeLesson", "readItem", "startLearningSession"})
      *
      * @Serializer\Expose()
      * @Serializer\SerializedName("text")
@@ -69,7 +73,7 @@ class Translation implements Exercise
     /**
      * @ORM\Column(type="array")
      *
-     * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
+     * @Groups({"translation.writeItem", "read", "writeLesson", "readItem", "startLearningSession"})
      * @Serializer\Expose()
      * @Serializer\Groups({"startLearningSession"})
      */

@@ -16,6 +16,7 @@ use ApiPlatform\Core\Annotation as API;
  *
  * @API\ApiResource(
  *     normalizationContext={"groups"={"read"}},
+ *     denormalizationContext={"groups"={"proposition.writeItem"}},
  *     attributes={"securit"="is_granted('ROLE_USER')"},
  *     collectionOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
@@ -23,7 +24,10 @@ use ApiPlatform\Core\Annotation as API;
  *     },
  *     itemOperations={
  *          "get"={"security"="is_granted('ROLE_USER')"},
- *          "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *          "put"={
+ *              "security"="is_granted('ROLE_ADMIN')",
+ *              "normalization_context"={"groups"={"proposition.writeItem"}}
+ *          },
  *          "delete"={"security"="is_granted('ROLE_ADMIN')"}
  *     }
  * )
@@ -52,7 +56,7 @@ class Proposition
      * @Serializer\SerializedName("text")
      * @Serializer\Groups({"startLearningSession"})
      *
-     * @Groups({"read", "writeLesson", "readItem"})
+     * @Groups({"read", "writeLesson", "readItem", "proposition.writeItem"})
      */
     protected $text;
 
