@@ -94,7 +94,7 @@ class RegistrationManager
             }
         }
 
-        //$this->em->flush();
+        $this->em->flush();
 
         return $newUser;
     }

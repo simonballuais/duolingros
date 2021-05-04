@@ -2,4 +2,4 @@ framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
         envelope:
-            sender: "MitenyGasy <contact@mitenygasy.com>"
+            sender: "Miteny Gasy <contact@mitenygasy.com>"
