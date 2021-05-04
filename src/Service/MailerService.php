@@ -20,13 +20,14 @@ class MailerService
     {
         $this->mailer = $mailer;
         $this->router = $router;
-        $this->feBaseUrl = "http://pp.coincoin.me";
+        $this->feBaseUrl = "https://mitenygasy.com";
     }
 
     public function sendRegistrationConfirmation(User $user)
     {
         $this->mailer->send((new TemplatedEmail())
             ->to(new Address($user->getEmail()))
+            ->from(new Address('noreply@mitenygasy.com', 'Miteny Gasy'))
             ->subject('Confirmez votre adresse email')
             ->htmlTemplate('email/registration_confirmation.html.twig')
             ->context([
@@ -37,6 +38,7 @@ class MailerService
 
         $this->mailer->send((new TemplatedEmail())
             ->to(new Address($user->getEmail()))
+            ->from(new Address('noreply@mitenygasy.com', 'Miteny Gasy'))
             ->subject('New user miteny gasy')
             ->htmlTemplate('email/registration_admin_notification.html.twig')
             ->context([
@@ -49,6 +51,7 @@ class MailerService
     {
         $this->mailer->send((new TemplatedEmail())
             ->to(new Address($user->getEmail()))
+            ->from(new Address('noreply@mitenygasy.com', 'Miteny Gasy'))
             ->subject('Demande de changement de mot de passe')
             ->htmlTemplate('email/reset_password.html.twig')
             ->context([
@@ -62,6 +65,7 @@ class MailerService
     {
         $this->mailer->send((new TemplatedEmail())
             ->to(new Address($user->getEmail()))
+            ->from(new Address('noreply@mitenygasy.com', 'Miteny Gasy'))
             ->subject('Mot de passe modifié')
             ->htmlTemplate('email/password_changed.html.twig')
             ->context([
