@@ -32,7 +32,7 @@ class MailerService
             ->htmlTemplate('email/registration_confirmation.html.twig')
             ->context([
                 'user' => $user,
-                'confirmationUrl' => $this->feBaseUrl . "/confirmer-email?t=" . $user->getEmailValidationCode(),
+                'confirmationUrl' => $this->feBaseUrl . "/#/confirmer-email?t=" . $user->getEmailValidationCode(),
             ])
         );
 
@@ -56,7 +56,7 @@ class MailerService
             ->htmlTemplate('email/reset_password.html.twig')
             ->context([
                 'user' => $user,
-                'resetUrl' => $this->feBaseUrl . "/reset-password?t=" . $user->getConfirmationToken(),
+                'resetUrl' => $this->feBaseUrl . "/#/reset-password?t=" . $user->getConfirmationToken(),
             ])
         );
     }
