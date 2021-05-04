@@ -32,7 +32,7 @@ class MailerService
             ->htmlTemplate('email/registration_confirmation.html.twig')
             ->context([
                 'user' => $user,
-                'confirmationUrl' => $this->feBaseUrl . "/confirm-email?t=" . $user->getEmailValidationCode(),
+                'confirmationUrl' => $this->feBaseUrl . "/confirmer-email?t=" . $user->getEmailValidationCode(),
             ])
         );
 
