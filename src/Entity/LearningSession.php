@@ -200,7 +200,7 @@ class LearningSession
 
     /**
      * @VirtualProperty
-     * @SerializedName("book_lesson")
+     * @SerializedName("bookLesson")
      * @Groups({"startLearningSession"})
      */
     public function getBookLesson()
