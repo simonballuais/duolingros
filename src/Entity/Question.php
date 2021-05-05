@@ -94,7 +94,7 @@ class Question implements Exercise
      * @ORM\Column(type="boolean", nullable=true)
      *
      * @Serializer\Expose()
-     * @Serializer\SerializedName("isNoPictures")
+     * @Serializer\SerializedName("noPictures")
      *
      * @Groups({"read", "writeLesson", "readItem", "startLearningSession"})
      * @Serializer\Groups({"startLearningSession"})
