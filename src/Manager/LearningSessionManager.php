@@ -87,6 +87,10 @@ class LearningSessionManager
 
     public function correct(LearningSession $ls, array $proposedAnswers)
     {
+        if ($ls->getUser()->isSuperAdmin()) {
+            return true;
+        }
+
         if (!$ls->isStarted()) {
             throw new IncorrectLearningSessionSubmissionException("LearningSession already corrected or aborted");
         }
