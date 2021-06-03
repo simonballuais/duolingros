@@ -87,7 +87,7 @@ class LearningSessionManager
 
     public function correct(LearningSession $ls, array $proposedAnswers)
     {
-        if ($ls->getUser()->isSuperAdmin()) {
+        if ($ls->getUser() && $ls->getUser()->isSuperAdmin()) {
             return true;
         }
 
