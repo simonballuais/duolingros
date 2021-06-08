@@ -37,7 +37,7 @@ class MailerService
         );
 
         $this->mailer->send((new TemplatedEmail())
-            ->to(new Address($user->getEmail()))
+            ->to(new Address('support@mitenygasy.com'))
             ->from(new Address('noreply@mitenygasy.com', 'Miteny Gasy'))
             ->subject('New user miteny gasy')
             ->htmlTemplate('email/registration_admin_notification.html.twig')
