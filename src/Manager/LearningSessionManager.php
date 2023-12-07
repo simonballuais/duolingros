@@ -178,8 +178,10 @@ class LearningSessionManager
 
             if (!$correction->isOk()) {
                 throw new IncorrectLearningSessionSubmissionException(sprintf(
-                    "Proposed answer to translation %s is wrong.",
-                    $translationId
+                    "Proposed answer to translation %s is wrong. Submission : %s, expected : %s",
+                    $translationId,
+                    $pa['proposedAnswer'],
+                    json_encode($translation->getAnswers())
                 ));
             }
         }

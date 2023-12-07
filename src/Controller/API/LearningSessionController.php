@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\MailerService;
 
 use JMS\Serializer\SerializationContext;
 use App\Entity\Lesson;
@@ -52,8 +53,11 @@ class LearningSessionController extends Controller
      *        )
      * @Method({"POST"})
      */
-    public function submitSession(Request $request, LearningSession $learningSession)
-    {
+    public function submitSession(
+        Request $request,
+        LearningSession $learningSession,
+        MailerService $mailer
+    ) {
         $body = json_decode($request->getContent(), true);
 
         if (!isset($body['proposedAnswers'])) {
@@ -65,7 +69,7 @@ class LearningSessionController extends Controller
         try {
             $this->lsm->submit($learningSession, $proposedAnswers);
         } catch (IncorrectLearningSessionSubmissionException $e) {
-            return new Response($e->getMessage(), 400);
+            $mailer->sendSubmissionError($e->getMessage());
         }
 
         return new Response(null, 201);
@@ -117,8 +121,11 @@ class LearningSessionController extends Controller
      *        )
      * @Method({"POST"})
      */
-    public function submitAnonymousSession(Request $request, LearningSession $learningSession)
-    {
+    public function submitAnonymousSession(
+        Request $request,
+        LearningSession $learningSession,
+        MailerService $mailer
+    ) {
         $body = json_decode($request->getContent(), true);
 
         if (!isset($body['proposedAnswers'])) {
@@ -130,7 +137,7 @@ class LearningSessionController extends Controller
         try {
             $this->lsm->submitAnonymousSession($learningSession, $proposedAnswers);
         } catch (IncorrectLearningSessionSubmissionException $e) {
-            return new Response($e->getMessage(), 400);
+            $mailer->sendSubmissionError($e->getMessage());
         }
 
         return new Response(null, 201);
