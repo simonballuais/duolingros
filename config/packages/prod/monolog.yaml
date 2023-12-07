@@ -13,7 +13,7 @@ monolog:
             handler: swift_mailer
         swift_mailer:
             type: symfony_mailer
-            from_email:   'Critical MG <critical@mitenygasy.com>'
+            from_email:   'contact@mitenygasy.com'
             to_email:     '%env(resolve:CRITICAL_MAIL_RECIPIENT)%'
             subject:      'CRITICAL MG : %%message%%'
             level:        debug
