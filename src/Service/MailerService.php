@@ -80,7 +80,7 @@ class MailerService
             ->to(new Address('gasymiteny+submissionerror@gmail.com'))
             ->from(new Address('contact@mitenygasy.com', 'Miteny Gasy'))
             ->subject('Submission error MG')
-            ->htmlTemplate('email/registration_admin_notification.html.twig')
+            ->htmlTemplate('email/submission_error.html.twig')
             ->context([
                 'message' => $message,
             ])
