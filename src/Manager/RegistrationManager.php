@@ -27,21 +27,25 @@ use App\Exception\RegistrationFailedException;
 use App\Exception\IncorrectLearningSessionSubmissionException;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Uid\Uuid;
+use Psr\Log\LoggerInterface;
 
 class RegistrationManager
 {
     private $em;
     private $lsm;
     private $um;
+    private $logger;
 
     public function __construct(
         EntityManagerInterface $em,
         LearningSessionManager $learningSessionManager,
-        UserManagerInterface $userManager
+        UserManagerInterface $userManager,
+        LoggerInterface $logger
     ) {
         $this->em = $em;
         $this->lsm = $learningSessionManager;
         $this->um = $userManager;
+        $this->logger = $logger;
     }
 
     public function submitProfile(
@@ -72,14 +76,19 @@ class RegistrationManager
             $ls = $repoLs->findOneById($lsData['learningSessionId']);
 
             if (!$ls) {
-                // todo: log properly
-                echo("unknown LS\n");
+                $this->logger->critical(
+                    sprintf(
+                        "Could not find anonymous LS %s when validating anomymous LS data. Skipping",
+                        $lsData['learningSessionId']
+                    )
+                );
+
                 continue;
             }
 
             if (!isset($lsData['validatedAnswers'])) {
-                // todo: log properly
-                echo("cant find answers data\n");
+                $this->logger->critical("Submitted anonymous LS doesn't have validatedAnswers field. Skipping");
+
                 continue;
             }
 
@@ -88,8 +97,14 @@ class RegistrationManager
                 $ls->setStatus(LearningSession::STATUS_STARTED);
                 $this->lsm->submit($ls, $lsData['validatedAnswers']);
             } catch (IncorrectLearningSessionSubmissionException $e) {
-                // todo: log properly
-                echo($ls->getId() . " - " . $e->getMessage());
+                $this->logger->critical(
+                    sprintf(
+                        "An validation error occurred when validating anonymous LS %s : %s. Skipping",
+                        $ls->getId(),
+                        $e->getMessage()
+                    )
+                );
+
                 continue;
             }
         }
